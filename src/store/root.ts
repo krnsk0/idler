@@ -6,7 +6,7 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
-import { City } from './city';
+import { City } from './city/city';
 
 @model('Root')
 export class Root extends Model({

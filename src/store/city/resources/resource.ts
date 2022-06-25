@@ -7,12 +7,12 @@ export abstract class Resource extends Model({
   abstract displayName: string;
   abstract displayColor: string;
 
-  @modelAction
+  // @modelAction
   increase(qty: number): void {
     this.qty += qty;
   }
 
-  @modelAction
+  // @modelAction
   decrease(qty: number): void {
     this.qty -= qty;
   }

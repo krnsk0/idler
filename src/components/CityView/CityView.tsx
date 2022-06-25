@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { City } from '../../store/city';
+import { City } from '../../store/city/city';
 import { styles } from './CityView.styles';
 
 interface CityViewProps {
@@ -7,7 +7,13 @@ interface CityViewProps {
 }
 
 function CityView({ city }: CityViewProps) {
-  return <div css={styles.container}>{city.name}</div>;
+  return (
+    <div css={styles.container}>
+      <div>{city.name}</div>
+      <div css={styles.container}>coal: {city.coal.qty}</div>
+      <div css={styles.container}>mines: {city.mines.qty}</div>
+    </div>
+  );
 }
 
 export default observer(CityView);
