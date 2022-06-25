@@ -11,7 +11,12 @@ function CityView({ city }: CityViewProps) {
     <div css={styles.container}>
       <div>{city.name}</div>
       <div css={styles.container}>coal: {city.coal.qty}</div>
-      <div css={styles.container}>mines: {city.mines.qty}</div>
+      <div css={styles.container}>
+        mines: {city.mines.qty}{' '}
+        <button type="button" onClick={() => city.mines.buy(1)}>
+          buy
+        </button>
+      </div>
     </div>
   );
 }
