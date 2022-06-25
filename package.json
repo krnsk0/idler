@@ -1,0 +1,28 @@
+{
+  "name": "audio-recorder",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel & sleep 1 && open http://localhost:1234",
+    "build": "parcel build",
+    "format": "prettier --write src"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@emotion/react": "^11.9.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@emotion/babel-plugin": "^11.9.2",
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "parcel": "^2.6.1",
+    "prettier": "^2.7.1",
+    "process": "^0.11.10"
+  }
+}
