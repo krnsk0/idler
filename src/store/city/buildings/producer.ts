@@ -7,9 +7,14 @@ import {
   decoratedModel,
 } from 'mobx-keystone';
 import { getCity } from '../city';
-import { ResourceNames } from '../resources/resources';
+import { ResourceNames } from '../resources/resourceNames';
 
-interface Product {
+interface Output {
+  resource: ResourceNames;
+  qty: number;
+}
+
+interface Input {
   resource: ResourceNames;
   qty: number;
 }
@@ -19,15 +24,17 @@ export abstract class _Producer extends Model({
   qty: tProp(types.number, 0),
 }) {
   abstract displayName: string;
-  abstract products: Array<Product>;
+  abstract outputs: Array<Output>;
+  abstract inputs: Array<Input>;
 
   tick(): void {
     const city = getCity(this);
-    this.products.forEach((product) => {
+    this.outputs.forEach((product) => {
       const resourceName = product.resource;
       city.resources[resourceName].increase(0.01 * this.qty);
     });
   }
+
   buy(qty: number): void {
     this.qty += qty;
   }

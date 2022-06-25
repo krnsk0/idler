@@ -1,17 +1,8 @@
-import {
-  BaseModel,
-  findParent,
-  idProp,
-  model,
-  Model,
-  tProp,
-  types,
-} from 'mobx-keystone';
-import { Coal, CoalName } from './coal';
-
-export type ResourceNames = typeof CoalName;
+import { model, Model, tProp, types } from 'mobx-keystone';
+import { Coal } from './coal';
+import { ResourceNames } from './resourceNames';
 
 @model('Resources')
 export class Resources extends Model({
-  [CoalName]: tProp(types.model(Coal), () => new Coal({})),
+  [ResourceNames.Coal]: tProp(types.model(Coal), () => new Coal({})),
 }) {}

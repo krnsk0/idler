@@ -1,13 +1,14 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
-import { CoalName } from '../resources/coal';
+import { ResourceNames } from '../resources/resourceNames';
 import { Producer } from './producer';
 
 @model('Mine')
 export class Mine extends ExtendedModel(Producer, {}) {
   displayName = 'Mine';
-  products = [
+  intputs = [];
+  outputs = [
     {
-      resource: CoalName,
+      resource: ResourceNames.Coal,
       qty: 0.01,
     },
   ];
