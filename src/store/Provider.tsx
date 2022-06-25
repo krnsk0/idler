@@ -5,6 +5,7 @@ import {
 } from 'mobx-keystone';
 import { Root } from './root';
 import React from 'react';
+import { City } from './city';
 
 setGlobalConfig({
   modelAutoTypeChecking: ModelAutoTypeCheckingMode.AlwaysOn,

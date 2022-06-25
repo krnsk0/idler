@@ -1,16 +1,22 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../store/Provider';
+import CityView from './CityView/CityView';
+import { useStoreTick } from './useStoreTick';
 
 function App() {
-  const store = useStore();
+  const root = useStore();
+
+  useStoreTick();
 
   return (
     <div>
-      {store.cities.map((city) => city.name)}{' '}
+      {root.cities.map((city) => (
+        <CityView key={city.id} city={city} />
+      ))}
       <button
         type="button"
         onClick={() => {
-          store.addCity();
+          root.addCity();
         }}
       >
         add city

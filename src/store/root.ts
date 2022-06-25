@@ -8,12 +8,12 @@ import {
 } from 'mobx-keystone';
 import { City } from './city';
 
-@model('idle/Root')
+@model('Root')
 export class Root extends Model({
-  cities: tProp(types.array(types.model(City)), () => []),
+  cities: tProp(types.array(types.model(City)), () => [new City({})]),
 }) {
   @modelAction
   addCity() {
-    this.cities.push(new City({ name: Math.random().toString() }));
+    this.cities.push(new City({}));
   }
 }
