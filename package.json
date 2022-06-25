@@ -1,5 +1,5 @@
 {
-  "name": "audio-recorder",
+  "name": "idle",
   "version": "1.0.0",
   "description": "",
   "source": "src/index.html",
@@ -13,11 +13,14 @@
   "license": "ISC",
   "dependencies": {
     "@emotion/react": "^11.9.3",
+    "mobx-keystone": "^0.69.1",
+    "mobx-react-lite": "^3.4.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.18.5",
+    "@babel/plugin-proposal-decorators": "^7.18.2",
     "@emotion/babel-plugin": "^11.9.2",
     "@types/react": "^18.0.14",
     "@types/react-dom": "^18.0.5",
