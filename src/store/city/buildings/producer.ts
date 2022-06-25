@@ -5,14 +5,26 @@ import {
   types,
   modelAction,
   decoratedModel,
+  findParent,
 } from 'mobx-keystone';
+import { City, getCity } from '../city';
+import { Resource } from '../resources/resource';
+
+interface Product {
+  resource: typeof Resource;
+  qty: number;
+}
 
 export abstract class _Producer extends Model({
   id: idProp,
   qty: tProp(types.number, 0),
 }) {
   abstract displayName: string;
-  abstract tick(): void;
+  abstract products: Array<Product>;
+
+  tick(): void {
+    const city = getCity(this);
+  }
 
   buy(qty: number): void {
     this.qty += qty;
