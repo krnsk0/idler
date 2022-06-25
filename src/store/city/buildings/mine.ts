@@ -1,15 +1,14 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
-import { getCity } from '../city';
-import { Coal } from '../resources/coal';
-import { Resources } from '../resources/resources';
+import { CoalName } from '../resources/coal';
 import { Producer } from './producer';
 
 @model('Mine')
 export class Mine extends ExtendedModel(Producer, {}) {
   displayName = 'Mine';
-  producerFns = [
-    (resources: Resources) => {
-      resources.coal.increase(0.01);
+  products = [
+    {
+      resource: CoalName,
+      qty: 0.01,
     },
   ];
 }

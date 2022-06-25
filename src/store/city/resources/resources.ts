@@ -7,9 +7,11 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
-import { Coal } from './coal';
+import { Coal, CoalName } from './coal';
+
+export type ResourceNames = typeof CoalName;
 
 @model('Resources')
 export class Resources extends Model({
-  coal: tProp(types.model(Coal), () => new Coal({})),
+  [CoalName]: tProp(types.model(Coal), () => new Coal({})),
 }) {}
