@@ -1,8 +1,11 @@
 import { model, Model, tProp, types } from 'mobx-keystone';
-import { Food } from './food';
+import { Nutrients } from './nutrients';
 import { ResourceNames } from './resourceNames';
 
 @model('Resources')
 export class Resources extends Model({
-  [ResourceNames.Food]: tProp(types.model(Food), () => new Food({})),
+  [ResourceNames.Nutrients]: tProp(
+    types.model(Nutrients),
+    () => new Nutrients({}),
+  ),
 }) {}

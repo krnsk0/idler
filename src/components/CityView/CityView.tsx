@@ -12,7 +12,7 @@ function CityView({ city }: CityViewProps) {
     <div css={styles.container}>
       <div>{city.name}</div>
       <div css={styles.innerContainer}>
-        food: {city.resources[ResourceNames.Food].displayQuantity()}
+        food: {city.resources[ResourceNames.Nutrients].displayQuantity()}
       </div>
       <div css={styles.innerContainer}>
         farms: {city.farms.quantity}{' '}

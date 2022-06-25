@@ -2,8 +2,8 @@ import { model, ExtendedModel } from 'mobx-keystone';
 import { BaseResource } from './baseResource';
 import { ResourceNames } from './resourceNames';
 
-@model(ResourceNames.Food)
-export class Food extends ExtendedModel(BaseResource, {}) {
-  displayName = 'Food';
+@model(ResourceNames.Nutrients)
+export class Nutrients extends ExtendedModel(BaseResource, {}) {
+  displayName = 'Nutrients';
   displayColor = 'green';
 }
