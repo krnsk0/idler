@@ -5,10 +5,9 @@ import {
   types,
   modelAction,
   decoratedModel,
-  computed,
 } from 'mobx-keystone';
 
-export abstract class _Resource extends Model({
+export abstract class _BaseResource extends Model({
   id: idProp,
   quantity: tProp(types.number, 0),
 }) {
@@ -32,10 +31,9 @@ export abstract class _Resource extends Model({
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const Resource = decoratedModel(undefined, _Resource, {
-  displayQuantity: computed,
+export const BaseResource = decoratedModel(undefined, _BaseResource, {
   increase: modelAction,
   decrease: modelAction,
 });
 
-type Resource = _Resource;
+type BaseResource = _BaseResource;

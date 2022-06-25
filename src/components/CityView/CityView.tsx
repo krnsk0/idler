@@ -11,12 +11,12 @@ function CityView({ city }: CityViewProps) {
   return (
     <div css={styles.container}>
       <div>{city.name}</div>
-      <div css={styles.container}>
-        coal: {city.resources[ResourceNames.Coal].displayQuantity()}
+      <div css={styles.innerContainer}>
+        food: {city.resources[ResourceNames.Food].displayQuantity()}
       </div>
-      <div css={styles.container}>
-        mines: {city.mines.quantity}{' '}
-        <button type="button" onClick={() => city.mines.buy(1)}>
+      <div css={styles.innerContainer}>
+        farms: {city.farms.quantity}{' '}
+        <button type="button" onClick={() => city.farms.buy(1)}>
           buy
         </button>
       </div>

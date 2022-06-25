@@ -5,4 +5,8 @@ export const styles = {
     border: 1px solid black;
     margin: 0.1em;
   `,
+  innerContainer: css`
+    border: 1px solid black;
+    margin: 0.1em;
+  `,
 };

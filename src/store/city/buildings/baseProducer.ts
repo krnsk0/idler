@@ -19,7 +19,7 @@ interface Input {
   quantity: number;
 }
 
-export abstract class _Producer extends Model({
+export abstract class _BaseProducer extends Model({
   id: idProp,
   quantity: tProp(types.number, 0),
 }) {
@@ -48,9 +48,9 @@ export abstract class _Producer extends Model({
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const Producer = decoratedModel(undefined, _Producer, {
+export const BaseProducer = decoratedModel(undefined, _BaseProducer, {
   buy: modelAction,
   sell: modelAction,
 });
 
-type Producer = _Producer;
+type BaseProducer = _BaseProducer;
