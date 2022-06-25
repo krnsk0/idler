@@ -9,7 +9,7 @@ export class Mine extends ExtendedModel(Producer, {}) {
   outputs = [
     {
       resource: ResourceNames.Coal,
-      qty: 0.01,
+      quantity: 0.01,
     },
   ];
 }

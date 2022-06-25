@@ -5,21 +5,26 @@ import {
   types,
   modelAction,
   decoratedModel,
+  computed,
 } from 'mobx-keystone';
 
 export abstract class _Resource extends Model({
   id: idProp,
-  qty: tProp(types.number, 0),
+  quantity: tProp(types.number, 0),
 }) {
   abstract displayName: string;
   abstract displayColor: string;
 
-  increase(qty: number): void {
-    this.qty += qty;
+  displayQuantity(): string {
+    return this.quantity.toFixed(2);
   }
 
-  decrease(qty: number): void {
-    this.qty -= qty;
+  increase(quantity: number): void {
+    this.quantity += quantity;
+  }
+
+  decrease(quantity: number): void {
+    this.quantity -= quantity;
   }
 }
 
@@ -28,6 +33,7 @@ export abstract class _Resource extends Model({
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
 export const Resource = decoratedModel(undefined, _Resource, {
+  displayQuantity: computed,
   increase: modelAction,
   decrease: modelAction,
 });

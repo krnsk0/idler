@@ -11,17 +11,17 @@ import { ResourceNames } from '../resources/resourceNames';
 
 interface Output {
   resource: ResourceNames;
-  qty: number;
+  quantity: number;
 }
 
 interface Input {
   resource: ResourceNames;
-  qty: number;
+  quantity: number;
 }
 
 export abstract class _Producer extends Model({
   id: idProp,
-  qty: tProp(types.number, 0),
+  quantity: tProp(types.number, 0),
 }) {
   abstract displayName: string;
   abstract outputs: Array<Output>;
@@ -31,16 +31,16 @@ export abstract class _Producer extends Model({
     const city = getCity(this);
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
-      city.resources[resourceName].increase(0.01 * this.qty);
+      city.resources[resourceName].increase(0.01 * this.quantity);
     });
   }
 
-  buy(qty: number): void {
-    this.qty += qty;
+  buy(quantity: number): void {
+    this.quantity += quantity;
   }
 
-  sell(qty: number): void {
-    this.qty -= qty;
+  sell(quantity: number): void {
+    this.quantity -= quantity;
   }
 }
 
