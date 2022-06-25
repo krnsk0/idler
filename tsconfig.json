@@ -3,6 +3,7 @@
     "jsxImportSource": "@emotion/react",
     "jsx": "preserve",
     "experimentalDecorators": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "strict": true
   }
 }

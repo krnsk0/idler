@@ -29,5 +29,6 @@ export const getCity = (child: object): City => {
   const city = findParent<City>(child, (node) => {
     return node instanceof City;
   });
+  if (!city) throw new Error('no parent city model found in getCity');
   return city;
 };

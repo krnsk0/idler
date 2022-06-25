@@ -5,7 +5,7 @@ import { Producer } from './producer';
 @model('Mine')
 export class Mine extends ExtendedModel(Producer, {}) {
   displayName = 'Mine';
-  intputs = [];
+  inputs = [];
   outputs = [
     {
       resource: ResourceNames.Coal,
