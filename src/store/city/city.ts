@@ -8,7 +8,7 @@ import {
   types,
 } from 'mobx-keystone';
 import { Mine } from './buildings/mine';
-import { Coal } from './resources/coal';
+import { Resources } from './resources/resources';
 
 const makeCityName = () => {
   const cityNames = ['Garden', 'Reprieve', 'University', 'Redoubt', 'Zone'];
@@ -21,8 +21,8 @@ const makeCityName = () => {
 export class City extends Model({
   id: idProp,
   name: tProp(types.string, makeCityName).withSetter(),
-  coal: tProp(types.model(Coal), () => new Coal({})),
   mines: tProp(types.model(Mine), () => new Mine({})),
+  resources: tProp(types.model(Resources), () => new Resources({})),
 }) {}
 
 export const getCity = (child: object): City => {

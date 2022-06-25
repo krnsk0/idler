@@ -5,27 +5,23 @@ import {
   types,
   modelAction,
   decoratedModel,
-  findParent,
 } from 'mobx-keystone';
-import { City, getCity } from '../city';
-import { Resource } from '../resources/resource';
+import { getCity } from '../city';
+import { Resources } from '../resources/resources';
 
-interface Product {
-  resource: typeof Resource;
-  qty: number;
-}
+type ProducerFn = (resources: Resources) => void;
 
 export abstract class _Producer extends Model({
   id: idProp,
   qty: tProp(types.number, 0),
 }) {
   abstract displayName: string;
-  abstract products: Array<Product>;
+  abstract producerFns: Array<ProducerFn>;
 
   tick(): void {
     const city = getCity(this);
+    this.producerFns.forEach((producerFn) => producerFn(city.resources));
   }
-
   buy(qty: number): void {
     this.qty += qty;
   }
