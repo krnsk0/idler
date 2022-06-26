@@ -31,7 +31,7 @@ abstract class _BaseProducer extends ExtendedModel(BasePurchaseable, {
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
       const qps = product.quantityPerSecond;
-      this.cityResources[resourceName].increase(qps * this.quantity * delta);
+      this.zoneResources[resourceName].increase(qps * this.quantity * delta);
     });
   }
 }

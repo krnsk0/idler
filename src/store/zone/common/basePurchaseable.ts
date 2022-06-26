@@ -8,14 +8,14 @@ import {
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ResourceNames } from '../resources/resourceNames';
-import { BaseCityEntity } from './baseCityEntity';
+import { BaseZoneEntity } from './baseZoneEntity';
 
 interface PurchaseCost {
   resource: ResourceNames;
   quantity: number;
 }
 
-abstract class _BasePurchaseable extends ExtendedModel(BaseCityEntity, {
+abstract class _BasePurchaseable extends ExtendedModel(BaseZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
   abstract baseCost: Array<PurchaseCost>;
@@ -38,7 +38,7 @@ abstract class _BasePurchaseable extends ExtendedModel(BaseCityEntity, {
    */
   get affordable(): boolean {
     return this.currentCost.every(({ resource, quantity }) => {
-      return this.cityResources[resource].quantity >= quantity;
+      return this.zoneResources[resource].quantity >= quantity;
     });
   }
 
@@ -48,7 +48,7 @@ abstract class _BasePurchaseable extends ExtendedModel(BaseCityEntity, {
   buy(quantity: number): void {
     if (this.affordable) {
       this.currentCost.forEach(({ resource, quantity }) => {
-        this.cityResources[resource].decrease(quantity, { untracked: true });
+        this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
       this.quantity += quantity;
     }

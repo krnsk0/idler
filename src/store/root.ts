@@ -6,14 +6,14 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
-import { City } from './city/city';
+import { Zone } from './zone/zone';
 
 @model('Root')
 export class Root extends Model({
-  cities: tProp(types.array(types.model(City)), () => [new City({})]),
+  zones: tProp(types.array(types.model(Zone)), () => [new Zone({})]),
 }) {
   @modelAction
-  addCity() {
-    this.cities.push(new City({}));
+  addZone() {
+    this.zones.push(new Zone({}));
   }
 }
