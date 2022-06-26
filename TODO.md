@@ -1,5 +1,7 @@
 # TODAY
 - write habitat model
+- storage
+- unlocks
 
 # ENGINE
 - workers

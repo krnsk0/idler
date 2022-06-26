@@ -30,8 +30,9 @@ abstract class _BaseBuilding extends ExtendedModel(BasePurchaseable, {
   tick(delta: number): void {
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
-      const qps = product.quantityPerSecond;
-      this.zoneResources[resourceName].increase(qps * this.quantity * delta);
+      this.zoneResources[resourceName].increase(
+        product.quantityPerSecond * this.quantity * delta,
+      );
     });
   }
 }
