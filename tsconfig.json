@@ -5,6 +5,7 @@
     "experimentalDecorators": true,
     "esModuleInterop": true,
     "strict": true,
-    "target": "es5"
+    "target": "es5",
+    "lib": ["DOM"]
   }
 }

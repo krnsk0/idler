@@ -1,6 +1,5 @@
 # TODAY
-- write house model
-- providerBuilding, producerBuilding
+- write habitat model
 
 # ENGINE
 - workers
