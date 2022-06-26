@@ -6,6 +6,6 @@ import { ResourceNames } from './resourceNames';
 export class Resources extends Model({
   [ResourceNames.Nutrients]: tProp(
     types.model(Nutrients),
-    () => new Nutrients({}),
+    () => new Nutrients({ quantity: 10 }),
   ),
 }) {}

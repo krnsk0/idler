@@ -8,6 +8,7 @@ import {
   types,
 } from 'mobx-keystone';
 import { Farm } from './buildings/farm';
+import { ResourceNames } from './resources/resourceNames';
 import { Resources } from './resources/resources';
 
 const makeCityName = () => {

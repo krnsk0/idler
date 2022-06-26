@@ -6,17 +6,22 @@ import {
   modelAction,
   decoratedModel,
 } from 'mobx-keystone';
-import { getCity } from '../city';
+import { City, getCity } from '../city';
 import { ResourceNames } from '../resources/resourceNames';
 
-interface Output {
+interface Cost {
   resource: ResourceNames;
   quantity: number;
 }
 
+interface Output {
+  resource: ResourceNames;
+  quantityPerSecond: number;
+}
+
 interface Input {
   resource: ResourceNames;
-  quantity: number;
+  quantityPerSecond: number;
 }
 
 export abstract class _BaseProducer extends Model({
@@ -24,19 +29,44 @@ export abstract class _BaseProducer extends Model({
   quantity: tProp(types.number, 0),
 }) {
   abstract displayName: string;
+  abstract baseCost: Array<Cost>;
+  abstract costExponent: number;
   abstract outputs: Array<Output>;
   abstract inputs: Array<Input>;
 
+  private city(): City {
+    return getCity(this);
+  }
+
   tick(): void {
-    const city = getCity(this);
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
-      city.resources[resourceName].increase(0.01 * this.quantity);
+      this.city().resources[resourceName].increase(0.01 * this.quantity);
+    });
+  }
+
+  currentCost(): Array<Cost> {
+    return this.baseCost.map(({ resource, quantity: baseCost }) => {
+      return {
+        resource,
+        quantity: baseCost * this.costExponent ** this.quantity,
+      };
+    });
+  }
+
+  affordable(): boolean {
+    return this.currentCost().every(({ resource, quantity }) => {
+      return this.city().resources[resource].quantity > quantity;
     });
   }
 
   buy(quantity: number): void {
-    this.quantity += quantity;
+    if (this.affordable()) {
+      this.quantity += quantity;
+      this.currentCost().forEach(({ resource, quantity }) => {
+        this.city().resources[resource].decrease(quantity);
+      });
+    }
   }
 
   sell(quantity: number): void {

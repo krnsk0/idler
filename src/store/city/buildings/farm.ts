@@ -6,11 +6,18 @@ import { BuildingNames } from './buildingNames';
 @model(BuildingNames.Farm)
 export class Farm extends ExtendedModel(BaseProducer, {}) {
   displayName = 'Farm';
+  baseCost = [
+    {
+      resource: ResourceNames.Nutrients,
+      quantity: 10,
+    },
+  ];
+  costExponent = 1.2;
   inputs = [];
   outputs = [
     {
       resource: ResourceNames.Nutrients,
-      quantity: 0.01,
+      quantityPerSecond: 0.01,
     },
   ];
 }
