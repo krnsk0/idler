@@ -1,5 +1,5 @@
 import { findParent, idProp, model, Model, tProp, types } from 'mobx-keystone';
-import { Buildings } from './buildings';
+import { Buildings } from './buildings/buildings';
 import { Resources } from './resources/resources';
 
 const makeZoneName = () => {

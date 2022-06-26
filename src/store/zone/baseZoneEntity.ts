@@ -1,13 +1,7 @@
-import {
-  Model,
-  tProp,
-  types,
-  modelAction,
-  decoratedModel,
-} from 'mobx-keystone';
+import { Model, decoratedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { Zone, getZone } from '../zone';
-import { Resources } from '../resources/resources';
+import { Zone, getZone } from './zone';
+import { Resources } from './resources/resources';
 
 class _BaseZoneEntity extends Model({}) {
   /**

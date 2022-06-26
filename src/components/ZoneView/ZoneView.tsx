@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../helpers/formatNumber';
 import { Zone } from '../../store/zone/zone';
 import { ResourceNames } from '../../store/zone/resources/resourceNames';
-import { ProducerNames } from '../../store/zone/producers/producerNames';
+import { ProducerNames } from '../../store/zone/buildings/producers/producerNames';
 import { styles } from './ZoneView.styles';
 
 interface ZoneViewProps {

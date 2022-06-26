@@ -4,8 +4,8 @@ import {
   decoratedModel,
   ExtendedModel,
 } from 'mobx-keystone';
-import { ResourceNames } from '../resources/resourceNames';
-import { BasePurchaseable } from '../common/basePurchaseable';
+import { ResourceNames } from '../../resources/resourceNames';
+import { BasePurchaseable } from '../basePurchaseable';
 
 interface ProducerOutput {
   resource: ResourceNames;

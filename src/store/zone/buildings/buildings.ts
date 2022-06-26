@@ -1,8 +1,8 @@
 import { model, Model, tProp, types } from 'mobx-keystone';
 import { ProducerNames } from './producers/producerNames';
 import { ProviderNames } from './providers/providerNames';
-import { Farm } from '../zone/producers/farm';
-import { Habitat } from '../zone/providers/habitat';
+import { Farm } from './producers/farm';
+import { Habitat } from './providers/habitat';
 
 @model('Buildings')
 export class Buildings extends Model({

@@ -1,5 +1,5 @@
 import { idProp, decoratedModel, ExtendedModel } from 'mobx-keystone';
-import { BasePurchaseable } from '../common/basePurchaseable';
+import { BasePurchaseable } from '../basePurchaseable';
 
 abstract class _BaseProvider extends ExtendedModel(BasePurchaseable, {
   id: idProp,
