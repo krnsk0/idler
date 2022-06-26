@@ -7,7 +7,7 @@ import {
   decoratedModel,
 } from 'mobx-keystone';
 
-export abstract class _BaseJob extends Model({
+abstract class _BaseJob extends Model({
   id: idProp,
   workers: tProp(types.number, 0),
 }) {

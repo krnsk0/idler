@@ -1,3 +1,7 @@
+# TODAY
+- rename city -> zone
+- write house model
+
 # ENGINE
 - workers
 - unlock condition system

@@ -8,7 +8,7 @@ import {
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 
-export abstract class _BaseResource extends Model({
+abstract class _BaseResource extends Model({
   id: idProp,
   quantity: tProp(types.number, 0),
   estimatedRate: tProp(types.number, 0),
