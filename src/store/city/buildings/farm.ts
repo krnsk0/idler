@@ -9,7 +9,7 @@ export class Farm extends ExtendedModel(BaseProducer, {}) {
   baseCost = [
     {
       resource: ResourceNames.Nutrients,
-      quantity: 10,
+      quantity: 1,
     },
   ];
   costExponent = 1.2;
@@ -17,7 +17,7 @@ export class Farm extends ExtendedModel(BaseProducer, {}) {
   outputs = [
     {
       resource: ResourceNames.Nutrients,
-      quantityPerSecond: 0.01,
+      quantityPerSecond: 0.1,
     },
   ];
 }

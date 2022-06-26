@@ -4,6 +4,7 @@
     "jsx": "preserve",
     "experimentalDecorators": true,
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "target": "es5"
   }
 }

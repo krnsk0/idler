@@ -54,10 +54,11 @@ export abstract class _BaseProducer extends Model({
     });
   }
 
-  tick(): void {
+  tick(delta: number): void {
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
-      this.city.resources[resourceName].increase(0.01 * this.quantity);
+      const qps = product.quantityPerSecond;
+      this.city.resources[resourceName].increase(qps * this.quantity * delta);
     });
   }
 

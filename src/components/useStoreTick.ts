@@ -17,7 +17,7 @@ export const useStoreTick = () => {
     let lastTimestamp: number | undefined = undefined;
     const onAnimationFrame = (timestamp: DOMHighResTimeStamp) => {
       if (!lastTimestamp) lastTimestamp = timestamp;
-      const delta = timestamp - lastTimestamp;
+      const delta = (timestamp - lastTimestamp) / 1000;
       lastTimestamp = timestamp;
 
       walkTree(

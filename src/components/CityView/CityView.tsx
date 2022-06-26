@@ -11,20 +11,26 @@ function CityView({ city }: CityViewProps) {
   return (
     <div css={styles.container}>
       <div>{city.name}</div>
-      <div css={styles.innerContainer}>
-        Nutrients: {city.resources[ResourceNames.Nutrients].quantity.toFixed(2)}
+      <div css={styles.resourceContainer}>
+        <span>Nutrients:</span>
+        <span>
+          {city.resources[ResourceNames.Nutrients].quantity.toFixed(2)}
+        </span>
+        <span>
+          {city.resources[ResourceNames.Nutrients].rateOfChange.toFixed(2)}
+        </span>
       </div>
       <div css={styles.innerContainer}>
         Farms: {city.farms.quantity}{' '}
         <button
           type="button"
-          disabled={!city.farms.affordable()}
+          disabled={!city.farms.affordable}
           onClick={() => city.farms.buy(1)}
         >
-          buy
+          Buy
         </button>
         <div>
-          {city.farms.currentCost().map(({ resource, quantity }) => {
+          {city.farms.currentCost.map(({ resource, quantity }) => {
             return (
               <div key={resource}>
                 {resource}: {quantity.toFixed(2)}
