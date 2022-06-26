@@ -21,7 +21,7 @@ export abstract class _BaseResource extends Model({
    * Ensures average rate of change is tracked.
    */
   tick(delta: number): void {
-    this.estimatedRate = this.changeSinceLastTick / delta;
+    if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
     this.changeSinceLastTick = 0;
   }
 

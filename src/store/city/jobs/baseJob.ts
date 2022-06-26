@@ -13,10 +13,16 @@ export abstract class _BaseJob extends Model({
 }) {
   abstract displayName: string;
 
+  /**
+   * Assign a free worker if possible
+   */
   assign(): void {
     this.workers += 1;
   }
 
+  /**
+   * Unassign a free worker if possible
+   */
   unassign(): void {
     this.workers -= 1;
   }
