@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { formatNumber } from '../../helpers/formatNumber';
 import { City } from '../../store/city/city';
 import { ResourceNames } from '../../store/city/resources/resourceNames';
 import { styles } from './CityView.styles';
@@ -14,10 +15,12 @@ function CityView({ city }: CityViewProps) {
       <div css={styles.resourceContainer}>
         <span>Nutrients:</span>
         <span>
-          {city.resources[ResourceNames.Nutrients].quantity.toFixed(2)}
+          {formatNumber(city.resources[ResourceNames.Nutrients].quantity)}
         </span>
         <span>
-          {city.resources[ResourceNames.Nutrients].estimatedRateDisplay}
+          {formatNumber(city.resources[ResourceNames.Nutrients].estimatedRate, {
+            showSign: true,
+          })}
         </span>
       </div>
       <div css={styles.innerContainer}>
@@ -33,7 +36,7 @@ function CityView({ city }: CityViewProps) {
           {city.farms.currentCost.map(({ resource, quantity }) => {
             return (
               <div key={resource}>
-                {resource}: {quantity.toFixed(2)}
+                {resource}: {formatNumber(quantity)}
               </div>
             );
           })}

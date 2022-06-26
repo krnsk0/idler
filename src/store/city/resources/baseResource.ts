@@ -18,16 +18,6 @@ export abstract class _BaseResource extends Model({
   abstract displayColor: string;
 
   /**
-   * Estimated rate of change suitable for display
-   */
-  get estimatedRateDisplay(): string {
-    const fixed = this.estimatedRate.toFixed(2);
-    if (this.estimatedRate > 0) return `+${fixed}`;
-    else if (this.estimatedRate < 0) return `-${fixed}`;
-    else return `${fixed}`;
-  }
-
-  /**
    * Ensures average rate of change is tracked.
    */
   tick(delta: number): void {
@@ -57,7 +47,6 @@ export abstract class _BaseResource extends Model({
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
 export const BaseResource = decoratedModel(undefined, _BaseResource, {
-  estimatedRateDisplay: computed,
   tick: modelAction,
   increase: modelAction,
   decrease: modelAction,
