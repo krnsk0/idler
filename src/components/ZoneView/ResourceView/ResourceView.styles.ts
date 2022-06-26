@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const styles = {
-  resourceContainer: css`
+  resourceRow: css`
     border: 1px solid black;
     margin: 0.1em;
     display: flex;

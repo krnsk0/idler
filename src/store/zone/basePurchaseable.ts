@@ -7,8 +7,8 @@ import {
   ExtendedModel,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { ResourceNames } from '../resources/resourceNames';
-import { BaseZoneEntity } from '../baseZoneEntity';
+import { ResourceNames } from './resources/resourceNames';
+import { BaseZoneEntity } from './baseZoneEntity';
 
 interface PurchaseCost {
   resource: ResourceNames;

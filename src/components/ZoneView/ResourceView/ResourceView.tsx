@@ -10,12 +10,12 @@ interface ResourceViewProps {
 
 const ResourceView = ({ zone }: ResourceViewProps) => {
   return (
-    <div css={styles.resourceContainer}>
+    <div>
       {(Object.keys(ResourceNames) as Array<keyof typeof ResourceNames>).map(
         (key) => {
           const resource = zone.resources[key];
           return (
-            <>
+            <div css={styles.resourceRow} key={key}>
               <span>Nutrients:</span>
               <span>{formatNumber(resource.quantity)}</span>
               <span>
@@ -23,7 +23,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
                   showSign: true,
                 })}
               </span>
-            </>
+            </div>
           );
         },
       )}

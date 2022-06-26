@@ -4,7 +4,7 @@ import {
   decoratedModel,
   ExtendedModel,
 } from 'mobx-keystone';
-import { ResourceNames } from '../../resources/resourceNames';
+import { ResourceNames } from '../resources/resourceNames';
 import { BasePurchaseable } from '../basePurchaseable';
 
 interface ProducerOutput {
@@ -17,7 +17,7 @@ interface ProducerInput {
   quantityPerSecond: number;
 }
 
-abstract class _BaseProducer extends ExtendedModel(BasePurchaseable, {
+abstract class _BaseBuilding extends ExtendedModel(BasePurchaseable, {
   id: idProp,
 }) {
   abstract displayName: string;
@@ -40,8 +40,8 @@ abstract class _BaseProducer extends ExtendedModel(BasePurchaseable, {
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const BaseProducer = decoratedModel(undefined, _BaseProducer, {
+export const BaseBuilding = decoratedModel(undefined, _BaseBuilding, {
   tick: modelAction,
 });
 
-type BaseProducer = _BaseProducer;
+type BaseBuilding = _BaseBuilding;
