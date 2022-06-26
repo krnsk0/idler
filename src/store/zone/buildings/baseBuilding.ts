@@ -7,9 +7,15 @@ import {
 import { ZoneEntity } from '../zoneEntity';
 import { makeProducer } from '../mixins/makeProducer';
 import { makePurchaseable } from '../mixins/makePurchaseable';
+import { composeMixins } from '../mixins/compose';
+import { makeStorageProvider } from '../mixins/makeStorageProvider';
 
 abstract class _BaseBuilding extends ExtendedModel(
-  makeProducer(makePurchaseable(ZoneEntity)),
+  composeMixins(
+    makeStorageProvider,
+    makeProducer,
+    makePurchaseable,
+  )(ZoneEntity),
   {
     id: idProp,
   },
