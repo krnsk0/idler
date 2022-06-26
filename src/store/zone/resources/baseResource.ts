@@ -16,6 +16,7 @@ abstract class _BaseResource extends Model({
   private changeSinceLastTick = 0;
   abstract displayName: string;
   abstract displayColor: string;
+  abstract initialCap: number;
 
   /**
    * Ensures average rate of change is tracked.

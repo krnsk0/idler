@@ -8,7 +8,7 @@ import { ZoneEntity } from '../zoneEntity';
 import { makeProducer } from '../mixins/makeProducer';
 import { makePurchaseable } from '../mixins/makePurchaseable';
 
-abstract class _Building extends ExtendedModel(
+abstract class _BaseBuilding extends ExtendedModel(
   makeProducer(makePurchaseable(ZoneEntity)),
   {
     id: idProp,
@@ -21,6 +21,6 @@ abstract class _Building extends ExtendedModel(
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const Building = decoratedModel(undefined, _Building, {});
+export const BaseBuilding = decoratedModel(undefined, _BaseBuilding, {});
 
-type Building = _Building;
+type BaseBuilding = _BaseBuilding;
