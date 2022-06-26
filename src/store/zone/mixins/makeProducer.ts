@@ -1,6 +1,6 @@
 import { modelAction, decoratedModel, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
-import { BaseZoneEntity } from '../baseZoneEntity';
+import { ZoneEntity } from '../zoneEntity';
 interface ProducerOutput {
   resource: ResourceNames;
   quantityPerSecond: number;
@@ -10,7 +10,7 @@ interface ProducerInput {
   resource: ResourceNames;
   quantityPerSecond: number;
 }
-export function makeProducer(Base: typeof BaseZoneEntity) {
+export function makeProducer(Base: typeof ZoneEntity) {
   abstract class Producer extends ExtendedModel(Base, {}) {
     abstract outputs: Array<ProducerOutput>;
     abstract inputs: Array<ProducerInput>;

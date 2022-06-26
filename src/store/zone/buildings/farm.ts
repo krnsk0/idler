@@ -1,10 +1,10 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
-import { BaseBuilding } from './baseBuilding';
+import { Building } from './building';
 import { BuildingNames } from './buildingNames';
 
 @model(BuildingNames.Farm)
-export class Farm extends ExtendedModel(BaseBuilding, {}) {
+export class Farm extends ExtendedModel(Building, {}) {
   displayName = 'Farm';
   baseCost = [
     {

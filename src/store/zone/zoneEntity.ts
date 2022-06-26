@@ -3,7 +3,7 @@ import { computed } from 'mobx';
 import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
 
-abstract class _BaseZoneEntity extends Model({
+abstract class _ZoneEntity extends Model({
   quantity: tProp(types.number, 0),
 }) {
   /**
@@ -25,9 +25,9 @@ abstract class _BaseZoneEntity extends Model({
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const BaseZoneEntity = decoratedModel(undefined, _BaseZoneEntity, {
+export const ZoneEntity = decoratedModel(undefined, _ZoneEntity, {
   zone: computed,
   zoneResources: computed,
 });
 
-type BaseZoneEntity = _BaseZoneEntity;
+type ZoneEntity = _ZoneEntity;

@@ -1,14 +1,14 @@
 import { modelAction, decoratedModel, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ResourceNames } from '../resources/resourceNames';
-import { BaseZoneEntity } from '../baseZoneEntity';
+import { ZoneEntity } from '../zoneEntity';
 
 interface PurchaseCost {
   resource: ResourceNames;
   quantity: number;
 }
 
-export function makePurchaseable(Base: typeof BaseZoneEntity) {
+export function makePurchaseable(Base: typeof ZoneEntity) {
   abstract class Purchaseable extends ExtendedModel(Base, {}) {
     abstract baseCost: Array<PurchaseCost>;
     abstract costExponent: number;
