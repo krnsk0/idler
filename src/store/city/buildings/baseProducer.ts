@@ -56,16 +56,16 @@ export abstract class _BaseProducer extends Model({
 
   affordable(): boolean {
     return this.currentCost().every(({ resource, quantity }) => {
-      return this.city().resources[resource].quantity > quantity;
+      return this.city().resources[resource].quantity >= quantity;
     });
   }
 
   buy(quantity: number): void {
     if (this.affordable()) {
-      this.quantity += quantity;
       this.currentCost().forEach(({ resource, quantity }) => {
         this.city().resources[resource].decrease(quantity);
       });
+      this.quantity += quantity;
     }
   }
 

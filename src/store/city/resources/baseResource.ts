@@ -14,10 +14,6 @@ export abstract class _BaseResource extends Model({
   abstract displayName: string;
   abstract displayColor: string;
 
-  displayQuantity(): string {
-    return this.quantity.toFixed(2);
-  }
-
   increase(quantity: number): void {
     this.quantity += quantity;
   }

@@ -12,13 +12,26 @@ function CityView({ city }: CityViewProps) {
     <div css={styles.container}>
       <div>{city.name}</div>
       <div css={styles.innerContainer}>
-        food: {city.resources[ResourceNames.Nutrients].displayQuantity()}
+        Nutrients: {city.resources[ResourceNames.Nutrients].quantity.toFixed(2)}
       </div>
       <div css={styles.innerContainer}>
-        farms: {city.farms.quantity}{' '}
-        <button type="button" onClick={() => city.farms.buy(1)}>
+        Farms: {city.farms.quantity}{' '}
+        <button
+          type="button"
+          disabled={!city.farms.affordable()}
+          onClick={() => city.farms.buy(1)}
+        >
           buy
         </button>
+        <div>
+          {city.farms.currentCost().map(({ resource, quantity }) => {
+            return (
+              <div key={resource}>
+                {resource}: {quantity.toFixed(2)}
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
