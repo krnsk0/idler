@@ -15,25 +15,13 @@ interface PurchaseCost {
   quantity: number;
 }
 
-interface ProducerOutput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-interface ProducerInput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-export abstract class _BaseProducer extends Model({
+export abstract class _BaseProvider extends Model({
   id: idProp,
   quantity: tProp(types.number, 0),
 }) {
   abstract displayName: string;
   abstract baseCost: Array<PurchaseCost>;
   abstract costExponent: number;
-  abstract outputs: Array<ProducerOutput>;
-  abstract inputs: Array<ProducerInput>;
   private get city(): City {
     return getCity(this);
   }
@@ -60,17 +48,6 @@ export abstract class _BaseProducer extends Model({
   }
 
   /**
-   * Attempts to run production
-   */
-  tick(delta: number): void {
-    this.outputs.forEach((product) => {
-      const resourceName = product.resource;
-      const qps = product.quantityPerSecond;
-      this.city.resources[resourceName].increase(qps * this.quantity * delta);
-    });
-  }
-
-  /**
    * Purhcases a new building if possible
    */
   buy(quantity: number): void {
@@ -87,11 +64,10 @@ export abstract class _BaseProducer extends Model({
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const BaseProducer = decoratedModel(undefined, _BaseProducer, {
+export const BaseProvider = decoratedModel(undefined, _BaseProvider, {
   currentCost: computed,
   affordable: computed,
-  tick: modelAction,
   buy: modelAction,
 });
 
-type BaseProducer = _BaseProducer;
+type BaseProvider = _BaseProvider;

@@ -10,17 +10,17 @@ import { computed } from 'mobx';
 import { City, getCity } from '../city';
 import { ResourceNames } from '../resources/resourceNames';
 
-interface PurchaseCost {
+interface Cost {
   resource: ResourceNames;
   quantity: number;
 }
 
-interface ProducerOutput {
+interface Output {
   resource: ResourceNames;
   quantityPerSecond: number;
 }
 
-interface ProducerInput {
+interface Input {
   resource: ResourceNames;
   quantityPerSecond: number;
 }
@@ -30,10 +30,10 @@ export abstract class _BaseProducer extends Model({
   quantity: tProp(types.number, 0),
 }) {
   abstract displayName: string;
-  abstract baseCost: Array<PurchaseCost>;
+  abstract baseCost: Array<Cost>;
   abstract costExponent: number;
-  abstract outputs: Array<ProducerOutput>;
-  abstract inputs: Array<ProducerInput>;
+  abstract outputs: Array<Output>;
+  abstract inputs: Array<Input>;
   private get city(): City {
     return getCity(this);
   }
@@ -41,7 +41,7 @@ export abstract class _BaseProducer extends Model({
   /**
    * Resource cost adjusted according to exponentiation
    */
-  get currentCost(): Array<PurchaseCost> {
+  get currentCost(): Array<Cost> {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
         resource,
