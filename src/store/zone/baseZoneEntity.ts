@@ -1,9 +1,11 @@
-import { Model, decoratedModel } from 'mobx-keystone';
+import { Model, decoratedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
 
-class _BaseZoneEntity extends Model({}) {
+abstract class _BaseZoneEntity extends Model({
+  quantity: tProp(types.number, 0),
+}) {
   /**
    * The zone associated with the entity
    */

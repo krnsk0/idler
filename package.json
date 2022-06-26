@@ -5,7 +5,7 @@
   "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel & sleep 1 && open http://localhost:1234",
+    "start": "parcel --open",
     "build": "parcel build",
     "format": "prettier --write src"
   },

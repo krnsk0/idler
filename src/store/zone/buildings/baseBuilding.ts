@@ -4,45 +4,23 @@ import {
   decoratedModel,
   ExtendedModel,
 } from 'mobx-keystone';
-import { ResourceNames } from '../resources/resourceNames';
-import { BasePurchaseable } from '../basePurchaseable';
+import { BaseZoneEntity } from '../baseZoneEntity';
+import { makeProducer } from '../mixins/makeProducer';
+import { makePurchaseable } from '../mixins/makePurchaseable';
 
-interface ProducerOutput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-interface ProducerInput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-abstract class _BaseBuilding extends ExtendedModel(BasePurchaseable, {
-  id: idProp,
-}) {
+abstract class _BaseBuilding extends ExtendedModel(
+  makeProducer(makePurchaseable(BaseZoneEntity)),
+  {
+    id: idProp,
+  },
+) {
   abstract displayName: string;
-  abstract outputs: Array<ProducerOutput>;
-  abstract inputs: Array<ProducerInput>;
-
-  /**
-   * Attempts to run production
-   */
-  tick(delta: number): void {
-    this.outputs.forEach((product) => {
-      const resourceName = product.resource;
-      this.zoneResources[resourceName].increase(
-        product.quantityPerSecond * this.quantity * delta,
-      );
-    });
-  }
 }
 
 /**
  * Needed because decorators do not work in abstract classses
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
-export const BaseBuilding = decoratedModel(undefined, _BaseBuilding, {
-  tick: modelAction,
-});
+export const BaseBuilding = decoratedModel(undefined, _BaseBuilding, {});
 
 type BaseBuilding = _BaseBuilding;
