@@ -17,11 +17,17 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           return (
             <div css={styles.resourceRow} key={key}>
               <span>Nutrients:</span>
-              <span>{formatNumber(resource.quantity)}</span>
+              <span>
+                {formatNumber(resource.quantity)}{' '}
+                <span css={styles.cap}>
+                  /{formatNumber(resource.currentCap, { digits: 0 })}
+                </span>
+              </span>
               <span>
                 {formatNumber(resource.estimatedRate, {
                   showSign: true,
-                })}
+                })}{' '}
+                /sec
               </span>
             </div>
           );

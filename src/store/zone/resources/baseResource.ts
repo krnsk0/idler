@@ -19,6 +19,13 @@ abstract class _BaseResource extends Model({
   abstract initialCap: number;
 
   /**
+   * What is the storage cap?
+   */
+  get currentCap(): number {
+    return this.initialCap;
+  }
+
+  /**
    * Ensures average rate of change is tracked.
    */
   tick(delta: number): void {
@@ -31,7 +38,11 @@ abstract class _BaseResource extends Model({
    */
   increase(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick += quantity;
-    this.quantity += quantity;
+    if (this.quantity + quantity > this.currentCap)
+      throw new Error(
+        'resource has gone above cap; caller should check for this',
+      );
+    else this.quantity += quantity;
   }
 
   /**
@@ -39,6 +50,10 @@ abstract class _BaseResource extends Model({
    */
   decrease(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick -= quantity;
+    if (this.quantity - quantity < 0)
+      throw new Error(
+        'resource has gone negative; caller should check for this',
+      );
     this.quantity -= quantity;
   }
 }
@@ -48,6 +63,7 @@ abstract class _BaseResource extends Model({
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
 export const BaseResource = decoratedModel(undefined, _BaseResource, {
+  currentCap: computed,
   tick: modelAction,
   increase: modelAction,
   decrease: modelAction,

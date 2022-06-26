@@ -8,4 +8,7 @@ export const styles = {
     flex-direction: row;
     justify-content: space-between;
   `,
+  cap: css`
+    color: grey;
+  `,
 };

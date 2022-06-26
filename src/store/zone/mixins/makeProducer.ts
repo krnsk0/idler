@@ -17,10 +17,13 @@ export function makeProducer(Base: typeof ZoneEntity) {
 
     /**
      * Attempts to run production
+     * TODO: only run when we have enough inputs
+     * TODO: stop production when hitting maximums
      */
     tick(delta: number): void {
       this.outputs.forEach((product) => {
         const resourceName = product.resource;
+
         this.zoneResources[resourceName].increase(
           product.quantityPerSecond * this.quantity * delta,
         );
