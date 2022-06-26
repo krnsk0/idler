@@ -1,5 +1,5 @@
 import { findParent, idProp, model, Model, tProp, types } from 'mobx-keystone';
-import { Farm } from './producers/farm';
+import { Buildings } from './buildings';
 import { Resources } from './resources/resources';
 
 const makeZoneName = () => {
@@ -13,7 +13,7 @@ const makeZoneName = () => {
 export class Zone extends Model({
   id: idProp,
   name: tProp(types.string, makeZoneName).withSetter(),
-  farms: tProp(types.model(Farm), () => new Farm({})),
+  buildings: tProp(types.model(Buildings), () => new Buildings({})),
   resources: tProp(types.model(Resources), () => new Resources({})),
 }) {}
 

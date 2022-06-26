@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../helpers/formatNumber';
 import { Zone } from '../../store/zone/zone';
 import { ResourceNames } from '../../store/zone/resources/resourceNames';
+import { ProducerNames } from '../../store/zone/producers/producerNames';
 import { styles } from './ZoneView.styles';
 
 interface ZoneViewProps {
@@ -24,22 +25,24 @@ function ZoneView({ zone }: ZoneViewProps) {
         </span>
       </div>
       <div css={styles.innerContainer}>
-        Farms: {zone.farms.quantity}{' '}
+        Farms: {zone.buildings[ProducerNames.Farm].quantity}{' '}
         <button
           type="button"
-          disabled={!zone.farms.affordable}
-          onClick={() => zone.farms.buy(1)}
+          disabled={!zone.buildings[ProducerNames.Farm].affordable}
+          onClick={() => zone.buildings[ProducerNames.Farm].buy(1)}
         >
           Buy
         </button>
         <div>
-          {zone.farms.currentCost.map(({ resource, quantity }) => {
-            return (
-              <div key={resource}>
-                {resource}: {formatNumber(quantity)}
-              </div>
-            );
-          })}
+          {zone.buildings[ProducerNames.Farm].currentCost.map(
+            ({ resource, quantity }) => {
+              return (
+                <div key={resource}>
+                  {resource}: {formatNumber(quantity)}
+                </div>
+              );
+            },
+          )}
         </div>
       </div>
     </div>
