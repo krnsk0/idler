@@ -7,7 +7,7 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
-import { Farm } from './buildings/farm';
+import { Farm } from './producers/farm';
 import { ResourceNames } from './resources/resourceNames';
 import { Resources } from './resources/resources';
 

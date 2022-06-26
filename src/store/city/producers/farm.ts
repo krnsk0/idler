@@ -1,9 +1,9 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseProducer } from './baseProducer';
-import { BuildingNames } from './buildingNames';
+import { ProducerNames } from './producerNames';
 
-@model(BuildingNames.Farm)
+@model(ProducerNames.Farm)
 export class Farm extends ExtendedModel(BaseProducer, {}) {
   displayName = 'Farm';
   baseCost = [
