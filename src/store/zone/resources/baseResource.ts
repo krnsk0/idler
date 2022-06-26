@@ -5,12 +5,13 @@ import {
   types,
   modelAction,
   decoratedModel,
+  ExtendedModel,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
+import { ZoneEntity } from '../zoneEntity';
 
-abstract class _BaseResource extends Model({
+abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
   id: idProp,
-  quantity: tProp(types.number, 0),
   estimatedRate: tProp(types.number, 0),
 }) {
   private changeSinceLastTick = 0;
@@ -22,7 +23,10 @@ abstract class _BaseResource extends Model({
    * What is the storage cap?
    */
   get currentCap(): number {
-    return this.initialCap;
+    return this.zone.buildings.list.reduce((output, building) => {
+      // TODO finish storage
+      return output;
+    }, this.initialCap);
   }
 
   /**

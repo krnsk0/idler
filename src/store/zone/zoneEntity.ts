@@ -2,6 +2,7 @@ import { Model, decoratedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
+import { Buildings } from './buildings/buildings';
 
 abstract class _ZoneEntity extends Model({
   quantity: tProp(types.number, 0),
@@ -18,6 +19,13 @@ abstract class _ZoneEntity extends Model({
    */
   get zoneResources(): Resources {
     return getZone(this).resources;
+  }
+
+  /**
+   * The buildings associated with the entity
+   */
+  get zoneBuildings(): Buildings {
+    return getZone(this).buildings;
   }
 }
 
