@@ -17,7 +17,7 @@ function CityView({ city }: CityViewProps) {
           {city.resources[ResourceNames.Nutrients].quantity.toFixed(2)}
         </span>
         <span>
-          {city.resources[ResourceNames.Nutrients].rateOfChange.toFixed(2)}
+          {city.resources[ResourceNames.Nutrients].estimatedRateDisplay}
         </span>
       </div>
       <div css={styles.innerContainer}>

@@ -34,11 +34,13 @@ export abstract class _BaseProducer extends Model({
   abstract costExponent: number;
   abstract outputs: Array<Output>;
   abstract inputs: Array<Input>;
-
   private get city(): City {
     return getCity(this);
   }
 
+  /**
+   * Resource cost adjusted according to exponentiation
+   */
   get currentCost(): Array<Cost> {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
@@ -48,12 +50,18 @@ export abstract class _BaseProducer extends Model({
     });
   }
 
+  /**
+   * Can this building be bought?
+   */
   get affordable(): boolean {
     return this.currentCost.every(({ resource, quantity }) => {
       return this.city.resources[resource].quantity >= quantity;
     });
   }
 
+  /**
+   * Attempts to run production
+   */
   tick(delta: number): void {
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
@@ -62,17 +70,16 @@ export abstract class _BaseProducer extends Model({
     });
   }
 
+  /**
+   * Purhcases a new building if possible
+   */
   buy(quantity: number): void {
     if (this.affordable) {
       this.currentCost.forEach(({ resource, quantity }) => {
-        this.city.resources[resource].decrease(quantity);
+        this.city.resources[resource].decrease(quantity, { untracked: true });
       });
       this.quantity += quantity;
     }
-  }
-
-  sell(quantity: number): void {
-    this.quantity -= quantity;
   }
 }
 
@@ -85,7 +92,6 @@ export const BaseProducer = decoratedModel(undefined, _BaseProducer, {
   affordable: computed,
   tick: modelAction,
   buy: modelAction,
-  sell: modelAction,
 });
 
 type BaseProducer = _BaseProducer;
