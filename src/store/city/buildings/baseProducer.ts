@@ -6,6 +6,7 @@ import {
   modelAction,
   decoratedModel,
 } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { City, getCity } from '../city';
 import { ResourceNames } from '../resources/resourceNames';
 
@@ -34,18 +35,11 @@ export abstract class _BaseProducer extends Model({
   abstract outputs: Array<Output>;
   abstract inputs: Array<Input>;
 
-  private city(): City {
+  private get city(): City {
     return getCity(this);
   }
 
-  tick(): void {
-    this.outputs.forEach((product) => {
-      const resourceName = product.resource;
-      this.city().resources[resourceName].increase(0.01 * this.quantity);
-    });
-  }
-
-  currentCost(): Array<Cost> {
+  get currentCost(): Array<Cost> {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
         resource,
@@ -54,16 +48,23 @@ export abstract class _BaseProducer extends Model({
     });
   }
 
-  affordable(): boolean {
-    return this.currentCost().every(({ resource, quantity }) => {
-      return this.city().resources[resource].quantity >= quantity;
+  get affordable(): boolean {
+    return this.currentCost.every(({ resource, quantity }) => {
+      return this.city.resources[resource].quantity >= quantity;
+    });
+  }
+
+  tick(): void {
+    this.outputs.forEach((product) => {
+      const resourceName = product.resource;
+      this.city.resources[resourceName].increase(0.01 * this.quantity);
     });
   }
 
   buy(quantity: number): void {
-    if (this.affordable()) {
-      this.currentCost().forEach(({ resource, quantity }) => {
-        this.city().resources[resource].decrease(quantity);
+    if (this.affordable) {
+      this.currentCost.forEach(({ resource, quantity }) => {
+        this.city.resources[resource].decrease(quantity);
       });
       this.quantity += quantity;
     }
@@ -79,6 +80,9 @@ export abstract class _BaseProducer extends Model({
  * See https://mobx-keystone.js.org/class-models#usage-without-decorators
  */
 export const BaseProducer = decoratedModel(undefined, _BaseProducer, {
+  currentCost: computed,
+  affordable: computed,
+  tick: modelAction,
   buy: modelAction,
   sell: modelAction,
 });
