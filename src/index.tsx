@@ -4,7 +4,7 @@ import App from './components/App';
 import { globalStyles } from './globalStyles';
 import { StoreProvider } from './store/Provider';
 
-const app = document.getElementById('app')!;
+const app = document.getElementById('root')!;
 const root = createRoot(app);
 root.render(
   <StoreProvider>
