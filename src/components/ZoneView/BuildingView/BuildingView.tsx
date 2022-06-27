@@ -1,5 +1,7 @@
 import { observer } from 'mobx-react-lite';
+import { formatNumber } from '../../../helpers/formatNumber';
 import { Zone } from '../../../store/zone/zone';
+import { styles } from './BuildingView.styles';
 
 interface BuildingViewProps {
   zone: Zone;
@@ -7,9 +9,31 @@ interface BuildingViewProps {
 
 function BuildingView({ zone }: BuildingViewProps) {
   return (
-    <div>
+    <div css={styles.buildingsContainer}>
       {zone.buildings.asArray.map((building) => {
-        return <div key={building.$modelType}></div>;
+        return (
+          <button
+            key={building.buildingName}
+            css={styles.buildingBox}
+            type="button"
+            onClick={() => building.buy(1)}
+            disabled={!building.affordable}
+          >
+            <span>
+              {building.displayName} (
+              {formatNumber(building.quantity, { digits: 0 })})
+            </span>
+            <div>
+              {building.currentCost.map(({ resource, quantity }) => {
+                return (
+                  <div key={resource}>
+                    {resource}: {formatNumber(quantity)}
+                  </div>
+                );
+              })}
+            </div>
+          </button>
+        );
       })}
     </div>
   );

@@ -9,7 +9,7 @@ interface ResourceViewProps {
 
 const ResourceView = ({ zone }: ResourceViewProps) => {
   return (
-    <div>
+    <div css={styles.resourcesContainer}>
       {zone.resources.asArray.map((resource) => {
         return (
           <div css={styles.resourceRow} key={resource.resourceName}>

@@ -12,30 +12,11 @@ interface ZoneViewProps {
 
 function ZoneView({ zone }: ZoneViewProps) {
   return (
-    <div css={styles.container}>
-      <div>{zone.name}</div>
-      <ResourceView zone={zone} />
-      <BuildingView zone={zone} />
-      <div css={styles.innerContainer}>
-        Farms: {zone.buildings[BuildingNames.Farm].quantity}{' '}
-        <button
-          type="button"
-          disabled={!zone.buildings[BuildingNames.Farm].affordable}
-          onClick={() => zone.buildings[BuildingNames.Farm].buy(1)}
-        >
-          Buy
-        </button>
-        <div>
-          {zone.buildings[BuildingNames.Farm].currentCost.map(
-            ({ resource, quantity }) => {
-              return (
-                <div key={resource}>
-                  {resource}: {formatNumber(quantity)}
-                </div>
-              );
-            },
-          )}
-        </div>
+    <div css={styles.zoneOuter}>
+      <div css={styles.zoneHeader}>{zone.name}</div>
+      <div css={styles.zoneBody}>
+        <ResourceView zone={zone} />
+        <BuildingView zone={zone} />
       </div>
     </div>
   );

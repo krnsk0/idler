@@ -1,8 +1,12 @@
 import { css } from '@emotion/react';
 
 export const styles = {
+  resourcesContainer: css`
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+  `,
   resourceRow: css`
-    border: 1px solid black;
     margin: 0.1em;
     display: flex;
     flex-direction: row;

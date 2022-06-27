@@ -33,6 +33,7 @@ interface ProducerInput {
 abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
+  abstract buildingName: BuildingNames;
   abstract displayName: string;
   abstract storage: Storage;
   abstract baseCost: Array<PurchaseCost>;
