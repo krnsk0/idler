@@ -24,7 +24,7 @@ abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
    * What is the storage cap for this resource?
    */
   get currentCap(): number {
-    return this.zone.buildings.list.reduce((output, building) => {
+    return this.zone.buildings.asArray.reduce((output, building) => {
       return (
         output +
         building.getStorageAmountByKey(this.resourceName) * building.quantity

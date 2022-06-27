@@ -12,10 +12,9 @@ interface ResourceViewProps {
 const ResourceView = ({ zone }: ResourceViewProps) => {
   return (
     <div>
-      {enumKeys(ResourceNames).map((key) => {
-        const resource = zone.resources[key];
+      {zone.resources.asArray.map((resource) => {
         return (
-          <div css={styles.resourceRow} key={key}>
+          <div css={styles.resourceRow} key={resource.resourceName}>
             <span>Nutrients:</span>
             <span>
               {formatNumber(resource.quantity)}{' '}

@@ -9,7 +9,10 @@ export class Buildings extends Model({
   [BuildingNames.Farm]: tProp(types.model(Farm), () => new Farm({})),
   [BuildingNames.Habitat]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
-  get list() {
+  /**
+   * Returns an iterable list of the building models
+   */
+  get asArray() {
     return enumKeys(BuildingNames).map((name) => {
       return this[name];
     });
