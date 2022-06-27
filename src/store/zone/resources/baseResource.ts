@@ -75,5 +75,3 @@ export const BaseResource = decoratedModel(undefined, _BaseResource, {
   increase: modelAction,
   decrease: modelAction,
 });
-
-type BaseResource = _BaseResource;

@@ -35,5 +35,3 @@ export const ZoneEntity = decoratedModel(undefined, _ZoneEntity, {
   zone: computed,
   zoneResources: computed,
 });
-
-type ZoneEntity = _ZoneEntity;

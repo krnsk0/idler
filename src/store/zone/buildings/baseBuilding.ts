@@ -104,5 +104,3 @@ export const BaseBuilding = decoratedModel(undefined, _BaseBuilding, {
   buy: modelAction,
   tick: modelAction,
 });
-
-type BaseBuilding = _BaseBuilding;

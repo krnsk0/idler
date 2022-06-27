@@ -36,5 +36,3 @@ export const BaseJob = decoratedModel(undefined, _BaseJob, {
   assign: modelAction,
   unassign: modelAction,
 });
-
-type BaseJob = _BaseJob;
