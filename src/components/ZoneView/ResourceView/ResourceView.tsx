@@ -1,7 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { enumKeys } from '../../../helpers/enumKeys';
 import { formatNumber } from '../../../helpers/formatNumber';
-import { ResourceNames } from '../../../store/zone/resources/resourceNames';
 import { Zone } from '../../../store/zone/zone';
 import { styles } from './ResourceView.styles';
 
