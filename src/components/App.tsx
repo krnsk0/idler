@@ -5,6 +5,7 @@ import ZoneView from './ZoneView/ZoneView';
 import { useStoreTick } from './useStoreTick';
 import { useStore } from '../store/Provider';
 import { Zone } from '../store/zone/zone';
+import { getSnapshot } from 'mobx-keystone';
 
 function App() {
   const root = useStore();
@@ -16,6 +17,14 @@ function App() {
     <div css={styles.centerOuter}>
       <ZoneView zone={activeZone} />
       <div css={styles.debugButtons}>
+        <button
+          type="button"
+          onClick={() => {
+            console.log('ROOT:', JSON.stringify(getSnapshot(root), null, 2));
+          }}
+        >
+          print snapshot
+        </button>
         <button
           type="button"
           onClick={() => {
