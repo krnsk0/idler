@@ -1,6 +1,7 @@
 # TODAY
 - write habitat model
 - unlocks
+- debugger
 
 # ENGINE
 - workers
