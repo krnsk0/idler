@@ -4,7 +4,8 @@ export const styles = {
   buildingsContainer: css`
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
     align-items: center;
   `,
   buildingBox: css`
