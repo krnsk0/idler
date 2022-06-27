@@ -3,14 +3,16 @@ import {
   modelAction,
   decoratedModel,
   ExtendedModel,
+  tProp,
+  types,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from '../resources/resourceNames';
-interface ResourceStorage {
-  resource: ResourceNames;
-  storageAmount: number;
-}
+
+type Storage = {
+  [key in ResourceNames]?: number;
+};
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -28,14 +30,18 @@ interface ProducerInput {
 }
 
 abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
-  id: idProp,
+  quantity: tProp(types.number, 0),
 }) {
   abstract displayName: string;
-  abstract storage: Array<ResourceStorage>;
+  abstract storage: Storage;
   abstract baseCost: Array<PurchaseCost>;
   abstract costExponent: number;
   abstract outputs: Array<ProducerOutput>;
   abstract inputs: Array<ProducerInput>;
+
+  getStorageAmountByKey(resourceName: ResourceNames): number {
+    return this.storage[resourceName] ?? 0;
+  }
 
   /**
    * Resource cost adjusted according to exponentiation

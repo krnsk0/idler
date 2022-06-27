@@ -4,9 +4,7 @@ import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
 import { Buildings } from './buildings/buildings';
 
-abstract class _ZoneEntity extends Model({
-  quantity: tProp(types.number, 0),
-}) {
+abstract class _ZoneEntity extends Model({}) {
   /**
    * The zone associated with the entity
    */

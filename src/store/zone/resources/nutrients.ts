@@ -4,6 +4,7 @@ import { ResourceNames } from './resourceNames';
 
 @model(ResourceNames.Nutrients)
 export class Nutrients extends ExtendedModel(BaseResource, {}) {
+  resourceName = ResourceNames.Nutrients;
   displayName = 'Nutrients';
   displayColor = 'green';
   initialCap = 100;

@@ -10,6 +10,8 @@ export class Buildings extends Model({
   [BuildingNames.Habitat]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
   get list() {
-    return [this[BuildingNames.Farm], this[BuildingNames.Habitat]];
+    return Object.keys(BuildingNames).map((name) => {
+      return this[name as BuildingNames];
+    });
   }
 }

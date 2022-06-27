@@ -20,4 +20,5 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
       quantityPerSecond: 0.1,
     },
   ];
+  storage = { [ResourceNames.Nutrients]: 10 };
 }
