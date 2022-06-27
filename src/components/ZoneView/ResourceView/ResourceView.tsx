@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { enumKeys } from '../../../helpers/enumKeys';
 import { formatNumber } from '../../../helpers/formatNumber';
 import { ResourceNames } from '../../../store/zone/resources/resourceNames';
 import { Zone } from '../../../store/zone/zone';
@@ -11,28 +12,26 @@ interface ResourceViewProps {
 const ResourceView = ({ zone }: ResourceViewProps) => {
   return (
     <div>
-      {(Object.keys(ResourceNames) as Array<keyof typeof ResourceNames>).map(
-        (key) => {
-          const resource = zone.resources[key];
-          return (
-            <div css={styles.resourceRow} key={key}>
-              <span>Nutrients:</span>
-              <span>
-                {formatNumber(resource.quantity)}{' '}
-                <span css={styles.cap}>
-                  /{formatNumber(resource.currentCap, { digits: 0 })}
-                </span>
+      {enumKeys(ResourceNames).map((key) => {
+        const resource = zone.resources[key];
+        return (
+          <div css={styles.resourceRow} key={key}>
+            <span>Nutrients:</span>
+            <span>
+              {formatNumber(resource.quantity)}{' '}
+              <span css={styles.cap}>
+                /{formatNumber(resource.currentCap, { digits: 0 })}
               </span>
-              <span>
-                {formatNumber(resource.estimatedRate, {
-                  showSign: true,
-                })}{' '}
-                /sec
-              </span>
-            </div>
-          );
-        },
-      )}
+            </span>
+            <span>
+              {formatNumber(resource.estimatedRate, {
+                showSign: true,
+              })}{' '}
+              /sec
+            </span>
+          </div>
+        );
+      })}
     </div>
   );
 };

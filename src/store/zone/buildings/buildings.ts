@@ -1,6 +1,6 @@
 import { model, Model, tProp, types } from 'mobx-keystone';
+import { enumKeys } from '../../../helpers/enumKeys';
 import { BuildingNames } from './buildingNames';
-import { BaseBuilding } from './baseBuilding';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
 
@@ -10,8 +10,8 @@ export class Buildings extends Model({
   [BuildingNames.Habitat]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
   get list() {
-    return Object.keys(BuildingNames).map((name) => {
-      return this[name as BuildingNames];
+    return enumKeys(BuildingNames).map((name) => {
+      return this[name];
     });
   }
 }
