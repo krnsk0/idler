@@ -9,6 +9,7 @@ import {
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from '../resources/resourceNames';
+import { BuildingNames } from './buildingNames';
 
 type Storage = {
   [key in ResourceNames]?: number;
