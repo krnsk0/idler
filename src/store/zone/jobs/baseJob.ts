@@ -1,13 +1,6 @@
-import {
-  idProp,
-  Model,
-  tProp,
-  types,
-  modelAction,
-  decoratedModel,
-} from 'mobx-keystone';
+import { idProp, Model, tProp, types, modelAction } from 'mobx-keystone';
 
-abstract class _BaseJob extends Model({
+export abstract class BaseJob extends Model({
   id: idProp,
   workers: tProp(types.number, 0),
 }) {
@@ -16,6 +9,7 @@ abstract class _BaseJob extends Model({
   /**
    * Assign a free worker if possible
    */
+  @modelAction
   assign(): void {
     this.workers += 1;
   }
@@ -23,16 +17,8 @@ abstract class _BaseJob extends Model({
   /**
    * Unassign a free worker if possible
    */
+  @modelAction
   unassign(): void {
     this.workers -= 1;
   }
 }
-
-/**
- * Needed because decorators do not work in abstract classses
- * See https://mobx-keystone.js.org/class-models#usage-without-decorators
- */
-export const BaseJob = decoratedModel(undefined, _BaseJob, {
-  assign: modelAction,
-  unassign: modelAction,
-});

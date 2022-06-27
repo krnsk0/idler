@@ -1,8 +1,6 @@
 # TODAY
 - write habitat model
 - unlocks
-- debugger
-- fix hot refresh
 # ENGINE
 - workers
 - unlock condition system

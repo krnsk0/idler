@@ -1,16 +1,9 @@
-import {
-  idProp,
-  tProp,
-  types,
-  modelAction,
-  decoratedModel,
-  ExtendedModel,
-} from 'mobx-keystone';
+import { tProp, types, modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from './resourceNames';
 
-abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
+export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
   estimatedRate: tProp(types.number, 0),
 }) {
@@ -23,6 +16,7 @@ abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
   /**
    * What is the storage cap for this resource?
    */
+  @computed
   get currentCap(): number {
     return this.zone.buildings.asArray.reduce((output, building) => {
       return (
@@ -35,6 +29,7 @@ abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
   /**
    * Ensures average rate of change is tracked.
    */
+  @modelAction
   tick(delta: number): void {
     if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
     this.changeSinceLastTick = 0;
@@ -43,6 +38,7 @@ abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
   /**
    * Increases quantity. Optionally can turn off tracking for average rate
    */
+  @modelAction
   increase(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick += quantity;
     if (this.quantity + quantity > this.currentCap)
@@ -55,6 +51,7 @@ abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
   /**
    * Decreases quantity. Optionally can turn off tracking for average rate
    */
+  @modelAction
   decrease(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick -= quantity;
     if (this.quantity - quantity < 0)
@@ -64,14 +61,3 @@ abstract class _BaseResource extends ExtendedModel(ZoneEntity, {
     this.quantity -= quantity;
   }
 }
-
-/**
- * Needed because decorators do not work in abstract classses
- * See https://mobx-keystone.js.org/class-models#usage-without-decorators
- */
-export const BaseResource = decoratedModel(undefined, _BaseResource, {
-  currentCap: computed,
-  tick: modelAction,
-  increase: modelAction,
-  decrease: modelAction,
-});

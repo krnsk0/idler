@@ -1,11 +1,4 @@
-import {
-  idProp,
-  modelAction,
-  decoratedModel,
-  ExtendedModel,
-  tProp,
-  types,
-} from 'mobx-keystone';
+import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from '../resources/resourceNames';
@@ -30,7 +23,7 @@ interface ProducerInput {
   quantityPerSecond: number;
 }
 
-abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
+export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
   abstract buildingName: BuildingNames;
@@ -41,6 +34,10 @@ abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
   abstract outputs: Array<ProducerOutput>;
   abstract inputs: Array<ProducerInput>;
 
+  /**
+   * Given the name of a resource, tells the caller how much of that resource
+   * this building can store
+   */
   getStorageAmountByKey(resourceName: ResourceNames): number {
     return this.storage[resourceName] ?? 0;
   }
@@ -48,6 +45,7 @@ abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
   /**
    * Resource cost adjusted according to exponentiation
    */
+  @computed
   get currentCost(): Array<PurchaseCost> {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
@@ -60,6 +58,7 @@ abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
   /**
    * Can this entity be bought?
    */
+  @computed
   get affordable(): boolean {
     return this.currentCost.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
@@ -69,6 +68,7 @@ abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
   /**
    * Purhcases a new entity if possible
    */
+  @modelAction
   buy(quantity: number): void {
     if (this.affordable) {
       this.currentCost.forEach(({ resource, quantity }) => {
@@ -83,6 +83,7 @@ abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
    * TODO: only run when we have enough inputs
    * TODO: stop production when hitting maximums
    */
+  @modelAction
   tick(delta: number): void {
     this.outputs.forEach((product) => {
       const resourceName = product.resource;
@@ -93,14 +94,3 @@ abstract class _BaseBuilding extends ExtendedModel(ZoneEntity, {
     });
   }
 }
-
-/**
- * Needed because decorators do not work in abstract classses
- * See https://mobx-keystone.js.org/class-models#usage-without-decorators
- */
-export const BaseBuilding = decoratedModel(undefined, _BaseBuilding, {
-  currentCost: computed,
-  affordable: computed,
-  buy: modelAction,
-  tick: modelAction,
-});
