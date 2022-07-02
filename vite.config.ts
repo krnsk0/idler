@@ -10,4 +10,7 @@ export default defineConfig({
       this: 'window',
     },
   },
+  server: {
+    open: '/',
+  },
 });
