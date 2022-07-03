@@ -15,7 +15,19 @@ workers eat 1 food/sec
     scholar: 0.1 knowledge/sec
     farm: 1.2/sec
 at 10 food, unlocks shacks, which raise worker cap by 1
-_work toward wood tech_
+at 10 knowledge, unlocks tech and knowledge cap of 20
+techs include:
+  barley - % increase to farming
+  crop rotation - % increase to farming
+  irrigation - ?
+  pottery - unlocks granary, increases food cap
+  town hall - unlocks improvements and builder job
+
+  basic defenses - improvements
+improvements:
+  forest path - unlocks woodcutter
+
+
 
 
 _storage caps_
