@@ -7,9 +7,4 @@ export const styles = {
   centerInner: css`
     border: 1px solid black;
   `,
-  debugButtons: css`
-    display: flex;
-    flex-direction: column;
-    width: 150px;
-  `,
 };
