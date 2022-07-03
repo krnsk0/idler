@@ -4,6 +4,7 @@ https://www.reddit.com/r/incremental_gamedev/
 ## theme
 combine ideas from some of the best incrementals as well as other games, nostalgia
 combine ideas from: kittens, civilization, factorio (?), mine defense, keepcraft
+there's always a manual game loop at each stage to automate away
 
 civilization of some kind
 very vague theme
@@ -54,6 +55,8 @@ improve production
 improve storage
 
 ## civilization-style improvements
+these are not purchased-- they go over storage caps
+they are allocated resources and subtract per turn
 wonders of world - global effect
 city improvements - local effect
 
@@ -73,3 +76,6 @@ searchable?
 analytics
 optimize based on A/B?
 observability? see when dropoff is, optimize against dropoff
+
+## building system for units
+units are produced like
