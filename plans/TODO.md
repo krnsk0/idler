@@ -1,13 +1,15 @@
-# TODAY
-- write habitat model
-- unlocks
-# ENGINE
+# next up
+minimalist UI like a dark room
+implement beginning of design doc!
+
+# backlog
+## engine
 - workers
 - unlock condition system
 - mining system?
 - tech system?
 
-# UI
+## ui
 - resource row component
 - buildings component
 - tooltips
