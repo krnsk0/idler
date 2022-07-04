@@ -32,7 +32,11 @@ export const styles = {
     background-color: white;
     padding: 0em 0.4em 0em 0.4em;
   `,
-  tooltipText: (italic: boolean, light: boolean, center: boolean) => css`
+  tooltipText: (
+    italic: boolean | undefined,
+    light: boolean | undefined,
+    center: boolean | undefined,
+  ) => css`
     width: 100%;
     text-align: ${!center ? 'inherit' : 'center'};
     color: ${!light ? 'inherit' : colors.darkgrey};
