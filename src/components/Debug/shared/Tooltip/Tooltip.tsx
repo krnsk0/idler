@@ -25,6 +25,14 @@ const Tooltip = ({
   );
 };
 
+interface TooltipCenterTextProps {
+  children: React.ReactNode;
+}
+
+export const TooltipCenterText = ({ children }: TooltipCenterTextProps) => {
+  return <div css={styles.tooltipCenterText}>{children}</div>;
+};
+
 interface TooltipDividerProps {
   text: string;
 }

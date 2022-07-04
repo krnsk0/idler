@@ -33,4 +33,9 @@ export const styles = {
     background-color: white;
     padding: 0.4em;
   `,
+  tooltipCenterText: css`
+    width: 100%;
+    text-align: center;
+    color: ${dividerColor};
+  `,
 };

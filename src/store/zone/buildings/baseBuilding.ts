@@ -28,6 +28,7 @@ export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
 }) {
   abstract buildingName: BuildingNames;
   abstract displayName: string;
+  abstract description: string;
   abstract storage: Storage;
   abstract baseCost: Array<PurchaseCost>;
   abstract costExponent: number;
