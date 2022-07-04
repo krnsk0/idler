@@ -25,6 +25,8 @@ export const styles = {
       text-decoration: underline;
     }
   `,
-
-  tabContent: css``,
+  tabContent: css`
+    border: 1px solid blue;
+    height: 100%;
+  `,
 };

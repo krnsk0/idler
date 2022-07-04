@@ -3,12 +3,12 @@ import { css } from '@emotion/react';
 export const styles = {
   zoneOuter: css`
     width: 75%;
-    height: 75%;
+    height: 70%;
     max-width: 750px;
     min-width: 850px;
     position: absolute;
     left: 50%;
-    top: 50%;
+    top: 45%;
     transform: translate(-50%, -50%);
     /* border: 1px solid blue; */
   `,
@@ -19,6 +19,7 @@ export const styles = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 100%;
     /* border: 1px solid blue; */
   `,
 };
