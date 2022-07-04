@@ -21,13 +21,15 @@ function BuildingView({ building }: BuildingViewProps) {
         <Tooltip top={12} left={190} width={200}>
           <TooltipCenterText>{building.description}</TooltipCenterText>
           <TooltipDivider text={'cost'} />
-          {building.currentCost.map(({ resource, quantity }) => {
-            return (
-              <div key={resource}>
-                {resource}: {formatNumber(quantity)}
-              </div>
-            );
-          })}
+          {building.currentCostDisplay.map(
+            ({ resourceDisplayName, quantity }) => {
+              return (
+                <div key={resourceDisplayName}>
+                  {resourceDisplayName}: {formatNumber(quantity)}
+                </div>
+              );
+            },
+          )}
           <TooltipDivider text={'effects'} />
         </Tooltip>
       )}

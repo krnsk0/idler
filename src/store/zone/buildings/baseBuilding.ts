@@ -3,6 +3,7 @@ import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
+import { getResources } from '../resources/resources';
 
 type Storage = {
   [key in ResourceNames]?: number;
@@ -10,6 +11,11 @@ type Storage = {
 
 interface PurchaseCost {
   resource: ResourceNames;
+  quantity: number;
+}
+
+interface PurchaseCostDisplay {
+  resourceDisplayName: string;
   quantity: number;
 }
 
@@ -52,6 +58,19 @@ export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
       return {
         resource,
         quantity: baseCost * this.costExponent ** this.quantity,
+      };
+    });
+  }
+
+  /**
+   * Current cost with displayable names
+   */
+  @computed
+  get currentCostDisplay(): Array<PurchaseCostDisplay> {
+    return this.currentCost.map(({ resource, quantity }) => {
+      return {
+        resourceDisplayName: getResources(this)[resource].displayName,
+        quantity,
       };
     });
   }

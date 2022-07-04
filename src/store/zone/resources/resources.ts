@@ -1,5 +1,6 @@
-import { model, Model, tProp, types } from 'mobx-keystone';
+import { findParent, model, Model, tProp, types } from 'mobx-keystone';
 import { enumKeys } from '../../../helpers/enumKeys';
+import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
 import { ResourceNames } from './resourceNames';
 
@@ -19,3 +20,11 @@ export class Resources extends Model({
     });
   }
 }
+
+export const getResources = (child: object): Resources => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
+  });
+  if (!zone) throw new Error('no parent zone model found in getResources');
+  return zone.resources;
+};
