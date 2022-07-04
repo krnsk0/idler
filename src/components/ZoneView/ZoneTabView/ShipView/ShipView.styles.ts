@@ -1,3 +1,11 @@
 import { css } from '@emotion/react';
 
-export const styles = {};
+export const styles = {
+  shipsContainer: css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  `,
+};

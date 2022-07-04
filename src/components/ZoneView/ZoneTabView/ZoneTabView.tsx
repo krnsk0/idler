@@ -65,7 +65,7 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
         {(() => {
           switch (selectedTab) {
             case ZoneTabNames.SHIP:
-              return <ShipView />;
+              return <ShipView zone={zone} />;
             case ZoneTabNames.PRODUCITON:
               return <ProductionView zone={zone} />;
             default:

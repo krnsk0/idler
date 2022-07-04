@@ -5,9 +5,7 @@ import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
 import { getResources } from '../resources/resources';
 
-export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
-  quantity: tProp(types.number, 0),
-}) {
+export abstract class BaseAction extends ExtendedModel(ZoneEntity, {}) {
   abstract actionName: ActionNames;
   abstract displayName: string;
   abstract description: string;

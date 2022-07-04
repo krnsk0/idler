@@ -8,11 +8,11 @@ import Tooltip, {
 } from '../../../../Debug/shared/Tooltip/Tooltip';
 import { styles } from './BuildingButton.styles';
 
-interface BuildingViewProps {
+interface BuildingButtonProps {
   building: BaseBuilding;
 }
 
-function BuildingView({ building }: BuildingViewProps) {
+function BuildingButton({ building }: BuildingButtonProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -67,4 +67,4 @@ function BuildingView({ building }: BuildingViewProps) {
   );
 }
 
-export default observer(BuildingView);
+export default observer(BuildingButton);
