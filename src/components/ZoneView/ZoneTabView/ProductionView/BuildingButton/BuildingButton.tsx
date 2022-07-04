@@ -1,11 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { formatNumber } from '../../../../helpers/formatNumber';
-import { BaseBuilding } from '../../../../store/zone/buildings/baseBuilding';
+import { formatNumber } from '../../../../../helpers/formatNumber';
+import { BaseBuilding } from '../../../../../store/zone/buildings/baseBuilding';
 import Tooltip, {
   TooltipText,
   TooltipDivider,
-} from '../../../Debug/shared/Tooltip/Tooltip';
+} from '../../../../Debug/shared/Tooltip/Tooltip';
 import { styles } from './BuildingButton.styles';
 
 interface BuildingViewProps {
