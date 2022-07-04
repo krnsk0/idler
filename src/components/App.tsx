@@ -15,10 +15,10 @@ function App() {
   useStoreTick();
 
   return (
-    <div css={styles.centerOuter}>
+    <>
       <ZoneView zone={activeZone} />
       <Debug setActiveZone={setActiveZone} />
-    </div>
+    </>
   );
 }
 

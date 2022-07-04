@@ -36,7 +36,7 @@ const Debug = ({ setActiveZone }: DebugProps) => {
             type="button"
             onClick={() => setActiveZone(zone)}
           >
-            view zone {zone.name}
+            {zone.name}
           </button>
         );
       })}
