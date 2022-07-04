@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Zone } from '../../../store/zone/zone';
-import BuildingButton from './BuildingButton/BuildingButton';
+import BuildingView from './BuildingButton/BuildingButton';
 import { styles } from './ProdutionView.styles';
 
 interface ProductionViewProps {
@@ -11,7 +11,7 @@ function ProductionView({ zone }: ProductionViewProps) {
   return (
     <div css={styles.buildingsContainer}>
       {zone.buildings.asArray.map((building) => {
-        return <BuildingButton building={building} />;
+        return <BuildingView building={building} />;
       })}
     </div>
   );

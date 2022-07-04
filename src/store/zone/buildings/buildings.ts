@@ -1,5 +1,5 @@
 import { model, Model, tProp, types } from 'mobx-keystone';
-import { enumValues } from '../../../helpers/enumValues';
+import { enumKeys } from '../../../helpers/enumKeys';
 import { BuildingNames } from './buildingNames';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
@@ -13,7 +13,7 @@ export class Buildings extends Model({
    * Returns an iterable list of the building models
    */
   get asArray() {
-    return enumValues(BuildingNames).map((name) => {
+    return enumKeys(BuildingNames).map((name) => {
       return this[name];
     });
   }

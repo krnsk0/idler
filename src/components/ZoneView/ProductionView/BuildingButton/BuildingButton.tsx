@@ -8,15 +8,15 @@ import Tooltip, {
 } from '../../../Debug/shared/Tooltip/Tooltip';
 import { styles } from './BuildingButton.styles';
 
-interface BuildingButtonProps {
+interface BuildingViewProps {
   building: BaseBuilding;
 }
 
-function BuildingButton({ building }: BuildingButtonProps) {
+function BuildingView({ building }: BuildingViewProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <div key={building.buildingName}>
+    <>
       {hovered && (
         <Tooltip top={12} left={190} width={200}>
           <TooltipCenterText>{building.description}</TooltipCenterText>
@@ -47,8 +47,8 @@ function BuildingButton({ building }: BuildingButtonProps) {
           {formatNumber(building.quantity, { digits: 0 })})
         </span>
       </button>
-    </div>
+    </>
   );
 }
 
-export default observer(BuildingButton);
+export default observer(BuildingView);

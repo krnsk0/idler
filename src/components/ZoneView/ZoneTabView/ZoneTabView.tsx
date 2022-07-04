@@ -10,8 +10,8 @@ interface ZoneTabViewProps {
 }
 
 enum ZoneTabNames {
-  Ship = 'SHIP',
-  Production = 'PRODUCTION',
+  Ship = 'Ship',
+  Production = 'Production',
 }
 
 const TabButton = ({
