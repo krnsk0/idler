@@ -37,7 +37,7 @@ interface ProducerEffectDisplay {
 export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
-  abstract buildingName: BuildingNames;
+  abstract name: BuildingNames;
   abstract displayName: string;
   abstract description: string;
   abstract storage: Storage;

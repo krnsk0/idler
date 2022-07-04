@@ -1,9 +1,11 @@
 import { idProp, Model, tProp, types, modelAction } from 'mobx-keystone';
+import { JobNames } from './jobNames';
 
 export abstract class BaseJob extends Model({
   id: idProp,
   workers: tProp(types.number, 0),
 }) {
+  abstract name: JobNames;
   abstract displayName: string;
 
   /**

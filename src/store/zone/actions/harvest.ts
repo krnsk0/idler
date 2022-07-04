@@ -5,7 +5,7 @@ import { BaseAction } from './baseAction';
 
 @model(ActionNames.HARVEST)
 export class Harvest extends ExtendedModel(BaseAction, {}) {
-  actionName = ActionNames.HARVEST;
+  name = ActionNames.HARVEST;
   displayName = 'harvest biomass';
   description = 'organic material';
 }

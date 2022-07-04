@@ -7,7 +7,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
   estimatedRate: tProp(types.number, 0),
 }) {
-  abstract resourceName: ResourceNames;
+  abstract name: ResourceNames;
   abstract displayName: string;
   abstract displayColor: string;
   abstract initialCap: number;
@@ -20,8 +20,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   get currentCap(): number {
     return this.zone.buildings.asArray.reduce((output, building) => {
       return (
-        output +
-        building.getStorageAmountByKey(this.resourceName) * building.quantity
+        output + building.getStorageAmountByKey(this.name) * building.quantity
       );
     }, this.initialCap);
   }

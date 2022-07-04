@@ -11,7 +11,7 @@ function ShipView({ zone }: ShipViewProps) {
   return (
     <div css={styles.shipsContainer}>
       {zone.actions.asArray.map((action) => {
-        return <ActionButton action={action} key={action.actionName} />;
+        return <ActionButton action={action} key={action.name} />;
       })}
     </div>
   );

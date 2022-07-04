@@ -16,7 +16,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
     >
       {zone.resources.asArray.map((resource) => {
         return (
-          <div css={styles.resourceRow} key={resource.resourceName}>
+          <div css={styles.resourceRow} key={resource.name}>
             <span>nutrients:</span>
             <span>
               {formatNumber(resource.quantity)}{' '}

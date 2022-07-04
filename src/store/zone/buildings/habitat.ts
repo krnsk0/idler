@@ -5,7 +5,7 @@ import { BuildingNames } from './buildingNames';
 
 @model(BuildingNames.HABITAT)
 export class Habitat extends ExtendedModel(BaseBuilding, {}) {
-  buildingName = BuildingNames.HABITAT;
+  name = BuildingNames.HABITAT;
   displayName = 'habitat';
   description = 'provides housing';
   baseCost = [

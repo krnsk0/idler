@@ -11,9 +11,7 @@ function ProductionView({ zone }: ProductionViewProps) {
   return (
     <div css={styles.buildingsContainer}>
       {zone.buildings.asArray.map((building) => {
-        return (
-          <BuildingButton building={building} key={building.buildingName} />
-        );
+        return <BuildingButton building={building} key={building.name} />;
       })}
     </div>
   );
