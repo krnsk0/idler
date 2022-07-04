@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { formatNumber } from '../../../../helpers/formatNumber';
 import { BaseBuilding } from '../../../../store/zone/buildings/baseBuilding';
-import Tooltip from '../../../Debug/shared/Tooltip/Tooltip';
+import Tooltip, { TooltipDivider } from '../../../Debug/shared/Tooltip/Tooltip';
 import { styles } from './BuildingButton.styles';
 
 interface BuildingViewProps {
@@ -15,7 +15,8 @@ function BuildingView({ building }: BuildingViewProps) {
   return (
     <>
       {hovered && (
-        <Tooltip top={12} left={190}>
+        <Tooltip top={12} left={190} width={200}>
+          <TooltipDivider text={'cost'} />
           {building.currentCost.map(({ resource, quantity }) => {
             return (
               <div key={resource}>
@@ -23,6 +24,7 @@ function BuildingView({ building }: BuildingViewProps) {
               </div>
             );
           })}
+          <TooltipDivider text={'effects'} />
         </Tooltip>
       )}
       <button
