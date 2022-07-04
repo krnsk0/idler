@@ -1,7 +1,4 @@
 export enum BuildingNames {
-  // producers
-  Farm = 'Farm',
-
-  // providers
-  Habitat = 'Habitat',
+  FARM = 'FARM',
+  HABITAT = 'HABITAT',
 }

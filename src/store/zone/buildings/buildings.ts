@@ -6,8 +6,8 @@ import { Habitat } from './habitat';
 
 @model('Buildings')
 export class Buildings extends Model({
-  [BuildingNames.Farm]: tProp(types.model(Farm), () => new Farm({})),
-  [BuildingNames.Habitat]: tProp(types.model(Habitat), () => new Habitat({})),
+  [BuildingNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
+  [BuildingNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
   /**
    * Returns an iterable list of the building models

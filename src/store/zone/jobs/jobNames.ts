@@ -1,4 +1,4 @@
 export enum JobNames {
-  Farmer = 'Farmer',
-  Woodcutter = 'Woodcutter',
+  FARMER = 'FARMER',
+  WOODCUTTER = 'WOODCUTTER',
 }

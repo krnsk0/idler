@@ -3,14 +3,14 @@ import { ResourceNames } from '../resources/resourceNames';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
 
-@model(BuildingNames.Habitat)
+@model(BuildingNames.HABITAT)
 export class Habitat extends ExtendedModel(BaseBuilding, {}) {
-  buildingName = BuildingNames.Habitat;
+  buildingName = BuildingNames.HABITAT;
   displayName = 'habitat';
   description = 'provides housing';
   baseCost = [
     {
-      resource: ResourceNames.Nutrients,
+      resource: ResourceNames.NUTRIENTS,
       quantity: 5,
     },
   ];

@@ -1,3 +1,3 @@
 export enum ResourceNames {
-  Nutrients = 'Nutrients',
+  NUTRIENTS = 'NUTRIENTS',
 }

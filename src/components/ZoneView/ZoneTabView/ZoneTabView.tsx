@@ -10,8 +10,8 @@ interface ZoneTabViewProps {
 }
 
 enum ZoneTabNames {
-  Ship = 'Ship',
-  Production = 'Production',
+  SHIP = 'SHIP',
+  PRODUCITON = 'PRODUCTION',
 }
 
 const TabButton = ({
@@ -40,7 +40,7 @@ const Separator = () => <span css={styles.separator} />;
 
 const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
   const [selectedTab, setSelectedTab] = useState<ZoneTabNames>(
-    ZoneTabNames.Production,
+    ZoneTabNames.PRODUCITON,
   );
 
   return (
@@ -48,7 +48,7 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
       <div css={styles.tabRow}>
         <TabButton
           text="Crashed Ship"
-          tabName={ZoneTabNames.Ship}
+          tabName={ZoneTabNames.SHIP}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />
@@ -56,7 +56,7 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
         <Separator />
         <TabButton
           text="Production"
-          tabName={ZoneTabNames.Production}
+          tabName={ZoneTabNames.PRODUCITON}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />
@@ -64,9 +64,9 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
       <div css={styles.tabContent}>
         {(() => {
           switch (selectedTab) {
-            case ZoneTabNames.Ship:
+            case ZoneTabNames.SHIP:
               return <ShipView />;
-            case ZoneTabNames.Production:
+            case ZoneTabNames.PRODUCITON:
               return <ProductionView zone={zone} />;
             default:
               throw new Error('should not reach this case');

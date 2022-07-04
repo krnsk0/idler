@@ -6,7 +6,7 @@ import { ResourceNames } from './resourceNames';
 
 @model('Resources')
 export class Resources extends Model({
-  [ResourceNames.Nutrients]: tProp(
+  [ResourceNames.NUTRIENTS]: tProp(
     types.model(Nutrients),
     () => new Nutrients({ quantity: 1 }),
   ),

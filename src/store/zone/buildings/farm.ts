@@ -3,15 +3,15 @@ import { ResourceNames } from '../resources/resourceNames';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
 
-@model(BuildingNames.Farm)
+@model(BuildingNames.FARM)
 export class Farm extends ExtendedModel(BaseBuilding, {}) {
-  buildingName = BuildingNames.Farm;
+  buildingName = BuildingNames.FARM;
   displayName = 'farm';
   description =
     'grows food grows food grows food grows food grows food grows food grows food';
   baseCost = [
     {
-      resource: ResourceNames.Nutrients,
+      resource: ResourceNames.NUTRIENTS,
       quantity: 1,
     },
   ];
@@ -19,9 +19,9 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   inputs = [];
   outputs = [
     {
-      resource: ResourceNames.Nutrients,
+      resource: ResourceNames.NUTRIENTS,
       quantityPerSecond: 0.1,
     },
   ];
-  storage = { [ResourceNames.Nutrients]: 10 };
+  storage = { [ResourceNames.NUTRIENTS]: 10 };
 }
