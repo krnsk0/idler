@@ -40,7 +40,7 @@ const Separator = () => <span css={styles.separator} />;
 
 const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
   const [selectedTab, setSelectedTab] = useState<ZoneTabNames>(
-    ZoneTabNames.PRODUCITON,
+    ZoneTabNames.SHIP,
   );
 
   return (
