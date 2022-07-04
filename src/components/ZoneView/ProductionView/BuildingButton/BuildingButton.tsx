@@ -31,6 +31,16 @@ function BuildingView({ building }: BuildingViewProps) {
             },
           )}
           <TooltipDivider text={'effects'} />
+          {building.displayEffects.map(
+            ({ resourceDisplayName, quantityPerSecond }) => {
+              return (
+                <div key={resourceDisplayName}>
+                  {resourceDisplayName}:{' '}
+                  {formatNumber(quantityPerSecond, { showSign: true })}/sec
+                </div>
+              );
+            },
+          )}
         </Tooltip>
       )}
       <button

@@ -29,6 +29,11 @@ interface ProducerInput {
   quantityPerSecond: number;
 }
 
+interface ProducerEffectDisplay {
+  resourceDisplayName: string;
+  quantityPerSecond: number;
+}
+
 export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
@@ -83,6 +88,27 @@ export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
     return this.currentCost.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
     });
+  }
+
+  /**
+   * Effects with displayable names
+   */
+  @computed
+  get displayEffects(): Array<ProducerEffectDisplay> {
+    return [
+      ...this.inputs.map(({ resource, quantityPerSecond }) => {
+        return {
+          resourceDisplayName: getResources(this)[resource].displayName,
+          quantityPerSecond: -quantityPerSecond,
+        };
+      }),
+      ...this.outputs.map(({ resource, quantityPerSecond }) => {
+        return {
+          resourceDisplayName: getResources(this)[resource].displayName,
+          quantityPerSecond,
+        };
+      }),
+    ];
   }
 
   /**

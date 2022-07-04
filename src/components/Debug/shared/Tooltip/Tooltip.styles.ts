@@ -18,8 +18,8 @@ export const styles = {
   tooltipDivider: css`
     border-top: 1px solid ${dividerColor};
     width: 100%;
-    margin-top: 1em;
-    padding-top: 1em;
+    margin-top: 1.5em;
+    padding-top: 1.5em;
     position: relative;
   `,
   tooltipDividerTextContainer: css`
@@ -37,5 +37,6 @@ export const styles = {
     width: 100%;
     text-align: center;
     color: ${dividerColor};
+    font-style: italic;
   `,
 };
