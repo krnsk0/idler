@@ -8,11 +8,4 @@ export const styles = {
     justify-content: flex-start;
     align-items: flex-start;
   `,
-  buildingBox: css`
-    border: 1px solid black;
-    margin: 0.1em;
-    padding: 0.2em;
-    width: 150px;
-    background: none;
-  `,
 };

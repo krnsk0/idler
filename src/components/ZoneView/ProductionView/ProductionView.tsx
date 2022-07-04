@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Zone } from '../../../store/zone/zone';
-import BuildingView from './BuildingView/BuildingView';
+import BuildingView from './BuildingButton/BuildingButton';
 import { styles } from './ProdutionView.styles';
 
 interface ProductionViewProps {
