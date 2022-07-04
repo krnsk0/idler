@@ -5,6 +5,8 @@ export const styles = {
     display: flex;
     flex-direction: column;
     min-width: 250px;
+    height: 100%;
+    font-size: 0.8em;
   `,
   resourceRow: css`
     margin: 0.1em;

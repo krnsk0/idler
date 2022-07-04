@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../helpers/formatNumber';
+import BorderContainer from '../../../sharedComponetns/borderContainer/BorderContainer';
 import { Zone } from '../../../store/zone/zone';
 import { styles } from './ResourceView.styles';
 
@@ -9,11 +10,14 @@ interface ResourceViewProps {
 
 const ResourceView = ({ zone }: ResourceViewProps) => {
   return (
-    <div css={styles.resourcesContainer}>
+    <BorderContainer
+      title="resources"
+      styleOverride={styles.resourcesContainer}
+    >
       {zone.resources.asArray.map((resource) => {
         return (
           <div css={styles.resourceRow} key={resource.resourceName}>
-            <span>Nutrients:</span>
+            <span>nutrients:</span>
             <span>
               {formatNumber(resource.quantity)}{' '}
               <span css={styles.cap}>
@@ -23,13 +27,13 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
             <span>
               {formatNumber(resource.estimatedRate, {
                 showSign: true,
-              })}{' '}
-              /sec
+              })}
+              /s
             </span>
           </div>
         );
       })}
-    </div>
+    </BorderContainer>
   );
 };
 

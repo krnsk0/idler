@@ -8,7 +8,7 @@ export const styles = {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
+    /* border: 1px solid blue; */
   `,
   zoneHeader: css``,
   zoneBody: css`
