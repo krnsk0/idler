@@ -25,12 +25,20 @@ const Tooltip = ({
   );
 };
 
-interface TooltipCenterTextProps {
+interface TooltipText {
   children: React.ReactNode;
+  italic?: boolean;
+  light?: boolean;
+  center?: boolean;
 }
 
-export const TooltipCenterText = ({ children }: TooltipCenterTextProps) => {
-  return <div css={styles.tooltipCenterText}>{children}</div>;
+export const TooltipText = ({
+  children,
+  italic,
+  light,
+  center,
+}: TooltipText) => {
+  return <div css={styles.tooltipText(italic, light, center)}>{children}</div>;
 };
 
 interface TooltipDividerProps {

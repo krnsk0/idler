@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
-
-const dividerColor = '#383838';
+import { colors } from '../../../../colors';
 
 export const styles = {
   tooltipContainer: css`
@@ -16,10 +15,10 @@ export const styles = {
     background-color: white;
   `,
   tooltipDivider: css`
-    border-top: 1px solid ${dividerColor};
+    border-top: 1px solid ${colors.darkgrey};
     width: 100%;
-    margin-top: 1.5em;
-    padding-top: 1.5em;
+    margin-top: 1.4em;
+    padding-top: 0.6em;
     position: relative;
   `,
   tooltipDividerTextContainer: css`
@@ -29,14 +28,14 @@ export const styles = {
     width: 100%;
   `,
   tooltipDividerText: css`
-    color: ${dividerColor};
+    color: ${colors.darkgrey};
     background-color: white;
-    padding: 0.4em;
+    padding: 0em 0.4em 0em 0.4em;
   `,
-  tooltipCenterText: css`
+  tooltipText: (italic: boolean, light: boolean, center: boolean) => css`
     width: 100%;
-    text-align: center;
-    color: ${dividerColor};
-    font-style: italic;
+    text-align: ${!center ? 'inherit' : 'center'};
+    color: ${!light ? 'inherit' : colors.darkgrey};
+    font-style: ${!italic ? 'inherit' : 'italic'};
   `,
 };
