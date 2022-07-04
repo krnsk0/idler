@@ -26,7 +26,8 @@ export const styles = {
     }
   `,
   tabContent: css`
-    border: 1px solid blue;
+    padding-top: 10px;
     height: 100%;
+    /* border: 1px solid blue; */
   `,
 };

@@ -10,7 +10,7 @@ export const styles = {
     left: 50%;
     top: 45%;
     transform: translate(-50%, -50%);
-    /* border: 1px solid blue; */
+    /* border: 1px solid green; */
   `,
   zoneHeader: css`
     /* border: 1px solid blue; */
@@ -19,7 +19,6 @@ export const styles = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    height: 100%;
     /* border: 1px solid blue; */
   `,
 };
