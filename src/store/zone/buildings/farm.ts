@@ -7,7 +7,8 @@ import { BuildingNames } from './buildingNames';
 export class Farm extends ExtendedModel(BaseBuilding, {}) {
   buildingName = BuildingNames.Farm;
   displayName = 'farm';
-  description = 'grows food';
+  description =
+    'grows food grows food grows food grows food grows food grows food grows food';
   baseCost = [
     {
       resource: ResourceNames.Nutrients,
