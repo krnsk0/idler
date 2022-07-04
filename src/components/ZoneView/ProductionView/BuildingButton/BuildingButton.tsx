@@ -16,7 +16,7 @@ function BuildingView({ building }: BuildingViewProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <>
+    <div key={building.buildingName}>
       {hovered && (
         <Tooltip top={12} left={190} width={200}>
           <TooltipCenterText>{building.description}</TooltipCenterText>
@@ -57,7 +57,7 @@ function BuildingView({ building }: BuildingViewProps) {
           {formatNumber(building.quantity, { digits: 0 })})
         </span>
       </button>
-    </>
+    </div>
   );
 }
 
