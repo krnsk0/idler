@@ -1,42 +1,20 @@
 import { observer } from 'mobx-react-lite';
-import { formatNumber } from '../../../helpers/formatNumber';
 import { Zone } from '../../../store/zone/zone';
+import BuildingView from './BuildingView/BuildingView';
 import { styles } from './ProdutionView.styles';
 
-interface BuildingViewProps {
+interface ProductionViewProps {
   zone: Zone;
 }
 
-function BuildingView({ zone }: BuildingViewProps) {
+function ProductionView({ zone }: ProductionViewProps) {
   return (
     <div css={styles.buildingsContainer}>
       {zone.buildings.asArray.map((building) => {
-        return (
-          <button
-            key={building.buildingName}
-            css={styles.buildingBox}
-            type="button"
-            onClick={() => building.buy(1)}
-            disabled={!building.affordable}
-          >
-            <span>
-              {building.displayName} (
-              {formatNumber(building.quantity, { digits: 0 })})
-            </span>
-            <div>
-              {building.currentCost.map(({ resource, quantity }) => {
-                return (
-                  <div key={resource}>
-                    {resource}: {formatNumber(quantity)}
-                  </div>
-                );
-              })}
-            </div>
-          </button>
-        );
+        return <BuildingView building={building} />;
       })}
     </div>
   );
 }
 
-export default observer(BuildingView);
+export default observer(ProductionView);
