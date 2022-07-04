@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Zone } from '../../../store/zone/zone';
-import ProductionView from './ProductionView/ProductionView';
+import ProductionView from '../ProductionView/ProductionView';
 import ShipView from './ShipView/ShipView';
 import { styles } from './ZoneTabView.styles';
 

@@ -17,6 +17,9 @@ export const styles = {
     border: none;
     margin: 0;
     padding: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
     text-decoration: ${selected ? 'underline' : 'none'};
     &:hover {
       text-decoration: underline;

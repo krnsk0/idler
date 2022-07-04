@@ -4,6 +4,8 @@ export const styles = {
   container: css`
     border: 1px solid black;
     padding: 0.3em;
+    position: relative;
+    top: 0.3em;
   `,
   containerTitle: css`
     position: absolute;
