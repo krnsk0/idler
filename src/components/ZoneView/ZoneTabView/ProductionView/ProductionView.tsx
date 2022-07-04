@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { formatNumber } from '../../../helpers/formatNumber';
-import { Zone } from '../../../store/zone/zone';
-import { styles } from './BuildingView.styles';
+import { formatNumber } from '../../../../helpers/formatNumber';
+import { Zone } from '../../../../store/zone/zone';
+import { styles } from './ProdutionView.styles';
 
 interface BuildingViewProps {
   zone: Zone;
