@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { useState } from 'react';
 import { formatNumber } from '../../../../helpers/formatNumber';
 import { BaseBuilding } from '../../../../store/zone/buildings/baseBuilding';
 import { styles } from '../ProdutionView.styles';
@@ -8,6 +9,8 @@ interface BuildingViewProps {
 }
 
 function BuildingView({ building }: BuildingViewProps) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <button
       key={building.buildingName}
@@ -15,6 +18,8 @@ function BuildingView({ building }: BuildingViewProps) {
       type="button"
       onClick={() => building.buy(1)}
       disabled={!building.affordable}
+      onPointerEnter={() => setHovered(true)}
+      onPointerLeave={() => setHovered(false)}
     >
       <span>
         {building.displayName} ({formatNumber(building.quantity, { digits: 0 })}
