@@ -6,35 +6,27 @@ import Tooltip, {
   TooltipText,
   TooltipDivider,
 } from '../../../../Debug/shared/Tooltip/Tooltip';
-import { styles } from './ActionButton.styles';
+import ZoneEntityButton from '../../../../Debug/shared/ZoneEntityButton/ZoneEntityButton';
 
 interface ActionButtonProps {
   action: BaseAction;
 }
 
 function ActionButton({ action }: ActionButtonProps) {
-  const [hovered, setHovered] = useState(false);
-
   return (
-    <>
-      {hovered && (
-        <Tooltip top={12} left={190} width={200}>
+    <ZoneEntityButton
+      tooltip={
+        <>
           <TooltipText italic={true} center={true} light={true}>
             {action.description}
           </TooltipText>
           <TooltipDivider text={'cost'} />
-        </Tooltip>
-      )}
-      <button
-        key={action.actionName}
-        css={styles.actionBox}
-        type="button"
-        onPointerEnter={() => setHovered(true)}
-        onPointerLeave={() => setHovered(false)}
-      >
-        <span>{action.displayName}</span>
-      </button>
-    </>
+        </>
+      }
+      onClick={() => {}}
+    >
+      <span>{action.displayName}</span>{' '}
+    </ZoneEntityButton>
   );
 }
 

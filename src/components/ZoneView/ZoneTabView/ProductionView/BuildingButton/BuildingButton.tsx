@@ -6,6 +6,7 @@ import Tooltip, {
   TooltipText,
   TooltipDivider,
 } from '../../../../Debug/shared/Tooltip/Tooltip';
+import ZoneEntityButton from '../../../../Debug/shared/ZoneEntityButton/ZoneEntityButton';
 import { styles } from './BuildingButton.styles';
 
 interface BuildingButtonProps {
@@ -16,9 +17,9 @@ function BuildingButton({ building }: BuildingButtonProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
-    <>
-      {hovered && (
-        <Tooltip top={12} left={190} width={200}>
+    <ZoneEntityButton
+      tooltip={
+        <>
           <TooltipText italic={true} center={true} light={true}>
             {building.description}
           </TooltipText>
@@ -47,23 +48,16 @@ function BuildingButton({ building }: BuildingButtonProps) {
               },
             )}
           </TooltipText>
-        </Tooltip>
-      )}
-      <button
-        key={building.buildingName}
-        css={styles.buildingBox}
-        type="button"
-        onClick={() => building.buy(1)}
-        disabled={!building.affordable}
-        onPointerEnter={() => setHovered(true)}
-        onPointerLeave={() => setHovered(false)}
-      >
-        <span>
-          {building.displayName} (
-          {formatNumber(building.quantity, { digits: 0 })})
-        </span>
-      </button>
-    </>
+        </>
+      }
+      onClick={() => building.buy(1)}
+      disabled={!building.affordable}
+    >
+      <span>
+        {building.displayName} ({formatNumber(building.quantity, { digits: 0 })}
+        )
+      </span>
+    </ZoneEntityButton>
   );
 }
 
