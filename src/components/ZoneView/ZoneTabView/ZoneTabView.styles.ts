@@ -7,10 +7,12 @@ export const styles = {
     width: 100%;
     min-width: 300px;
   `,
-  tabRow: css``,
+  tabRow: css`
+    margin-bottom: 0.5em;
+  `,
   separator: css`
-    margin-left: 10px;
-    padding-left: 10px;
+    margin-left: 0.5em;
+    padding-left: 0.5em;
     border-left: 1px solid black;
   `,
   tabButton: (selected: boolean) => css`
@@ -26,7 +28,7 @@ export const styles = {
     }
   `,
   tabContent: css`
-    padding-top: 10px;
+    padding-top: 0.5em;
     height: 100%;
     /* border: 1px solid blue; */
   `,

@@ -4,13 +4,15 @@ export const styles = {
   buildingsContainer: css`
     width: 100%;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
   `,
   buildingBox: css`
-    border: 2px solid black;
+    border: 1px solid black;
     margin: 0.1em;
-    width: 200px;
+    padding: 0.2em;
+    width: 150px;
+    background: none;
   `,
 };
