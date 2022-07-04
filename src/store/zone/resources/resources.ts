@@ -1,5 +1,5 @@
 import { findParent, model, Model, tProp, types } from 'mobx-keystone';
-import { enumKeys } from '../../../helpers/enumKeys';
+import { enumValues } from '../../../helpers/enumValues';
 import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
 import { ResourceNames } from './resourceNames';
@@ -15,7 +15,7 @@ export class Resources extends Model({
    * Returns an iterable list of the building models
    */
   get asArray() {
-    return enumKeys(ResourceNames).map((name) => {
+    return enumValues(ResourceNames).map((name) => {
       return this[name];
     });
   }
