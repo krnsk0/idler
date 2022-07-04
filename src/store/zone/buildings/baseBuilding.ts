@@ -132,11 +132,10 @@ export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     this.outputs.forEach((product) => {
-      const resourceName = product.resource;
-
-      this.zoneResources[resourceName].increase(
-        product.quantityPerSecond * this.quantity * delta,
-      );
+      const potentialProduction =
+        product.quantityPerSecond * this.quantity * delta;
+      const resourceModel = this.zoneResources[product.resource];
+      resourceModel.increase(potentialProduction);
     });
   }
 }
