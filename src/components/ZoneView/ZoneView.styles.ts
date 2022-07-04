@@ -5,7 +5,7 @@ export const styles = {
     width: 75%;
     height: 75%;
     max-width: 750px;
-    min-width: 500px;
+    min-width: 850px;
     position: absolute;
     left: 50%;
     top: 50%;

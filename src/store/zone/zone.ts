@@ -1,13 +1,7 @@
 import { findParent, idProp, model, Model, tProp, types } from 'mobx-keystone';
 import { Buildings } from './buildings/buildings';
 import { Resources } from './resources/resources';
-
-const makeZoneName = () => {
-  const zoneNames = ['Garden', 'Reprieve', 'University', 'Redoubt', 'Zone'];
-  const name = zoneNames[Math.floor(Math.random() * zoneNames.length)];
-  const number = Math.floor(Math.random() * 100);
-  return `${name} ${number}`;
-};
+import { makeZoneName } from './zoneName';
 
 @model('Zone')
 export class Zone extends Model({
