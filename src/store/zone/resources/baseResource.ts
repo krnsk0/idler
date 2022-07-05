@@ -39,7 +39,11 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @modelAction
   increase(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick += quantity;
-    else this.quantity += quantity;
+    if (this.quantity + quantity > this.currentCap) {
+      this.quantity = this.currentCap;
+    } else {
+      this.quantity += quantity;
+    }
   }
 
   /**
