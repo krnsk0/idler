@@ -9,7 +9,6 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
 }) {
   abstract name: ResourceNames;
   abstract displayName: string;
-  abstract displayColor: string;
   abstract initialCap: number;
   private changeSinceLastTick = 0;
 

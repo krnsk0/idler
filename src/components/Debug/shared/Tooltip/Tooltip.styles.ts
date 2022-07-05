@@ -12,7 +12,7 @@ export const styles = {
     width: ${width}px;
     left: ${left}px;
     top: ${top}px;
-    background-color: white;
+    background-color: ${colors.white};
   `,
   tooltipDivider: css`
     border-top: 1px solid ${colors.darkgrey};
@@ -29,7 +29,7 @@ export const styles = {
   `,
   tooltipDividerText: css`
     color: ${colors.darkgrey};
-    background-color: white;
+    background-color: ${colors.white};
     padding: 0em 0.4em 0em 0.4em;
   `,
   tooltipText: (
