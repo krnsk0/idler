@@ -8,17 +8,11 @@ import { ResourceNames } from './resourceNames';
 
 @model('Resources')
 export class Resources extends Model({
-  [ResourceNames.BIOMASS]: tProp(
-    types.model(Biomass),
-    () => new Biomass({ quantity: 10 }),
-  ),
-  [ResourceNames.LUMBER]: tProp(
-    types.model(Lumber),
-    () => new Lumber({ quantity: 0 }),
-  ),
+  [ResourceNames.BIOMASS]: tProp(types.model(Biomass), () => new Biomass({})),
+  [ResourceNames.LUMBER]: tProp(types.model(Lumber), () => new Lumber({})),
   [ResourceNames.NUTRIENTS]: tProp(
     types.model(Nutrients),
-    () => new Nutrients({ quantity: 0 }),
+    () => new Nutrients({}),
   ),
 }) {
   /**
