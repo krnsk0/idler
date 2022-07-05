@@ -26,6 +26,7 @@ export const styles = {
     &:hover {
       text-decoration: underline;
     }
+    font-size: 1em;
   `,
   tabContent: css`
     padding-top: 0.5em;

@@ -7,7 +7,7 @@ import { BaseAction } from './baseAction';
 export class Compress extends ExtendedModel(BaseAction, {}) {
   name = ActionNames.COMPRESS;
   displayName = 'compress biomass';
-  description = 'a ligneous substance';
+  description = 'subject biomass to heat and pressure';
   duration = 5;
   inputs = [
     {

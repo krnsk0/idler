@@ -5,6 +5,6 @@ import { ResourceNames } from './resourceNames';
 @model(ResourceNames.LUMBER)
 export class Lumber extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.LUMBER;
-  displayName = 'composite lumber';
+  displayName = 'lumber';
   initialCap = 100;
 }
