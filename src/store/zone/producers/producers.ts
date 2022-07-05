@@ -4,13 +4,13 @@ import { ProducerNames } from './producerNames';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
 
-@model('Buildings')
-export class Buildings extends Model({
+@model('Producers')
+export class Producers extends Model({
   [ProducerNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
   [ProducerNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
   /**
-   * Returns an iterable list of the building models
+   * Returns an iterable list of the producer models
    */
   get asArray() {
     return enumKeys(ProducerNames).map((name) => {

@@ -48,7 +48,7 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
 
   /**
    * Given the name of a resource, tells the caller how much of that resource
-   * this building can store
+   * this producer can store
    */
   getStorageAmountByKey(resourceName: ResourceNames): number {
     return this.storage[resourceName] ?? 0;

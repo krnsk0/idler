@@ -2,7 +2,7 @@ import { Model } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
-import { Buildings } from './producers/buildings';
+import { Producers } from './producers/producers';
 
 export abstract class ZoneEntity extends Model({}) {
   /**
@@ -25,7 +25,7 @@ export abstract class ZoneEntity extends Model({}) {
    * The buildings associated with the entity
    */
   @computed
-  get zoneBuildings(): Buildings {
-    return getZone(this).buildings;
+  get zoneBuildings(): Producers {
+    return getZone(this).producers;
   }
 }
