@@ -10,7 +10,12 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract displayName: string;
   abstract description: string;
   abstract duration: number;
-  abstract onActionComplete(): void;
+
+  /**
+   * What happens when the action is done?
+   */
+  @modelAction
+  onActionComplete(): void {}
 
   /**
    * Ticks the action's progress

@@ -10,9 +10,4 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   displayName = 'harvest biomass';
   description = 'gather organic material';
   duration = 2;
-
-  @modelAction
-  onActionComplete() {
-    getResources(this)[ResourceNames.BIOMASS].increase(1, { untracked: true });
-  }
 }
