@@ -3,7 +3,8 @@ import { css } from '@emotion/react';
 export const globalStyles = css`
   body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lekton', sans-serif;
+
     box-sizing: content-box;
   }
   #app {
@@ -11,7 +12,8 @@ export const globalStyles = css`
     height: 100vh;
   }
   button {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lekton', sans-serif;
+
     font-size: 1em;
   }
 `;
