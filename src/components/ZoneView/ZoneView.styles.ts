@@ -12,6 +12,7 @@ export const styles = {
     transform: translate(-50%, -50%);
     /* border: 1px solid green; */
   `,
+  zoneLeft: css``,
   zoneHeader: css`
     /* border: 1px solid blue; */
   `,

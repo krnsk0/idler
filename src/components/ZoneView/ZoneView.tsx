@@ -11,11 +11,13 @@ interface ZoneViewProps {
 function ZoneView({ zone }: ZoneViewProps) {
   return (
     <div css={styles.zoneOuter}>
-      <div css={styles.zoneHeader}>
-        <h3>{zone.name}</h3>
-      </div>
       <div css={styles.zoneBody}>
-        <ZoneTabView zone={zone} />
+        <div css={styles.zoneLeft}>
+          <div css={styles.zoneHeader}>
+            <h2>{zone.name}</h2>
+          </div>
+          <ZoneTabView zone={zone} />
+        </div>
         <ResourceView zone={zone} />
       </div>
     </div>
