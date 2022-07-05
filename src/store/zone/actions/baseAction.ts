@@ -34,6 +34,6 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   start(): void {
-    this.active = true;
+    if (!this.active) this.active = true;
   }
 }
