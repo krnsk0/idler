@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { colors } from '../../../colors';
 
 export const styles = {
   resourcesContainer: css`
@@ -12,7 +13,10 @@ export const styles = {
     flex-direction: row;
     justify-content: space-between;
   `,
+  quantityPerSecond: css`
+    color: ${colors.grey};
+  `,
   cap: css`
-    color: grey;
+    color: ${colors.grey};
   `,
 };

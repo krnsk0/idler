@@ -13,12 +13,14 @@ export const styles = {
     left: ${left}px;
     top: ${top}px;
     background-color: ${colors.white};
+    z-index: +1;
   `,
-  tooltipDivider: css`
+
+  tooltipDivider: (largeMargin: boolean) => css`
     border-top: 1px solid ${colors.darkgrey};
     width: 100%;
-    margin-top: 1.4em;
-    padding-top: 0.6em;
+    margin-top: ${largeMargin ? '1.4em' : '0.8em'};
+    padding-top: 0.8em;
     position: relative;
   `,
   tooltipDividerTextContainer: css`

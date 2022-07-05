@@ -8,7 +8,7 @@ export class Actions extends Model({
   [ActionNames.HARVEST]: tProp(types.model(Harvest), () => new Harvest({})),
 }) {
   /**
-   * Returns an iterable list of the building models
+   * Returns an iterable list of the action model
    */
   get asArray() {
     return enumKeys(ActionNames).map((name) => {

@@ -20,7 +20,8 @@ function ActionButton({ action }: ActionButtonProps) {
           <TooltipText italic={true} center={true} light={true}>
             {action.description}
           </TooltipText>
-          <TooltipDivider text={'cost'} />
+          <TooltipDivider />
+          <TooltipText>{action.duration} seconds</TooltipText>
         </>
       }
       onClick={() => action.start()}

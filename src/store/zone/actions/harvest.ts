@@ -1,5 +1,6 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
+import { getResources } from '../resources/resources';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
 
@@ -7,10 +8,11 @@ import { BaseAction } from './baseAction';
 export class Harvest extends ExtendedModel(BaseAction, {}) {
   name = ActionNames.HARVEST;
   displayName = 'harvest biomass';
-  description = 'organic material';
+  description = 'gather organic material';
   duration = 2;
 
+  @modelAction
   onActionComplete() {
-    console.log('done!');
+    getResources(this)[ResourceNames.BIOMASS].increase(1, { untracked: true });
   }
 }

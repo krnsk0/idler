@@ -17,18 +17,21 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
       {zone.resources.asArray.map((resource) => {
         return (
           <div css={styles.resourceRow} key={resource.name}>
-            <span>nutrients:</span>
+            <span>{resource.displayName}</span>
+
+            {!!resource.estimatedRate && (
+              <span css={styles.quantityPerSecond}>
+                {formatNumber(resource.estimatedRate, {
+                  showSign: true,
+                })}
+                /s
+              </span>
+            )}
             <span>
               {formatNumber(resource.quantity)}{' '}
               <span css={styles.cap}>
                 /{formatNumber(resource.currentCap, { digits: 0 })}
               </span>
-            </span>
-            <span>
-              {formatNumber(resource.estimatedRate, {
-                showSign: true,
-              })}
-              /s
             </span>
           </div>
         );

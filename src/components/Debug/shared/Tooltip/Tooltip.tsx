@@ -42,16 +42,18 @@ export const TooltipText = ({
 };
 
 interface TooltipDividerProps {
-  text: string;
+  text?: string;
 }
 
 export const TooltipDivider = ({ text }: TooltipDividerProps) => {
   return (
     <>
-      <div css={styles.tooltipDivider}>
-        <div css={styles.tooltipDividerTextContainer}>
-          <span css={styles.tooltipDividerText}>{text}</span>
-        </div>
+      <div css={styles.tooltipDivider(!!text)}>
+        {text && (
+          <div css={styles.tooltipDividerTextContainer}>
+            {<span css={styles.tooltipDividerText}>{text}</span>}
+          </div>
+        )}
       </div>
     </>
   );
