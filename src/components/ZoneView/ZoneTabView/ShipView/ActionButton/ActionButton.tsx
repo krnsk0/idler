@@ -1,8 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
-import { formatNumber } from '../../../../../helpers/formatNumber';
 import { BaseAction } from '../../../../../store/zone/actions/baseAction';
-import Tooltip, {
+import {
   TooltipText,
   TooltipDivider,
 } from '../../../../Debug/shared/Tooltip/Tooltip';
@@ -26,6 +24,7 @@ function ActionButton({ action }: ActionButtonProps) {
       }
       onClick={() => action.start()}
       progress={action.progress}
+      disabled={!action.affordable}
     >
       <span>{action.displayName}</span>{' '}
     </ZoneEntityButton>

@@ -39,10 +39,6 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @modelAction
   increase(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick += quantity;
-    if (this.quantity + quantity > this.currentCap)
-      throw new Error(
-        'resource has gone above cap; caller should check for this',
-      );
     else this.quantity += quantity;
   }
 

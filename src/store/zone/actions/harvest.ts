@@ -1,6 +1,5 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
-import { getResources } from '../resources/resources';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
 
@@ -10,4 +9,11 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   displayName = 'harvest biomass';
   description = 'gather organic material';
   duration = 2;
+  inputs = [];
+  outputs = [
+    {
+      resource: ResourceNames.BIOMASS,
+      quantity: 1,
+    },
+  ];
 }

@@ -20,6 +20,10 @@ export class Farm extends ExtendedModel(BaseProducer, {}) {
   outputs = [
     {
       resource: ResourceNames.NUTRIENTS,
+      quantityPerSecond: 0.05,
+    },
+    {
+      resource: ResourceNames.BIOMASS,
       quantityPerSecond: 0.1,
     },
   ];
