@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
+import { colors } from '../../../../colors';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 
@@ -28,7 +29,10 @@ const ZoneEntityButton = ({
           {tooltip}
         </Tooltip>
       )}
-      <div css={styles.buttonContainer}>
+      <div
+        css={styles.buttonContainer}
+        style={{ borderColor: !disabled ? colors.black : colors.grey }}
+      >
         <div css={styles.progressBar} style={{ width: progressWidth }} />
         <button
           css={styles.button}
