@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Zone } from '../../../../store/zone/zone';
-import ActionButton from './BuildingButton/ActionButton';
+import ActionButton from './ActionButton/ActionButton';
 import { styles } from './ShipView.styles';
 
 interface ShipViewProps {

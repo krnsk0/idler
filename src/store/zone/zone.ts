@@ -1,6 +1,6 @@
 import { findParent, idProp, model, Model, tProp, types } from 'mobx-keystone';
 import { Actions } from './actions/actions';
-import { Buildings } from './buildings/buildings';
+import { Buildings } from './producers/buildings';
 import { Resources } from './resources/resources';
 import { makeZoneName } from './zoneName';
 

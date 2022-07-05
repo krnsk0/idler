@@ -1,11 +1,11 @@
 import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
-import { BaseBuilding } from './baseBuilding';
-import { BuildingNames } from './buildingNames';
+import { BaseProducer } from './baseProducer';
+import { ProducerNames } from './producerNames';
 
-@model(BuildingNames.FARM)
-export class Farm extends ExtendedModel(BaseBuilding, {}) {
-  name = BuildingNames.FARM;
+@model(ProducerNames.FARM)
+export class Farm extends ExtendedModel(BaseProducer, {}) {
+  name = ProducerNames.FARM;
   displayName = 'farm';
   description =
     'grows food grows food grows food grows food grows food grows food grows food';

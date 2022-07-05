@@ -2,7 +2,7 @@ import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from '../resources/resourceNames';
-import { BuildingNames } from './buildingNames';
+import { ProducerNames } from './producerNames';
 import { getResources } from '../resources/resources';
 
 type Storage = {
@@ -34,10 +34,10 @@ interface ProducerEffectDisplay {
   quantityPerSecond: number;
 }
 
-export abstract class BaseBuilding extends ExtendedModel(ZoneEntity, {
+export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
-  abstract name: BuildingNames;
+  abstract name: ProducerNames;
   abstract displayName: string;
   abstract description: string;
   abstract storage: Storage;

@@ -1,4 +1,4 @@
-export enum BuildingNames {
+export enum ProducerNames {
   FARM = 'FARM',
   HABITAT = 'HABITAT',
 }

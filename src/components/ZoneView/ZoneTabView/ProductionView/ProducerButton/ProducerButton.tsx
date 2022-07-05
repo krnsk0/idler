@@ -1,19 +1,19 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { formatNumber } from '../../../../../helpers/formatNumber';
-import { BaseBuilding } from '../../../../../store/zone/buildings/baseBuilding';
+import { BaseProducer } from '../../../../../store/zone/producers/baseProducer';
 import Tooltip, {
   TooltipText,
   TooltipDivider,
 } from '../../../../Debug/shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../Debug/shared/ZoneEntityButton/ZoneEntityButton';
-import { styles } from './BuildingButton.styles';
+import { styles } from './ProducerButton.styles';
 
-interface BuildingButtonProps {
-  building: BaseBuilding;
+interface ProducerButtonProps {
+  building: BaseProducer;
 }
 
-function BuildingButton({ building }: BuildingButtonProps) {
+function ProducerButton({ building }: ProducerButtonProps) {
   const [hovered, setHovered] = useState(false);
 
   return (
@@ -61,4 +61,4 @@ function BuildingButton({ building }: BuildingButtonProps) {
   );
 }
 
-export default observer(BuildingButton);
+export default observer(ProducerButton);

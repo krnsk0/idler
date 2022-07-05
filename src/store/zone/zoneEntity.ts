@@ -2,7 +2,7 @@ import { Model } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
-import { Buildings } from './buildings/buildings';
+import { Buildings } from './producers/buildings';
 
 export abstract class ZoneEntity extends Model({}) {
   /**

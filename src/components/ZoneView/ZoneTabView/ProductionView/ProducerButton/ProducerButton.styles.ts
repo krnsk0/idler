@@ -1,7 +1,7 @@
 import { css } from '@emotion/react';
 
 export const styles = {
-  buildingBox: css`
+  producerBox: css`
     border: 1px solid black;
     margin: 0.3em 0em 0.3em 0em;
     padding: 0.2em;
