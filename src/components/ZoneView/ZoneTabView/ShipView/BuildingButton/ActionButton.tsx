@@ -24,6 +24,7 @@ function ActionButton({ action }: ActionButtonProps) {
         </>
       }
       onClick={() => action.start()}
+      progress={action.progress}
     >
       <span>{action.displayName}</span>{' '}
     </ZoneEntityButton>

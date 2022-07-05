@@ -4,6 +4,7 @@ export const globalStyles = css`
   body {
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
+    box-sizing: content-box;
   }
   #app {
     width: 100%;

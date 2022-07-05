@@ -7,6 +7,7 @@ interface ZoneEntityButtonProps {
   disabled?: boolean;
   children: React.ReactNode;
   onClick: () => void;
+  progress?: number;
 }
 
 const ZoneEntityButton = ({
@@ -14,8 +15,10 @@ const ZoneEntityButton = ({
   children,
   disabled,
   onClick,
+  progress,
 }: ZoneEntityButtonProps) => {
   const [hovered, setHovered] = useState(false);
+  const progressWidth = progress ? progress * 100 + '%' : '0%';
 
   return (
     <>
@@ -24,6 +27,10 @@ const ZoneEntityButton = ({
           {tooltip}
         </Tooltip>
       )}
+
+      <div css={styles.progressBarContainer}>
+        <div css={styles.progressBar} style={{ width: progressWidth }} />
+      </div>
       <button
         css={styles.buttonContainer}
         type="button"
@@ -32,7 +39,7 @@ const ZoneEntityButton = ({
         onPointerLeave={() => setHovered(false)}
         onClick={onClick}
       >
-        {children}
+        <>{children}</>
       </button>
     </>
   );
