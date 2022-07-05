@@ -6,6 +6,7 @@ export const styles = {
   container: css`
     border: 1px solid black;
     padding: 0.6em 0.4em 0.4em 0.4em;
+    margin-bottom: 1em;
     position: relative;
     top: ${titleOffset};
     height: calc(100% - ${titleOffset});
