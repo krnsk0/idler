@@ -10,7 +10,7 @@ import { ResourceNames } from './resourceNames';
 export class Resources extends Model({
   [ResourceNames.BIOMASS]: tProp(
     types.model(Biomass),
-    () => new Biomass({ quantity: 0 }),
+    () => new Biomass({ quantity: 10 }),
   ),
   [ResourceNames.LUMBER]: tProp(
     types.model(Lumber),

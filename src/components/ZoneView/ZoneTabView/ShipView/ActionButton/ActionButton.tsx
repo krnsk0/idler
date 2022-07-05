@@ -1,4 +1,5 @@
 import { observer } from 'mobx-react-lite';
+import { formatNumber } from '../../../../../helpers/formatNumber';
 import { BaseAction } from '../../../../../store/zone/actions/baseAction';
 import {
   TooltipText,
@@ -18,8 +19,28 @@ function ActionButton({ action }: ActionButtonProps) {
           <TooltipText italic={true} align={'center'} light={true}>
             {action.description}
           </TooltipText>
-          <TooltipDivider />
-          <TooltipText>{action.duration} seconds</TooltipText>
+          <TooltipDivider text="cost" />
+          <TooltipText>
+            {action.inputsDisplay.map(({ resourceDisplayName, quantity }) => {
+              return (
+                <div key={resourceDisplayName}>
+                  {resourceDisplayName}: {formatNumber(quantity)}
+                </div>
+              );
+            })}
+            <div>{action.duration} seconds</div>
+          </TooltipText>
+          <TooltipDivider text="output" />
+          <TooltipText>
+            {' '}
+            {action.outputsDisplay.map(({ resourceDisplayName, quantity }) => {
+              return (
+                <div key={resourceDisplayName}>
+                  {resourceDisplayName}: {formatNumber(quantity)}
+                </div>
+              );
+            })}
+          </TooltipText>
         </>
       }
       onClick={() => action.start()}

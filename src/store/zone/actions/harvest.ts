@@ -7,7 +7,7 @@ import { BaseAction } from './baseAction';
 export class Harvest extends ExtendedModel(BaseAction, {}) {
   name = ActionNames.HARVEST;
   displayName = 'harvest biomass';
-  description = 'gather organic material';
+  description = 'collect arboraceous flora';
   duration = 2;
   inputs = [];
   outputs = [

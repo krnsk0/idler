@@ -3,9 +3,20 @@ import { ResourceNames } from '../resources/resourceNames';
 import { ZoneEntity } from '../zoneEntity';
 import { ActionNames } from './actionNames';
 import { computed } from 'mobx';
+import { getResources } from '../resources/resources';
 
 interface ActionInput {
   resource: ResourceNames;
+  quantity: number;
+}
+
+interface ActionInputDisplay {
+  resourceDisplayName: string;
+  quantity: number;
+}
+
+interface ActionOutputDisplay {
+  resourceDisplayName: string;
   quantity: number;
 }
 
@@ -24,6 +35,32 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract duration: number;
   abstract inputs: Array<ActionInput>; // consumed when action starts
   abstract outputs: Array<ActionOutput>; // received when action is done
+
+  /**
+   * Current inputs with displayable names
+   */
+  @computed
+  get inputsDisplay(): Array<ActionInputDisplay> {
+    return this.inputs.map(({ resource, quantity }) => {
+      return {
+        resourceDisplayName: getResources(this)[resource].displayName,
+        quantity,
+      };
+    });
+  }
+
+  /**
+   * Current inputs with displayable names
+   */
+  @computed
+  get outputsDisplay(): Array<ActionOutputDisplay> {
+    return this.outputs.map(({ resource, quantity }) => {
+      return {
+        resourceDisplayName: getResources(this)[resource].displayName,
+        quantity,
+      };
+    });
+  }
 
   /**
    * Can this action be kicked off?

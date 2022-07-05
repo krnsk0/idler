@@ -7,8 +7,8 @@ import { ProducerNames } from './producerNames';
 export class Farm extends ExtendedModel(BaseProducer, {}) {
   name = ProducerNames.FARM;
   displayName = 'farm';
-  description = 'Cultivates local edible flora, producing biomass as byproduct';
-  splashText = 'A triumph of xenobotany';
+  description = 'cultivates edible flora, producing biomass byproduct';
+  splashText = 'a triumph of xenobotany';
   baseCost = [
     {
       resource: ResourceNames.BIOMASS,
