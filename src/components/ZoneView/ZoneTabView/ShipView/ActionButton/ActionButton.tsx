@@ -1,3 +1,4 @@
+import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../../../helpers/formatNumber';
 import { BaseAction } from '../../../../../store/zone/actions/baseAction';
@@ -32,7 +33,6 @@ function ActionButton({ action }: ActionButtonProps) {
           </TooltipText>
           <TooltipDivider text="output" />
           <TooltipText>
-            {' '}
             {action.outputsDisplay.map(({ resourceDisplayName, quantity }) => {
               return (
                 <div key={resourceDisplayName}>

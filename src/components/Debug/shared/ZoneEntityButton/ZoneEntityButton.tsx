@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
@@ -45,4 +46,4 @@ const ZoneEntityButton = ({
   );
 };
 
-export default ZoneEntityButton;
+export default observer(ZoneEntityButton);

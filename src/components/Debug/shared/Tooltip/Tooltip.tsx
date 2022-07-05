@@ -1,4 +1,5 @@
 import { SerializedStyles } from '@emotion/react';
+import { observer } from 'mobx-react-lite';
 import { styles } from './Tooltip.styles';
 
 interface TooltipProps {
@@ -25,6 +26,8 @@ const Tooltip = ({
   );
 };
 
+export default observer(Tooltip);
+
 interface TooltipText {
   children: React.ReactNode;
   italic?: boolean;
@@ -32,20 +35,17 @@ interface TooltipText {
   align?: 'left' | 'center' | 'right';
 }
 
-export const TooltipText = ({
-  children,
-  italic,
-  light,
-  align,
-}: TooltipText) => {
-  return <div css={styles.tooltipText(italic, light, align)}>{children}</div>;
-};
+export const TooltipText = observer(
+  ({ children, italic, light, align }: TooltipText) => {
+    return <div css={styles.tooltipText(italic, light, align)}>{children}</div>;
+  },
+);
 
 interface TooltipDividerProps {
   text?: string;
 }
 
-export const TooltipDivider = ({ text }: TooltipDividerProps) => {
+export const TooltipDivider = observer(({ text }: TooltipDividerProps) => {
   return (
     <>
       <div css={styles.tooltipDivider(!!text)}>
@@ -57,6 +57,4 @@ export const TooltipDivider = ({ text }: TooltipDividerProps) => {
       </div>
     </>
   );
-};
-
-export default Tooltip;
+});
