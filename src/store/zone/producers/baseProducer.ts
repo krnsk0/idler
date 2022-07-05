@@ -46,6 +46,7 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   abstract name: ProducerNames;
   abstract displayName: string;
   abstract description: string;
+  abstract splashText: string;
   abstract storage: Storage;
   abstract baseCost: Array<PurchaseCost>;
   abstract costExponent: number;

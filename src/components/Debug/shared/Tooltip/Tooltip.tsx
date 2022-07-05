@@ -29,16 +29,16 @@ interface TooltipText {
   children: React.ReactNode;
   italic?: boolean;
   light?: boolean;
-  center?: boolean;
+  align?: 'left' | 'center' | 'right';
 }
 
 export const TooltipText = ({
   children,
   italic,
   light,
-  center,
+  align,
 }: TooltipText) => {
-  return <div css={styles.tooltipText(italic, light, center)}>{children}</div>;
+  return <div css={styles.tooltipText(italic, light, align)}>{children}</div>;
 };
 
 interface TooltipDividerProps {

@@ -15,7 +15,7 @@ function ActionButton({ action }: ActionButtonProps) {
     <ZoneEntityButton
       tooltip={
         <>
-          <TooltipText italic={true} center={true} light={true}>
+          <TooltipText italic={true} align={'center'} light={true}>
             {action.description}
           </TooltipText>
           <TooltipDivider />

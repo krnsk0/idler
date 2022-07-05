@@ -1,4 +1,4 @@
-import { model, ExtendedModel, modelAction } from 'mobx-keystone';
+import { model, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseProducer } from './baseProducer';
 import { ProducerNames } from './producerNames';
@@ -7,12 +7,16 @@ import { ProducerNames } from './producerNames';
 export class Farm extends ExtendedModel(BaseProducer, {}) {
   name = ProducerNames.FARM;
   displayName = 'farm';
-  description =
-    'grows food grows food grows food grows food grows food grows food grows food';
+  description = 'Cultivates local edible flora, producing biomass as byproduct';
+  splashText = 'A triumph of xenobotany';
   baseCost = [
     {
       resource: ResourceNames.BIOMASS,
-      quantity: 5,
+      quantity: 3,
+    },
+    {
+      resource: ResourceNames.LUMBER,
+      quantity: 2,
     },
   ];
   costExponent = 1.2;

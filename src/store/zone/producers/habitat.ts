@@ -7,7 +7,8 @@ import { ProducerNames } from './producerNames';
 export class Habitat extends ExtendedModel(BaseProducer, {}) {
   name = ProducerNames.HABITAT;
   displayName = 'habitat';
-  description = 'provides housing';
+  description = 'Provides housing for __ colonists';
+  splashText = 'Protection from the elements';
   baseCost = [
     {
       resource: ResourceNames.NUTRIENTS,

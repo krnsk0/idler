@@ -1,8 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
 import { formatNumber } from '../../../../../helpers/formatNumber';
 import { BaseProducer } from '../../../../../store/zone/producers/baseProducer';
-import Tooltip, {
+import {
   TooltipText,
   TooltipDivider,
 } from '../../../../Debug/shared/Tooltip/Tooltip';
@@ -14,13 +13,11 @@ interface ProducerButtonProps {
 }
 
 function ProducerButton({ building }: ProducerButtonProps) {
-  const [hovered, setHovered] = useState(false);
-
   return (
     <ZoneEntityButton
       tooltip={
         <>
-          <TooltipText italic={true} center={true} light={true}>
+          <TooltipText italic={true} align={'center'} light={true}>
             {building.description}
           </TooltipText>
           <TooltipDivider text={'cost'} />
@@ -47,6 +44,10 @@ function ProducerButton({ building }: ProducerButtonProps) {
                 );
               },
             )}
+          </TooltipText>
+          <TooltipDivider />
+          <TooltipText light={true} align={'right'} italic={true}>
+            {building.splashText}
           </TooltipText>
         </>
       }

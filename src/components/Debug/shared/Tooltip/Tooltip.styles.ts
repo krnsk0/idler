@@ -37,10 +37,10 @@ export const styles = {
   tooltipText: (
     italic: boolean | undefined,
     light: boolean | undefined,
-    center: boolean | undefined,
+    align: 'left' | 'center' | 'right' | undefined,
   ) => css`
     width: 100%;
-    text-align: ${!center ? 'inherit' : 'center'};
+    text-align: ${!align ? 'left' : align};
     color: ${!light ? 'inherit' : colors.darkgrey};
     font-style: ${!italic ? 'inherit' : 'italic'};
   `,

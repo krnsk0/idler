@@ -3,6 +3,7 @@ import { enumKeys } from '../../../helpers/enumKeys';
 import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
 import { Biomass } from './biomass';
+import { Lumber } from './lumber';
 import { ResourceNames } from './resourceNames';
 
 @model('Resources')
@@ -11,9 +12,13 @@ export class Resources extends Model({
     types.model(Biomass),
     () => new Biomass({ quantity: 0 }),
   ),
+  [ResourceNames.LUMBER]: tProp(
+    types.model(Lumber),
+    () => new Lumber({ quantity: 0 }),
+  ),
   [ResourceNames.NUTRIENTS]: tProp(
     types.model(Nutrients),
-    () => new Nutrients({ quantity: 1 }),
+    () => new Nutrients({ quantity: 0 }),
   ),
 }) {
   /**
