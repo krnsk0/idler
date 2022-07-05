@@ -23,7 +23,7 @@ function ActionButton({ action }: ActionButtonProps) {
           <TooltipDivider text={'cost'} />
         </>
       }
-      onClick={() => {}}
+      onClick={() => action.start()}
     >
       <span>{action.displayName}</span>{' '}
     </ZoneEntityButton>

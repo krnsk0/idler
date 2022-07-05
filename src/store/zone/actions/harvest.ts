@@ -8,4 +8,9 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   name = ActionNames.HARVEST;
   displayName = 'harvest biomass';
   description = 'organic material';
+  duration = 2;
+
+  onActionComplete() {
+    console.log('done!');
+  }
 }
