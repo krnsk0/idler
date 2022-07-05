@@ -28,20 +28,19 @@ const ZoneEntityButton = ({
           {tooltip}
         </Tooltip>
       )}
-
-      <div css={styles.progressBarContainer}>
+      <div css={styles.buttonContainer}>
         <div css={styles.progressBar} style={{ width: progressWidth }} />
+        <button
+          css={styles.button}
+          type="button"
+          disabled={disabled}
+          onPointerEnter={() => setHovered(true)}
+          onPointerLeave={() => setHovered(false)}
+          onClick={onClick}
+        >
+          <>{children}</>
+        </button>
       </div>
-      <button
-        css={styles.buttonContainer}
-        type="button"
-        disabled={disabled}
-        onPointerEnter={() => setHovered(true)}
-        onPointerLeave={() => setHovered(false)}
-        onClick={onClick}
-      >
-        <>{children}</>
-      </button>
     </>
   );
 };
