@@ -3,14 +3,17 @@ import { computed } from 'mobx';
 import { enumKeys } from '../../../helpers/enumKeys';
 import { ActionNames } from './actionNames';
 import { Harvest } from './harvest';
-import { Combust } from './combust';
+import { Generate } from './generate';
 import { Compress } from './compress';
 import { Zone } from '../zone';
 
 @model('Actions')
 export class Actions extends Model({
-  [ActionNames.HARVEST]: tProp(types.model(Harvest), () => new Harvest({})),
-  [ActionNames.COMBUST]: tProp(types.model(Combust), () => new Combust({})),
+  [ActionNames.HARVEST]: tProp(
+    types.model(Harvest),
+    () => new Harvest({ unlocked: true }),
+  ),
+  [ActionNames.GENERATE]: tProp(types.model(Generate), () => new Generate({})),
   [ActionNames.COMPRESS]: tProp(types.model(Compress), () => new Compress({})),
 }) {
   /**

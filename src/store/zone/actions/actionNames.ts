@@ -1,5 +1,5 @@
 export enum ActionNames {
   HARVEST = 'HARVEST',
-  COMBUST = 'COMBUST',
+  GENERATE = 'GENERATE',
   COMPRESS = 'COMPRESS',
 }

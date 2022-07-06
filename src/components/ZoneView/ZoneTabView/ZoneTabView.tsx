@@ -10,7 +10,7 @@ interface ZoneTabViewProps {
 }
 
 enum ZoneTabNames {
-  SHIP = 'SHIP',
+  ACTIONS = 'ACTIONS',
   PRODUCITON = 'PRODUCTION',
 }
 
@@ -40,7 +40,7 @@ const Separator = () => <span css={styles.separator} />;
 
 const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
   const [selectedTab, setSelectedTab] = useState<ZoneTabNames>(
-    ZoneTabNames.SHIP,
+    ZoneTabNames.ACTIONS,
   );
 
   return (
@@ -48,23 +48,27 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
       <div css={styles.tabRow}>
         <TabButton
           text="Crashed Ship"
-          tabName={ZoneTabNames.SHIP}
+          tabName={ZoneTabNames.ACTIONS}
           selectedTab={selectedTab}
           setSelectedTab={setSelectedTab}
         />
 
-        <Separator />
-        <TabButton
-          text="Production"
-          tabName={ZoneTabNames.PRODUCITON}
-          selectedTab={selectedTab}
-          setSelectedTab={setSelectedTab}
-        />
+        {zone.producers.anyUnlocked && (
+          <>
+            <Separator />
+            <TabButton
+              text="Production"
+              tabName={ZoneTabNames.PRODUCITON}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+          </>
+        )}
       </div>
       <div css={styles.tabContent}>
         {(() => {
           switch (selectedTab) {
-            case ZoneTabNames.SHIP:
+            case ZoneTabNames.ACTIONS:
               return <ActionView zone={zone} />;
             case ZoneTabNames.PRODUCITON:
               return <ProductionView zone={zone} />;
