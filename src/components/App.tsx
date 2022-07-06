@@ -4,7 +4,7 @@ import ZoneView from './ZoneView/ZoneView';
 import { useStoreTick } from './useStoreTick';
 import { useStore } from '../store/Provider';
 import { Zone } from '../store/zone/zone';
-import Debug from './Debug/Debug';
+import DebugView from './DebugView/DebugView';
 import TechModal from './TechModal/TechModal';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <ZoneView zone={activeZone} />
-      <Debug setActiveZone={setActiveZone} />
+      <DebugView setActiveZone={setActiveZone} />
       <TechModal isOpen={techModalOpen} closeModal={closeTechModal} />
     </>
   );

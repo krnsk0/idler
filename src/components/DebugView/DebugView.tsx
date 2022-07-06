@@ -2,13 +2,13 @@ import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../store/Provider';
 import { Zone } from '../../store/zone/zone';
-import { styles } from './Debug.styles';
+import { styles } from './DebugView.styles';
 
 interface DebugProps {
   setActiveZone: React.Dispatch<React.SetStateAction<Zone>>;
 }
 
-const Debug = ({ setActiveZone }: DebugProps) => {
+const DebugView = ({ setActiveZone }: DebugProps) => {
   const root = useStore();
 
   return (
@@ -40,8 +40,14 @@ const Debug = ({ setActiveZone }: DebugProps) => {
           </button>
         );
       })}
+      <button
+        type="button"
+        onClick={() => root.debug.setHyperMode(!root.debug.hyperMode)}
+      >
+        {root.debug.hyperMode ? 'hyper off' : 'hyper on'}
+      </button>
     </div>
   );
 };
 
-export default observer(Debug);
+export default observer(DebugView);

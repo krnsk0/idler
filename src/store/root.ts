@@ -1,4 +1,5 @@
 import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
+import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Zone } from './zone/zone';
 
@@ -10,6 +11,7 @@ export class Root extends Model({
     new Zone({ name: initialZoneName }),
   ]),
   gui: tProp(types.model(Gui), () => new Gui({})),
+  debug: tProp(types.model(Debug), () => new Debug({})),
 }) {
   @modelAction
   addZone() {

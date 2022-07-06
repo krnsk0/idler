@@ -32,7 +32,8 @@ export const useStoreTick = () => {
         root,
         (node: unknown) => {
           if (isTickable(node)) {
-            node.tick(delta);
+            const hyperModeActive = root.debug.hyperMode;
+            node.tick(delta * (hyperModeActive ? 100 : 1));
           }
           if (isUnlockCheckable(node)) {
             node.unlockCheck();
