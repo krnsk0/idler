@@ -5,6 +5,7 @@ import { ActionNames } from './actionNames';
 import { Harvest } from './harvest';
 import { Generate } from './generate';
 import { Compress } from './compress';
+import { Compute } from './compute';
 import { Zone } from '../zone';
 
 @model('Actions')
@@ -15,6 +16,7 @@ export class Actions extends Model({
   ),
   [ActionNames.GENERATE]: tProp(types.model(Generate), () => new Generate({})),
   [ActionNames.COMPRESS]: tProp(types.model(Compress), () => new Compress({})),
+  [ActionNames.COMPUTE]: tProp(types.model(Compute), () => new Compute({})),
 }) {
   /**
    * Returns an iterable list of the action model
