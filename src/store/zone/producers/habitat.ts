@@ -19,4 +19,5 @@ export class Habitat extends ExtendedModel(BaseProducer, {}) {
   inputs = [];
   outputs = [];
   storage = {};
+  unlockWhen = () => false;
 }

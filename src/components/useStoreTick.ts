@@ -6,8 +6,16 @@ interface Tickable {
   tick: (delta: number) => void;
 }
 
+interface UnlockCheckable {
+  unlockCheck: () => void;
+}
+
 function isTickable(obj: unknown): obj is Tickable {
   return typeof obj === 'object' && obj !== null && 'tick' in obj;
+}
+
+function isUnlockCheckable(obj: unknown): obj is UnlockCheckable {
+  return typeof obj === 'object' && obj !== null && 'unlockCheck' in obj;
 }
 
 export const useStoreTick = () => {
@@ -25,6 +33,9 @@ export const useStoreTick = () => {
         (node: unknown) => {
           if (isTickable(node)) {
             node.tick(delta);
+          }
+          if (isUnlockCheckable(node)) {
+            node.unlockCheck();
           }
         },
         WalkTreeMode.ParentFirst,

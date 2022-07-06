@@ -29,7 +29,9 @@ function ActionButton({ action }: ActionButtonProps) {
                 </div>
               );
             })}
-            <div>{action.duration} seconds</div>
+            <div>
+              {action.duration} second{action.duration > 1 ? 's' : ''}
+            </div>
           </TooltipText>
           <TooltipDivider text="output" />
           <TooltipText>

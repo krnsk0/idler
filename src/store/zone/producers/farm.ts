@@ -33,4 +33,5 @@ export class Farm extends ExtendedModel(BaseProducer, {}) {
     },
   ];
   storage = { [ResourceNames.NUTRIENTS]: 10 };
+  unlockWhen = () => false;
 }

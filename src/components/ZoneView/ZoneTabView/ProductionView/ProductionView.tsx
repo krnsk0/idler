@@ -10,7 +10,7 @@ interface ProductionViewProps {
 function ProductionView({ zone }: ProductionViewProps) {
   return (
     <div css={styles.producersContainer}>
-      {zone.producers.asArray.map((building) => {
+      {zone.producers.unlocked.map((building) => {
         return <ProducerButton building={building} key={building.name} />;
       })}
     </div>

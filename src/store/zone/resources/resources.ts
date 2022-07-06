@@ -23,6 +23,13 @@ export class Resources extends Model({
       return this[name];
     });
   }
+
+  /**
+   * Iterable list of only unlocked actions
+   */
+  get unlocked() {
+    return this.asArray.filter((action) => action.unlocked);
+  }
 }
 
 export const getResources = (child: object): Resources => {

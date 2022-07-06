@@ -18,4 +18,5 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 0;
+  unlockWhen = () => true;
 }

@@ -1,5 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
+import { getResources } from '../resources/resources';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
 
@@ -19,4 +20,7 @@ export class Combust extends ExtendedModel(BaseAction, {}) {
   outputs = [];
   basePowerProduction = 1;
   basePowerConsumption = 0;
+  unlockWhen = () => {
+    return getResources(this)[ResourceNames.BIOMASS].quantity >= 5;
+  };
 }

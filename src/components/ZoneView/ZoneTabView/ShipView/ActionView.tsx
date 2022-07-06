@@ -1,20 +1,20 @@
 import { observer } from 'mobx-react-lite';
 import { Zone } from '../../../../store/zone/zone';
 import ActionButton from './ActionButton/ActionButton';
-import { styles } from './ShipView.styles';
+import { styles } from './ActionView.styles';
 
-interface ShipViewProps {
+interface ActionViewProps {
   zone: Zone;
 }
 
-function ShipView({ zone }: ShipViewProps) {
+function ActionView({ zone }: ActionViewProps) {
   return (
     <div css={styles.shipsContainer}>
-      {zone.actions.asArray.map((action) => {
+      {zone.actions.unlocked.map((action) => {
         return <ActionButton action={action} key={action.name} />;
       })}
     </div>
   );
 }
 
-export default observer(ShipView);
+export default observer(ActionView);

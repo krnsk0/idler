@@ -17,4 +17,11 @@ export class Producers extends Model({
       return this[name];
     });
   }
+
+  /**
+   * Iterable list of only unlocked actions
+   */
+  get unlocked() {
+    return this.asArray.filter((action) => action.unlocked);
+  }
 }

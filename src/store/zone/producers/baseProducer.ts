@@ -41,6 +41,7 @@ interface ProducerEffectDisplay {
 }
 
 export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
+  unlocked: tProp(types.boolean, false),
   quantity: tProp(types.number, 0),
 }) {
   abstract name: ProducerNames;
@@ -52,6 +53,7 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   abstract costExponent: number;
   abstract outputs: Array<ProducerOutput>;
   abstract inputs: Array<ProducerInput>;
+  abstract unlockWhen: () => boolean;
 
   /**
    * Given the name of a resource, tells the caller how much of that resource
@@ -144,5 +146,15 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });
+  }
+
+  /**
+   * Runs an unlock check
+   */
+  @modelAction
+  unlockCheck(): void {
+    if (!this.unlocked) {
+      this.unlocked = this.unlockWhen();
+    }
   }
 }

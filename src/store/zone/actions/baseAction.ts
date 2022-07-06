@@ -26,6 +26,7 @@ interface ActionOutput {
 }
 
 export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
+  unlocked: tProp(types.boolean, false),
   progress: tProp(types.number, 0),
   active: tProp(types.boolean, false),
 }) {
@@ -37,6 +38,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract outputs: Array<ActionOutput>; // received when action is done
   abstract basePowerProduction: number;
   abstract basePowerConsumption: number;
+  abstract unlockWhen: () => boolean;
 
   /**
    * Current inputs with displayable names
@@ -131,6 +133,16 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
         this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
       this.active = true;
+    }
+  }
+
+  /**
+   * Runs an unlock check
+   */
+  @modelAction
+  unlockCheck(): void {
+    if (!this.unlocked) {
+      this.unlocked = this.unlockWhen();
     }
   }
 }
