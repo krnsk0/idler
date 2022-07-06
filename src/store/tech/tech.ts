@@ -13,7 +13,7 @@ import { computed } from 'mobx';
 import { enumKeys } from '../../helpers/enumKeys';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
-import { Root } from '../root';
+import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
 import { getPower } from '../zone/power/power';
 
@@ -59,8 +59,10 @@ export class Tech extends Model({
    */
   @modelAction
   unlockCheck(): void {
-    if (!this.unlockedAsArray) {
-      this.unlocked = getPower(this).production > 0;
+    if (!this.unlocked) {
+      this.unlocked = getRoot(this).zones.some(
+        (zone) => zone.power.production > 0,
+      );
     }
   }
 

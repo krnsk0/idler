@@ -1,4 +1,11 @@
-import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
+import {
+  findParent,
+  model,
+  Model,
+  modelAction,
+  tProp,
+  types,
+} from 'mobx-keystone';
 import { Debug } from './debug/debug';
 import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
@@ -20,3 +27,11 @@ export class Root extends Model({
     this.zones.push(new Zone({}));
   }
 }
+
+export const getRoot = (child: object): Root => {
+  const root = findParent<Root>(child, (node) => {
+    return node instanceof Root;
+  });
+  if (!root) throw new Error('no root model found in getRoot');
+  return root;
+};

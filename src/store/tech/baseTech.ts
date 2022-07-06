@@ -7,11 +7,12 @@ import {
 } from 'mobx-keystone';
 import { ZoneEntity } from '../zone/zoneEntity';
 import { TechNames } from './techNames';
+import { computed } from 'mobx';
 
 export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   id: idProp,
   unlocked: tProp(types.boolean, false),
-  progress: tProp(types.number, 0),
+  power: tProp(types.number, 0),
   active: tProp(types.boolean, false),
 }) {
   abstract name: TechNames;
@@ -19,6 +20,15 @@ export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   abstract description: string;
   abstract unlockWhen: () => boolean;
   abstract powerCost: number;
+
+  /**
+   * Progress for selected tech
+   */
+  @computed
+  get progress(): number {
+    return this.power / this.powerCost;
+  }
+
   /**
    * Runs an unlock check
    */
