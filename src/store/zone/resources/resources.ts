@@ -1,4 +1,5 @@
 import { findParent, model, Model, tProp, types } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { enumKeys } from '../../../helpers/enumKeys';
 import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
@@ -18,6 +19,7 @@ export class Resources extends Model({
   /**
    * Returns an iterable list of the resource models
    */
+  @computed
   get asArray() {
     return enumKeys(ResourceNames).map((name) => {
       return this[name];
@@ -27,8 +29,17 @@ export class Resources extends Model({
   /**
    * Iterable list of only unlocked actions
    */
+  @computed
   get unlocked() {
     return this.asArray.filter((action) => action.unlocked);
+  }
+
+  /**
+   * Are any resources unlocked?
+   */
+  @computed
+  get anyUnlocked(): boolean {
+    return !!this.unlocked.length;
   }
 }
 

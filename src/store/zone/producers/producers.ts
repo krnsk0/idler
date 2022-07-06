@@ -1,4 +1,5 @@
 import { model, Model, tProp, types } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { enumKeys } from '../../../helpers/enumKeys';
 import { ProducerNames } from './producerNames';
 import { Farm } from './farm';
@@ -12,6 +13,7 @@ export class Producers extends Model({
   /**
    * Returns an iterable list of the producer models
    */
+  @computed
   get asArray() {
     return enumKeys(ProducerNames).map((name) => {
       return this[name];
@@ -21,7 +23,16 @@ export class Producers extends Model({
   /**
    * Iterable list of only unlocked actions
    */
+  @computed
   get unlocked() {
     return this.asArray.filter((action) => action.unlocked);
+  }
+
+  /**
+   * Are any resources unlocked?
+   */
+  @computed
+  get anyUnlocked(): boolean {
+    return !!this.unlocked.length;
   }
 }

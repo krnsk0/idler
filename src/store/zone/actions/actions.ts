@@ -1,4 +1,5 @@
 import { findParent, model, Model, tProp, types } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { enumKeys } from '../../../helpers/enumKeys';
 import { ActionNames } from './actionNames';
 import { Harvest } from './harvest';
@@ -15,6 +16,7 @@ export class Actions extends Model({
   /**
    * Returns an iterable list of the action model
    */
+  @computed
   get asArray() {
     return enumKeys(ActionNames).map((name) => {
       return this[name];
@@ -24,6 +26,7 @@ export class Actions extends Model({
   /**
    * Iterable list of only unlocked actions
    */
+  @computed
   get unlocked() {
     return this.asArray.filter((action) => action.unlocked);
   }

@@ -7,20 +7,20 @@ import { BaseAction } from './baseAction';
 @model(ActionNames.COMBUST)
 export class Combust extends ExtendedModel(BaseAction, {}) {
   name = ActionNames.COMBUST;
-  displayName = 'refuel generator';
+  displayName = 'run generator';
   description =
     'generate electrical potential from exothermic, self-perpetuating reaction';
-  duration = 5;
+  duration = 10;
   inputs = [
     {
       resource: ResourceNames.BIOMASS,
-      quantity: 5,
+      quantity: 10,
     },
   ];
   outputs = [];
   basePowerProduction = 1;
   basePowerConsumption = 0;
   unlockWhen = () => {
-    return getResources(this)[ResourceNames.BIOMASS].quantity >= 5;
+    return getResources(this)[ResourceNames.BIOMASS].quantity >= 10;
   };
 }
