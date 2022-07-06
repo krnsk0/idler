@@ -31,6 +31,9 @@ function ActionButton({ action }: ActionButtonProps) {
               );
             })}
             <div>
+              {!!action.basePowerConsumption && (
+                <span>{action.basePowerConsumption} power</span>
+              )}
               {action.duration} second{action.duration > 1 ? 's' : ''}
             </div>
           </TooltipText>
@@ -43,6 +46,9 @@ function ActionButton({ action }: ActionButtonProps) {
                 </div>
               );
             })}
+            {!!action.basePowerProduction && (
+              <span>{action.basePowerProduction} power</span>
+            )}
           </TooltipText>
         </>
       }

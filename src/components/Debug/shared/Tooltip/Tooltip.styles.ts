@@ -14,7 +14,7 @@ export const styles = {
     top: ${top}px;
     background-color: ${colors.white};
     z-index: +1;
-    font-size: 0.8em;
+    font-size: 1em;
   `,
 
   tooltipDivider: (largeMargin: boolean) => css`
