@@ -35,6 +35,8 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract duration: number;
   abstract inputs: Array<ActionInput>; // consumed when action starts
   abstract outputs: Array<ActionOutput>; // received when action is done
+  abstract basePowerProduction: number;
+  abstract basePowerConsumption: number;
 
   /**
    * Current inputs with displayable names
@@ -70,6 +72,26 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
     return this.inputs.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
     });
+  }
+
+  /**
+   * Power production
+   */
+  @computed
+  get powerProduction(): number {
+    if (this.active) {
+      return this.basePowerProduction;
+    } else return 0;
+  }
+
+  /**
+   * Power consumption
+   */
+  @computed
+  get powerConsumption(): number {
+    if (this.active) {
+      return this.basePowerConsumption;
+    } else return 0;
   }
 
   /**

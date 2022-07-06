@@ -1,4 +1,4 @@
-import { model, ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
+import { model, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
@@ -9,12 +9,14 @@ export class Combust extends ExtendedModel(BaseAction, {}) {
   displayName = 'refuel generator';
   description =
     'generate electrical potential from exothermic, self-perpetuating reaction';
-  duration = 2;
+  duration = 5;
   inputs = [
     {
       resource: ResourceNames.BIOMASS,
-      quantity: 1,
+      quantity: 5,
     },
   ];
   outputs = [];
+  basePowerProduction = 1;
+  basePowerConsumption = 0;
 }

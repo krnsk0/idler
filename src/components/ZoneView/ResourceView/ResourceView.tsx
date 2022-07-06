@@ -13,12 +13,12 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
     <div css={styles.paneContainer}>
       <BorderContainer title="power" styleOverride={styles.resourcesContainer}>
         <div css={styles.resourceRow}>
-          <span>supply</span>
-          <span>{zone.power.supply}</span>
+          <span>production</span>
+          <span>{zone.power.production}</span>
         </div>
         <div css={styles.resourceRow}>
-          <span>demand</span>
-          <span>{zone.power.demand}</span>
+          <span>consumption</span>
+          <span>{zone.power.consumption}</span>
         </div>
       </BorderContainer>
       <BorderContainer

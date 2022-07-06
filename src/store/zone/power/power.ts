@@ -1,16 +1,19 @@
-import { findParent, idProp, model, Model, tProp, types } from 'mobx-keystone';
+import { findParent, model, Model } from 'mobx-keystone';
 import { Zone } from '../zone';
 import { computed } from 'mobx';
+import { getActions } from '../actions/actions';
 
 @model('Power')
 export class Power extends Model({}) {
   @computed
-  get supply(): number {
-    return 0;
+  get production(): number {
+    return getActions(this).asArray.reduce((total, action) => {
+      return total + action.powerProduction;
+    }, 0);
   }
 
   @computed
-  get demand(): number {
+  get consumption(): number {
     return 0;
   }
 }

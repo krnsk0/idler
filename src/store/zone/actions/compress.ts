@@ -21,4 +21,6 @@ export class Compress extends ExtendedModel(BaseAction, {}) {
       quantity: 1,
     },
   ];
+  basePowerProduction = 0;
+  basePowerConsumption = 0;
 }
