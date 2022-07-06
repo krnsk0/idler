@@ -1,12 +1,27 @@
-import { findParent, model, Model, tProp, types } from 'mobx-keystone';
+import {
+  findParent,
+  model,
+  Model,
+  modelAction,
+  prop,
+  Ref,
+  rootRef,
+  tProp,
+  types,
+} from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../helpers/enumKeys';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Root } from '../root';
+import { BaseTech } from './baseTech';
+
+const techRef = rootRef<BaseTech>('tech_ref', {});
 
 @model('Tech')
 export class Tech extends Model({
+  selectedTechRef: prop<Ref<BaseTech> | undefined>(),
+
   [TechNames.BIOMASS_COMPRESSION]: tProp(
     types.model(BiomassCompression),
     () => new BiomassCompression({}),
@@ -28,6 +43,22 @@ export class Tech extends Model({
   @computed
   get unlocked() {
     return this.asArray.filter((action) => action.unlocked);
+  }
+
+  /**
+   * The selected tech
+   */
+  @computed
+  get selectedTech(): BaseTech | undefined {
+    return this.selectedTechRef ? this.selectedTechRef.current : undefined;
+  }
+
+  /**
+   * Select a new piece of tech to research
+   */
+  @modelAction
+  selectTech(tech: BaseTech | undefined) {
+    this.selectedTechRef = tech ? techRef(tech) : undefined;
   }
 }
 

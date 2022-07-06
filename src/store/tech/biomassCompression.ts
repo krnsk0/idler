@@ -5,7 +5,9 @@ import { TechNames } from './techNames';
 @model(TechNames.BIOMASS_COMPRESSION)
 export class BiomassCompression extends ExtendedModel(BaseTech, {}) {
   name = TechNames.BIOMASS_COMPRESSION;
-  displayName = 'harvest biomass';
-  description = 'collect arboraceous flora';
+  displayName = 'biomass compression';
+  description =
+    'subject to heat and pressure, biomass becomes an arboraceous material suitable for construction';
   unlockWhen = () => true;
+  powerCost = 20;
 }

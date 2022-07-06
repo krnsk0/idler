@@ -11,7 +11,7 @@ export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   abstract displayName: string;
   abstract description: string;
   abstract unlockWhen: () => boolean;
-
+  abstract powerCost: number;
   /**
    * Runs an unlock check
    */
