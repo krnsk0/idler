@@ -1,4 +1,4 @@
-import { model, ExtendedModel } from 'mobx-keystone';
+import { model, ExtendedModel, modelAction, getRoot } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { getPower } from '../power/power';
 import { ActionNames } from './actionNames';
@@ -21,4 +21,9 @@ export class Compute extends ExtendedModel(BaseAction, {}) {
   unlockWhen = () => {
     return getPower(this).production > 0;
   };
+
+  @modelAction
+  start(): void {
+    getRoot(this).setTechModal(true);
+  }
 }

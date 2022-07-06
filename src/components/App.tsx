@@ -11,15 +11,13 @@ function App() {
   const root = useStore();
   const [activeZone, setActiveZone] = useState<Zone>(root.zones[0]);
 
-  const { techModalOpen, closeTechModal } = root.gui;
-
   useStoreTick();
 
   return (
     <>
       <ZoneView zone={activeZone} />
       <DebugView setActiveZone={setActiveZone} />
-      <TechModal isOpen={techModalOpen} closeModal={closeTechModal} />
+      <TechModal />
     </>
   );
 }

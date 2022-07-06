@@ -1,6 +1,5 @@
 import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
 import { Debug } from './debug/debug';
-import { Gui } from './gui/gui';
 import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 
@@ -12,11 +11,16 @@ export class Root extends Model({
     new Zone({ name: initialZoneName }),
   ]),
   tech: tProp(types.model(Tech), () => new Tech({})),
-  gui: tProp(types.model(Gui), () => new Gui({})),
   debug: tProp(types.model(Debug), () => new Debug({})),
+  techModal: tProp(types.boolean, false),
 }) {
   @modelAction
   addZone() {
     this.zones.push(new Zone({}));
+  }
+
+  @modelAction
+  setTechModal(value: boolean) {
+    this.techModal = value;
   }
 }

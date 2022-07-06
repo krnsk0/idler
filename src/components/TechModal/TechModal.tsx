@@ -1,29 +1,15 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
-import Modal from 'react-modal';
+import { useStore } from '../../store/Provider';
+import { styles } from './TechModal.styles';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    border: '1px solid black',
-  },
-};
+const TechModal = () => {
+  const { techModal, setTechModal } = useStore();
 
-interface TechModalProps {
-  isOpen: boolean;
-  closeModal: () => void;
-}
-
-const TechModal = ({ isOpen, closeModal }: TechModalProps) => {
+  if (!techModal) return null;
   return (
-    <Modal isOpen={isOpen} onRequestClose={closeModal} style={customStyles}>
-      modal is open
-    </Modal>
+    <div css={styles.overlay} onClick={() => setTechModal(false)}>
+      <div css={styles.modalOuter}>tech modal</div>
+    </div>
   );
 };
 

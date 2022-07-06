@@ -21,7 +21,6 @@ const techRef = rootRef<BaseTech>('tech_ref', {});
 @model('Tech')
 export class Tech extends Model({
   selectedTechRef: prop<Ref<BaseTech> | undefined>(),
-
   [TechNames.BIOMASS_COMPRESSION]: tProp(
     types.model(BiomassCompression),
     () => new BiomassCompression({}),
