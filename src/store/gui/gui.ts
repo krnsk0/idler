@@ -19,7 +19,6 @@ export class Gui extends Model({
 
   @modelAction
   closeTechModal(): void {
-    console.log('DEBUG', this);
     this.techModal = false;
   }
 }
