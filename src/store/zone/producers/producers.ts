@@ -24,7 +24,7 @@ export class Producers extends Model({
    * Iterable list of only unlocked actions
    */
   @computed
-  get unlocked() {
+  get unlockedAsArray() {
     return this.asArray.filter((action) => action.unlocked);
   }
 
@@ -33,6 +33,6 @@ export class Producers extends Model({
    */
   @computed
   get anyUnlocked(): boolean {
-    return !!this.unlocked.length;
+    return !!this.unlockedAsArray.length;
   }
 }

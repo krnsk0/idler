@@ -15,11 +15,13 @@ import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Root } from '../root';
 import { BaseTech } from './baseTech';
+import { getPower } from '../zone/power/power';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
 @model('Tech')
 export class Tech extends Model({
+  unlocked: tProp(types.boolean, false),
   selectedTechRef: prop<Ref<BaseTech> | undefined>(),
   [TechNames.BIOMASS_COMPRESSION]: tProp(
     types.model(BiomassCompression),
@@ -40,7 +42,7 @@ export class Tech extends Model({
    * Iterable list of only unlocked actions
    */
   @computed
-  get unlocked() {
+  get unlockedAsArray() {
     return this.asArray.filter((action) => action.unlocked);
   }
 
@@ -50,6 +52,16 @@ export class Tech extends Model({
   @computed
   get selectedTech(): BaseTech | undefined {
     return this.selectedTechRef ? this.selectedTechRef.current : undefined;
+  }
+
+  /**
+   * Runs an unlock check
+   */
+  @modelAction
+  unlockCheck(): void {
+    if (!this.unlockedAsArray) {
+      this.unlocked = getPower(this).production > 0;
+    }
   }
 
   /**

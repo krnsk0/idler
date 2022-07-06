@@ -30,7 +30,7 @@ export class Actions extends Model({
    * Iterable list of only unlocked actions
    */
   @computed
-  get unlocked() {
+  get unlockedAsArray() {
     return this.asArray.filter((action) => action.unlocked);
   }
 }
