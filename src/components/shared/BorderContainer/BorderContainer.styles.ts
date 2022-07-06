@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { animation } from '../../../../globalStyles';
+import { animation } from '../../../globalStyles';
 
 const titleOffset = '10px';
 

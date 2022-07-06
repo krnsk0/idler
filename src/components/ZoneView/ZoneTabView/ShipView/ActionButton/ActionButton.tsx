@@ -6,8 +6,8 @@ import { BaseAction } from '../../../../../store/zone/actions/baseAction';
 import {
   TooltipText,
   TooltipDivider,
-} from '../../../../Debug/shared/Tooltip/Tooltip';
-import ZoneEntityButton from '../../../../Debug/shared/ZoneEntityButton/ZoneEntityButton';
+} from '../../../../shared/Tooltip/Tooltip';
+import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 
 interface ActionButtonProps {
   action: BaseAction;

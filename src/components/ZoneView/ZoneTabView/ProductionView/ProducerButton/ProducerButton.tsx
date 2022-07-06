@@ -4,8 +4,8 @@ import { BaseProducer } from '../../../../../store/zone/producers/baseProducer';
 import {
   TooltipText,
   TooltipDivider,
-} from '../../../../Debug/shared/Tooltip/Tooltip';
-import ZoneEntityButton from '../../../../Debug/shared/ZoneEntityButton/ZoneEntityButton';
+} from '../../../../shared/Tooltip/Tooltip';
+import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 import { styles } from './ProducerButton.styles';
 
 interface ProducerButtonProps {

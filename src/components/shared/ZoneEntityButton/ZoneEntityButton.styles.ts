@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { animation, colors } from '../../../../globalStyles';
+import { animation, colors } from '../../../globalStyles';
 
 export const styles = {
   buttonContainer: css`

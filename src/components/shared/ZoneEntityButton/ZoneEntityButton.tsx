@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { colors } from '../../../../globalStyles';
+import { colors } from '../../../globalStyles';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 

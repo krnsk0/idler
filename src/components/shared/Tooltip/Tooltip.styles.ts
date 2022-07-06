@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '../../../../globalStyles';
+import { colors } from '../../../globalStyles';
 
 export const styles = {
   tooltipContainer: css`

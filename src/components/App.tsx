@@ -11,6 +11,7 @@ import Debug from './Debug/Debug';
 function App() {
   const root = useStore();
   const [activeZone, setActiveZone] = useState<Zone>(root.zones[0]);
+  const [techModalOpen, setTechModalOpen] = useState<boolean>(false);
 
   useStoreTick();
 
