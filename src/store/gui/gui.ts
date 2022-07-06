@@ -23,9 +23,9 @@ export class Gui extends Model({
   }
 }
 export const getGui = (child: object): Gui => {
-  const zone = findParent<Root>(child, (node) => {
+  const root = findParent<Root>(child, (node) => {
     return node instanceof Root;
   });
-  if (!zone) throw new Error('no parent root model found in getGui');
-  return zone.gui;
+  if (!root) throw new Error('no parent root model found in getGui');
+  return root.gui;
 };

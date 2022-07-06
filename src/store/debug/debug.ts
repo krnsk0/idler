@@ -18,9 +18,9 @@ export class Debug extends Model({
   }
 }
 export const getDebug = (child: object): Debug => {
-  const zone = findParent<Root>(child, (node) => {
+  const root = findParent<Root>(child, (node) => {
     return node instanceof Root;
   });
-  if (!zone) throw new Error('no parent root model found in getDebug');
-  return zone.debug;
+  if (!root) throw new Error('no parent root model found in getDebug');
+  return root.debug;
 };
