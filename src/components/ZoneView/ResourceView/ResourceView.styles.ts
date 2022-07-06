@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '../../../colors';
+import { animation, colors } from '../../../globalStyles';
 
 export const styles = {
   paneContainer: css`
@@ -17,6 +17,7 @@ export const styles = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    ${animation};
   `,
   quantityContainer: css`
     display: flex;

@@ -1,6 +1,7 @@
 import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../../../helpers/formatNumber';
+import { ActionNames } from '../../../../../store/zone/actions/actionNames';
 import { BaseAction } from '../../../../../store/zone/actions/baseAction';
 import {
   TooltipText,
@@ -48,6 +49,7 @@ function ActionButton({ action }: ActionButtonProps) {
       onClick={() => action.start()}
       progress={action.progress}
       disabled={!action.affordable}
+      disableAnimation={action.name === ActionNames.HARVEST}
     >
       <span>{action.displayName}</span>{' '}
     </ZoneEntityButton>

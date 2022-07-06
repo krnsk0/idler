@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { colors } from '../../../../colors';
+import { colors } from '../../../../globalStyles';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 
@@ -10,6 +10,7 @@ interface ZoneEntityButtonProps {
   children: React.ReactNode;
   onClick: () => void;
   progress?: number;
+  disableAnimation?: boolean;
 }
 
 const ZoneEntityButton = ({
@@ -18,6 +19,7 @@ const ZoneEntityButton = ({
   disabled,
   onClick,
   progress,
+  disableAnimation,
 }: ZoneEntityButtonProps) => {
   const [hovered, setHovered] = useState(false);
   const progressWidth = progress ? progress * 100 + '%' : '0%';
@@ -30,7 +32,7 @@ const ZoneEntityButton = ({
         </Tooltip>
       )}
       <div
-        css={styles.buttonContainer}
+        css={[styles.buttonContainer, !disableAnimation && styles.newButton]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}
       >
         <div css={styles.progressBar} style={{ width: progressWidth }} />

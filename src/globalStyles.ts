@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 
 export const globalStyles = css`
   body {
@@ -16,4 +16,25 @@ export const globalStyles = css`
 
     font-size: 1em;
   }
+`;
+
+export const colors = {
+  lightgrey: '#D1D1D1',
+  darkgrey: '#383838',
+  grey: 'grey',
+  white: 'white',
+  black: 'black',
+};
+
+const enter = keyframes`
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+`;
+
+export const animation = css`
+  animation: ${enter} 0.3s linear;
 `;

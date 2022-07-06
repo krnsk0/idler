@@ -46,12 +46,14 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
   return (
     <div css={styles.tabViewContainer}>
       <div css={styles.tabRow}>
-        <TabButton
-          text="Crashed Ship"
-          tabName={ZoneTabNames.ACTIONS}
-          selectedTab={selectedTab}
-          setSelectedTab={setSelectedTab}
-        />
+        {zone.producers.anyUnlocked && (
+          <TabButton
+            text="Crashed Ship"
+            tabName={ZoneTabNames.ACTIONS}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+          />
+        )}
 
         {zone.producers.anyUnlocked && (
           <>
