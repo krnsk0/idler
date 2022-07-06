@@ -1,8 +1,9 @@
-import { model, ExtendedModel, modelAction, getRoot } from 'mobx-keystone';
+import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { getPower } from '../power/power';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
+import { getGui } from '../../gui/gui';
 
 @model(ActionNames.COMPUTE)
 export class Compute extends ExtendedModel(BaseAction, {}) {
@@ -24,6 +25,6 @@ export class Compute extends ExtendedModel(BaseAction, {}) {
 
   @modelAction
   start(): void {
-    getRoot(this).setTechModal(true);
+    getGui(this).openTechModal();
   }
 }

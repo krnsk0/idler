@@ -2,6 +2,7 @@ import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
 import { Debug } from './debug/debug';
 import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
+import { Gui } from './gui/gui';
 
 const initialZoneName = 'Planetfall';
 
@@ -12,15 +13,10 @@ export class Root extends Model({
   ]),
   tech: tProp(types.model(Tech), () => new Tech({})),
   debug: tProp(types.model(Debug), () => new Debug({})),
-  techModal: tProp(types.boolean, false),
+  gui: tProp(types.model(Gui), () => new Gui({})),
 }) {
   @modelAction
   addZone() {
     this.zones.push(new Zone({}));
-  }
-
-  @modelAction
-  setTechModal(value: boolean) {
-    this.techModal = value;
   }
 }
