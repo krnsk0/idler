@@ -2,21 +2,46 @@ import { css } from '@emotion/react';
 import { colors } from '../../globalStyles';
 
 export const styles = {
-  overlay: css`
-    background: 'grey';
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
+  techsContainer: css`
+    min-width: 500px;
+    min-height: 400px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items: center;
   `,
-  modalOuter: css`
-    width: 70%;
-    height: 80%;
+  modalDescripiton: css`
+    font-size: 1em;
+    margin-bottom: 0.8em;
+  `,
+  techTile: css`
+    width: 175px;
+    height: 200px;
     border: 1px solid black;
-    background-color: ${colors.white};
+    margin: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &:hover {
+      border: 2px solid black;
+    }
+  `,
+  techTitle: css`
+    font-size: 1.4em;
+    text-align: center;
+    font-weight: bold;
+  `,
+  techDescription: css`
+    font-size: 0.8em;
+    margin: 1.8em 1em 0em 1em;
+    font-style: italic;
+    text-align: center;
+  `,
+  techCost: css`
+    font-size: 0.8em;
+    margin: 1.8em 1em 0em 1em;
+    text-align: center;
   `,
 };
