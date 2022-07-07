@@ -17,10 +17,6 @@ export const styles = {
     margin-left: 2em;
     width: 5em;
   `,
-  techButtonContainer: css`
-    min-width: 180px;
-    max-width: 180px;
-  `,
   rightContainer: css`
     margin-right: 1em;
     width: 5em;

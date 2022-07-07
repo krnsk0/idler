@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../../store/Provider';
 import ZoneEntityButton from '../../shared/ZoneEntityButton/ZoneEntityButton';
-import { styles } from './TechButton.styles';
 
 function TechButton() {
   const root = useStore();
@@ -10,8 +9,8 @@ function TechButton() {
   if (!root.tech.unlocked) return null;
   return (
     <ZoneEntityButton
-      tooltipTop={45}
-      tooltipLeft={-18}
+      tooltipTop={12}
+      tooltipLeft={190}
       tooltip={<>test</>}
       onClick={() => {
         root.gui.openTechModal();
@@ -21,7 +20,7 @@ function TechButton() {
       {selectedTech ? (
         <div>{selectedTech.displayName}</div>
       ) : (
-        <div>databanks</div>
+        <div>pick compute target</div>
       )}
     </ZoneEntityButton>
   );

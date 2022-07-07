@@ -40,11 +40,8 @@ const DebugView = ({ setActiveZone }: DebugProps) => {
           </button>
         );
       })}
-      <button
-        type="button"
-        onClick={() => root.debug.setHyperMode(!root.debug.hyperMode)}
-      >
-        {root.debug.hyperMode ? 'hyper off' : 'hyper on'}
+      <button type="button" onClick={() => root.debug.toggleHyperMode()}>
+        {root.debug.hyperMode ? 'disable hyper' : 'enable hyper'}
       </button>
     </div>
   );

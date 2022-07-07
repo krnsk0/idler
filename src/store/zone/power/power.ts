@@ -28,10 +28,19 @@ export class Power extends Model({
    * Total power consumption
    */
   @computed
-  get consumption(): number {
+  get demand(): number {
     return getActions(this).asArray.reduce((total, action) => {
       return total + action.powerConsumption;
     }, 0);
+  }
+
+  /**
+   * Satisfaction
+   */
+  get satisfaction(): number {
+    if (this.production === 0) return 0;
+    if (this.production > this.demand) return 1;
+    return this.production / this.demand;
   }
 
   /**
@@ -40,7 +49,7 @@ export class Power extends Model({
   @modelAction
   unlockCheck(): void {
     if (!this.unlocked) {
-      this.unlocked = this.production > 0 || this.consumption > 0;
+      this.unlocked = this.production > 0 || this.demand > 0;
     }
   }
 }

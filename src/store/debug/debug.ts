@@ -13,8 +13,9 @@ export class Debug extends Model({
   hyperMode: tProp(types.boolean, true),
 }) {
   @modelAction
-  setHyperMode(value: boolean) {
-    this.hyperMode = true;
+  toggleHyperMode() {
+    console.log('toggling');
+    this.hyperMode = !this.hyperMode;
   }
 }
 export const getDebug = (child: object): Debug => {

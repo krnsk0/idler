@@ -34,9 +34,11 @@ function ActionButton({ action }: ActionButtonProps) {
             })}
             <div>
               {!!action.basePowerConsumption && (
-                <span>{action.basePowerConsumption} power</span>
+                <div>{action.basePowerConsumption} power while active</div>
               )}
-              {action.duration} second{action.duration > 1 ? 's' : ''}
+              <div>
+                {action.duration} second{action.duration > 1 ? 's' : ''}
+              </div>
             </div>
           </TooltipText>
           <TooltipDivider text="output" />
@@ -49,7 +51,7 @@ function ActionButton({ action }: ActionButtonProps) {
               );
             })}
             {!!action.basePowerProduction && (
-              <span>{action.basePowerProduction} power</span>
+              <div>{action.basePowerProduction} power while active</div>
             )}
           </TooltipText>
         </>

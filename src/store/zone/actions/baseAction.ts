@@ -4,6 +4,7 @@ import { ZoneEntity } from '../zoneEntity';
 import { ActionNames } from './actionNames';
 import { computed } from 'mobx';
 import { getResources } from '../resources/resources';
+import { getPower } from '../power/power';
 
 interface ActionInput {
   resource: ResourceNames;
@@ -112,7 +113,14 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     if (this.active) {
-      const progressThisTick = delta / this.duration;
+      let satisfaction;
+      if (this.basePowerConsumption > 0) {
+        satisfaction = getPower(this).satisfaction;
+      } else {
+        satisfaction = 1;
+      }
+
+      const progressThisTick = (delta / this.duration) * satisfaction;
       if (this.progress + progressThisTick < 1) {
         this.progress += progressThisTick;
       } else {

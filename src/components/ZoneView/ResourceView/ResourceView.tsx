@@ -21,8 +21,8 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
             <span>{zone.power.production}</span>
           </div>
           <div css={styles.resourceRow}>
-            <span>consumption</span>
-            <span>{zone.power.consumption}</span>
+            <span>demand</span>
+            <span>{zone.power.demand}</span>
           </div>
         </BorderContainer>
       )}
