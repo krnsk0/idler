@@ -67,6 +67,15 @@ export class Tech extends Model({
   }
 
   /**
+   * Tick to update research
+   */
+  tick(delta: number): void {
+    if (this.selectedTech) {
+      // TODO
+    }
+  }
+
+  /**
    * Select a new piece of tech to research
    */
   @modelAction

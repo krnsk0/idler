@@ -8,6 +8,7 @@ import {
 import { ZoneEntity } from '../zone/zoneEntity';
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
+import { getTech } from './tech';
 
 export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   id: idProp,
@@ -30,12 +31,33 @@ export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Tech is researched when we have enough power
+   */
+  @computed
+  get researched(): boolean {
+    return this.power >= this.powerCost;
+  }
+
+  /**
    * Runs an unlock check
    */
   @modelAction
   unlockCheck(): void {
     if (!this.unlocked) {
       this.unlocked = this.unlockWhen();
+    }
+  }
+
+  /**
+   * Add power
+   */
+  @modelAction
+  addPower(power: number): void {
+    if (this.power + power >= this.powerCost) {
+      this.power = this.powerCost;
+      getTech(this).selectTech(undefined);
+    } else {
+      this.power += power;
     }
   }
 }

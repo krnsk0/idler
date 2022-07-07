@@ -16,8 +16,11 @@ function TechButton() {
       }}
       progress={selectedTech?.progress ?? 0}
     >
-      <div>databanks</div>
-      {selectedTech && <div>{selectedTech.displayName}</div>}
+      {selectedTech ? (
+        <div>{selectedTech.displayName}</div>
+      ) : (
+        <div>databanks</div>
+      )}
     </ZoneEntityButton>
   );
 }
