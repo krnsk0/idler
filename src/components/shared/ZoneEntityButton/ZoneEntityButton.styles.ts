@@ -20,7 +20,6 @@ export const styles = {
     background: none;
     position: relative;
   `,
-
   progressBar: css`
     position: absolute;
     height: 100%;

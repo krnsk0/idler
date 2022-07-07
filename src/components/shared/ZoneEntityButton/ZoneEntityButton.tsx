@@ -38,6 +38,9 @@ const ZoneEntityButton = ({
         <div css={styles.progressBar} style={{ width: progressWidth }} />
         <button
           css={styles.button}
+          style={{
+            cursor: disabled ? 'inherit' : 'pointer',
+          }}
           type="button"
           disabled={disabled}
           onPointerEnter={() => setHovered(true)}
