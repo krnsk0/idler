@@ -11,7 +11,7 @@ import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 import { Gui } from './gui/gui';
 
-const initialZoneName = 'Planetfall';
+const initialZoneName = 'Landing Zone';
 
 @model('Root')
 export class Root extends Model({
