@@ -1,3 +1,4 @@
+import { SerializedStyles } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { colors } from '../../../globalStyles';
@@ -5,21 +6,27 @@ import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 
 interface ZoneEntityButtonProps {
+  styleOverride?: SerializedStyles;
   tooltip: React.ReactNode;
   disabled?: boolean;
   children: React.ReactNode;
   onClick: () => void;
   progress?: number;
   disableAnimation?: boolean;
+  tooltipTop: number;
+  tooltipLeft: number;
 }
 
 const ZoneEntityButton = ({
+  styleOverride,
   tooltip,
   children,
   disabled,
   onClick,
   progress,
   disableAnimation,
+  tooltipTop,
+  tooltipLeft,
 }: ZoneEntityButtonProps) => {
   const [hovered, setHovered] = useState(false);
   const progressWidth = progress ? progress * 100 + '%' : '0%';
@@ -27,12 +34,16 @@ const ZoneEntityButton = ({
   return (
     <>
       {hovered && (
-        <Tooltip top={12} left={190} width={200}>
+        <Tooltip top={tooltipTop} left={tooltipLeft} width={200}>
           {tooltip}
         </Tooltip>
       )}
       <div
-        css={[styles.buttonContainer, !disableAnimation && styles.newButton]}
+        css={[
+          styles.buttonContainer,
+          styleOverride,
+          !disableAnimation && styles.newButton,
+        ]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}
       >
         <div css={styles.progressBar} style={{ width: progressWidth }} />

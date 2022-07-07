@@ -15,6 +15,8 @@ interface ProducerButtonProps {
 function ProducerButton({ building }: ProducerButtonProps) {
   return (
     <ZoneEntityButton
+      tooltipTop={12}
+      tooltipLeft={190}
       tooltip={
         <>
           <TooltipText italic={true} align={'center'} light={true}>

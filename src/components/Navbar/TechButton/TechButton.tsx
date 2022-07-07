@@ -1,7 +1,7 @@
-import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../../../../store/Provider';
-import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
+import { useStore } from '../../../store/Provider';
+import ZoneEntityButton from '../../shared/ZoneEntityButton/ZoneEntityButton';
+import { styles } from './TechButton.styles';
 
 function TechButton() {
   const root = useStore();
@@ -10,7 +10,9 @@ function TechButton() {
   if (!root.tech.unlocked) return null;
   return (
     <ZoneEntityButton
-      tooltip={<></>}
+      tooltipTop={45}
+      tooltipLeft={-18}
+      tooltip={<>test</>}
       onClick={() => {
         root.gui.openTechModal();
       }}

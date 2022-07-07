@@ -6,6 +6,7 @@ import { useStore } from '../store/Provider';
 import { Zone } from '../store/zone/zone';
 import DebugView from './DebugView/DebugView';
 import TechModal from './TechModal/TechModal';
+import Navbar from './Navbar/Navbar';
 
 function App() {
   const root = useStore();
@@ -15,6 +16,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <ZoneView zone={activeZone} />
       <DebugView setActiveZone={setActiveZone} />
       <TechModal />

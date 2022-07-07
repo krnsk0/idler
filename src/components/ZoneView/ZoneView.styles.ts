@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 export const styles = {
   zoneOuter: css`
     width: 75%;
-    height: 70%;
+    height: 55%;
     min-width: 500px;
     max-width: 750px;
     position: absolute;
