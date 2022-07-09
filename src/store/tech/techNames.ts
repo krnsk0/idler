@@ -1,4 +1,5 @@
 export enum TechNames {
   BIOMASS_COMPRESSION = 'BIOMASS_COMPRESSION',
   FARMING = 'FARMING',
+  SHELTER = 'SHELTER',
 }

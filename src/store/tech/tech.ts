@@ -14,6 +14,7 @@ import { enumKeys } from '../../helpers/enumKeys';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Farming } from './farming';
+import { Shelter } from './shelter';
 import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
@@ -29,6 +30,7 @@ export class Tech extends Model({
     () => new BiomassCompression({}),
   ),
   [TechNames.FARMING]: tProp(types.model(Farming), () => new Farming({})),
+  [TechNames.SHELTER]: tProp(types.model(Shelter), () => new Shelter({})),
 }) {
   /**
    * Returns an iterable list of the action model
