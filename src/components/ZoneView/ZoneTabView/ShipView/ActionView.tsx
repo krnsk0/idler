@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { Zone } from '../../../../store/zone/zone';
-import TechButton from '../../../Navbar/TechButton/TechButton';
+import TechButton from './TechButton/TechButton';
 import ActionButton from './ActionButton/ActionButton';
 import { styles } from './ActionView.styles';
 

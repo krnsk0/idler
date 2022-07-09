@@ -8,7 +8,7 @@ export const styles = {
     max-width: 750px;
     position: absolute;
     left: 50%;
-    top: 45%;
+    top: 40%;
     transform: translate(-50%, -50%);
     /* border: 1px solid green; */
   `,

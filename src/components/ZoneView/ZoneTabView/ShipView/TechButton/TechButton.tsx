@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../../store/Provider';
-import ZoneEntityButton from '../../shared/ZoneEntityButton/ZoneEntityButton';
+import { useStore } from '../../../../../store/Provider';
+import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 
 function TechButton() {
   const root = useStore();

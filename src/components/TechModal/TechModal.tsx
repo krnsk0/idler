@@ -1,12 +1,11 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
 import Modal from 'react-modal';
 import { useStore } from '../../store/Provider';
 import { styles } from './TechModal.styles';
 
 const customStyles = {
   content: {
-    top: '50%',
+    top: '45%',
     left: '50%',
     right: 'auto',
     bottom: 'auto',
