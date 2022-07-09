@@ -9,10 +9,11 @@ export const styles = {
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    padding: 1em;
   `,
   modalDescripiton: css`
     font-size: 1em;
-    margin-bottom: 0.8em;
   `,
   techTile: css`
     width: 175px;
