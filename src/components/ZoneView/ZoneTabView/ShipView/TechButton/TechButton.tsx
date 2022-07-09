@@ -26,7 +26,7 @@ function TechButton() {
           setDidJustFinishResearch(true);
           setTimeout(() => {
             setDidJustFinishResearch(false);
-          }, 1000);
+          }, 2000);
         }
       },
     );
