@@ -8,6 +8,7 @@ export const styles = {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
   `,
   modalDescripiton: css`
     font-size: 1em;
