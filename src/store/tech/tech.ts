@@ -15,7 +15,7 @@ import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
-import { getPower } from '../zone/power/power';
+import { TechEffect } from './techEffectTypes';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -42,8 +42,16 @@ export class Tech extends Model({
    * Iterable list of only available (unlocked and not researched) tech
    */
   @computed
-  get availableAsArray() {
+  get availableAsArray(): BaseTech[] {
     return this.asArray.filter((tech) => tech.unlocked && !tech.researched);
+  }
+
+  /**
+   * Iterable list of only researched tech
+   */
+  @computed
+  get researchedAsArray(): BaseTech[] {
+    return this.asArray.filter((tech) => tech.researched);
   }
 
   /**
@@ -52,6 +60,18 @@ export class Tech extends Model({
   @computed
   get selectedTech(): BaseTech | undefined {
     return this.selectedTechRef ? this.selectedTechRef.current : undefined;
+  }
+
+  /**
+   * Aggregates all tech effects
+   */
+  @computed
+  get allTechEffects(): Array<TechEffect> {
+    const allEffects = [];
+    for (const tech of this.researchedAsArray) {
+      allEffects.push(...tech.effects);
+    }
+    return allEffects;
   }
 
   /**

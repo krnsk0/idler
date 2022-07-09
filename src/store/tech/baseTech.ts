@@ -9,6 +9,7 @@ import { ZoneEntity } from '../zone/zoneEntity';
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
 import { getTech } from './tech';
+import { TechEffect } from './techEffectTypes';
 
 export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   id: idProp,
@@ -21,6 +22,7 @@ export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   abstract description: string;
   abstract unlockWhen: () => boolean;
   abstract powerCost: number;
+  abstract effects: Array<TechEffect>;
 
   /**
    * Progress for selected tech

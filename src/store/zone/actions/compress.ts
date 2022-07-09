@@ -1,4 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { getTech } from '../../tech/tech';
+import { TechEffectNames } from '../../tech/techEffectTypes';
 import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
@@ -23,5 +25,12 @@ export class Compress extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 0;
-  unlockWhen = () => false;
+  unlockWhen = () => {
+    return !!getTech(this).allTechEffects.find((effect) => {
+      return (
+        effect.kind === TechEffectNames.ACTION_UNLOCK &&
+        effect.actionName === ActionNames.COMPRESS
+      );
+    });
+  };
 }
