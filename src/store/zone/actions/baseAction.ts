@@ -5,6 +5,8 @@ import { ActionNames } from './actionNames';
 import { computed } from 'mobx';
 import { getResources } from '../resources/resources';
 import { getPower } from '../power/power';
+import { getTech } from '../../tech/tech';
+import { TechEffectNames } from '../../tech/techEffectTypes';
 
 interface ActionInput {
   resource: ResourceNames;
@@ -95,6 +97,19 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
     if (this.active) {
       return this.basePowerConsumption;
     } else return 0;
+  }
+
+  /**
+   * Helper intended to be called in unlockWhen
+   */
+  @computed
+  get isUnlockedByTech(): boolean {
+    return !!getTech(this).allTechEffects.find((effect) => {
+      return (
+        effect.kind === TechEffectNames.ACTION_UNLOCK &&
+        effect.actionName === this.name
+      );
+    });
   }
 
   /**

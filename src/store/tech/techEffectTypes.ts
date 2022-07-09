@@ -1,7 +1,9 @@
 import { ActionNames } from '../zone/actions/actionNames';
 import { ProducerNames } from '../zone/producers/producerNames';
+import { ResourceNames } from '../zone/resources/resourceNames';
 
 export enum TechEffectNames {
+  RESOURCE_UNLOCK = 'RESOURCE_UNLOCK',
   PRODUCER_UNLOCK = 'PRODUCER_UNLOCK',
   ACTION_UNLOCK = 'ACTION_UNLOCK',
 }
@@ -15,4 +17,4 @@ export interface ActionUnlockEffect {
   actionName: ActionNames;
 }
 
-export type TechEffect = ActionUnlockEffect;
+export type TechEffect = ActionUnlockEffect | ProducerUnlockEffect;

@@ -13,6 +13,7 @@ import { computed } from 'mobx';
 import { enumKeys } from '../../helpers/enumKeys';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
+import { Farming } from './farming';
 import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
@@ -27,6 +28,7 @@ export class Tech extends Model({
     types.model(BiomassCompression),
     () => new BiomassCompression({}),
   ),
+  [TechNames.FARMING]: tProp(types.model(Farming), () => new Farming({})),
 }) {
   /**
    * Returns an iterable list of the action model

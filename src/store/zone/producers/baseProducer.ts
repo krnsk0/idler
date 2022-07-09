@@ -10,6 +10,8 @@ import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from '../resources/resourceNames';
 import { ProducerNames } from './producerNames';
 import { getResources } from '../resources/resources';
+import { getTech } from '../../tech/tech';
+import { TechEffectNames } from '../../tech/techEffectTypes';
 
 type Storage = {
   [key in ResourceNames]?: number;
@@ -118,6 +120,19 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
         };
       }),
     ];
+  }
+
+  /**
+   * Helper intended to be called in unlockWhen
+   */
+  @computed
+  get isUnlockedByTech(): boolean {
+    return !!getTech(this).allTechEffects.find((effect) => {
+      return (
+        effect.kind === TechEffectNames.PRODUCER_UNLOCK &&
+        effect.producerName === this.name
+      );
+    });
   }
 
   /**
