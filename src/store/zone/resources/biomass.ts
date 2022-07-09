@@ -6,5 +6,5 @@ import { ResourceNames } from './resourceNames';
 export class Biomass extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.BIOMASS;
   displayName = 'biomass';
-  initialCap = 25;
+  initialCap = 10;
 }

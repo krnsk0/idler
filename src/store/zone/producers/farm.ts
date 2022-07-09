@@ -13,11 +13,11 @@ export class Farm extends ExtendedModel(BaseProducer, {}) {
   baseCost = [
     {
       resource: ResourceNames.BIOMASS,
-      quantity: 3,
+      quantity: 5,
     },
     {
       resource: ResourceNames.LUMBER,
-      quantity: 2,
+      quantity: 3,
     },
   ];
   costExponent = 1.2;
