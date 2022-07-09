@@ -33,7 +33,7 @@ const TechModal = () => {
         the ship wants power. it says it can help.
       </div>
       <div css={styles.techsContainer}>
-        {root.tech.unlockedAsArray.map((tech) => {
+        {root.tech.availableAsArray.map((tech) => {
           const onClick = () => {
             root.tech.selectTech(tech);
             root.gui.closeTechModal();

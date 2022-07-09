@@ -1,12 +1,39 @@
 import { observer } from 'mobx-react-lite';
+import { reaction } from 'mobx';
+import { useEffect, useState } from 'react';
 import { useStore } from '../../../../../store/Provider';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
+import { BaseTech } from '../../../../../store/tech/baseTech';
 
 function TechButton() {
   const root = useStore();
   const selectedTech = root.tech.selectedTech;
+  const [didJustFinishResearch, setDidJustFinishResearch] = useState(false);
+
+  /**
+   * When research finishes, say so, but only for a bit
+   */
+  useEffect(() => {
+    return reaction(
+      () => {
+        return root.tech.selectedTech;
+      },
+      (
+        selectedTech: BaseTech | undefined,
+        previousSelectedTech: BaseTech | undefined,
+      ) => {
+        if (!selectedTech && previousSelectedTech) {
+          setDidJustFinishResearch(true);
+          setTimeout(() => {
+            setDidJustFinishResearch(false);
+          }, 1000);
+        }
+      },
+    );
+  }, [root]);
 
   if (!root.tech.unlocked) return null;
+
   return (
     <ZoneEntityButton
       tooltipTop={12}
@@ -17,11 +44,16 @@ function TechButton() {
       }}
       progress={selectedTech?.progress ?? 0}
     >
-      {selectedTech ? (
-        <div>{selectedTech.displayName}</div>
-      ) : (
-        <div>pick compute target</div>
-      )}
+      {(() => {
+        if (selectedTech) {
+          return <div>{selectedTech.displayName}</div>;
+        }
+        if (didJustFinishResearch) {
+          return <div>research complete</div>;
+        } else {
+          return <div>pick compute target</div>;
+        }
+      })()}
     </ZoneEntityButton>
   );
 }

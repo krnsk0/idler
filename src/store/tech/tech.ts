@@ -39,11 +39,11 @@ export class Tech extends Model({
   }
 
   /**
-   * Iterable list of only unlocked actions
+   * Iterable list of only available (unlocked and not researched) tech
    */
   @computed
-  get unlockedAsArray() {
-    return this.asArray.filter((action) => action.unlocked);
+  get availableAsArray() {
+    return this.asArray.filter((tech) => tech.unlocked && !tech.researched);
   }
 
   /**
@@ -68,10 +68,16 @@ export class Tech extends Model({
 
   /**
    * Tick to update research
+   *
+   * TODO: generalize to all zones
    */
   tick(delta: number): void {
     if (this.selectedTech) {
-      // TODO
+      const power = getRoot(this).zones[0].power;
+      const fudgeFactor = 1.0001; // helps w/ rounding errors
+      const researchRate = 1;
+      const increase = delta * researchRate * power.satisfaction * fudgeFactor;
+      this.selectedTech.addPower(increase);
     }
   }
 
