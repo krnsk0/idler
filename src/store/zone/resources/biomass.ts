@@ -7,4 +7,5 @@ export class Biomass extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.BIOMASS;
   displayName = 'biomass';
   initialCap = 10;
+  unlockWhen = () => this.quantity > 0;
 }

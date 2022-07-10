@@ -15,6 +15,7 @@ import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Farming } from './farming';
 import { Shelter } from './shelter';
+import { Cryonics } from './cryonics';
 import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
@@ -31,6 +32,7 @@ export class Tech extends Model({
   ),
   [TechNames.FARMING]: tProp(types.model(Farming), () => new Farming({})),
   [TechNames.SHELTER]: tProp(types.model(Shelter), () => new Shelter({})),
+  [TechNames.CRYONICS]: tProp(types.model(Cryonics), () => new Cryonics({})),
 }) {
   /**
    * Returns an iterable list of the action model

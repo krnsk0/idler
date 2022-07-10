@@ -5,10 +5,15 @@ import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
 import { Biomass } from './biomass';
 import { Lumber } from './lumber';
+import { Colonists } from './colonists';
 import { ResourceNames } from './resourceNames';
 
 @model('Resources')
 export class Resources extends Model({
+  [ResourceNames.COLONISTS]: tProp(
+    types.model(Colonists),
+    () => new Colonists({}),
+  ),
   [ResourceNames.BIOMASS]: tProp(types.model(Biomass), () => new Biomass({})),
   [ResourceNames.LUMBER]: tProp(types.model(Lumber), () => new Lumber({})),
   [ResourceNames.NUTRIENTS]: tProp(

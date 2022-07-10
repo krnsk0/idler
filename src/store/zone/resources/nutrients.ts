@@ -7,4 +7,5 @@ export class Nutrients extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.NUTRIENTS;
   displayName = 'nutrients';
   initialCap = 20;
+  unlockWhen = () => this.quantity > 0;
 }

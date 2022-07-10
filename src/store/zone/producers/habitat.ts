@@ -18,6 +18,8 @@ export class Habitat extends ExtendedModel(BaseProducer, {}) {
   costExponent = 1.25;
   inputs = [];
   outputs = [];
-  storage = {};
+  storage = {
+    [ResourceNames.COLONISTS]: 2,
+  };
   unlockWhen = () => this.isUnlockedByTech;
 }

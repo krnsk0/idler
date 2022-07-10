@@ -7,4 +7,5 @@ export class Lumber extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.LUMBER;
   displayName = 'lumber';
   initialCap = 100;
+  unlockWhen = () => this.quantity > 0;
 }

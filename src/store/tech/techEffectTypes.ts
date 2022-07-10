@@ -17,4 +17,12 @@ export interface ActionUnlockEffect {
   actionName: ActionNames;
 }
 
-export type TechEffect = ActionUnlockEffect | ProducerUnlockEffect;
+export interface ResourceUnlockEffect {
+  kind: TechEffectNames.RESOURCE_UNLOCK;
+  resourceName: ResourceNames;
+}
+
+export type TechEffect =
+  | ActionUnlockEffect
+  | ProducerUnlockEffect
+  | ResourceUnlockEffect;
