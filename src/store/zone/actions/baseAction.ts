@@ -173,7 +173,6 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
         this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
       this.active = true;
-      console.log('debug', getSnapshot(this));
     }
   }
 

@@ -29,7 +29,10 @@ export class Root extends Model({
   load() {
     try {
       const savegame = localStorage.getItem('save');
-      if (!savegame) return;
+      if (!savegame) {
+        this.game.selectZone(this.game.zones[0]);
+        return;
+      }
       this.game = fromSnapshot(Game, JSON.parse(savegame));
     } catch (error) {
       console.error('error applying snapshot', error);
@@ -39,6 +42,7 @@ export class Root extends Model({
   @modelAction
   reset(): void {
     this.game = new Game({});
+    this.game.selectZone(this.game.zones[0]);
   }
 }
 

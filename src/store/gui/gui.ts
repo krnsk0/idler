@@ -7,6 +7,7 @@ import {
   types,
 } from 'mobx-keystone';
 import { Root } from '../root';
+import { Zone } from '../zone/zone';
 
 @model('Gui')
 export class Gui extends Model({

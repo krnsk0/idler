@@ -4,11 +4,9 @@ import { useStore } from '../../store/Provider';
 import { Zone } from '../../store/zone/zone';
 import { styles } from './DebugView.styles';
 
-interface DebugProps {
-  setActiveZone: React.Dispatch<React.SetStateAction<Zone>>;
-}
+interface DebugProps {}
 
-const DebugView = ({ setActiveZone }: DebugProps) => {
+const DebugView = () => {
   const root = useStore();
 
   return (
@@ -62,7 +60,7 @@ const DebugView = ({ setActiveZone }: DebugProps) => {
           <button
             key={zone.id}
             type="button"
-            onClick={() => setActiveZone(zone)}
+            onClick={() => root.game.selectZone(zone)}
           >
             {zone.name}
           </button>

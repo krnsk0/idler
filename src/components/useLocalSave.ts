@@ -7,8 +7,8 @@ export const useLocalSave = () => {
   useEffect(() => {
     const id = setInterval(() => {
       root.save();
-    }, 1000);
+    }, 50);
 
     return () => clearInterval(id);
-  }, [root]);
+  }, []);
 };
