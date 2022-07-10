@@ -29,6 +29,34 @@ const DebugView = ({ setActiveZone }: DebugProps) => {
       >
         add zone
       </button>
+      <button
+        type="button"
+        onClick={() => {
+          root.reset();
+          localStorage.removeItem('save');
+          console.log('reset complete');
+        }}
+      >
+        reset
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          console.log('loading');
+          root.load();
+        }}
+      >
+        load
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          console.log('saving');
+          root.save();
+        }}
+      >
+        save
+      </button>
       {root.zones.map((zone, index) => {
         return (
           <button

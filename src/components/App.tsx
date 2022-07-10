@@ -13,8 +13,8 @@ function App() {
   const root = useStore();
   const [activeZone, setActiveZone] = useState<Zone>(root.zones[0]);
 
-  useLocalLoad();
-  useLocalSave();
+  // useLocalLoad();
+  // useLocalSave();
   useStoreTick();
 
   return (

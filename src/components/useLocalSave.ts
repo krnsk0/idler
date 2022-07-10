@@ -6,8 +6,7 @@ export const useLocalSave = () => {
 
   useEffect(() => {
     const id = setInterval(() => {
-      console.log('saving');
-      localStorage.setItem('save', JSON.stringify(root.savegame));
+      root.save();
     }, 1000);
 
     return () => clearInterval(id);

@@ -9,6 +9,7 @@ import {
   types,
   getSnapshot,
   SnapshotOutOfModel,
+  fromSnapshot,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Debug } from './debug/debug';
@@ -17,11 +18,6 @@ import { Tech } from './tech/tech';
 import { Gui } from './gui/gui';
 
 const initialZoneName = 'Landing Zone';
-
-interface Savegame {
-  tech: SnapshotOutOfModel<Tech>;
-  zones: Array<SnapshotOutOfModel<Zone>>;
-}
 
 @model('Root')
 export class Root extends Model({
@@ -32,27 +28,34 @@ export class Root extends Model({
   debug: tProp(types.model(Debug), () => new Debug({})),
   gui: tProp(types.model(Gui), () => new Gui({})),
 }) {
-  @computed
-  get savegame(): Savegame {
-    return {
-      zones: getSnapshot(this.zones),
-      tech: getSnapshot(this.tech),
-    };
-  }
-
   @modelAction
   addZone() {
     this.zones.push(new Zone({}));
   }
 
   @modelAction
-  applySave(savegame: Savegame) {
+  save(): void {
+    const savegame = JSON.stringify(getSnapshot(this));
+    localStorage.setItem('save', savegame);
+  }
+
+  @modelAction
+  load() {
     try {
-      applySnapshot(this.zones, savegame.zones);
-      applySnapshot(this.tech, savegame.tech);
+      const savegame = localStorage.getItem('save');
+      if (!savegame) return;
+      applySnapshot(this, JSON.parse(savegame));
     } catch (error) {
-      console.log('savegame snapshot application', error);
+      console.error('error applying snapshot', error);
     }
+  }
+
+  @modelAction
+  reset(): void {
+    this.zones = [new Zone({ name: initialZoneName })];
+    this.tech = new Tech({});
+    this.debug = new Debug({});
+    this.gui = new Gui({});
   }
 }
 

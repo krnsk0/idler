@@ -10,12 +10,12 @@ import { Root } from '../root';
 
 @model('Debug')
 export class Debug extends Model({
-  hyperMode: tProp(types.boolean, true),
+  hyperMode: tProp(types.boolean, false),
 }) {
   @modelAction
   toggleHyperMode() {
-    console.log('toggling');
     this.hyperMode = !this.hyperMode;
+    console.log('hyper', this.hyperMode);
   }
 }
 export const getDebug = (child: object): Debug => {

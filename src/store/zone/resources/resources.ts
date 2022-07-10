@@ -32,11 +32,11 @@ export class Resources extends Model({
   }
 
   /**
-   * Iterable list of only unlocked actions
+   * Iterable list of only unlocked resources
    */
   @computed
   get unlockedAsArray() {
-    return this.asArray.filter((action) => action.unlocked);
+    return this.asArray.filter((resource) => resource.unlocked);
   }
 
   /**
