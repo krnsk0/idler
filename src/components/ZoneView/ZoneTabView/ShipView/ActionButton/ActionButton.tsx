@@ -58,7 +58,7 @@ function ActionButton({ action }: ActionButtonProps) {
       }
       onClick={() => action.start()}
       progress={action.progress}
-      disabled={!action.affordable}
+      disabled={!action.enabled}
       disableAnimation={action.name === ActionNames.HARVEST}
     >
       <span>{action.displayName}</span>{' '}

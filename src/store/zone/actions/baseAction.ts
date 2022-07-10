@@ -73,10 +73,21 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    * Can this action be kicked off?
    */
   @computed
-  get affordable(): boolean {
-    return this.inputs.every(({ resource, quantity }) => {
+  get enabled(): boolean {
+    const affordable = this.inputs.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
     });
+
+    const emptySpace =
+      this.outputs.length === 0 ||
+      this.outputs.some(({ resource }) => {
+        return (
+          this.zoneResources[resource].quantity <
+          this.zoneResources[resource].currentCap
+        );
+      });
+
+    return affordable && emptySpace;
   }
 
   /**
@@ -151,7 +162,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   start(): void {
-    if (!this.active && this.affordable) {
+    if (!this.active && this.enabled) {
       this.inputs.every(({ resource, quantity }) => {
         this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
