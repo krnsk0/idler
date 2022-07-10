@@ -11,11 +11,11 @@ export class Habitat extends ExtendedModel(BaseProducer, {}) {
   splashText = 'protection from the elements';
   baseCost = [
     {
-      resource: ResourceNames.NUTRIENTS,
+      resource: ResourceNames.LUMBER,
       quantity: 5,
     },
   ];
-  costExponent = 1.2;
+  costExponent = 1.25;
   inputs = [];
   outputs = [];
   storage = {};
