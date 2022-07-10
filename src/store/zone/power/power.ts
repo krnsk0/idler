@@ -9,6 +9,7 @@ import {
 import { Zone } from '../zone';
 import { computed } from 'mobx';
 import { getActions } from '../actions/actions';
+import { getTech } from '../../tech/tech';
 
 @model('Power')
 export class Power extends Model({
@@ -29,9 +30,16 @@ export class Power extends Model({
    */
   @computed
   get demand(): number {
-    return getActions(this).asArray.reduce((total, action) => {
-      return total + action.powerConsumption;
-    }, 0);
+    const actionsConsumption = getActions(this).asArray.reduce(
+      (total, action) => {
+        return total + action.powerConsumption;
+      },
+      0,
+    );
+
+    const techConsumption = getTech(this).selectedTech ? 1 : 0;
+
+    return actionsConsumption + techConsumption;
   }
 
   /**
