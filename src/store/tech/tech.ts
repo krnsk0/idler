@@ -19,6 +19,7 @@ import { Cryonics } from './cryonics';
 import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
+import { getGame } from '../game';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -86,7 +87,7 @@ export class Tech extends Model({
   @modelAction
   unlockCheck(): void {
     if (!this.unlocked) {
-      this.unlocked = getRoot(this).zones.some(
+      this.unlocked = getGame(this).zones.some(
         (zone) => zone.power.production > 0,
       );
     }
@@ -99,7 +100,7 @@ export class Tech extends Model({
    */
   tick(delta: number): void {
     if (this.selectedTech) {
-      const power = getRoot(this).zones[0].power;
+      const power = getGame(this).zones[0].power;
       const fudgeFactor = 1.0001; // helps w/ rounding errors
       const researchRate = 1;
       const increase = delta * researchRate * power.satisfaction * fudgeFactor;
@@ -121,5 +122,5 @@ export const getTech = (child: object): Tech => {
     return node instanceof Root;
   });
   if (!root) throw new Error('no parent root model found in getTech');
-  return root.tech;
+  return root.game.tech;
 };

@@ -33,12 +33,12 @@ const TechModal = () => {
         the ship wants power. it says it can help.
       </div>
       <div css={styles.techsContainer}>
-        {root.tech.availableAsArray.length === 0 && (
+        {root.game.tech.availableAsArray.length === 0 && (
           <em>no compute targets available</em>
         )}
-        {root.tech.availableAsArray.map((tech) => {
+        {root.game.tech.availableAsArray.map((tech) => {
           const onClick = () => {
-            root.tech.selectTech(tech);
+            root.game.tech.selectTech(tech);
             root.gui.closeTechModal();
           };
 

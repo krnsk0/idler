@@ -11,7 +11,7 @@ import { useLocalLoad } from './useLocalLoad';
 
 function App() {
   const root = useStore();
-  const [activeZone, setActiveZone] = useState<Zone>(root.zones[0]);
+  const [activeZone, setActiveZone] = useState<Zone>(root.game.zones[0]);
 
   // useLocalLoad();
   // useLocalSave();

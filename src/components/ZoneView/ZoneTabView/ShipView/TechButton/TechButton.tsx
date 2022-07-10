@@ -7,7 +7,7 @@ import { BaseTech } from '../../../../../store/tech/baseTech';
 
 function TechButton() {
   const root = useStore();
-  const selectedTech = root.tech.selectedTech;
+  const selectedTech = root.game.tech.selectedTech;
   const [didJustFinishResearch, setDidJustFinishResearch] = useState(false);
 
   /**
@@ -16,7 +16,7 @@ function TechButton() {
   useEffect(() => {
     return reaction(
       () => {
-        return root.tech.selectedTech;
+        return root.game.tech.selectedTech;
       },
       (
         selectedTech: BaseTech | undefined,
@@ -32,7 +32,7 @@ function TechButton() {
     );
   }, [root]);
 
-  if (!root.tech.unlocked) return null;
+  if (!root.game.tech.unlocked) return null;
 
   return (
     <ZoneEntityButton

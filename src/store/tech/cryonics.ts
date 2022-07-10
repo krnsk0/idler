@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { getGame } from '../game';
 import { getRoot } from '../root';
 import { ActionNames } from '../zone/actions/actionNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
@@ -24,7 +25,7 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
     return (
       getTech(this)[TechNames.SHELTER].researched &&
       getTech(this)[TechNames.FARMING].researched &&
-      getRoot(this).zones[0].resources[ResourceNames.COLONISTS].currentCap > 0
+      getGame(this).zones[0].resources[ResourceNames.COLONISTS].currentCap > 0
     );
   };
   powerCost = 25;

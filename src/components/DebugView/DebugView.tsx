@@ -24,7 +24,7 @@ const DebugView = ({ setActiveZone }: DebugProps) => {
       <button
         type="button"
         onClick={() => {
-          root.addZone();
+          root.game.addZone();
         }}
       >
         add zone
@@ -57,7 +57,7 @@ const DebugView = ({ setActiveZone }: DebugProps) => {
       >
         save
       </button>
-      {root.zones.map((zone, index) => {
+      {root.game.zones.map((zone, index) => {
         return (
           <button
             key={zone.id}
