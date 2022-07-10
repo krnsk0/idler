@@ -10,11 +10,11 @@ export class Generate extends ExtendedModel(BaseAction, {}) {
   displayName = 'run generator';
   description =
     'generate electrical potential from exothermic, self-perpetuating reaction';
-  duration = 5;
+  duration = 6;
   inputs = [
     {
       resource: ResourceNames.BIOMASS,
-      quantity: 5,
+      quantity: 3,
     },
   ];
   outputs = [];

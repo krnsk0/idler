@@ -36,9 +36,6 @@ function TechButton() {
 
   return (
     <ZoneEntityButton
-      tooltipTop={12}
-      tooltipLeft={190}
-      tooltip={<>test</>}
       onClick={() => {
         root.gui.openTechModal();
       }}
@@ -50,9 +47,8 @@ function TechButton() {
         }
         if (didJustFinishResearch) {
           return <div>research complete</div>;
-        } else {
-          return <div>pick compute target</div>;
         }
+        return <div>pick compute target</div>;
       })()}
     </ZoneEntityButton>
   );

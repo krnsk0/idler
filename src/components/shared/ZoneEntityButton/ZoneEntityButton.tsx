@@ -1,4 +1,5 @@
 import { SerializedStyles } from '@emotion/react';
+import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { colors } from '../../../globalStyles';
@@ -7,14 +8,14 @@ import { styles } from './ZoneEntityButton.styles';
 
 interface ZoneEntityButtonProps {
   styleOverride?: SerializedStyles;
-  tooltip: React.ReactNode;
+  tooltip?: React.ReactNode | EmotionJSX.Element;
   disabled?: boolean;
-  children: React.ReactNode;
+  children: React.ReactNode | EmotionJSX.Element;
   onClick: () => void;
   progress?: number;
   disableAnimation?: boolean;
-  tooltipTop: number;
-  tooltipLeft: number;
+  tooltipTop?: number;
+  tooltipLeft?: number;
 }
 
 const ZoneEntityButton = ({
@@ -33,7 +34,7 @@ const ZoneEntityButton = ({
 
   return (
     <>
-      {hovered && (
+      {tooltip && hovered && (
         <Tooltip top={tooltipTop} left={tooltipLeft} width={200}>
           {tooltip}
         </Tooltip>
