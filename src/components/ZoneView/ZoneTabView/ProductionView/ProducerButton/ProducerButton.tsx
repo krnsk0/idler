@@ -46,6 +46,16 @@ function ProducerButton({ building }: ProducerButtonProps) {
                 );
               },
             )}
+            {building.displayStorage.map(
+              ({ resourceDisplayName, quantity }) => {
+                return (
+                  <div key={resourceDisplayName}>
+                    {formatNumber(quantity, { showSign: true })}{' '}
+                    {resourceDisplayName} capacity
+                  </div>
+                );
+              },
+            )}
           </TooltipText>
           <TooltipDivider />
           <TooltipText light={true} align={'right'} italic={true}>

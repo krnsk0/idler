@@ -12,10 +12,12 @@ import { ProducerNames } from './producerNames';
 import { getResources } from '../resources/resources';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
+import { enumKeys } from '../../../helpers/enumKeys';
 
-type Storage = {
-  [key in ResourceNames]?: number;
-};
+interface Storage {
+  resource: ResourceNames;
+  quantity: number;
+}
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -42,6 +44,11 @@ interface ProducerEffectDisplay {
   quantityPerSecond: number;
 }
 
+interface ProducerStorageDispay {
+  resourceDisplayName: string;
+  quantity: number;
+}
+
 export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   unlocked: tProp(types.boolean, false),
   quantity: tProp(types.number, 0),
@@ -50,7 +57,7 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   abstract displayName: string;
   abstract description: string;
   abstract splashText: string;
-  abstract storage: Storage;
+  abstract storage: Array<Storage>;
   abstract baseCost: Array<PurchaseCost>;
   abstract costExponent: number;
   abstract outputs: Array<ProducerOutput>;
@@ -62,7 +69,8 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
    * this producer can store
    */
   getStorageAmountByKey(resourceName: ResourceNames): number {
-    return this.storage[resourceName] ?? 0;
+    const entry = this.storage.find((entry) => entry.resource === resourceName);
+    return entry ? entry.quantity : 0;
   }
 
   /**
@@ -120,6 +128,19 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
         };
       }),
     ];
+  }
+
+  /**
+   * Storage with displayable names
+   */
+  @computed
+  get displayStorage(): Array<ProducerStorageDispay> {
+    return this.storage.map(({ resource, quantity }) => {
+      return {
+        resourceDisplayName: getResources(this)[resource].displayName,
+        quantity,
+      };
+    });
   }
 
   /**
