@@ -37,25 +37,7 @@ const DebugView = () => {
       >
         reset
       </button>
-      <button
-        type="button"
-        onClick={() => {
-          console.log('loading');
-          root.load();
-        }}
-      >
-        load
-      </button>
-      <button
-        type="button"
-        onClick={() => {
-          console.log('saving');
-          root.save();
-        }}
-      >
-        save
-      </button>
-      {root.game.zones.map((zone, index) => {
+      {root.game.zones.map((zone) => {
         return (
           <button
             key={zone.id}

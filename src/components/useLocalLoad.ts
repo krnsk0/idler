@@ -5,7 +5,6 @@ export const useLocalLoad = () => {
   const root = useStore();
 
   useEffect(() => {
-    console.log('loading');
     root.load();
   }, []);
 };

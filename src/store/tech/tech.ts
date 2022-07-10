@@ -101,7 +101,7 @@ export class Tech extends Model({
   tick(delta: number): void {
     if (this.selectedTech) {
       const power = getGame(this).zones[0].power;
-      const fudgeFactor = 1.0001; // helps w/ rounding errors
+      const fudgeFactor = 1.001; // helps w/ rounding errors
       const researchRate = 1;
       const increase = delta * researchRate * power.satisfaction * fudgeFactor;
       this.selectedTech.addPower(increase);
