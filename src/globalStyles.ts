@@ -6,6 +6,7 @@ export const globalStyles = css`
     margin: 0;
     font-family: 'Lekton', sans-serif;
     box-sizing: content-box;
+    user-select: none;
     ${background}
   }
   #app {
