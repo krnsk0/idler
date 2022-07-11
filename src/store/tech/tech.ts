@@ -54,6 +54,14 @@ export class Tech extends Model({
   }
 
   /**
+   * Is any tech available
+   */
+  @computed
+  get anyTechAvailable(): boolean {
+    return this.availableAsArray.length === 0;
+  }
+
+  /**
    * Iterable list of only researched tech
    */
   @computed
