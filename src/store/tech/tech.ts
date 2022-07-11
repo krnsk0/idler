@@ -57,7 +57,7 @@ export class Tech extends Model({
    * Is any tech available
    */
   @computed
-  get anyTechAvailable(): boolean {
+  get noTechAvailable(): boolean {
     return this.availableAsArray.length === 0;
   }
 

@@ -33,7 +33,7 @@ const TechModal = () => {
         the ship wants power. it says it can help.
       </div>
       <div css={styles.techsContainer}>
-        {root.game.tech.anyTechAvailable && (
+        {root.game.tech.noTechAvailable && (
           <em>no compute targets available</em>
         )}
         {root.game.tech.availableAsArray.map((tech) => {

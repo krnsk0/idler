@@ -9,7 +9,7 @@ import { styles } from './TechButton.styles';
 function TechButton() {
   const root = useStore();
   const selectedTech = root.game.tech.selectedTech;
-  const anyTechAvailable = root.game.tech.anyTechAvailable;
+  const noTechAvailable = root.game.tech.noTechAvailable;
   const [didJustFinishResearch, setDidJustFinishResearch] = useState(false);
 
   /**
@@ -42,7 +42,7 @@ function TechButton() {
         root.gui.openTechModal();
       }}
       progress={selectedTech?.progress ?? 0}
-      disabled={!anyTechAvailable}
+      disabled={noTechAvailable}
     >
       {(() => {
         if (selectedTech) {
@@ -58,7 +58,7 @@ function TechButton() {
         if (didJustFinishResearch) {
           return <div>research complete</div>;
         }
-        if (!anyTechAvailable) {
+        if (noTechAvailable) {
           return <div>no new tech available</div>;
         }
         return <div>pick research target</div>;
