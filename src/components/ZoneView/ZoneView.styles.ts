@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { colors } from '../../globalStyles';
 
 export const styles = {
   zoneOuter: css`
@@ -10,7 +11,9 @@ export const styles = {
     left: 50%;
     top: 40%;
     transform: translate(-50%, -50%);
-    /* border: 1px solid green; */
+    border: 1px solid black;
+    padding: 2em;
+    background-color: ${colors.white};
   `,
   zoneLeft: css``,
   zoneHeader: css`

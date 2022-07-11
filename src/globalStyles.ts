@@ -1,11 +1,12 @@
 import { css, keyframes } from '@emotion/react';
+import { background } from './cssBackground';
 
 export const globalStyles = css`
   body {
     margin: 0;
     font-family: 'Lekton', sans-serif;
-
     box-sizing: content-box;
+    ${background}
   }
   #app {
     width: 100%;
