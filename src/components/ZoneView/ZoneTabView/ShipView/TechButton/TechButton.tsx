@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { useStore } from '../../../../../store/Provider';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 import { BaseTech } from '../../../../../store/tech/baseTech';
+import { styles } from './TechButton.styles';
 
 function TechButton() {
   const root = useStore();
@@ -43,7 +44,14 @@ function TechButton() {
     >
       {(() => {
         if (selectedTech) {
-          return <div>{selectedTech.displayName}</div>;
+          return (
+            <>
+              <div>{selectedTech.displayName}</div>
+              {root.game.zones[0].power.production === 0 && (
+                <div css={styles.noPower}>no power</div>
+              )}
+            </>
+          );
         }
         if (didJustFinishResearch) {
           return <div>research complete</div>;
