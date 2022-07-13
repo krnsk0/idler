@@ -5,9 +5,9 @@ import { JobNames } from './jobNames';
 @model(JobNames.ARBORIST)
 export class Arborist extends ExtendedModel(BaseJob, {}) {
   name = JobNames.ARBORIST;
-  displayName = 'habitat';
-  description = 'housing for 2 colonists';
-  splashText = 'protection from the elements';
+  displayName = 'arborist';
+  description = 'cultivates trees & harvests lumber';
+  splashText = "it's time to branch out";
   inputs = [];
   outputs = [];
   unlockWhen = () => this.isUnlockedByTech;

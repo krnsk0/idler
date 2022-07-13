@@ -11,7 +11,7 @@ interface ZoneEntityButtonProps {
   tooltip?: React.ReactNode | EmotionJSX.Element;
   disabled?: boolean;
   children: React.ReactNode | EmotionJSX.Element;
-  onClick: () => void;
+  onClick?: () => void;
   progress?: number;
   disableAnimation?: boolean;
   tooltipTop?: number;
@@ -57,7 +57,7 @@ const ZoneEntityButton = ({
           disabled={disabled}
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
-          onClick={onClick}
+          onClick={onClick ? onClick : () => {}}
         >
           <>{children}</>
         </button>

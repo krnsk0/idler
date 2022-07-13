@@ -16,7 +16,6 @@ export const styles = {
     border: none;
     width: 100%;
     height: 100%;
-    padding: 0.2em;
     background: none;
     position: relative;
   `,
