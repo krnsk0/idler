@@ -18,6 +18,10 @@ export const styles = {
     height: 100%;
     background: none;
     position: relative;
+
+    &:hover:enabled {
+      outline: 1.5px solid black;
+    }
   `,
   progressBar: css`
     position: absolute;

@@ -5,7 +5,7 @@ export const styles = {
   zoneOuter: css`
     width: 75%;
     height: 55%;
-    min-width: 500px;
+    min-width: 600px;
     max-width: 750px;
     position: absolute;
     left: 50%;
