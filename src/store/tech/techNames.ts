@@ -3,4 +3,5 @@ export enum TechNames {
   FARMING = 'FARMING',
   SHELTER = 'SHELTER',
   CRYONICS = 'CRYONICS',
+  AGROFORESTRY = 'AGROFORESTRY',
 }

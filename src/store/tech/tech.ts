@@ -20,6 +20,7 @@ import { getRoot, Root } from '../root';
 import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
+import { Agroforestry } from './agroforestry';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -34,6 +35,10 @@ export class Tech extends Model({
   [TechNames.FARMING]: tProp(types.model(Farming), () => new Farming({})),
   [TechNames.SHELTER]: tProp(types.model(Shelter), () => new Shelter({})),
   [TechNames.CRYONICS]: tProp(types.model(Cryonics), () => new Cryonics({})),
+  [TechNames.AGROFORESTRY]: tProp(
+    types.model(Agroforestry),
+    () => new Agroforestry({}),
+  ),
 }) {
   /**
    * Returns an iterable list of the action model
