@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { colors } from '../../../globalStyles';
 
 export const styles = {
   tabViewContainer: css`
@@ -8,7 +9,9 @@ export const styles = {
     min-width: 300px;
   `,
   tabRow: css`
+    font-size: 1.1em;
     margin-bottom: 0.5em;
+    height: 1.1em;
   `,
   separator: css`
     margin-left: 0.5em;
@@ -31,6 +34,5 @@ export const styles = {
   tabContent: css`
     padding-top: 0.5em;
     height: 100%;
-    /* border: 1px solid blue; */
   `,
 };
