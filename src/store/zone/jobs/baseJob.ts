@@ -4,6 +4,7 @@ import { ResourceNames } from '../resources/resourceNames';
 import { JobNames } from './jobNames';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
+import { getJobs } from './jobs';
 
 interface JobOutput {
   resource: ResourceNames;
@@ -56,6 +57,41 @@ export abstract class BaseJob extends Model({
     });
   }
 
+  /**
+   * Can we assign more workers?
+   */
+  @computed
+  get canIncrement(): boolean {
+    return getJobs(this).unassigned > 0;
+  }
+
+  /**
+   * Can we unassign workers?
+   */
+  @computed
+  get canDecrement(): boolean {
+    return this.workers > 0;
+  }
+
+  /**
+   * Add workers to this job
+   */
+  @modelAction
+  increment(): void {
+    if (this.canIncrement) {
+      this.workers += 1;
+    }
+  }
+
+  /**
+   * Remove workers from this job
+   */
+  @modelAction
+  decrement(): void {
+    if (this.canDecrement) {
+      this.workers -= 1;
+    }
+  }
   /**
    * Attempts to run production
    * TODO: only run when we have enough inputs

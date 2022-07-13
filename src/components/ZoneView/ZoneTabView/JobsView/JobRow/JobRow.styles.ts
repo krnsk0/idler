@@ -3,10 +3,14 @@ import { css } from '@emotion/react';
 const buttonCommon = css`
   background: none;
   border: none;
-  outline: 1px solid black;
+  outline: 1px solid grey;
   margin-left: 0.2em;
 
-  &:hover {
+  &:enabled {
+    outline: 1px solid black;
+  }
+
+  &:hover:enabled {
     outline: 1.5px solid black;
   }
 `;

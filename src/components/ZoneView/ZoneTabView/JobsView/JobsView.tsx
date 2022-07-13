@@ -10,7 +10,11 @@ interface JobsViewProps {
 function JobsView({ zone }: JobsViewProps) {
   return (
     <div css={styles.jobsContainer}>
-      <div>TODO</div>
+      <div css={styles.unassigned}>
+        unassigned colonists: {zone.jobs.unassigned}
+        {' / '}
+        {zone.jobs.totalColonists}
+      </div>
 
       {zone.jobs.unlockedAsArray.map((job) => {
         return <JobRow job={job} key={job.name} />;

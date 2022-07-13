@@ -1,8 +1,11 @@
-import { model, Model, tProp, types } from 'mobx-keystone';
+import { findParent, model, Model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../helpers/enumKeys';
 import { JobNames } from './jobNames';
 import { Arborist } from './arborist';
+import { getResources } from '../resources/resources';
+import { ResourceNames } from '../resources/resourceNames';
+import { Zone } from '../zone';
 
 @model('Jobs')
 export class Jobs extends Model({
@@ -33,4 +36,34 @@ export class Jobs extends Model({
   get anyUnlocked(): boolean {
     return !!this.unlockedAsArray.length;
   }
+
+  /**
+   * Total colonists. Convenience getter
+   */
+  @computed
+  get totalColonists(): number {
+    return getResources(this)[ResourceNames.COLONISTS].quantity;
+  }
+
+  /**
+   * number of unassinged colonists in all jobs
+   */
+  @computed
+  get unassigned(): number {
+    console.log('recomputing unassigned');
+    let assigned = 0;
+    for (const job of this.asArray) {
+      assigned += job.workers;
+    }
+
+    return this.totalColonists - assigned;
+  }
 }
+
+export const getJobs = (child: object): Jobs => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
+  });
+  if (!zone) throw new Error('no parent jobs model found in getJobs');
+  return zone.jobs;
+};

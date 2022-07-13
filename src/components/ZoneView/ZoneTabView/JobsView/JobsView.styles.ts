@@ -1,4 +1,4 @@
-import { css } from "@emotion/react";
+import { css } from '@emotion/react';
 
 export const styles = {
   jobsContainer: css`
@@ -8,4 +8,8 @@ export const styles = {
     justify-content: flex-start;
     align-items: flex-start;
   `,
-}
+  unassigned: css`
+    margin-top: 1em;
+    margin-bottom: 1em;
+  `,
+};

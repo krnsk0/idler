@@ -13,10 +13,20 @@ const JobRow = ({ job }: JobRowProps) => {
       <div css={styles.name}>{job.displayName}</div>
       <div css={styles.workers}>{job.workers} assigned</div>
       <div css={styles.buttons}>
-        <button type="button" css={styles.inc}>
+        <button
+          type="button"
+          css={styles.inc}
+          onClick={() => job.decrement()}
+          disabled={!job.canDecrement}
+        >
           -
         </button>
-        <button type="button" css={styles.dec}>
+        <button
+          type="button"
+          css={styles.dec}
+          onClick={() => job.increment()}
+          disabled={!job.canIncrement}
+        >
           +
         </button>
       </div>
