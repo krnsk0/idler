@@ -10,6 +10,8 @@ interface JobsViewProps {
 function JobsView({ zone }: JobsViewProps) {
   return (
     <div css={styles.jobsContainer}>
+      <div>TODO</div>
+
       {zone.jobs.unlockedAsArray.map((job) => {
         return <JobRow job={job} key={job.name} />;
       })}
