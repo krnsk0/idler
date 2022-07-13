@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Zone } from '../../../store/zone/zone';
+import JobsView from './JobsView/JobsView';
 import ProductionView from './ProductionView/ProductionView';
 import ActionView from './ShipView/ActionView';
 import { styles } from './ZoneTabView.styles';
@@ -12,7 +13,7 @@ interface ZoneTabViewProps {
 enum ZoneTabNames {
   ACTIONS = 'ACTIONS',
   PRODUCITON = 'PRODUCTION',
-  WORKERS = 'WORKERS'
+  JOBS = 'JOBS',
 }
 
 const TabButton = ({
@@ -68,7 +69,17 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
           </>
         )}
 
-
+        {zone.jobs.anyUnlocked && (
+          <>
+            <Separator />
+            <TabButton
+              text="Jobs"
+              tabName={ZoneTabNames.JOBS}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+          </>
+        )}
       </div>
       <div css={styles.tabContent}>
         {(() => {
@@ -77,6 +88,8 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
               return <ActionView zone={zone} />;
             case ZoneTabNames.PRODUCITON:
               return <ProductionView zone={zone} />;
+            case ZoneTabNames.JOBS:
+              return <JobsView zone={zone} />;
             default:
               throw new Error('should not reach this case');
           }

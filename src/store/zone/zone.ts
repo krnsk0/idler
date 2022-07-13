@@ -4,6 +4,7 @@ import { Actions } from './actions/actions';
 import { Producers } from './producers/producers';
 import { Resources } from './resources/resources';
 import { makeZoneName } from './zoneName';
+import { Jobs } from './jobs/jobs';
 
 @model('Zone')
 export class Zone extends Model({
@@ -13,6 +14,7 @@ export class Zone extends Model({
   producers: tProp(types.model(Producers), () => new Producers({})),
   resources: tProp(types.model(Resources), () => new Resources({})),
   actions: tProp(types.model(Actions), () => new Actions({})),
+  jobs: tProp(types.model(Jobs), () => new Jobs({})),
 }) {}
 
 export const getZone = (child: object): Zone => {
