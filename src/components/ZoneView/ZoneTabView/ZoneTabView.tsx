@@ -12,6 +12,7 @@ interface ZoneTabViewProps {
 enum ZoneTabNames {
   ACTIONS = 'ACTIONS',
   PRODUCITON = 'PRODUCTION',
+  WORKERS = 'WORKERS'
 }
 
 const TabButton = ({
@@ -66,6 +67,8 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
             />
           </>
         )}
+
+
       </div>
       <div css={styles.tabContent}>
         {(() => {
