@@ -15,7 +15,6 @@ export const globalStyles = css`
   }
   button {
     font-family: 'Lekton', sans-serif;
-
     font-size: 1em;
   }
 `;
