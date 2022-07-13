@@ -50,7 +50,6 @@ export class Jobs extends Model({
    */
   @computed
   get unassigned(): number {
-    console.log('recomputing unassigned');
     let assigned = 0;
     for (const job of this.asArray) {
       assigned += job.workers;
