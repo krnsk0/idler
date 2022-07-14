@@ -20,7 +20,7 @@ const effects: TechEffect[] = [
 export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   name = TechNames.AGROFORESTRY;
   displayName = 'agroforestry';
-  description = 'sustainable cultivation of arboriform flora';
+  description = 'sustainable cultivation of arboriform xenoflora';
   unlockWhen = () => {
     return (
       getTech(this)[TechNames.CRYONICS].researched &&

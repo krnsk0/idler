@@ -5,6 +5,7 @@ import { JobNames } from './jobNames';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
 import { getJobs } from './jobs';
+import { getResources } from '../resources/resources';
 
 interface JobOutput {
   resource: ResourceNames;
@@ -16,6 +17,11 @@ interface JobInput {
   quantityPerSecond: number;
 }
 
+interface JobEffectDisplay {
+  resourceDisplayName: string;
+  quantityPerSecond: number;
+}
+
 export abstract class BaseJob extends Model({
   workers: tProp(types.number, 0),
   unlocked: tProp(types.boolean, false),
@@ -23,7 +29,6 @@ export abstract class BaseJob extends Model({
   abstract name: JobNames;
   abstract displayName: string;
   abstract description: string;
-  abstract splashText: string;
   abstract outputs: Array<JobOutput>;
   abstract inputs: Array<JobInput>;
   abstract unlockWhen: () => boolean;
@@ -71,6 +76,26 @@ export abstract class BaseJob extends Model({
   @computed
   get canDecrement(): boolean {
     return this.workers > 0;
+  }
+
+  /**
+   *
+   */
+  get displayEffects(): Array<JobEffectDisplay> {
+    return [
+      ...this.inputs.map(({ resource, quantityPerSecond }) => {
+        return {
+          resourceDisplayName: getResources(this)[resource].displayName,
+          quantityPerSecond: -quantityPerSecond,
+        };
+      }),
+      ...this.outputs.map(({ resource, quantityPerSecond }) => {
+        return {
+          resourceDisplayName: getResources(this)[resource].displayName,
+          quantityPerSecond,
+        };
+      }),
+    ];
   }
 
   /**

@@ -26,10 +26,10 @@ export const styles = {
     width: 6em;
   `,
   workers: css`
-    width: 5em;
+    width: 2em;
   `,
   buttons: css`
-    margin-left: 3em;
+    margin-left: 1em;
     width: 4em;
   `,
   inc: css`
