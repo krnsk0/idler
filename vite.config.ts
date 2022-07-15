@@ -19,5 +19,6 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
+    includeSource: ['src/**/*.{js,ts}'], // allows in-source tests
   },
 });
