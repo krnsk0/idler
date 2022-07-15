@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import { formatNumber } from '../../../../../helpers/formatNumber';
+import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
 import Tooltip, {
   TooltipDivider,

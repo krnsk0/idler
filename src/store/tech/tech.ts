@@ -10,7 +10,7 @@ import {
   types,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { enumKeys } from '../../helpers/enumKeys';
+import { enumKeys } from '../../utils/enumKeys';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Farming } from './farming';

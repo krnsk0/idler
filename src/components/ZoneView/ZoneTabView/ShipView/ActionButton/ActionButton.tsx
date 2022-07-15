@@ -1,6 +1,6 @@
 import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
-import { formatNumber } from '../../../../../helpers/formatNumber';
+import { formatNumber } from '../../../../../utils/formatNumber';
 import { ActionNames } from '../../../../../store/zone/actions/actionNames';
 import { BaseAction } from '../../../../../store/zone/actions/baseAction';
 import {

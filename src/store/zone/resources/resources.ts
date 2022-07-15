@@ -1,6 +1,6 @@
 import { findParent, model, Model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { enumKeys } from '../../../helpers/enumKeys';
+import { enumKeys } from '../../../utils/enumKeys';
 import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
 import { Biomass } from './biomass';

@@ -12,7 +12,7 @@ import { ProducerNames } from './producerNames';
 import { getResources } from '../resources/resources';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
-import { enumKeys } from '../../../helpers/enumKeys';
+import { enumKeys } from '../../../utils/enumKeys';
 
 interface Storage {
   resource: ResourceNames;

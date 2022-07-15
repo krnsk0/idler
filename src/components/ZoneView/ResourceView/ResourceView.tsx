@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { formatNumber } from '../../../helpers/formatNumber';
+import { formatNumber } from '../../../utils/formatNumber';
 import BorderContainer from '../../shared/BorderContainer/BorderContainer';
 import { Zone } from '../../../store/zone/zone';
 import { styles } from './ResourceView.styles';

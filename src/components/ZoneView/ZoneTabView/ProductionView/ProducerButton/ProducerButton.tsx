@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { formatNumber } from '../../../../../helpers/formatNumber';
+import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseProducer } from '../../../../../store/zone/producers/baseProducer';
 import {
   TooltipText,

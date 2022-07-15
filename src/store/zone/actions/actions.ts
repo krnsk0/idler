@@ -1,6 +1,6 @@
 import { findParent, model, Model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { enumKeys } from '../../../helpers/enumKeys';
+import { enumKeys } from '../../../utils/enumKeys';
 import { ActionNames } from './actionNames';
 import { Harvest } from './harvest';
 import { Generate } from './generate';
