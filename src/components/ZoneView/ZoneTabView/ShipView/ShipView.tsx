@@ -12,10 +12,11 @@ interface ShipViewProps {
 }
 
 function ShipView({ zone }: ShipViewProps) {
+  const areProducersUnlocked = !!zone.producers.unlockedAsArray.length;
   return (
     <>
       <div css={styles.shipOuter}>
-        <Divider text={'ship'} width={374} />
+        <Divider text={'ship'} width={374} shown={areProducersUnlocked} />
         <div css={styles.shipContainer}>
           <div css={styles.shipColumn}>
             <ActionButton action={zone.actions[ActionNames.HARVEST]} />
@@ -29,7 +30,7 @@ function ShipView({ zone }: ShipViewProps) {
         </div>
       </div>
       <div css={styles.shipOuter}>
-        <Divider text={'colony'} width={374} />
+        <Divider text={'colony'} width={374} shown={areProducersUnlocked} />
         <div css={styles.shipContainer}>
           <div css={styles.shipColumnWrap}>
             {zone.producers.unlockedAsArray.map((building) => {

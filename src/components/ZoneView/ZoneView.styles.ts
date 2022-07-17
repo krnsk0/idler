@@ -11,7 +11,7 @@ export const styles = {
     left: 50%;
     top: 40%;
     transform: translate(-50%, -50%);
-    border: 1px solid black;
+    /* border: 1px solid black; */
     padding: 1.5em;
     background-color: ${colors.white};
   `,
