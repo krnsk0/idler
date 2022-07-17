@@ -16,7 +16,11 @@ function ShipView({ zone }: ShipViewProps) {
   return (
     <>
       <div css={styles.shipOuter}>
-        <Divider text={'ship'} width={374} shown={areProducersUnlocked} />
+        <Divider
+          text={'crashed ship'}
+          width={374}
+          shown={areProducersUnlocked}
+        />
         <div css={styles.shipContainer}>
           <div css={styles.shipColumn}>
             <ActionButton action={zone.actions[ActionNames.HARVEST]} />

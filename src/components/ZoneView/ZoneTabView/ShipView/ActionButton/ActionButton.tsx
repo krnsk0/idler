@@ -17,8 +17,8 @@ function ActionButton({ action }: ActionButtonProps) {
   if (!action.unlocked) return null;
   return (
     <ZoneEntityButton
-      tooltipTop={12}
-      tooltipLeft={190}
+      tooltipTop={45}
+      tooltipLeft={0}
       tooltip={
         <>
           <TooltipText italic={true} align={'center'} light={true}>

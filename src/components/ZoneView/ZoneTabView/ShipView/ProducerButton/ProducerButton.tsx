@@ -6,7 +6,6 @@ import {
   TooltipDivider,
 } from '../../../../shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
-import { styles } from './ProducerButton.styles';
 
 interface ProducerButtonProps {
   building: BaseProducer;
@@ -15,8 +14,8 @@ interface ProducerButtonProps {
 function ProducerButton({ building }: ProducerButtonProps) {
   return (
     <ZoneEntityButton
-      tooltipTop={12}
-      tooltipLeft={190}
+      tooltipTop={45}
+      tooltipLeft={0}
       tooltip={
         <>
           <TooltipText italic={true} align={'center'} light={true}>
