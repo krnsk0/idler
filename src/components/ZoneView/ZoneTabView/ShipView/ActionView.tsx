@@ -3,6 +3,7 @@ import { Zone } from '../../../../store/zone/zone';
 import TechButton from './TechButton/TechButton';
 import ActionButton from './ActionButton/ActionButton';
 import { styles } from './ActionView.styles';
+import { ActionNames } from '../../../../store/zone/actions/actionNames';
 
 interface ActionViewProps {
   zone: Zone;
@@ -12,12 +13,13 @@ function ActionView({ zone }: ActionViewProps) {
   return (
     <div css={styles.shipContainer}>
       <div css={styles.shipColumn}>
-        {zone.actions.unlockedAsArray.map((action) => {
-          return <ActionButton action={action} key={action.name} />;
-        })}
+        <ActionButton action={zone.actions[ActionNames.HARVEST]} />
+        <ActionButton action={zone.actions[ActionNames.GENERATE]} />
+        <ActionButton action={zone.actions[ActionNames.THAW]} />
       </div>
       <div css={styles.shipColumn}>
         <TechButton />
+        <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
       </div>
     </div>
   );

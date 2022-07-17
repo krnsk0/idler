@@ -14,6 +14,7 @@ interface ActionButtonProps {
 }
 
 function ActionButton({ action }: ActionButtonProps) {
+  if (!action.unlocked) return null;
   return (
     <ZoneEntityButton
       tooltipTop={12}
