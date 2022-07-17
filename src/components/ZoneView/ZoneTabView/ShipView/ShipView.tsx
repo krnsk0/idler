@@ -22,13 +22,11 @@ function ShipView({ zone }: ShipViewProps) {
           shown={areProducersUnlocked}
         />
         <div css={styles.shipContainer}>
-          <div css={styles.shipColumn}>
+          <div css={styles.shipColumnWrap}>
             <ActionButton action={zone.actions[ActionNames.HARVEST]} />
+            <TechButton />
             <ActionButton action={zone.actions[ActionNames.GENERATE]} />
             <ActionButton action={zone.actions[ActionNames.THAW]} />
-          </div>
-          <div css={styles.shipColumn}>
-            <TechButton />
             <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
           </div>
         </div>

@@ -16,8 +16,8 @@ export const styles = {
     background-color: ${colors.white};
   `,
   zoneLeft: css`
-    width: 100%;
     margin-right: 1em;
+    border: 1px solid red;
   `,
   zoneHeader: css`
     margin: 0.4em 0em 0.3em 0em;

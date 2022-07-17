@@ -7,7 +7,7 @@ export const styles = {
     width: number | undefined,
     shown: boolean,
   ) => css`
-    border-top: 1px solid ${colors.darkgrey};
+    border-top: 1px solid ${colors.black};
     width: ${width === undefined ? '100%' : `${width}px`};
     margin-top: ${largeMargin ? '1.4em' : '0.8em'};
     padding-top: 0.8em;
@@ -21,7 +21,7 @@ export const styles = {
     width: 100%;
   `,
   dividerText: css`
-    color: ${colors.darkgrey};
+    color: ${colors.black};
     background-color: ${colors.white};
     padding: 0em 0.4em 0em 0.4em;
   `,

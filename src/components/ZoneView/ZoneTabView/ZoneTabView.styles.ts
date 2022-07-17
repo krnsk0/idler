@@ -5,8 +5,6 @@ export const styles = {
   tabViewContainer: css`
     display: flex;
     flex-direction: column;
-    width: 100%;
-    min-width: 300px;
   `,
   tabRow: css`
     font-size: 1.1em;
@@ -34,6 +32,5 @@ export const styles = {
   tabContent: css`
     padding-top: 0.5em;
     height: 100%;
-    width: 100%;
   `,
 };

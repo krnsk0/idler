@@ -6,7 +6,6 @@ export const styles = {
     border: 1px solid black;
     width: 180px;
     height: 2em;
-    margin: 0.3em 0em 0.3em 0em;
     position: relative;
   `,
   button: css`

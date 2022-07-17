@@ -2,7 +2,6 @@ import { css } from '@emotion/react';
 
 export const styles = {
   shipOuter: css`
-    width: 100%;
     margin-bottom: 3em;
   `,
   shipContainer: css`
