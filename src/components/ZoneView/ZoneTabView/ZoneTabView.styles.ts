@@ -10,7 +10,7 @@ export const styles = {
   `,
   tabRow: css`
     font-size: 1.1em;
-    margin-bottom: 0.5em;
+    margin-top: 1em;
     height: 1.1em;
   `,
   separator: css`

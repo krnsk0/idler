@@ -15,7 +15,7 @@ import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 import { Root } from './root';
 
-const initialZoneName = 'Landing Zone';
+const initialZoneName = 'landing zone';
 
 const zoneRef = rootRef<Zone>('zone_ref', {});
 

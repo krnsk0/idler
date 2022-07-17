@@ -13,8 +13,8 @@ function ZoneView({ zone }: ZoneViewProps) {
     <div css={styles.zoneOuter}>
       <div css={styles.zoneBody}>
         <div css={styles.zoneLeft}>
-          <div css={styles.zoneHeader}>
-            <h2>{zone.name}</h2>
+          <div>
+            <h2 css={styles.zoneHeader}>{zone.name}</h2>
           </div>
           <ZoneTabView zone={zone} />
         </div>

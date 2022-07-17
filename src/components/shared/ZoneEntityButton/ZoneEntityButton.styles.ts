@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { animation, colors } from '../../../globalStyles';
+import { colors } from '../../../globalStyles';
 
 export const styles = {
   buttonContainer: css`
@@ -8,9 +8,6 @@ export const styles = {
     height: 2em;
     margin: 0.3em 0em 0.3em 0em;
     position: relative;
-  `,
-  newButton: css`
-    ${animation}; ;
   `,
   button: css`
     border: none;

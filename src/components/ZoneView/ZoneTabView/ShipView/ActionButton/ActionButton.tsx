@@ -60,7 +60,6 @@ function ActionButton({ action }: ActionButtonProps) {
       onClick={() => action.start()}
       progress={action.progress}
       disabled={!action.enabled}
-      disableAnimation={action.name === ActionNames.HARVEST}
     >
       <span>{action.displayName}</span>{' '}
     </ZoneEntityButton>

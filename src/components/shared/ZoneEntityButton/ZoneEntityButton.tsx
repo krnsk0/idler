@@ -13,7 +13,6 @@ interface ZoneEntityButtonProps {
   children: React.ReactNode | EmotionJSX.Element;
   onClick?: () => void;
   progress?: number;
-  disableAnimation?: boolean;
   tooltipTop?: number;
   tooltipLeft?: number;
 }
@@ -25,7 +24,6 @@ const ZoneEntityButton = ({
   disabled,
   onClick,
   progress,
-  disableAnimation,
   tooltipTop,
   tooltipLeft,
 }: ZoneEntityButtonProps) => {
@@ -40,11 +38,7 @@ const ZoneEntityButton = ({
         </Tooltip>
       )}
       <div
-        css={[
-          styles.buttonContainer,
-          styleOverride,
-          !disableAnimation && styles.newButton,
-        ]}
+        css={[styles.buttonContainer, styleOverride]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}
       >
         <div css={styles.progressBar} style={{ width: progressWidth }} />

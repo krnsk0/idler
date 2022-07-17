@@ -1,5 +1,4 @@
 import { css } from '@emotion/react';
-import { animation } from '../../../globalStyles';
 
 const titleOffset = '10px';
 
@@ -12,9 +11,6 @@ export const styles = {
     position: relative;
     top: ${titleOffset};
     height: calc(100% - ${titleOffset});
-  `,
-  newContainer: css`
-    ${animation};
   `,
   containerTitle: css`
     position: absolute;

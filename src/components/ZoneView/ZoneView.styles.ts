@@ -12,14 +12,16 @@ export const styles = {
     top: 40%;
     transform: translate(-50%, -50%);
     border: 1px solid black;
-    padding: 2em;
+    padding: 1.5em;
     background-color: ${colors.white};
   `,
   zoneLeft: css`
     width: 100%;
     margin-right: 1em;
   `,
-  zoneHeader: css``,
+  zoneHeader: css`
+    margin: 0.4em 0em 0.3em 0em;
+  `,
   zoneBody: css`
     display: flex;
     flex-direction: row;

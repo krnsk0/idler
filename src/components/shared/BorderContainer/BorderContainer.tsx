@@ -13,7 +13,7 @@ const BorderContainer = ({
   styleOverride,
 }: BorderContainerProps) => {
   return (
-    <div css={[styles.container, styleOverride, styles.newContainer]}>
+    <div css={[styles.container, styleOverride]}>
       <div css={styles.containerTitle}>{title}</div>
       {children}
     </div>

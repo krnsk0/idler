@@ -24,16 +24,3 @@ export const colors = {
   white: 'white',
   black: 'black',
 };
-
-const enter = keyframes`
-from {
-  opacity: 0;
-}
-to {
-  opacity: 1;
-}
-`;
-
-export const animation = css`
-  animation: ${enter} 0.3s linear;
-`;
