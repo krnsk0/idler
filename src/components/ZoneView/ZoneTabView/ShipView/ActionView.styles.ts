@@ -9,7 +9,7 @@ export const styles = {
     align-items: flex-start;
   `,
   shipColumn: css`
-    margin-left: 0.6em;
+    margin-right: 0.6em;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
