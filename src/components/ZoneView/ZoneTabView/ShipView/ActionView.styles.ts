@@ -19,4 +19,13 @@ export const styles = {
     justify-content: flex-start;
     align-items: flex-start;
   `,
+  shipColumnWrap: css`
+    margin-right: 0.6em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.6em;
+  `,
 };
