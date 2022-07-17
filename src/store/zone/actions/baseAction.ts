@@ -145,6 +145,8 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     if (this.active) {
+      const fudgeFactor = 1.001; // helps w/ rounding errors
+
       let satisfaction;
       if (this.basePowerConsumption > 0) {
         satisfaction = getPower(this).satisfaction;
@@ -152,7 +154,8 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
         satisfaction = 1;
       }
 
-      const progressThisTick = (delta / this.duration) * satisfaction;
+      const progressThisTick =
+        (delta / this.duration) * satisfaction * fudgeFactor;
       if (this.progress + progressThisTick < 1) {
         this.progress += progressThisTick;
       } else {
