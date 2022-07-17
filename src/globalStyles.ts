@@ -1,5 +1,4 @@
 import { css, keyframes } from '@emotion/react';
-import { background } from './cssBackground';
 
 export const globalStyles = css`
   body {
@@ -7,7 +6,6 @@ export const globalStyles = css`
     font-family: 'Lekton', sans-serif;
     box-sizing: content-box;
     user-select: none;
-    ${background}
   }
   #app {
     width: 100%;
