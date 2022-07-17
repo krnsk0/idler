@@ -15,14 +15,16 @@ export const styles = {
     padding: 2em;
     background-color: ${colors.white};
   `,
-  zoneLeft: css``,
-  zoneHeader: css`
-    /* border: 1px solid blue; */
+  zoneLeft: css`
+    width: 100%;
+    margin-right: 1em;
   `,
+  zoneHeader: css``,
   zoneBody: css`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
     /* border: 1px solid blue; */
   `,
 };
