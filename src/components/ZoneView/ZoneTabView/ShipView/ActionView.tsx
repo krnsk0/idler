@@ -10,11 +10,15 @@ interface ActionViewProps {
 
 function ActionView({ zone }: ActionViewProps) {
   return (
-    <div css={styles.shipsContainer}>
-      {zone.actions.unlockedAsArray.map((action) => {
-        return <ActionButton action={action} key={action.name} />;
-      })}
-      <TechButton />
+    <div css={styles.shipContainer}>
+      <div css={styles.shipColumn}>
+        {zone.actions.unlockedAsArray.map((action) => {
+          return <ActionButton action={action} key={action.name} />;
+        })}
+      </div>
+      <div css={styles.shipColumn}>
+        <TechButton />
+      </div>
     </div>
   );
 }
