@@ -21,6 +21,8 @@ import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
+import { getResources } from '../zone/resources/resources';
+import { ResourceNames } from '../zone/resources/resourceNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -100,9 +102,8 @@ export class Tech extends Model({
   @modelAction
   unlockCheck(): void {
     if (!this.unlocked) {
-      this.unlocked = getGame(this).zones.some(
-        (zone) => zone.power.production > 0,
-      );
+      this.unlocked =
+        getGame(this).zones[0].resources[ResourceNames.BIOMASS].quantity >= 5;
     }
   }
 

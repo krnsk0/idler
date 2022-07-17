@@ -1,6 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { getTech } from '../../tech/tech';
 import { ResourceNames } from '../resources/resourceNames';
-import { getResources } from '../resources/resources';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
 
@@ -21,6 +21,6 @@ export class Generate extends ExtendedModel(BaseAction, {}) {
   basePowerProduction = 1;
   basePowerConsumption = 0;
   unlockWhen = () => {
-    return getResources(this)[ResourceNames.BIOMASS].quantity >= 5;
+    return !!getTech(this).selectedTech;
   };
 }
