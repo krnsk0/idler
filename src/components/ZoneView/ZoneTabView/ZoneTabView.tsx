@@ -2,8 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Zone } from '../../../store/zone/zone';
 import JobsView from './JobsView/JobsView';
-import ProductionView from './ProductionView/ProductionView';
-import ActionView from './ShipView/ActionView';
+import ActionView from './ShipView/ShipView';
 import { styles } from './ZoneTabView.styles';
 
 interface ZoneTabViewProps {

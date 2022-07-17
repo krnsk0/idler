@@ -2,16 +2,16 @@ import { observer } from 'mobx-react-lite';
 import { Zone } from '../../../../store/zone/zone';
 import TechButton from './TechButton/TechButton';
 import ActionButton from './ActionButton/ActionButton';
-import { styles } from './ActionView.styles';
 import { ActionNames } from '../../../../store/zone/actions/actionNames';
 import { Divider } from '../../../shared/Divider/Divider';
-import ProducerButton from '../ProductionView/ProducerButton/ProducerButton';
+import ProducerButton from './ProducerButton/ProducerButton';
+import { styles } from './ShipView.styles';
 
-interface ActionViewProps {
+interface ShipViewProps {
   zone: Zone;
 }
 
-function ActionView({ zone }: ActionViewProps) {
+function ShipView({ zone }: ShipViewProps) {
   return (
     <>
       <div css={styles.shipOuter}>
@@ -42,4 +42,4 @@ function ActionView({ zone }: ActionViewProps) {
   );
 }
 
-export default observer(ActionView);
+export default observer(ShipView);
