@@ -6,6 +6,7 @@ import {
   TooltipDivider,
 } from '../../../../shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
+import { styles } from './ActionButton.styles';
 
 interface ActionButtonProps {
   action: BaseAction;
@@ -58,6 +59,7 @@ function ActionButton({ action }: ActionButtonProps) {
       disabled={!action.enabled}
     >
       <span>{action.displayName}</span>{' '}
+      {action.showLowPowerMessage && <div css={styles.noPower}>no power</div>}
     </ZoneEntityButton>
   );
 }

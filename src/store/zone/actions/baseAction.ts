@@ -130,6 +130,18 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Do we show a low power message for this action?
+   */
+  @computed
+  get showLowPowerMessage(): boolean {
+    return (
+      this.powerConsumption > 0 &&
+      this.active &&
+      getPower(this).production === 0
+    );
+  }
+
+  /**
    * What happens when the action is done?
    */
   @modelAction
@@ -145,17 +157,17 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     if (this.active) {
-      const fudgeFactor = 1.001; // helps w/ rounding errors
+      const fudgeFactor = 1.01; // helps w/ rounding errors
 
       let satisfaction;
       if (this.basePowerConsumption > 0) {
-        satisfaction = getPower(this).satisfaction;
+        satisfaction = getPower(this).satisfaction * fudgeFactor;
       } else {
         satisfaction = 1;
       }
 
-      const progressThisTick =
-        (delta / this.duration) * satisfaction * fudgeFactor;
+      const progressThisTick = (delta / this.duration) * satisfaction;
+
       if (this.progress + progressThisTick < 1) {
         this.progress += progressThisTick;
       } else {
