@@ -18,7 +18,7 @@ const Tooltip = ({
   width = 200,
 }: TooltipProps) => {
   return (
-    <div css={styles.tooltipContainer} id="tooltip-container">
+    <div css={styles.tooltipContainer}>
       <div css={[styles.tooltipOuter(top, left, width), styleOverride]}>
         {children}
       </div>

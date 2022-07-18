@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { Zone } from '../../../store/zone/zone';
 import JobsView from './JobsView/JobsView';
-import ShipView from './ShipView/ShipView';
+import ActionView from './ShipView/ShipView';
 import { styles } from './ZoneTabView.styles';
 
 interface ZoneTabViewProps {
@@ -64,11 +64,11 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
           </>
         )}
       </div>
-      <div css={styles.tabContent} id="zone-view-tab-content">
+      <div css={styles.tabContent}>
         {(() => {
           switch (selectedTab) {
             case ZoneTabNames.ACTIONS:
-              return <ShipView zone={zone} />;
+              return <ActionView zone={zone} />;
             case ZoneTabNames.JOBS:
               return <JobsView zone={zone} />;
             default:

@@ -2,9 +2,13 @@ import { css } from '@emotion/react';
 import { colors } from '../../../globalStyles';
 
 export const styles = {
-  divider: (largeMargin: boolean, shown: boolean) => css`
+  divider: (
+    largeMargin: boolean,
+    width: number | undefined,
+    shown: boolean,
+  ) => css`
     border-top: 1px solid ${colors.black};
-    width: 100%;
+    width: ${width === undefined ? '100%' : `${width}px`};
     margin-top: ${largeMargin ? '1.4em' : '0.8em'};
     padding-top: 0.8em;
     position: relative;
