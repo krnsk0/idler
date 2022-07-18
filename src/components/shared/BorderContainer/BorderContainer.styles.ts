@@ -11,9 +11,15 @@ export const styles = {
     top: ${titleOffset};
     height: calc(100% - ${titleOffset});
   `,
-  containerTitle: css`
+  textContainer: css`
     position: absolute;
+    width: calc(100% - 1.2em);
     top: calc(-${titleOffset});
+    text-align: right;
+    display: flex;
+    justify-content: space-between;
+  `,
+  text: css`
     background: white;
   `,
 };

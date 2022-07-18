@@ -9,11 +9,20 @@ interface ResourceViewProps {
 }
 
 const ResourceView = ({ zone }: ResourceViewProps) => {
+  const satisfaction = zone.power.satisfaction;
+  const satisfactionPercentage = formatNumber(satisfaction * 100, {
+    digits: 0,
+  });
   return (
     <div css={styles.paneContainer}>
       {zone.power.unlocked && (
         <BorderContainer
           title="power"
+          rightText={
+            satisfaction > 0 && satisfaction < 1
+              ? `satisfaction: ${satisfactionPercentage}%`
+              : ``
+          }
           styleOverride={styles.resourcesContainer}
         >
           <div css={styles.resourceRow}>
