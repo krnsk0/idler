@@ -5,7 +5,6 @@ export const styles = {
   zoneOuter: css`
     width: 75%;
     height: 55%;
-    min-width: 700px;
     max-width: 800px;
     position: absolute;
     left: 50%;
@@ -17,7 +16,7 @@ export const styles = {
   `,
   zoneLeft: css`
     margin-right: 1em;
-    border: 1px solid red;
+    max-width: 384px;
   `,
   zoneHeader: css`
     margin: 0.4em 0em 0.3em 0em;
@@ -26,7 +25,6 @@ export const styles = {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 100%;
     /* border: 1px solid blue; */
   `,
 };
