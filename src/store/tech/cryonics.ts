@@ -28,6 +28,6 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
       getGame(this).zones[0].resources[ResourceNames.COLONISTS].currentCap > 0
     );
   };
-  powerCost = 25;
+  powerCost = 20;
   effects = effects;
 }

@@ -18,6 +18,6 @@ export class BiomassCompression extends ExtendedModel(BaseTech, {}) {
   description =
     'subject to heat and pressure, biomass becomes an arboraceous material suitable for construction';
   unlockWhen = () => true;
-  powerCost = 15;
+  powerCost = 10;
   effects = effects;
 }

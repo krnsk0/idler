@@ -16,12 +16,11 @@ import { BiomassCompression } from './biomassCompression';
 import { Farming } from './farming';
 import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
-import { getRoot, Root } from '../root';
+import { Root } from '../root';
 import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
-import { getResources } from '../zone/resources/resources';
 import { ResourceNames } from '../zone/resources/resourceNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});

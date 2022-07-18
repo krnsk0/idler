@@ -27,6 +27,6 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
       getGame(this).zones[0].resources[ResourceNames.COLONISTS].quantity > 0
     );
   };
-  powerCost = 25;
+  powerCost = 20;
   effects = effects;
 }

@@ -20,6 +20,6 @@ export class Shelter extends ExtendedModel(BaseTech, {}) {
   unlockWhen = () => {
     return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
   };
-  powerCost = 20;
+  powerCost = 15;
   effects = effects;
 }
