@@ -9,6 +9,7 @@ export class Thaw extends ExtendedModel(BaseAction, {}) {
   displayName = 'thaw colonist';
   description = 'awaken a worker from suspended animation';
   duration = 10;
+  reverseProgressBar = false;
   inputs = [];
   outputs = [
     {

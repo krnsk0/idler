@@ -43,6 +43,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract displayName: string;
   abstract description: string;
   abstract duration: number;
+  abstract reverseProgressBar: boolean;
   abstract inputs: Array<ActionInput>; // consumed when action starts
   abstract outputs: Array<ActionOutput>; // received when action is done
   abstract basePowerProduction: number;

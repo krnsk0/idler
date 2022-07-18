@@ -9,6 +9,7 @@ export class Compress extends ExtendedModel(BaseAction, {}) {
   displayName = 'compress biomass';
   description = 'subject biomass to heat and pressure';
   duration = 2.5;
+  reverseProgressBar = false;
   inputs = [
     {
       resource: ResourceNames.BIOMASS,

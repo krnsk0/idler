@@ -15,6 +15,8 @@ interface ZoneEntityButtonProps {
   progress?: number;
   tooltipTop?: number;
   tooltipLeft?: number;
+  active?: boolean;
+  reverseProgressBar?: boolean;
 }
 
 const ZoneEntityButton = ({
@@ -23,9 +25,11 @@ const ZoneEntityButton = ({
   children,
   disabled,
   onClick,
+  active,
   progress,
   tooltipTop = 14,
   tooltipLeft = 185,
+  reverseProgressBar,
 }: ZoneEntityButtonProps) => {
   const [tooltipPosition, setTooltipPosition] = useState<
     | {
@@ -35,7 +39,13 @@ const ZoneEntityButton = ({
     | undefined
   >(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
-  const progressWidth = progress ? progress * 100 + '%' : '0%';
+  const possiblyInvertedProgress =
+    reverseProgressBar && progress !== undefined && active
+      ? 1 - progress
+      : progress;
+  const progressWidth = possiblyInvertedProgress
+    ? possiblyInvertedProgress * 100 + '%'
+    : '0%';
 
   const openTooltip = () => {
     if (containerRef.current) {

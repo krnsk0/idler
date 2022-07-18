@@ -9,6 +9,7 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   displayName = 'harvest biomass';
   description = 'collect arboraceous xenoflora';
   duration = 1;
+  reverseProgressBar = false;
   inputs = [];
   outputs = [
     {

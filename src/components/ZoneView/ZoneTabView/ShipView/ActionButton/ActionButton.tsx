@@ -57,6 +57,8 @@ function ActionButton({ action }: ActionButtonProps) {
       onClick={() => action.start()}
       progress={action.progress}
       disabled={!action.enabled}
+      active={action.active}
+      reverseProgressBar={action.reverseProgressBar}
     >
       <span>{action.displayName}</span>{' '}
       {action.showLowPowerMessage && <div css={styles.noPower}>no power</div>}

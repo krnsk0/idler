@@ -11,6 +11,7 @@ export class Generate extends ExtendedModel(BaseAction, {}) {
   description =
     'generate electrical potential from exothermic, self-perpetuating reaction';
   duration = 8;
+  reverseProgressBar = true;
   inputs = [
     {
       resource: ResourceNames.BIOMASS,
