@@ -6,7 +6,6 @@ export const styles = {
     display: flex;
     min-width: 300px;
     flex-direction: column;
-    height: 100%;
   `,
   resourcesContainer: css`
     display: flex;

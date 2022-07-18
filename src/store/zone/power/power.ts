@@ -57,7 +57,7 @@ export class Power extends Model({
   @modelAction
   unlockCheck(): void {
     if (!this.unlocked) {
-      this.unlocked = this.production > 0 || this.demand > 0;
+      this.unlocked = this.production > 0;
     }
   }
 }
