@@ -17,7 +17,7 @@ function ShipView({ zone }: ShipViewProps) {
     <>
       <div css={styles.shipOuter} id="ship-view-outer">
         <Divider text={'crashed ship'} shown={areProducersUnlocked} />
-        <div css={styles.shipColumnWrap}>
+        <div css={styles.shipColumnWrap} id="ship-column-wrap">
           <ActionButton action={zone.actions[ActionNames.HARVEST]} />
           <TechButton />
           <ActionButton action={zone.actions[ActionNames.GENERATE]} />
@@ -27,7 +27,7 @@ function ShipView({ zone }: ShipViewProps) {
       </div>
       <div css={styles.shipOuter}>
         <Divider text={'colony'} shown={areProducersUnlocked} />
-        <div css={styles.shipColumnWrap}>
+        <div css={styles.shipColumnWrap} id="ship-column-wrap">
           {zone.producers.asArray.map((building) => {
             return <ProducerButton building={building} key={building.name} />;
           })}

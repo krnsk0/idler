@@ -12,13 +12,13 @@ function ZoneView({ zone }: ZoneViewProps) {
   return (
     <div css={styles.zoneGridContainer} id="zone-outer">
       <div css={styles.zoneOuter} id="zone-outer">
-        <div css={styles.zoneBody} id="zone-body">
-          <div css={styles.zoneLeft} id="zone-left">
-            <div>
-              <h2 css={styles.zoneHeader}>{zone.name}</h2>
-            </div>
-            <ZoneTabView zone={zone} />
+        <div css={styles.zoneLeft} id="zone-left">
+          <div>
+            <h2 css={styles.zoneHeader}>{zone.name}</h2>
           </div>
+          <ZoneTabView zone={zone} />
+        </div>
+        <div css={styles.zoneRight}>
           <ResourceView zone={zone} />
         </div>
       </div>

@@ -12,6 +12,8 @@ interface ProducerButtonProps {
 }
 
 function ProducerButton({ building }: ProducerButtonProps) {
+  if (!building.unlocked) return null;
+
   return (
     <ZoneEntityButton
       tooltipTop={45}
