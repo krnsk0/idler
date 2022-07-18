@@ -1,7 +1,5 @@
-import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../../../utils/formatNumber';
-import { ActionNames } from '../../../../../store/zone/actions/actionNames';
 import { BaseAction } from '../../../../../store/zone/actions/baseAction';
 import {
   TooltipText,
@@ -17,8 +15,6 @@ function ActionButton({ action }: ActionButtonProps) {
   if (!action.unlocked) return null;
   return (
     <ZoneEntityButton
-      tooltipTop={45}
-      tooltipLeft={0}
       tooltip={
         <>
           <TooltipText italic={true} align={'center'} light={true}>

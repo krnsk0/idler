@@ -2,20 +2,19 @@ import { css } from '@emotion/react';
 import { colors } from '../../globalStyles';
 
 export const styles = {
+  zoneGridContainer: css`
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    width: 100%;
+    height: 80vh;
+  `,
   zoneOuter: css`
-    width: 75%;
-    height: 55%;
-    max-width: 800px;
-    position: absolute;
-    left: 50%;
-    top: 40%;
-    /* transform: translate(-50%, -50%); */
-    /* border: 1px solid black; */
     padding: 1.5em;
     background-color: ${colors.white};
   `,
   zoneLeft: css`
-    margin-right: 1em;
+    margin-right: 2em;
     max-width: 384px;
   `,
   zoneHeader: css`

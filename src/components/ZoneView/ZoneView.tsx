@@ -10,15 +10,17 @@ interface ZoneViewProps {
 
 function ZoneView({ zone }: ZoneViewProps) {
   return (
-    <div css={styles.zoneOuter} id="zone-outer">
-      <div css={styles.zoneBody} id="zone-body">
-        <div css={styles.zoneLeft} id="zone-left">
-          <div>
-            <h2 css={styles.zoneHeader}>{zone.name}</h2>
+    <div css={styles.zoneGridContainer} id="zone-outer">
+      <div css={styles.zoneOuter} id="zone-outer">
+        <div css={styles.zoneBody} id="zone-body">
+          <div css={styles.zoneLeft} id="zone-left">
+            <div>
+              <h2 css={styles.zoneHeader}>{zone.name}</h2>
+            </div>
+            <ZoneTabView zone={zone} />
           </div>
-          <ZoneTabView zone={zone} />
+          <ResourceView zone={zone} />
         </div>
-        <ResourceView zone={zone} />
       </div>
     </div>
   );

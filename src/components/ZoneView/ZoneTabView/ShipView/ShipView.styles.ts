@@ -4,11 +4,7 @@ export const styles = {
   shipOuter: css`
     margin-bottom: 3em;
   `,
-  shipContainer: css`
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-  `,
+
   shipColumnWrap: css`
     display: flex;
     flex-direction: row;

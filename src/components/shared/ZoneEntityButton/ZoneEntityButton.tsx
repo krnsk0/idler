@@ -24,8 +24,8 @@ const ZoneEntityButton = ({
   disabled,
   onClick,
   progress,
-  tooltipTop = 20,
-  tooltipLeft = 20,
+  tooltipTop = 40,
+  tooltipLeft = 0,
 }: ZoneEntityButtonProps) => {
   const [tooltipPosition, setTooltipPosition] = useState<
     | {
