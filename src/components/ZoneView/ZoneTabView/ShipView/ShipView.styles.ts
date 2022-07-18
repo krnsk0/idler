@@ -8,11 +8,10 @@ export const styles = {
     align-items: center;
   `,
   shipColumnWrap: css`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    width: 100%;
+    display: grid;
+    grid-template-rows: repeat(auto, auto);
+    grid-template-columns: repeat(2, auto);
     gap: 0.6em;
   `,
 };

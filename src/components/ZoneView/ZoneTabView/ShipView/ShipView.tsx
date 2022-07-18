@@ -6,6 +6,7 @@ import { ActionNames } from '../../../../store/zone/actions/actionNames';
 import { Divider } from '../../../shared/Divider/Divider';
 import ProducerButton from './ProducerButton/ProducerButton';
 import { styles } from './ShipView.styles';
+import { ProducerNames } from '../../../../store/zone/producers/producerNames';
 
 interface ShipViewProps {
   zone: Zone;
@@ -28,9 +29,10 @@ function ShipView({ zone }: ShipViewProps) {
       <div css={styles.shipOuter}>
         <Divider text={'colony'} shown={areProducersUnlocked} />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
-          {zone.producers.asArray.map((building) => {
+          <ProducerButton building={zone.producers[ProducerNames.FARM]} />
+          {/* {zone.producers.asArray.map((building) => {
             return <ProducerButton building={building} key={building.name} />;
-          })}
+          })} */}
         </div>
       </div>
     </>
