@@ -2,13 +2,10 @@ import { css } from '@emotion/react';
 import { colors } from '../../../globalStyles';
 
 export const styles = {
-  tooltipContainer: css`
-    position: relative;
-  `,
   tooltipOuter: (top: number, left: number, width: number) => css`
     border: 1px solid black;
     padding: 0.4em 0.4em 0.4em 0.4em;
-    position: absolute;
+    position: fixed;
     width: ${width}px;
     left: ${left}px;
     top: ${top}px;

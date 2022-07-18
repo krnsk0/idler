@@ -5,23 +5,21 @@ import { styles } from './Tooltip.styles';
 interface TooltipProps {
   children: React.ReactNode;
   styleOverride?: SerializedStyles;
-  top?: number;
-  left?: number;
+  top: number;
+  left: number;
   width?: number;
 }
 
 const Tooltip = ({
   children,
   styleOverride,
-  top = 12,
-  left = 190,
+  top,
+  left,
   width = 200,
 }: TooltipProps) => {
   return (
-    <div css={styles.tooltipContainer} id="tooltip-container">
-      <div css={[styles.tooltipOuter(top, left, width), styleOverride]}>
-        {children}
-      </div>
+    <div css={[styles.tooltipOuter(top, left, width), styleOverride]}>
+      {children}
     </div>
   );
 };
