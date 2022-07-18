@@ -10,9 +10,9 @@ interface ZoneViewProps {
 
 function ZoneView({ zone }: ZoneViewProps) {
   return (
-    <div css={styles.zoneOuter}>
-      <div css={styles.zoneBody}>
-        <div css={styles.zoneLeft}>
+    <div css={styles.zoneOuter} id="zone-outer">
+      <div css={styles.zoneBody} id="zone-body">
+        <div css={styles.zoneLeft} id="zone-left">
           <div>
             <h2 css={styles.zoneHeader}>{zone.name}</h2>
           </div>

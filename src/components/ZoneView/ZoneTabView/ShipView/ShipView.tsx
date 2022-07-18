@@ -15,12 +15,8 @@ function ShipView({ zone }: ShipViewProps) {
   const areProducersUnlocked = !!zone.producers.unlockedAsArray.length;
   return (
     <>
-      <div css={styles.shipOuter}>
-        <Divider
-          text={'crashed ship'}
-          width={374}
-          shown={areProducersUnlocked}
-        />
+      <div css={styles.shipOuter} id="ship-view-outer">
+        <Divider text={'crashed ship'} shown={areProducersUnlocked} />
         <div css={styles.shipContainer}>
           <div css={styles.shipColumnWrap}>
             <ActionButton action={zone.actions[ActionNames.HARVEST]} />
@@ -32,10 +28,10 @@ function ShipView({ zone }: ShipViewProps) {
         </div>
       </div>
       <div css={styles.shipOuter}>
-        <Divider text={'colony'} width={374} shown={areProducersUnlocked} />
+        <Divider text={'colony'} shown={areProducersUnlocked} />
         <div css={styles.shipContainer}>
           <div css={styles.shipColumnWrap}>
-            {zone.producers.unlockedAsArray.map((building) => {
+            {zone.producers.asArray.map((building) => {
               return <ProducerButton building={building} key={building.name} />;
             })}
           </div>
