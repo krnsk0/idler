@@ -6,7 +6,6 @@ import { ActionNames } from '../../../../store/zone/actions/actionNames';
 import { Divider } from '../../../shared/Divider/Divider';
 import ProducerButton from './ProducerButton/ProducerButton';
 import { styles } from './ShipView.styles';
-import { ProducerNames } from '../../../../store/zone/producers/producerNames';
 
 interface ShipViewProps {
   zone: Zone;
@@ -22,17 +21,16 @@ function ShipView({ zone }: ShipViewProps) {
           <ActionButton action={zone.actions[ActionNames.HARVEST]} />
           <TechButton />
           <ActionButton action={zone.actions[ActionNames.GENERATE]} />
-          <ActionButton action={zone.actions[ActionNames.THAW]} />
           <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
+          <ActionButton action={zone.actions[ActionNames.THAW]} />
         </div>
       </div>
       <div css={styles.shipOuter}>
         <Divider text={'colony'} shown={areProducersUnlocked} />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
-          <ProducerButton building={zone.producers[ProducerNames.FARM]} />
-          {/* {zone.producers.asArray.map((building) => {
+          {zone.producers.asArray.map((building) => {
             return <ProducerButton building={building} key={building.name} />;
-          })} */}
+          })}
         </div>
       </div>
     </>

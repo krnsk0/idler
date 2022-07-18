@@ -49,7 +49,7 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
         {zone.jobs.anyUnlocked && (
           <>
             <TabButton
-              text="crashed ship"
+              text="colony"
               tabName={ZoneTabNames.ACTIONS}
               selectedTab={selectedTab}
               setSelectedTab={setSelectedTab}

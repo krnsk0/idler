@@ -8,8 +8,8 @@ export const styles = {
   `,
   tabRow: css`
     font-size: 1.1em;
-    margin-top: 1em;
-    height: 1.1em;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
   `,
   separator: css`
     margin-left: 0.5em;
