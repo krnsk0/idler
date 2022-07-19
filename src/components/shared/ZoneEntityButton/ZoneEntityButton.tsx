@@ -13,11 +13,12 @@ interface ZoneEntityButtonProps {
   children: React.ReactNode | EmotionJSX.Element;
   onClick?: () => void;
   progress?: number;
-  tooltipTop?: number;
-  tooltipLeft?: number;
   active?: boolean;
   reverseProgressBar?: boolean;
 }
+
+const tooltipTop = 14;
+const tooltipLeft = 185;
 
 const ZoneEntityButton = ({
   styleOverride,
@@ -27,8 +28,6 @@ const ZoneEntityButton = ({
   onClick,
   active,
   progress,
-  tooltipTop = 14,
-  tooltipLeft = 185,
   reverseProgressBar,
 }: ZoneEntityButtonProps) => {
   const [tooltipPosition, setTooltipPosition] = useState<

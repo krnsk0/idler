@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
 import Tooltip, {
@@ -13,17 +13,39 @@ interface JobRowProps {
   job: BaseJob;
 }
 
+const tooltipTop = 0;
+const tooltipLeft = 200;
+
 const JobRow = ({ job }: JobRowProps) => {
-  const [hovered, setHovered] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState<
+    | {
+        x: number;
+        y: number;
+      }
+    | undefined
+  >(undefined);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const openTooltip = () => {
+    if (containerRef.current) {
+      const { x, y } = containerRef.current.getBoundingClientRect();
+      setTooltipPosition({ x: x + tooltipLeft, y: y + tooltipTop });
+    }
+  };
+
+  const closeTooltip = () => {
+    setTooltipPosition(undefined);
+  };
 
   return (
     <div
       css={styles.jobRowContainer}
-      onPointerEnter={() => setHovered(true)}
-      onPointerLeave={() => setHovered(false)}
+      onPointerEnter={() => openTooltip()}
+      onPointerLeave={() => closeTooltip()}
+      ref={containerRef}
     >
-      {hovered && (
-        <Tooltip top={0} left={200} width={200}>
+      {tooltipPosition && (
+        <Tooltip top={tooltipPosition.y} left={tooltipPosition.x} width={200}>
           <TooltipText italic={true} align={'center'} light={true}>
             {job.description}
           </TooltipText>
