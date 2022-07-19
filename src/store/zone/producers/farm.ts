@@ -31,6 +31,6 @@ export class Farm extends ExtendedModel(BaseProducer, {}) {
       quantityPerSecond: 0.1,
     },
   ];
-  storage = [{ resource: ResourceNames.NUTRIENTS, quantity: 10 }];
+  storage = [];
   unlockWhen = () => this.isUnlockedByTech;
 }

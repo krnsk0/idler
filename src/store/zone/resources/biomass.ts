@@ -6,6 +6,6 @@ import { ResourceNames } from './resourceNames';
 export class Biomass extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.BIOMASS;
   displayName = 'biomass';
-  initialCap = 10;
+  initialCap = 20;
   unlockWhen = () => this.quantity > 0;
 }

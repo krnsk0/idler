@@ -6,6 +6,6 @@ import { ResourceNames } from './resourceNames';
 export class Nutrients extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.NUTRIENTS;
   displayName = 'nutrients';
-  initialCap = 0;
+  initialCap = 5;
   unlockWhen = () => this.quantity > 0;
 }
