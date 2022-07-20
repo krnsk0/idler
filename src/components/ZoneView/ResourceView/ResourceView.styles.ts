@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css, keyframes } from '@emotion/react';
 import { colors } from '../../../globalStyles';
 
 export const styles = {
@@ -27,5 +27,8 @@ export const styles = {
   `,
   cap: css`
     color: ${colors.grey};
+  `,
+  highlight: css`
+    background-color: ${colors.white};
   `,
 };

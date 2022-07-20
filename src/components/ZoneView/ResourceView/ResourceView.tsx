@@ -56,7 +56,9 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
                     </span>
                   ))}
                 <span css={styles.quantityContainer}>
-                  <span>{formatNumber(resource.quantity)}</span>
+                  <span css={styles.highlight}>
+                    {formatNumber(resource.quantity)}
+                  </span>
                   <span css={styles.cap}>
                     /{formatNumber(resource.currentCap, { digits: 0 })}
                   </span>
