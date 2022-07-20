@@ -1,5 +1,6 @@
-import { model, ExtendedModel } from 'mobx-keystone';
+import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
+import { getResources } from '../resources/resources';
 import { BaseProducer } from './baseProducer';
 import { ProducerNames } from './producerNames';
 

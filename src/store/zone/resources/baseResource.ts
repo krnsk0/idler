@@ -79,10 +79,10 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @modelAction
   decrease(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick -= quantity;
-    if (this.quantity - quantity < 0)
-      throw new Error(
-        'resource has gone negative; caller should check for this',
-      );
-    this.quantity -= quantity;
+    if (this.quantity - quantity < 0) {
+      this.quantity = 0;
+    } else {
+      this.quantity -= quantity;
+    }
   }
 }

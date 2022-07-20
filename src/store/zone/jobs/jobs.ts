@@ -1,4 +1,11 @@
-import { findParent, model, Model, tProp, types } from 'mobx-keystone';
+import {
+  findParent,
+  model,
+  Model,
+  modelAction,
+  tProp,
+  types,
+} from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { JobNames } from './jobNames';
@@ -56,6 +63,33 @@ export class Jobs extends Model({
     }
 
     return this.totalColonists - assigned;
+  }
+
+  /**
+   * This handles colonists consuming food every tick
+   */
+  @modelAction
+  tick(delta: number): void {
+    const colonists = getResources(this)[ResourceNames.COLONISTS];
+    const nutrients = getResources(this)[ResourceNames.NUTRIENTS];
+    const foodConsumptionPerWorker = 0.5;
+    const chanceOfEachWorkerDyingPerSecond = 0.25; // percent
+
+    const amountToEat = colonists.quantity * foodConsumptionPerWorker * delta;
+
+    nutrients.decrease(amountToEat);
+
+    if (nutrients.quantity <= 0 && colonists.quantity > 0) {
+      const chanceOfAWorkerDyingThisTick =
+        delta * chanceOfEachWorkerDyingPerSecond;
+
+      for (let i = 0; i < colonists.quantity; i += 1) {
+        const diceRoll = Math.random();
+        if (diceRoll < chanceOfAWorkerDyingThisTick) {
+          colonists.decrease(1, { untracked: true });
+        }
+      }
+    }
   }
 }
 

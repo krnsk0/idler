@@ -7,7 +7,8 @@ import { BaseAction } from './baseAction';
 export class Thaw extends ExtendedModel(BaseAction, {}) {
   name = ActionNames.THAW;
   displayName = 'thaw colonist';
-  description = 'awaken a worker from suspended animation';
+  description =
+    'awaken a worker from suspended animation. may starve if no food available';
   duration = 10;
   reverseProgressBar = false;
   inputs = [];
