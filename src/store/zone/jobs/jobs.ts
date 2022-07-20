@@ -72,10 +72,11 @@ export class Jobs extends Model({
   tick(delta: number): void {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
     const nutrients = getResources(this)[ResourceNames.NUTRIENTS];
-    const foodConsumptionPerWorker = 0.5;
+    const foodConsumptionPerWorkerPerSec = 0.2;
     const chanceOfEachWorkerDyingPerSecond = 0.25; // percent
 
-    const amountToEat = colonists.quantity * foodConsumptionPerWorker * delta;
+    const amountToEat =
+      colonists.quantity * foodConsumptionPerWorkerPerSec * delta;
 
     nutrients.decrease(amountToEat);
 
