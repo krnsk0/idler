@@ -41,18 +41,20 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           styleOverride={styles.resourcesContainer}
         >
           {zone.resources.unlockedAsArray.map((resource) => {
+            const displayFudge = 0.000001;
             return (
               <div css={styles.resourceRow} key={resource.name}>
                 <span>{resource.displayName}</span>
 
-                {!!resource.estimatedRate && (
-                  <span css={styles.quantityPerSecond}>
-                    {formatNumber(resource.estimatedRate, {
-                      showSign: true,
-                    })}
-                    /s
-                  </span>
-                )}
+                {resource.estimatedRate > displayFudge ||
+                  (resource.estimatedRate < -displayFudge && (
+                    <span css={styles.quantityPerSecond}>
+                      {formatNumber(resource.estimatedRate, {
+                        showSign: true,
+                      })}
+                      /s
+                    </span>
+                  ))}
                 <span css={styles.quantityContainer}>
                   <span>{formatNumber(resource.quantity)}</span>
                   <span css={styles.cap}>
