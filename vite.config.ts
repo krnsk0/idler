@@ -15,7 +15,7 @@ export default defineConfig({
     },
   },
   server: {
-    open: '/',
+    open: '/?debug=true',
   },
   test: {
     environment: 'happy-dom',

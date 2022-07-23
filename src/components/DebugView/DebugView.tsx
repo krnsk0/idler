@@ -8,6 +8,10 @@ interface DebugProps {}
 
 const DebugView = () => {
   const root = useStore();
+  const urlParams = new URLSearchParams(window.location.search);
+  const debug = urlParams.get('debug');
+
+  if (!debug) return null;
 
   return (
     <div css={styles.debug}>

@@ -43,7 +43,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           styleOverride={styles.resourcesContainer}
         >
           {zone.resources.unlockedAsArray.map((resource) => {
-            return <ResourceRow resource={resource} />;
+            return <ResourceRow resource={resource} key={resource.name} />;
           })}
         </BorderContainer>
       )}
