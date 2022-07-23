@@ -9,7 +9,7 @@ export const styles = {
     align-items: flex-start;
   `,
   unassigned: css`
-    margin-top: 1em;
+    margin-top: 0em;
     margin-bottom: 2em;
   `,
 };

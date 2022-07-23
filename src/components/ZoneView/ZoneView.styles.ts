@@ -7,7 +7,7 @@ export const styles = {
     height: 70vh;
   `,
   zoneOuter: css`
-    border: 1px solid ${colors.black};
+    /* border: 1px solid ${colors.black}; */
     padding: 1em;
     background-color: ${colors.white};
     display: flex;
