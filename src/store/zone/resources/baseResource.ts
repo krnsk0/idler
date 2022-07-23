@@ -15,6 +15,8 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   abstract initialCap: number;
   abstract unlockWhen: () => boolean;
   private changeSinceLastTick = 0;
+  highlightQuantity = false;
+  highlightQuantityAnimationDuration = 500;
 
   /**
    * What is the storage cap for this resource?

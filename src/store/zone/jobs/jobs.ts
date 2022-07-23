@@ -66,7 +66,9 @@ export class Jobs extends Model({
   }
 
   /**
-   * This handles colonists consuming food every tick
+   * This handles colonists consuming food every tick and possible
+   * death of colonists. Colonists have a chance of dying when there is
+   * no food.
    */
   @modelAction
   tick(delta: number): void {

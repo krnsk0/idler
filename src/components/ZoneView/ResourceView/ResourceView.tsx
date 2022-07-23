@@ -3,6 +3,7 @@ import { formatNumber } from '../../../utils/formatNumber';
 import BorderContainer from '../../shared/BorderContainer/BorderContainer';
 import { Zone } from '../../../store/zone/zone';
 import { styles } from './ResourceView.styles';
+import ResourceRow from './ResourceRow/ResourceRow';
 
 interface ResourceViewProps {
   zone: Zone;
@@ -13,6 +14,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
   const satisfactionPercentage = formatNumber(satisfaction * 100, {
     digits: 0,
   });
+
   return (
     <div css={styles.paneContainer}>
       {zone.power.unlocked && (
@@ -25,11 +27,11 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           }
           styleOverride={styles.resourcesContainer}
         >
-          <div css={styles.resourceRow}>
+          <div css={styles.powerRow}>
             <span>production</span>
             <span>{zone.power.production}</span>
           </div>
-          <div css={styles.resourceRow}>
+          <div css={styles.powerRow}>
             <span>demand</span>
             <span>{zone.power.demand}</span>
           </div>
@@ -41,30 +43,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           styleOverride={styles.resourcesContainer}
         >
           {zone.resources.unlockedAsArray.map((resource) => {
-            const displayFudge = 0.000001;
-            return (
-              <div css={styles.resourceRow} key={resource.name}>
-                <span>{resource.displayName}</span>
-
-                {resource.estimatedRate > displayFudge ||
-                  (resource.estimatedRate < -displayFudge && (
-                    <span css={styles.quantityPerSecond}>
-                      {formatNumber(resource.estimatedRate, {
-                        showSign: true,
-                      })}
-                      /s
-                    </span>
-                  ))}
-                <span css={styles.quantityContainer}>
-                  <span css={styles.highlight}>
-                    {formatNumber(resource.quantity)}
-                  </span>
-                  <span css={styles.cap}>
-                    /{formatNumber(resource.currentCap, { digits: 0 })}
-                  </span>
-                </span>
-              </div>
-            );
+            return <ResourceRow resource={resource} />;
           })}
         </BorderContainer>
       )}
