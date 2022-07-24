@@ -65,7 +65,7 @@ const JobRow = ({ job }: JobRowProps) => {
         </Tooltip>
       )}
       <div css={styles.name}>{job.displayName}</div>
-      <div css={styles.workers}>{job.workers}</div>
+      <div css={styles.workers}>{job.quantity}</div>
       <div css={styles.buttons}>
         <button
           type="button"

@@ -24,7 +24,7 @@ interface JobEffectDisplay {
 }
 
 export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
-  workers: tProp(types.number, 0),
+  quantity: tProp(types.number, 0),
   unlocked: tProp(types.boolean, false),
 }) {
   abstract name: JobNames;
@@ -39,7 +39,7 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   assign(): void {
-    this.workers += 1;
+    this.quantity += 1;
   }
 
   /**
@@ -47,7 +47,7 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   unassign(): void {
-    this.workers -= 1;
+    this.quantity -= 1;
   }
 
   /**
@@ -76,12 +76,13 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get canDecrement(): boolean {
-    return this.workers > 0;
+    return this.quantity > 0;
   }
 
   /**
-   *
+   * For use in tooltips
    */
+  @computed
   get displayEffects(): Array<JobEffectDisplay> {
     return [
       ...this.inputs.map(({ resource, quantityPerSecond }) => {
@@ -105,7 +106,7 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
   @modelAction
   increment(): void {
     if (this.canIncrement) {
-      this.workers += 1;
+      this.quantity += 1;
     }
   }
 
@@ -115,7 +116,7 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
   @modelAction
   decrement(): void {
     if (this.canDecrement) {
-      this.workers -= 1;
+      this.quantity -= 1;
     }
   }
   /**
@@ -128,7 +129,7 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
   tick(delta: number): void {
     this.outputs.forEach((product) => {
       const potentialProduction =
-        product.quantityPerSecond * this.workers * delta;
+        product.quantityPerSecond * this.quantity * delta;
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });

@@ -60,7 +60,7 @@ export class Jobs extends Model({
   get unassigned(): number {
     let assigned = 0;
     for (const job of this.asArray) {
-      assigned += job.workers;
+      assigned += job.quantity;
     }
 
     return this.totalColonists - assigned;
