@@ -1,37 +1,17 @@
 import { ExtendedModel, tProp, types, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { ResourceNames } from '../resources/resourceNames';
 import { JobNames } from './jobNames';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
 import { getJobs } from './jobs';
-import { getResources } from '../resources/resources';
-import { ZoneEntity } from '../zoneEntity';
+import { ProducerConsumer } from '../producerConsumer';
 
-interface JobOutput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-interface JobInput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-interface JobEffectDisplay {
-  resourceDisplayName: string;
-  quantityPerSecond: number;
-}
-
-export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
-  quantity: tProp(types.number, 0),
+export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {
   unlocked: tProp(types.boolean, false),
 }) {
   abstract name: JobNames;
   abstract displayName: string;
   abstract description: string;
-  abstract outputs: Array<JobOutput>;
-  abstract inputs: Array<JobInput>;
   abstract unlockWhen: () => boolean;
 
   /**
@@ -80,27 +60,6 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * For use in tooltips
-   */
-  @computed
-  get displayEffects(): Array<JobEffectDisplay> {
-    return [
-      ...this.inputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: getResources(this)[resource].displayName,
-          quantityPerSecond: -quantityPerSecond,
-        };
-      }),
-      ...this.outputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: getResources(this)[resource].displayName,
-          quantityPerSecond,
-        };
-      }),
-    ];
-  }
-
-  /**
    * Add workers to this job
    */
   @modelAction
@@ -121,18 +80,10 @@ export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
   }
   /**
    * Attempts to run production
-   * TODO: only run when we have enough inputs
-   * TODO: stop production when hitting maximums
-   *
    */
   @modelAction
   tick(delta: number): void {
-    this.outputs.forEach((product) => {
-      const potentialProduction =
-        product.quantityPerSecond * this.quantity * delta;
-      const resourceModel = this.zoneResources[product.resource];
-      resourceModel.increase(potentialProduction);
-    });
+    this.runProduction(delta);
   }
 
   /**

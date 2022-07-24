@@ -1,12 +1,6 @@
-import {
-  modelAction,
-  ExtendedModel,
-  tProp,
-  types,
-  getSnapshot,
-} from 'mobx-keystone';
+import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { ZoneEntity } from '../zoneEntity';
+import { ProducerConsumer } from '../producerConsumer';
 import { ResourceNames } from '../resources/resourceNames';
 import { ProducerNames } from './producerNames';
 import { getResources } from '../resources/resources';
@@ -28,29 +22,13 @@ interface PurchaseCostDisplay {
   quantity: number;
 }
 
-interface ProducerOutput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-interface ProducerInput {
-  resource: ResourceNames;
-  quantityPerSecond: number;
-}
-
-interface ProducerEffectDisplay {
-  resourceDisplayName: string;
-  quantityPerSecond: number;
-}
-
 interface ProducerStorageDispay {
   resourceDisplayName: string;
   quantity: number;
 }
 
-export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
+export abstract class BaseProducer extends ExtendedModel(ProducerConsumer, {
   unlocked: tProp(types.boolean, false),
-  quantity: tProp(types.number, 0),
 }) {
   abstract name: ProducerNames;
   abstract displayName: string;
@@ -59,8 +37,6 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   abstract storage: Array<Storage>;
   abstract baseCost: Array<PurchaseCost>;
   abstract costExponent: number;
-  abstract outputs: Array<ProducerOutput>;
-  abstract inputs: Array<ProducerInput>;
   abstract unlockWhen: () => boolean;
 
   /**
@@ -109,27 +85,6 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Effects with displayable names
-   */
-  @computed
-  get displayEffects(): Array<ProducerEffectDisplay> {
-    return [
-      ...this.inputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: getResources(this)[resource].displayName,
-          quantityPerSecond: -quantityPerSecond,
-        };
-      }),
-      ...this.outputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: getResources(this)[resource].displayName,
-          quantityPerSecond,
-        };
-      }),
-    ];
-  }
-
-  /**
    * Storage with displayable names
    */
   @computed
@@ -170,17 +125,11 @@ export abstract class BaseProducer extends ExtendedModel(ZoneEntity, {
 
   /**
    * Attempts to run production
-   * TODO: only run when we have enough inputs
-   * TODO: stop production when hitting maximums
+
    */
   @modelAction
   tick(delta: number): void {
-    this.outputs.forEach((product) => {
-      const potentialProduction =
-        product.quantityPerSecond * this.quantity * delta;
-      const resourceModel = this.zoneResources[product.resource];
-      resourceModel.increase(potentialProduction);
-    });
+    this.runProduction(delta);
   }
 
   /**
