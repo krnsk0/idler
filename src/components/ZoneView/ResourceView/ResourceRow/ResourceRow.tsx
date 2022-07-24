@@ -2,7 +2,10 @@ import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { BaseResource } from '../../../../store/zone/resources/baseResource';
 import { formatNumber } from '../../../../utils/formatNumber';
-import Tooltip, { TooltipDivider } from '../../../shared/Tooltip/Tooltip';
+import Tooltip, {
+  TooltipDivider,
+  TooltipText,
+} from '../../../shared/Tooltip/Tooltip';
 import { styles } from './ResourceRow.styles';
 
 interface ResourceRowProps {
@@ -23,8 +26,38 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         tooltipLeft={10}
         width={240}
       >
-        <TooltipDivider text="consumption" />
-        <TooltipDivider text="production" />
+        {!!resource.consumptionSummary.length && (
+          <>
+            <TooltipDivider text="production" />
+            <TooltipText>
+              {resource.productionSummary.map((entry) => {
+                return (
+                  <div>
+                    <span>{entry.producerQuantity}x </span>
+                    <span>{entry.producerDisplayName}: </span>
+                    <span>{entry.quantityPerSecond}</span>
+                  </div>
+                );
+              })}
+            </TooltipText>
+          </>
+        )}
+        {!!resource.productionSummary.length && (
+          <>
+            <TooltipDivider text="production" />
+            <TooltipText>
+              {resource.productionSummary.map((entry) => {
+                return (
+                  <div>
+                    <span>{entry.producerQuantity}x </span>
+                    <span>{entry.producerDisplayName}: </span>
+                    <span>{entry.quantityPerSecond}</span>
+                  </div>
+                );
+              })}
+            </TooltipText>
+          </>
+        )}
         <TooltipDivider text="storage" />
       </Tooltip>
       <span css={styles.displayName}>{resource.displayName}</span>

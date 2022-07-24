@@ -52,17 +52,46 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
    * Estimate production per second
    */
   @computed
-  get productionPerSecond(): ProductionConsumptionDisplay[] {
+  get productionSummary(): ProductionConsumptionDisplay[] {
     const productionSummary: ProductionConsumptionDisplay[] = [];
     [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
       (producer) => {
-        producer.productionPerSecond.filter(
+        const production = producer.productionPerSecond.find(
           ({ resource }) => resource === this.name,
         );
+        if (production) {
+          productionSummary.push({
+            producerDisplayName: producer.displayName,
+            producerQuantity: producer.quantity,
+            quantityPerSecond: production.quantityPerSecond,
+          });
+        }
       },
     );
-
     return productionSummary;
+  }
+
+  /**
+   * Estimate production per second
+   */
+  @computed
+  get consumptionSummary(): ProductionConsumptionDisplay[] {
+    const consumptionSummary: ProductionConsumptionDisplay[] = [];
+    [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
+      (producer) => {
+        const production = producer.consumptionPerSecond.find(
+          ({ resource }) => resource === this.name,
+        );
+        if (production) {
+          consumptionSummary.push({
+            producerDisplayName: producer.displayName,
+            producerQuantity: producer.quantity,
+            quantityPerSecond: production.quantityPerSecond,
+          });
+        }
+      },
+    );
+    return consumptionSummary;
   }
 
   /**
