@@ -20,7 +20,7 @@ export class Jobs extends Model({
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
 }) {
   /**
-   * Returns an iterable list of the producer models
+   * Returns an iterable list of the job models
    */
   @computed
   get asArray() {

@@ -5,13 +5,13 @@ import { BuildingNames } from './buildingNames';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
 
-@model('Producers')
+@model('Buildings')
 export class Buildings extends Model({
   [BuildingNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
   [BuildingNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
   /**
-   * Returns an iterable list of the producer models
+   * Returns an iterable list of the building models
    */
   @computed
   get asArray() {

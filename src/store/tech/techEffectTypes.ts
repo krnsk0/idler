@@ -5,14 +5,14 @@ import { ResourceNames } from '../zone/resources/resourceNames';
 
 export enum TechEffectNames {
   RESOURCE_UNLOCK = 'RESOURCE_UNLOCK',
-  PRODUCER_UNLOCK = 'PRODUCER_UNLOCK',
+  BUILDING_UNLOCK = 'BUILDING_UNLOCK',
   ACTION_UNLOCK = 'ACTION_UNLOCK',
   JOB_UNLOCK = 'JOB_UNLOCK',
 }
 
-export interface ProducerUnlockEffect {
-  kind: TechEffectNames.PRODUCER_UNLOCK;
-  producerName: BuildingNames;
+export interface BuildingUnlockEffect {
+  kind: TechEffectNames.BUILDING_UNLOCK;
+  buildingName: BuildingNames;
 }
 export interface ActionUnlockEffect {
   kind: TechEffectNames.ACTION_UNLOCK;
@@ -30,6 +30,6 @@ export interface JobUnlockEffect {
 
 export type TechEffect =
   | ActionUnlockEffect
-  | ProducerUnlockEffect
+  | BuildingUnlockEffect
   | ResourceUnlockEffect
   | JobUnlockEffect;

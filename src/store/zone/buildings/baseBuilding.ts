@@ -22,7 +22,7 @@ interface PurchaseCostDisplay {
   quantity: number;
 }
 
-interface ProducerStorageDispay {
+interface BuildingStorageDisplay {
   resourceDisplayName: string;
   quantity: number;
 }
@@ -41,7 +41,7 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
 
   /**
    * Given the name of a resource, tells the caller how much of that resource
-   * this producer can store
+   * this building can store
    */
   getStorageAmountByKey(resourceName: ResourceNames): number {
     const entry = this.storage.find((entry) => entry.resource === resourceName);
@@ -88,7 +88,7 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
    * Storage with displayable names
    */
   @computed
-  get displayStorage(): Array<ProducerStorageDispay> {
+  get displayStorage(): Array<BuildingStorageDisplay> {
     return this.storage.map(({ resource, quantity }) => {
       return {
         resourceDisplayName: getResources(this)[resource].displayName,
@@ -104,8 +104,8 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
   get isUnlockedByTech(): boolean {
     return !!getTech(this).allTechEffects.find((effect) => {
       return (
-        effect.kind === TechEffectNames.PRODUCER_UNLOCK &&
-        effect.producerName === this.name
+        effect.kind === TechEffectNames.BUILDING_UNLOCK &&
+        effect.buildingName === this.name
       );
     });
   }

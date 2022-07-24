@@ -7,8 +7,8 @@ import { TechNames } from './techNames';
 
 const effects: TechEffect[] = [
   {
-    kind: TechEffectNames.PRODUCER_UNLOCK,
-    producerName: BuildingNames.HABITAT,
+    kind: TechEffectNames.BUILDING_UNLOCK,
+    buildingName: BuildingNames.HABITAT,
   },
 ];
 

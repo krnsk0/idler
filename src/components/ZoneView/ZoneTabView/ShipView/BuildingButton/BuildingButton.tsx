@@ -7,11 +7,11 @@ import {
 } from '../../../../shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 
-interface ProducerButtonProps {
+interface BuildingButtonProps {
   building: BaseBuilding;
 }
 
-function ProducerButton({ building }: ProducerButtonProps) {
+function BuildingButton({ building }: BuildingButtonProps) {
   if (!building.unlocked) return null;
 
   return (
@@ -73,4 +73,4 @@ function ProducerButton({ building }: ProducerButtonProps) {
   );
 }
 
-export default observer(ProducerButton);
+export default observer(BuildingButton);
