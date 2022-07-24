@@ -13,57 +13,35 @@ interface JobRowProps {
   job: BaseJob;
 }
 
-const tooltipTop = 0;
-const tooltipLeft = 200;
-
 const JobRow = ({ job }: JobRowProps) => {
-  const [tooltipPosition, setTooltipPosition] = useState<
-    | {
-        x: number;
-        y: number;
-      }
-    | undefined
-  >(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const openTooltip = () => {
-    if (containerRef.current) {
-      const { x, y } = containerRef.current.getBoundingClientRect();
-      setTooltipPosition({ x: x + tooltipLeft, y: y + tooltipTop });
-    }
-  };
-
-  const closeTooltip = () => {
-    setTooltipPosition(undefined);
-  };
-
   return (
-    <div
-      css={styles.jobRowContainer}
-      onPointerEnter={() => openTooltip()}
-      onPointerLeave={() => closeTooltip()}
-      ref={containerRef}
-    >
-      {tooltipPosition && (
-        <Tooltip top={tooltipPosition.y} left={tooltipPosition.x} width={200}>
-          <TooltipText italic={true} align={'center'} light={true}>
-            {job.description}
-          </TooltipText>
-          <TooltipDivider text="effects" />
-          <TooltipText>
-            {job.displayEffects.map(
-              ({ resourceDisplayName, quantityPerSecond }) => {
-                return (
-                  <div key={resourceDisplayName}>
-                    {resourceDisplayName}:{' '}
-                    {formatNumber(quantityPerSecond, { showSign: true })}/sec
-                  </div>
-                );
-              },
-            )}
-          </TooltipText>
-        </Tooltip>
-      )}
+    <div css={styles.jobRowContainer} ref={containerRef}>
+      <Tooltip
+        containerRef={containerRef}
+        tooltipTop={0}
+        tooltipLeft={200}
+        width={200}
+      >
+        <TooltipText italic={true} align={'center'} light={true}>
+          {job.description}
+        </TooltipText>
+        <TooltipDivider text="effects" />
+        <TooltipText>
+          {job.displayEffects.map(
+            ({ resourceDisplayName, quantityPerSecond }) => {
+              return (
+                <div key={resourceDisplayName}>
+                  {resourceDisplayName}:{' '}
+                  {formatNumber(quantityPerSecond, { showSign: true })}/sec
+                </div>
+              );
+            },
+          )}
+        </TooltipText>
+      </Tooltip>
+
       <div css={styles.name}>{job.displayName}</div>
       <div css={styles.workers}>{job.quantity}</div>
       <div css={styles.buttons}>

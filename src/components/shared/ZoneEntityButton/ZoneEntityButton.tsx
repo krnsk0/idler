@@ -38,16 +38,15 @@ const ZoneEntityButton = ({
 
   return (
     <>
-      {
-        <Tooltip
-          containerRef={containerRef}
-          tooltipTop={14}
-          tooltipLeft={185}
-          width={200}
-        >
-          {tooltip}
-        </Tooltip>
-      }
+      <Tooltip
+        containerRef={containerRef}
+        tooltipTop={14}
+        tooltipLeft={185}
+        width={200}
+      >
+        {tooltip}
+      </Tooltip>
+
       <div
         css={[styles.buttonContainer, styleOverride]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}

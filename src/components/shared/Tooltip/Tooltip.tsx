@@ -1,30 +1,65 @@
 import { SerializedStyles } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
+import { useEffect, useState } from 'react';
 import { styles } from './Tooltip.styles';
 
 interface TooltipProps {
+  containerRef: React.RefObject<HTMLDivElement>;
   children: React.ReactNode;
-  styleOverride?: SerializedStyles;
-  top: number;
-  left: number;
+  tooltipTop: number;
+  tooltipLeft: number;
   width?: number;
 }
 
 const Tooltip = ({
+  containerRef,
   children,
-  styleOverride,
-  top,
-  left,
+  tooltipTop,
+  tooltipLeft,
   width = 200,
 }: TooltipProps) => {
+  const [tooltipPosition, setTooltipPosition] = useState<
+    | {
+        x: number;
+        y: number;
+      }
+    | undefined
+  >(undefined);
+
+  const openTooltip = () => {
+    if (containerRef.current) {
+      const { x, y } = containerRef.current.getBoundingClientRect();
+      setTooltipPosition({ x: x + tooltipLeft, y: y + tooltipTop });
+    }
+  };
+
+  const closeTooltip = () => {
+    setTooltipPosition(undefined);
+  };
+
+  useEffect(() => {
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener('pointerenter', openTooltip);
+      container.addEventListener('pointerleave', closeTooltip);
+    }
+    () => {
+      if (container) {
+        container.removeEventListener('pointerenter', openTooltip);
+        container.removeEventListener('pointerleave', closeTooltip);
+      }
+    };
+  }, []);
+
+  if (!tooltipPosition) return null;
   return (
-    <div css={[styles.tooltipOuter(top, left, width), styleOverride]}>
+    <div css={styles.tooltipOuter(tooltipPosition.y, tooltipPosition.x, width)}>
       {children}
     </div>
   );
 };
 
-export default observer(Tooltip);
+export default Tooltip;
 
 interface TooltipText {
   children: React.ReactNode;
