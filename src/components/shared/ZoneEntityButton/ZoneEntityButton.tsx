@@ -17,9 +17,6 @@ interface ZoneEntityButtonProps {
   reverseProgressBar?: boolean;
 }
 
-const tooltipTop = 14;
-const tooltipLeft = 185;
-
 const ZoneEntityButton = ({
   styleOverride,
   tooltip,
@@ -30,13 +27,6 @@ const ZoneEntityButton = ({
   progress,
   reverseProgressBar,
 }: ZoneEntityButtonProps) => {
-  const [tooltipPosition, setTooltipPosition] = useState<
-    | {
-        x: number;
-        y: number;
-      }
-    | undefined
-  >(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const possiblyInvertedProgress =
     reverseProgressBar && progress !== undefined && active
@@ -46,24 +36,18 @@ const ZoneEntityButton = ({
     ? possiblyInvertedProgress * 100 + '%'
     : '0%';
 
-  const openTooltip = () => {
-    if (containerRef.current) {
-      const { x, y } = containerRef.current.getBoundingClientRect();
-      setTooltipPosition({ x: x + tooltipLeft, y: y + tooltipTop });
-    }
-  };
-
-  const closeTooltip = () => {
-    setTooltipPosition(undefined);
-  };
-
   return (
     <>
-      {tooltip && tooltipPosition && (
-        <Tooltip top={tooltipPosition.y} left={tooltipPosition.x} width={200}>
+      {
+        <Tooltip
+          containerRef={containerRef}
+          tooltipTop={14}
+          tooltipLeft={185}
+          width={200}
+        >
           {tooltip}
         </Tooltip>
-      )}
+      }
       <div
         css={[styles.buttonContainer, styleOverride]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}
@@ -77,8 +61,6 @@ const ZoneEntityButton = ({
           }}
           type="button"
           disabled={disabled}
-          onPointerEnter={() => openTooltip()}
-          onPointerLeave={() => closeTooltip()}
           onClick={onClick ? onClick : () => {}}
         >
           <>{children}</>
