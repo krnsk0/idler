@@ -13,6 +13,7 @@ import { Arborist } from './arborist';
 import { getResources } from '../resources/resources';
 import { ResourceNames } from '../resources/resourceNames';
 import { Zone } from '../zone';
+import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 
 @model('Jobs')
 export class Jobs extends Model({
@@ -70,7 +71,11 @@ export class Jobs extends Model({
    */
   @modelAction
   killColonist(): void {
-    // TODO: unassign from random job
+    const decrementable = this.asArray.filter((job) => job.canDecrement);
+    if (decrementable.length) {
+      pickRandomArrayElm(decrementable).decrement();
+    }
+
     const colonists = getResources(this)[ResourceNames.COLONISTS];
     colonists.decrease(1, { untracked: true });
   }

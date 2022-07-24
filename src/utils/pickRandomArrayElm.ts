@@ -2,13 +2,9 @@ function randomInt(max: number): number {
   return Math.round(Math.random() * (max - 1)) + 1;
 }
 
-export function pickRandomEnumValue<
-  O extends object,
-  K extends keyof O = keyof O,
->(obj: O): O[K] {
-  const keys = Object.keys(obj);
-  const randomKeyIndex = randomInt(keys.length) - 1;
-  return obj[keys[randomKeyIndex] as K];
+export function pickRandomArrayElm<T>(array: T[]): T {
+  const randomElmIndex = randomInt(array.length) - 1;
+  return array[randomElmIndex];
 }
 
 if (import.meta.vitest) {
@@ -22,17 +18,13 @@ if (import.meta.vitest) {
     vi.restoreAllMocks();
   });
 
-  enum TestEnum {
-    First = 'first',
-    Second = 'second',
-    Third = 'third',
-  }
+  const array = ['first', 'second', 'third'];
   it('should pick and return each of the three keys', () => {
     spy.mockImplementationOnce(() => 0);
-    expect(pickRandomEnumValue(TestEnum)).toBe(TestEnum.First);
+    expect(pickRandomArrayElm(array)).toBe('first');
     spy.mockImplementationOnce(() => 0.5);
-    expect(pickRandomEnumValue(TestEnum)).toBe(TestEnum.Second);
+    expect(pickRandomArrayElm(array)).toBe('second');
     spy.mockImplementationOnce(() => 0.9);
-    expect(pickRandomEnumValue(TestEnum)).toBe(TestEnum.Third);
+    expect(pickRandomArrayElm(array)).toBe('third');
   });
 }
