@@ -34,7 +34,7 @@ function BuildingButton({ building }: BuildingButtonProps) {
             )}
           </TooltipText>
           <TooltipDivider text={'effects'} />
-          <TooltipText light={true}>
+          <TooltipText light={false}>
             {building.displayEffects.map(
               ({ resourceDisplayName, quantityPerSecond }) => {
                 return (
