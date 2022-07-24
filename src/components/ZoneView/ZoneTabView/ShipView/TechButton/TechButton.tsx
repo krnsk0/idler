@@ -59,7 +59,7 @@ function TechButton() {
           return <div>research complete</div>;
         }
         if (noTechAvailable) {
-          return <div>no new tech available</div>;
+          return <div>no new tech</div>;
         }
         return <div>pick research target</div>;
       })()}
