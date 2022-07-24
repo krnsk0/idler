@@ -1,4 +1,4 @@
-import { Model, tProp, types, modelAction } from 'mobx-keystone';
+import { ExtendedModel, tProp, types, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ResourceNames } from '../resources/resourceNames';
 import { JobNames } from './jobNames';
@@ -6,6 +6,7 @@ import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
 import { getJobs } from './jobs';
 import { getResources } from '../resources/resources';
+import { ZoneEntity } from '../zoneEntity';
 
 interface JobOutput {
   resource: ResourceNames;
@@ -22,7 +23,7 @@ interface JobEffectDisplay {
   quantityPerSecond: number;
 }
 
-export abstract class BaseJob extends Model({
+export abstract class BaseJob extends ExtendedModel(ZoneEntity, {
   workers: tProp(types.number, 0),
   unlocked: tProp(types.boolean, false),
 }) {
@@ -126,7 +127,10 @@ export abstract class BaseJob extends Model({
   @modelAction
   tick(delta: number): void {
     this.outputs.forEach((product) => {
-      // TODO: write this at all
+      const potentialProduction =
+        product.quantityPerSecond * this.workers * delta;
+      const resourceModel = this.zoneResources[product.resource];
+      resourceModel.increase(potentialProduction);
     });
   }
 
