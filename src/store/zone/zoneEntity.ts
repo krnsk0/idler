@@ -3,6 +3,7 @@ import { computed } from 'mobx';
 import { Zone, getZone } from './zone';
 import { Resources } from './resources/resources';
 import { Producers } from './producers/producers';
+import { Jobs } from './jobs/jobs';
 
 export abstract class ZoneEntity extends Model({}) {
   /**
@@ -27,5 +28,12 @@ export abstract class ZoneEntity extends Model({}) {
   @computed
   get zoneBuildings(): Producers {
     return getZone(this).producers;
+  }
+  /**
+   * The jobs associated with the entity
+   */
+  @computed
+  get zoneJobs(): Jobs {
+    return getZone(this).jobs;
   }
 }

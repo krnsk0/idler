@@ -5,6 +5,11 @@ import { ResourceNames } from './resourceNames';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
 
+interface ProductionConsumptionDisplay {
+  producerDisplayName: string;
+  producerQuantity: number;
+  quantityPerSecond: number;
+}
 export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   unlocked: tProp(types.boolean, false),
   quantity: tProp(types.number, 0),
@@ -41,6 +46,15 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         effect.resourceName === this.name
       );
     });
+  }
+
+  /**
+   * Estimate production per second
+   */
+  @computed
+  get productionPerSecond(): Array<ProductionConsumptionDisplay> {
+    // return [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray]
+    return [];
   }
 
   /**

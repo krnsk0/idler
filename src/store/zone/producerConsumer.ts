@@ -25,7 +25,20 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   abstract inputs: Array<Production>;
 
   /**
-   * Per-second production of all at full capacity
+   * Per-second consumption of all at full capacity including quantity
+   */
+  @computed
+  get consumptionPerSecond(): Array<Production> {
+    return this.inputs.map(({ resource, quantityPerSecond }) => {
+      return {
+        resource,
+        quantityPerSecond: quantityPerSecond * this.quantity,
+      };
+    });
+  }
+
+  /**
+   * Per-second production of all at full capacity including quantity
    */
   @computed
   get productionPerSecond(): Array<Production> {
