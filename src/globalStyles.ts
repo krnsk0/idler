@@ -18,7 +18,9 @@ export const globalStyles = css`
 `;
 
 export const colors = {
-  lightgrey: '#D1D1D1',
+  lightgrey: '#F1F1F1',
+  mediumgrey: '#D1D1D1',
+  mediumdarkgrey: '#919191',
   darkgrey: '#383838',
   grey: 'grey',
   white: 'white',
