@@ -14,7 +14,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
 
   return (
     <div css={styles.resourceRow} key={resource.name}>
-      <span>{resource.displayName}</span>
+      <span css={styles.displayName}>{resource.displayName}</span>
       {showDelta && (
         <span css={styles.quantityPerSecond}>
           {formatNumber(resource.estimatedRate, {

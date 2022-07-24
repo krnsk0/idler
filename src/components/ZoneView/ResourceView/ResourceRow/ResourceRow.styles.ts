@@ -13,6 +13,9 @@ const flash = keyframes`
 `;
 
 export const styles = {
+  displayName: css`
+    width: 5em;
+  `,
   resourceRow: css`
     margin: 0.1em;
     display: flex;
