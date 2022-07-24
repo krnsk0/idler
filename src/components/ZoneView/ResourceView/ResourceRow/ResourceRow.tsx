@@ -48,7 +48,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
             <TooltipText>
               {resource.productionSummary.map((entry) => {
                 return (
-                  <div>
+                  <div key={entry.producerDisplayName}>
                     <span>{entry.producerQuantity}x </span>
                     <span>{entry.producerDisplayName}: </span>
                     <span>{entry.quantityPerSecond}</span>
