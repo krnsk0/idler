@@ -8,20 +8,21 @@ interface ResourceRowProps {
 }
 const ResourceRow = ({ resource }: ResourceRowProps) => {
   const displayFudge = 0.000001;
+  const showDelta =
+    resource.estimatedRate > displayFudge ||
+    resource.estimatedRate < -displayFudge;
 
   return (
     <div css={styles.resourceRow} key={resource.name}>
       <span>{resource.displayName}</span>
-
-      {resource.estimatedRate > displayFudge ||
-        (resource.estimatedRate < -displayFudge && (
-          <span css={styles.quantityPerSecond}>
-            {formatNumber(resource.estimatedRate, {
-              showSign: true,
-            })}
-            /s
-          </span>
-        ))}
+      {showDelta && (
+        <span css={styles.quantityPerSecond}>
+          {formatNumber(resource.estimatedRate, {
+            showSign: true,
+          })}
+          /s
+        </span>
+      )}
       <span css={styles.quantityContainer}>
         <span
           css={[
