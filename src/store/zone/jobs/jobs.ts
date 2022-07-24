@@ -66,6 +66,16 @@ export class Jobs extends Model({
   }
 
   /**
+   * Kills off a colonist, unassigning from a random job first
+   */
+  @modelAction
+  killColonist(): void {
+    // TODO: unassign from random job
+    const colonists = getResources(this)[ResourceNames.COLONISTS];
+    colonists.decrease(1, { untracked: true });
+  }
+
+  /**
    * This handles colonists consuming food every tick and possible
    * death of colonists. Colonists have a chance of dying when there is
    * no food.
@@ -89,7 +99,7 @@ export class Jobs extends Model({
       for (let i = 0; i < colonists.quantity; i += 1) {
         const diceRoll = Math.random();
         if (diceRoll < chanceOfAWorkerDyingThisTick) {
-          colonists.decrease(1, { untracked: true });
+          this.killColonist();
         }
       }
     }
