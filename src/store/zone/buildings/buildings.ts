@@ -1,21 +1,21 @@
 import { model, Model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
-import { ProducerNames } from './producerNames';
+import { BuildingNames } from './buildingNames';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
 
 @model('Producers')
-export class Producers extends Model({
-  [ProducerNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
-  [ProducerNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
+export class Buildings extends Model({
+  [BuildingNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
+  [BuildingNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
   /**
    * Returns an iterable list of the producer models
    */
   @computed
   get asArray() {
-    return enumKeys(ProducerNames).map((name) => {
+    return enumKeys(BuildingNames).map((name) => {
       return this[name];
     });
   }

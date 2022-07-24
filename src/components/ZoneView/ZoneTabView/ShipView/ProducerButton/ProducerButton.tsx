@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../../../utils/formatNumber';
-import { BaseProducer } from '../../../../../store/zone/producers/baseProducer';
+import { BaseBuilding } from '../../../../../store/zone/buildings/baseBuilding';
 import {
   TooltipText,
   TooltipDivider,
@@ -8,7 +8,7 @@ import {
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 
 interface ProducerButtonProps {
-  building: BaseProducer;
+  building: BaseBuilding;
 }
 
 function ProducerButton({ building }: ProducerButtonProps) {

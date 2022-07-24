@@ -2,7 +2,7 @@ import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ProducerConsumer } from '../producerConsumer';
 import { ResourceNames } from '../resources/resourceNames';
-import { ProducerNames } from './producerNames';
+import { BuildingNames } from './buildingNames';
 import { getResources } from '../resources/resources';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
@@ -27,10 +27,10 @@ interface ProducerStorageDispay {
   quantity: number;
 }
 
-export abstract class BaseProducer extends ExtendedModel(ProducerConsumer, {
+export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
   unlocked: tProp(types.boolean, false),
 }) {
-  abstract name: ProducerNames;
+  abstract name: BuildingNames;
   abstract displayName: string;
   abstract description: string;
   abstract splashText: string;

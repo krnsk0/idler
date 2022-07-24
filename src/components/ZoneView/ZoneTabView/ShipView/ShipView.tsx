@@ -12,7 +12,7 @@ interface ShipViewProps {
 }
 
 function ShipView({ zone }: ShipViewProps) {
-  const areProducersUnlocked = !!zone.producers.unlockedAsArray.length;
+  const areProducersUnlocked = !!zone.buildings.unlockedAsArray.length;
   return (
     <>
       <div css={styles.shipOuter} id="ship-view-outer">
@@ -28,7 +28,7 @@ function ShipView({ zone }: ShipViewProps) {
       <div css={styles.shipOuter}>
         <Divider text={'colony'} shown={areProducersUnlocked} />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
-          {zone.producers.asArray.map((building) => {
+          {zone.buildings.asArray.map((building) => {
             return <ProducerButton building={building} key={building.name} />;
           })}
         </div>

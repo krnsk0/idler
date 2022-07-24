@@ -1,6 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { ActionNames } from '../zone/actions/actionNames';
-import { ProducerNames } from '../zone/producers/producerNames';
+import { BuildingNames } from '../zone/buildings/buildingNames';
 import { BaseTech } from './baseTech';
 import { getTech } from './tech';
 import { TechEffect, TechEffectNames } from './techEffectTypes';
@@ -9,7 +9,7 @@ import { TechNames } from './techNames';
 const effects: TechEffect[] = [
   {
     kind: TechEffectNames.PRODUCER_UNLOCK,
-    producerName: ProducerNames.FARM,
+    producerName: BuildingNames.FARM,
   },
 ];
 

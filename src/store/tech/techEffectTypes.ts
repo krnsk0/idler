@@ -1,6 +1,6 @@
 import { ActionNames } from '../zone/actions/actionNames';
 import { JobNames } from '../zone/jobs/jobNames';
-import { ProducerNames } from '../zone/producers/producerNames';
+import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 
 export enum TechEffectNames {
@@ -12,7 +12,7 @@ export enum TechEffectNames {
 
 export interface ProducerUnlockEffect {
   kind: TechEffectNames.PRODUCER_UNLOCK;
-  producerName: ProducerNames;
+  producerName: BuildingNames;
 }
 export interface ActionUnlockEffect {
   kind: TechEffectNames.ACTION_UNLOCK;

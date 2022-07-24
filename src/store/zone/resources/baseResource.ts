@@ -28,7 +28,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get currentCap(): number {
-    return this.zone.producers.asArray.reduce((output, building) => {
+    return this.zone.buildings.asArray.reduce((output, building) => {
       return (
         output + building.getStorageAmountByKey(this.name) * building.quantity
       );
