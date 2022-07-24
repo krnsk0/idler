@@ -78,8 +78,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   @modelAction
   runProduction(delta: number): void {
     this.productionPerSecond.forEach((product) => {
-      const potentialProduction =
-        product.quantityPerSecond * this.quantity * delta;
+      const potentialProduction = product.quantityPerSecond * delta;
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });
