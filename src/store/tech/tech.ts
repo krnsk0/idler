@@ -87,7 +87,7 @@ export class Tech extends Model({
    * Aggregates all tech effects
    */
   @computed
-  get allTechEffects(): Array<TechEffect> {
+  get allTechEffects(): TechEffect[] {
     const allEffects = [];
     for (const tech of this.researchedAsArray) {
       allEffects.push(...tech.effects);

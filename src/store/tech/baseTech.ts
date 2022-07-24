@@ -22,7 +22,7 @@ export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
   abstract description: string;
   abstract unlockWhen: () => boolean;
   abstract powerCost: number;
-  abstract effects: Array<TechEffect>;
+  abstract effects: TechEffect[];
 
   /**
    * Progress for selected tech

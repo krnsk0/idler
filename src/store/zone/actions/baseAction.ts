@@ -44,8 +44,8 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract description: string;
   abstract duration: number;
   abstract reverseProgressBar: boolean;
-  abstract inputs: Array<ActionInput>; // consumed when action starts
-  abstract outputs: Array<ActionOutput>; // received when action is done
+  abstract inputs: ActionInput[]; // consumed when action starts
+  abstract outputs: ActionOutput[]; // received when action is done
   abstract basePowerProduction: number;
   abstract basePowerConsumption: number;
   abstract unlockWhen: () => boolean;
@@ -54,7 +54,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    * Current inputs with displayable names
    */
   @computed
-  get inputsDisplay(): Array<ActionInputDisplay> {
+  get inputsDisplay(): ActionInputDisplay[] {
     return this.inputs.map(({ resource, quantity }) => {
       return {
         resourceDisplayName: getResources(this)[resource].displayName,
@@ -67,7 +67,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    * Current inputs with displayable names
    */
   @computed
-  get outputsDisplay(): Array<ActionOutputDisplay> {
+  get outputsDisplay(): ActionOutputDisplay[] {
     return this.outputs.map(({ resource, quantity }) => {
       return {
         resourceDisplayName: getResources(this)[resource].displayName,

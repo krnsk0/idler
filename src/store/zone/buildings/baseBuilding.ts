@@ -34,8 +34,8 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
   abstract displayName: string;
   abstract description: string;
   abstract splashText: string;
-  abstract storage: Array<Storage>;
-  abstract baseCost: Array<PurchaseCost>;
+  abstract storage: Storage[];
+  abstract baseCost: PurchaseCost[];
   abstract costExponent: number;
   abstract unlockWhen: () => boolean;
 
@@ -52,7 +52,7 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
    * Resource cost adjusted according to exponentiation
    */
   @computed
-  get currentCost(): Array<PurchaseCost> {
+  get currentCost(): PurchaseCost[] {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
         resource,
@@ -65,7 +65,7 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
    * Current cost with displayable names
    */
   @computed
-  get currentCostDisplay(): Array<PurchaseCostDisplay> {
+  get currentCostDisplay(): PurchaseCostDisplay[] {
     return this.currentCost.map(({ resource, quantity }) => {
       return {
         resourceDisplayName: getResources(this)[resource].displayName,
@@ -88,7 +88,7 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
    * Storage with displayable names
    */
   @computed
-  get displayStorage(): Array<BuildingStorageDisplay> {
+  get displayStorage(): BuildingStorageDisplay[] {
     return this.storage.map(({ resource, quantity }) => {
       return {
         resourceDisplayName: getResources(this)[resource].displayName,

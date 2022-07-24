@@ -21,14 +21,14 @@ interface ProductionConsumptionDisplay {
 export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
-  abstract outputs: Array<Consumption>;
-  abstract inputs: Array<Production>;
+  abstract outputs: Consumption[];
+  abstract inputs: Production[];
 
   /**
    * Per-second consumption of all at full capacity including quantity
    */
   @computed
-  get consumptionPerSecond(): Array<Production> {
+  get consumptionPerSecond(): Production[] {
     return this.inputs.map(({ resource, quantityPerSecond }) => {
       return {
         resource,
@@ -41,7 +41,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * Per-second production of all at full capacity including quantity
    */
   @computed
-  get productionPerSecond(): Array<Production> {
+  get productionPerSecond(): Production[] {
     return this.outputs.map(({ resource, quantityPerSecond }) => {
       return {
         resource,
@@ -54,7 +54,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * Effects with displayable names
    */
   @computed
-  get displayEffects(): Array<ProductionConsumptionDisplay> {
+  get displayEffects(): ProductionConsumptionDisplay[] {
     return [
       ...this.inputs.map(({ resource, quantityPerSecond }) => {
         return {

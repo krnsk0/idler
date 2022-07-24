@@ -52,9 +52,17 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
    * Estimate production per second
    */
   @computed
-  get productionPerSecond(): Array<ProductionConsumptionDisplay> {
-    // return [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray]
-    return [];
+  get productionPerSecond(): ProductionConsumptionDisplay[] {
+    const productionSummary: ProductionConsumptionDisplay[] = [];
+    [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
+      (producer) => {
+        producer.productionPerSecond.filter(
+          ({ resource }) => resource === this.name,
+        );
+      },
+    );
+
+    return productionSummary;
   }
 
   /**
