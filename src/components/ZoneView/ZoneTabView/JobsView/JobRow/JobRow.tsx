@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
 import Tooltip, {

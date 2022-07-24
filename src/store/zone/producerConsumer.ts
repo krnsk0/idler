@@ -25,6 +25,19 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   abstract inputs: Array<Production>;
 
   /**
+   * Per-second production of all at full capacity
+   */
+  @computed
+  get productionPerSecond(): Array<Production> {
+    return this.outputs.map(({ resource, quantityPerSecond }) => {
+      return {
+        resource,
+        quantityPerSecond: quantityPerSecond * this.quantity,
+      };
+    });
+  }
+
+  /**
    * Effects with displayable names
    */
   @computed
@@ -51,7 +64,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   runProduction(delta: number): void {
-    this.outputs.forEach((product) => {
+    this.productionPerSecond.forEach((product) => {
       const potentialProduction =
         product.quantityPerSecond * this.quantity * delta;
       const resourceModel = this.zoneResources[product.resource];

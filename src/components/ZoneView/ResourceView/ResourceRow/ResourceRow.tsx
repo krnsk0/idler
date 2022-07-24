@@ -2,10 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { BaseResource } from '../../../../store/zone/resources/baseResource';
 import { formatNumber } from '../../../../utils/formatNumber';
-import Tooltip, {
-  TooltipDivider,
-  TooltipText,
-} from '../../../shared/Tooltip/Tooltip';
+import Tooltip, { TooltipDivider } from '../../../shared/Tooltip/Tooltip';
 import { styles } from './ResourceRow.styles';
 
 interface ResourceRowProps {
