@@ -6,13 +6,10 @@ import { TechEffectNames } from '../../tech/techEffectTypes';
 import { getJobs } from './jobs';
 import { ProducerConsumer } from '../producerConsumer';
 
-export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {
-  unlocked: tProp(types.boolean, false),
-}) {
+export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract name: JobNames;
   abstract displayName: string;
   abstract description: string;
-  abstract unlockWhen: () => boolean;
 
   /**
    * Assign a free worker if possible
@@ -84,15 +81,5 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {
   @modelAction
   tick(delta: number): void {
     this.runProduction(delta);
-  }
-
-  /**
-   * Runs an unlock check
-   */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked) {
-      this.unlocked = this.unlockWhen();
-    }
   }
 }

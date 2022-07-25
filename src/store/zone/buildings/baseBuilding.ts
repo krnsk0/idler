@@ -17,16 +17,13 @@ interface PurchaseCostDisplay {
   quantity: number;
 }
 
-export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {
-  unlocked: tProp(types.boolean, false),
-}) {
+export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract name: BuildingNames;
   abstract displayName: string;
   abstract description: string;
   abstract splashText: string;
   abstract baseCost: PurchaseCost[];
   abstract costExponent: number;
-  abstract unlockWhen: () => boolean;
 
   /**
    * Resource cost adjusted according to exponentiation
@@ -97,15 +94,5 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {
   @modelAction
   tick(delta: number): void {
     this.runProduction(delta);
-  }
-
-  /**
-   * Runs an unlock check
-   */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked) {
-      this.unlocked = this.unlockWhen();
-    }
   }
 }

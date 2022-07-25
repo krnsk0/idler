@@ -16,14 +16,12 @@ export interface StorageSummaryDisplay {
   storage: number;
 }
 export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
-  unlocked: tProp(types.boolean, false),
   quantity: tProp(types.number, 0),
   estimatedRate: tProp(types.number, 0),
 }) {
   abstract name: ResourceNames;
   abstract displayName: string;
   abstract initialCap: number;
-  abstract unlockWhen: () => boolean;
   private changeSinceLastTick = 0;
   highlightQuantity = false;
   highlightQuantityAnimationDuration = 500;
@@ -132,16 +130,6 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   tick(delta: number): void {
     if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
     this.changeSinceLastTick = 0;
-  }
-
-  /**
-   * Runs an unlock check. Resources always unlock when they are first nonzero
-   */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked) {
-      this.unlocked = this.unlockWhen();
-    }
   }
 
   /**

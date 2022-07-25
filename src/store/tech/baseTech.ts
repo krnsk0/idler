@@ -1,20 +1,23 @@
-import { modelAction, Model, tProp, types, idProp } from 'mobx-keystone';
-import { ZoneEntity } from '../zone/zoneEntity';
+import {
+  modelAction,
+  ExtendedModel,
+  tProp,
+  types,
+  idProp,
+} from 'mobx-keystone';
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
 import { getTech } from './tech';
 import { TechEffect } from './techEffectTypes';
-
-export abstract class BaseTech extends Model({
+import { Unlockable } from '../unlockable';
+export abstract class BaseTech extends ExtendedModel(Unlockable, {
   id: idProp,
-  unlocked: tProp(types.boolean, false),
   power: tProp(types.number, 0),
   active: tProp(types.boolean, false),
 }) {
   abstract name: TechNames;
   abstract displayName: string;
   abstract description: string;
-  abstract unlockWhen: () => boolean;
   abstract powerCost: number;
   abstract effects: TechEffect[];
 
@@ -32,16 +35,6 @@ export abstract class BaseTech extends Model({
   @computed
   get researched(): boolean {
     return this.power >= this.powerCost;
-  }
-
-  /**
-   * Runs an unlock check
-   */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked) {
-      this.unlocked = this.unlockWhen();
-    }
   }
 
   /**
