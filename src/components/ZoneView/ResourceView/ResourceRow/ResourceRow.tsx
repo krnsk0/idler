@@ -32,7 +32,27 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         {!!resource.consumptionSummary.length && (
           <>
             <TooltipDivider text="consumption" />
-            <TooltipText>TODO</TooltipText>
+            <TooltipText>
+              {resource.consumptionSummary.map((entry) => {
+                return (
+                  <div
+                    key={entry.producerConsumerDisplayName}
+                    css={styles.tooltipRow}
+                  >
+                    <span>
+                      {entry.producerConsumerQuantity}x{' '}
+                      {entry.producerConsumerDisplayName}
+                    </span>
+                    <span>
+                      {formatNumber(-entry.resourceQuantityPerSecond, {
+                        showSign: true,
+                      })}
+                      /s
+                    </span>
+                  </div>
+                );
+              })}
+            </TooltipText>
           </>
         )}
         {!!resource.productionSummary.length && (
@@ -41,12 +61,16 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
             <TooltipText>
               {resource.productionSummary.map((entry) => {
                 return (
-                  <div key={entry.producerDisplayName} css={styles.tooltipRow}>
+                  <div
+                    key={entry.producerConsumerDisplayName}
+                    css={styles.tooltipRow}
+                  >
                     <span>
-                      {entry.producerQuantity}x {entry.producerDisplayName}
+                      {entry.producerConsumerQuantity}x{' '}
+                      {entry.producerConsumerDisplayName}
                     </span>
                     <span>
-                      {formatNumber(entry.quantityPerSecond, {
+                      {formatNumber(entry.resourceQuantityPerSecond, {
                         showSign: true,
                       })}
                       /s

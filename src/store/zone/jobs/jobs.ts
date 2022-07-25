@@ -15,6 +15,8 @@ import { ResourceNames } from '../resources/resourceNames';
 import { Zone } from '../zone';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 
+const foodConsumptionPerWorkerPerSec = 0.2;
+
 @model('Jobs')
 export class Jobs extends Model({
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
@@ -67,6 +69,15 @@ export class Jobs extends Model({
   }
 
   /**
+   * Amount to eat each second
+   */
+  @computed
+  get foodConsumption(): number {
+    const colonists = getResources(this)[ResourceNames.COLONISTS];
+    return colonists.quantity * foodConsumptionPerWorkerPerSec;
+  }
+
+  /**
    * Kills off a colonist, unassigning from a random job first
    */
   @modelAction
@@ -89,11 +100,9 @@ export class Jobs extends Model({
   tick(delta: number): void {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
     const nutrients = getResources(this)[ResourceNames.NUTRIENTS];
-    const foodConsumptionPerWorkerPerSec = 0.2;
     const chanceOfEachWorkerDyingPerSecond = 0.25; // percent
 
-    const amountToEat =
-      colonists.quantity * foodConsumptionPerWorkerPerSec * delta;
+    const amountToEat = this.foodConsumption * delta;
 
     nutrients.decrease(amountToEat);
 

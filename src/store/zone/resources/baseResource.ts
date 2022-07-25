@@ -5,10 +5,10 @@ import { ResourceNames } from './resourceNames';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
 
-interface ProductionConsumptionDisplay {
-  producerDisplayName: string;
-  producerQuantity: number;
-  quantityPerSecond: number;
+export interface ProductionConsumptionDisplay {
+  producerConsumerDisplayName: string;
+  producerConsumerQuantity: number;
+  resourceQuantityPerSecond: number;
 }
 export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   unlocked: tProp(types.boolean, false),
@@ -61,9 +61,9 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         );
         if (production && !!production.quantityPerSecond) {
           productionSummary.push({
-            producerDisplayName: producer.displayName,
-            producerQuantity: producer.quantity,
-            quantityPerSecond: production.quantityPerSecond,
+            producerConsumerDisplayName: producer.displayName,
+            producerConsumerQuantity: producer.quantity,
+            resourceQuantityPerSecond: production.quantityPerSecond,
           });
         }
       },
@@ -84,9 +84,9 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         );
         if (production) {
           consumptionSummary.push({
-            producerDisplayName: producer.displayName,
-            producerQuantity: producer.quantity,
-            quantityPerSecond: production.quantityPerSecond,
+            producerConsumerDisplayName: producer.displayName,
+            producerConsumerQuantity: producer.quantity,
+            resourceQuantityPerSecond: production.quantityPerSecond,
           });
         }
       },
