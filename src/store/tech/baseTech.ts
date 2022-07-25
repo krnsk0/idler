@@ -1,17 +1,11 @@
-import {
-  modelAction,
-  ExtendedModel,
-  tProp,
-  types,
-  idProp,
-} from 'mobx-keystone';
+import { modelAction, Model, tProp, types, idProp } from 'mobx-keystone';
 import { ZoneEntity } from '../zone/zoneEntity';
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
 import { getTech } from './tech';
 import { TechEffect } from './techEffectTypes';
 
-export abstract class BaseTech extends ExtendedModel(ZoneEntity, {
+export abstract class BaseTech extends Model({
   id: idProp,
   unlocked: tProp(types.boolean, false),
   power: tProp(types.number, 0),
