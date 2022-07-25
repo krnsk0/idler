@@ -14,6 +14,9 @@ interface PurchaseCost {
 
 interface PurchaseCostDisplay {
   resourceDisplayName: string;
+  isSatisfied: boolean;
+  availableQuantity: number;
+  storageConstrained: boolean;
   quantity: number;
 }
 
@@ -44,8 +47,12 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   @computed
   get currentCostDisplay(): PurchaseCostDisplay[] {
     return this.currentCost.map(({ resource, quantity }) => {
+      const resourceModel = this.zoneResources[resource];
       return {
-        resourceDisplayName: getResources(this)[resource].displayName,
+        resourceDisplayName: resourceModel.displayName,
+        isSatisfied: resourceModel.quantity >= quantity,
+        availableQuantity: resourceModel.quantity,
+        storageConstrained: quantity > resourceModel.currentCap,
         quantity,
       };
     });

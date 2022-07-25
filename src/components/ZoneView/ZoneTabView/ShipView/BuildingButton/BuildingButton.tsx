@@ -24,10 +24,19 @@ function BuildingButton({ building }: BuildingButtonProps) {
           <TooltipDivider text={'cost'} />
           <TooltipText>
             {building.currentCostDisplay.map(
-              ({ resourceDisplayName, quantity }) => {
+              ({
+                resourceDisplayName,
+                quantity,
+                isSatisfied,
+                availableQuantity,
+                storageConstrained,
+              }) => {
                 return (
                   <div key={resourceDisplayName}>
-                    {resourceDisplayName}: {formatNumber(quantity)}
+                    {resourceDisplayName}:{' '}
+                    {isSatisfied ? '' : `${formatNumber(availableQuantity)} / `}
+                    {formatNumber(quantity)}
+                    {storageConstrained ? '*' : ''}
                   </div>
                 );
               },
