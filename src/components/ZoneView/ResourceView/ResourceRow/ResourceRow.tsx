@@ -26,20 +26,13 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         tooltipLeft={10}
         width={240}
       >
+        <TooltipText light={true} align={'center'} italic={true}>
+          {resource.displayName}
+        </TooltipText>
         {!!resource.consumptionSummary.length && (
           <>
-            <TooltipDivider text="production" />
-            <TooltipText>
-              {resource.productionSummary.map((entry) => {
-                return (
-                  <div>
-                    <span>{entry.producerQuantity}x </span>
-                    <span>{entry.producerDisplayName}: </span>
-                    <span>{entry.quantityPerSecond}</span>
-                  </div>
-                );
-              })}
-            </TooltipText>
+            <TooltipDivider text="consumption" />
+            <TooltipText>TODO</TooltipText>
           </>
         )}
         {!!resource.productionSummary.length && (
@@ -48,10 +41,16 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
             <TooltipText>
               {resource.productionSummary.map((entry) => {
                 return (
-                  <div key={entry.producerDisplayName}>
-                    <span>{entry.producerQuantity}x </span>
-                    <span>{entry.producerDisplayName}: </span>
-                    <span>{entry.quantityPerSecond}</span>
+                  <div key={entry.producerDisplayName} css={styles.tooltipRow}>
+                    <span>
+                      {entry.producerQuantity}x {entry.producerDisplayName}
+                    </span>
+                    <span>
+                      {formatNumber(entry.quantityPerSecond, {
+                        showSign: true,
+                      })}
+                      /s
+                    </span>
                   </div>
                 );
               })}
@@ -59,6 +58,12 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
           </>
         )}
         <TooltipDivider text="storage" />
+        <TooltipText>
+          <div css={styles.tooltipRow}>
+            <span>ship</span>
+            <span>{resource.initialCap}</span>
+          </div>
+        </TooltipText>
       </Tooltip>
       <span css={styles.displayName}>{resource.displayName}</span>
       {showDelta && (

@@ -59,7 +59,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         const production = producer.productionPerSecond.find(
           ({ resource }) => resource === this.name,
         );
-        if (production) {
+        if (production && !!production.quantityPerSecond) {
           productionSummary.push({
             producerDisplayName: producer.displayName,
             producerQuantity: producer.quantity,

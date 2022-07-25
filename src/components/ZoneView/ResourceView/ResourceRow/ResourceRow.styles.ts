@@ -36,4 +36,8 @@ export const styles = {
   highlight: (duration: number) => css`
     animation: ${flash} ${duration}ms ease;
   `,
+  tooltipRow: css`
+    display: flex;
+    justify-content: space-between;
+  `,
 };
