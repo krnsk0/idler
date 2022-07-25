@@ -10,6 +10,11 @@ export interface ProductionConsumptionDisplay {
   producerConsumerQuantity: number;
   resourceQuantityPerSecond: number;
 }
+export interface StorageSummaryDisplay {
+  storageProviderDisplayName: string;
+  storageProviderQuantity: number;
+  storage: number;
+}
 export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   unlocked: tProp(types.boolean, false),
   quantity: tProp(types.number, 0),
@@ -72,7 +77,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Estimate production per second
+   * Estimate consumption per second
    */
   @computed
   get consumptionSummary(): ProductionConsumptionDisplay[] {
@@ -92,6 +97,32 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
       },
     );
     return consumptionSummary;
+  }
+
+  /**
+   * Estimate storage
+   */
+  @computed
+  get storageSummary(): StorageSummaryDisplay[] {
+    const storageSummary: StorageSummaryDisplay[] = [];
+    if (this.initialCap) {
+      storageSummary.push({
+        storageProviderDisplayName: 'ship',
+        storageProviderQuantity: 0,
+        storage: this.initialCap,
+      });
+    }
+    [...this.zoneBuildings.asArray].forEach((building) => {
+      const storage = building.getStorageAmountByKey(this.name);
+      if (storage) {
+        storageSummary.push({
+          storageProviderDisplayName: building.displayName,
+          storageProviderQuantity: building.quantity,
+          storage,
+        });
+      }
+    });
+    return storageSummary;
   }
 
   /**

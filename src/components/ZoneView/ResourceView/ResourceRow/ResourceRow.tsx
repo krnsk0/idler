@@ -81,13 +81,33 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
             </TooltipText>
           </>
         )}
-        <TooltipDivider text="storage" />
-        <TooltipText>
-          <div css={styles.tooltipRow}>
-            <span>ship</span>
-            <span>{resource.initialCap}</span>
-          </div>
-        </TooltipText>
+        {!!resource.storageSummary.length && (
+          <>
+            <TooltipDivider text="storage" />
+            <TooltipText>
+              {resource.storageSummary.map((entry) => {
+                return (
+                  <div
+                    key={entry.storageProviderDisplayName}
+                    css={styles.tooltipRow}
+                  >
+                    <span>
+                      {entry.storageProviderQuantity
+                        ? `${entry.storageProviderQuantity}x `
+                        : ``}
+                      {entry.storageProviderDisplayName}
+                    </span>
+                    <span>
+                      {formatNumber(entry.storage, {
+                        digits: 0,
+                      })}
+                    </span>
+                  </div>
+                );
+              })}
+            </TooltipText>
+          </>
+        )}
       </Tooltip>
       <span css={styles.displayName}>{resource.displayName}</span>
       {showDelta && (

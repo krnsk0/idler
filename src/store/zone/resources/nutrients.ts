@@ -20,13 +20,15 @@ export class Nutrients extends ExtendedModel(BaseResource, {}) {
     const colonists = this.zoneResources[ResourceNames.COLONISTS].quantity;
     const displayName = this.zoneResources[ResourceNames.COLONISTS].displayName;
 
-    return [
-      ...consumptionSummary,
-      {
-        producerConsumerDisplayName: displayName,
-        producerConsumerQuantity: colonists,
-        resourceQuantityPerSecond: consumption,
-      },
-    ];
+    if (colonists > 0)
+      return [
+        ...consumptionSummary,
+        {
+          producerConsumerDisplayName: displayName,
+          producerConsumerQuantity: colonists,
+          resourceQuantityPerSecond: consumption,
+        },
+      ];
+    else return consumptionSummary;
   }
 }
