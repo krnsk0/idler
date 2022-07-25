@@ -1,16 +1,11 @@
 import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { ProducerConsumer } from '../producerConsumer';
+import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
 import { getResources } from '../resources/resources';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
-
-interface Storage {
-  resource: ResourceNames;
-  quantity: number;
-}
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -22,31 +17,16 @@ interface PurchaseCostDisplay {
   quantity: number;
 }
 
-interface BuildingStorageDisplay {
-  resourceDisplayName: string;
-  quantity: number;
-}
-
-export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
+export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {
   unlocked: tProp(types.boolean, false),
 }) {
   abstract name: BuildingNames;
   abstract displayName: string;
   abstract description: string;
   abstract splashText: string;
-  abstract storage: Storage[];
   abstract baseCost: PurchaseCost[];
   abstract costExponent: number;
   abstract unlockWhen: () => boolean;
-
-  /**
-   * Given the name of a resource, tells the caller how much of that resource
-   * this building can store
-   */
-  getStorageAmountByKey(resourceName: ResourceNames): number {
-    const entry = this.storage.find((entry) => entry.resource === resourceName);
-    return entry ? entry.quantity : 0;
-  }
 
   /**
    * Resource cost adjusted according to exponentiation
@@ -81,19 +61,6 @@ export abstract class BaseBuilding extends ExtendedModel(ProducerConsumer, {
   get affordable(): boolean {
     return this.currentCost.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
-    });
-  }
-
-  /**
-   * Storage with displayable names
-   */
-  @computed
-  get displayStorage(): BuildingStorageDisplay[] {
-    return this.storage.map(({ resource, quantity }) => {
-      return {
-        resourceDisplayName: getResources(this)[resource].displayName,
-        quantity,
-      };
     });
   }
 
