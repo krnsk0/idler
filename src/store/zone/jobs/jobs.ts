@@ -15,7 +15,7 @@ import { ResourceNames } from '../resources/resourceNames';
 import { Zone } from '../zone';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 
-const foodConsumptionPerWorkerPerSec = 0.2;
+const foodConsumptionPerWorkerPerSec = 0.1;
 
 @model('Jobs')
 export class Jobs extends Model({
