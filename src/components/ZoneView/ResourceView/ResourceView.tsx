@@ -26,6 +26,8 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
               : ``
           }
           styleOverride={styles.resourcesContainer}
+          showEntranceAnimation={zone.power.showEntranceAnimation}
+          entranceAnimationDuration={zone.power.entranceAnimationDuration}
         >
           <div css={styles.powerRow}>
             <span>production</span>
@@ -37,10 +39,12 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           </div>
         </BorderContainer>
       )}
-      {zone.resources.anyUnlocked && (
+      {zone.resources.unlocked && (
         <BorderContainer
           title="resources"
           styleOverride={styles.resourcesContainer}
+          showEntranceAnimation={zone.resources.showEntranceAnimation}
+          entranceAnimationDuration={zone.resources.entranceAnimationDuration}
         >
           {zone.resources.unlockedAsArray.map((resource) => {
             return <ResourceRow resource={resource} key={resource.name} />;

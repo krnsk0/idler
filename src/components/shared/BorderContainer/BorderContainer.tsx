@@ -6,6 +6,8 @@ interface BorderContainerProps {
   children: React.ReactNode;
   styleOverride?: SerializedStyles;
   rightText?: string;
+  showEntranceAnimation: boolean;
+  entranceAnimationDuration: number;
 }
 
 const BorderContainer = ({
@@ -13,9 +15,18 @@ const BorderContainer = ({
   children,
   styleOverride,
   rightText,
+  showEntranceAnimation,
+  entranceAnimationDuration,
 }: BorderContainerProps) => {
   return (
-    <div css={[styles.container, styleOverride]}>
+    <div
+      css={[
+        styles.container,
+        showEntranceAnimation &&
+          styles.animateEntrance(entranceAnimationDuration),
+        styleOverride,
+      ]}
+    >
       <div css={styles.textContainer}>
         <span css={styles.text}>{title}</span>
         <span css={styles.text}>{rightText ? rightText : ' '}</span>

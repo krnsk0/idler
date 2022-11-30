@@ -1,4 +1,4 @@
-import { findParent, model, Model, tProp, types } from 'mobx-keystone';
+import { findParent, model, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { Zone } from '../zone';
@@ -7,9 +7,10 @@ import { Biomass } from './biomass';
 import { Lumber } from './lumber';
 import { Colonists } from './colonists';
 import { ResourceNames } from './resourceNames';
+import { Unlockable } from '../../unlockable';
 
 @model('Resources')
-export class Resources extends Model({
+export class Resources extends ExtendedModel(Unlockable, {
   [ResourceNames.COLONISTS]: tProp(
     types.model(Colonists),
     () => new Colonists({}),
@@ -40,12 +41,11 @@ export class Resources extends Model({
   }
 
   /**
-   * Are any resources unlocked?
+   * When resource pane shows
    */
-  @computed
-  get anyUnlocked(): boolean {
+  unlockWhen = () => {
     return !!this.unlockedAsArray.length;
-  }
+  };
 }
 
 export const getResources = (child: object): Resources => {

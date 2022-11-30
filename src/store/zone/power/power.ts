@@ -1,20 +1,12 @@
-import {
-  findParent,
-  model,
-  Model,
-  modelAction,
-  tProp,
-  types,
-} from 'mobx-keystone';
+import { findParent, model, ExtendedModel } from 'mobx-keystone';
 import { Zone } from '../zone';
 import { computed } from 'mobx';
 import { getActions } from '../actions/actions';
 import { getTech } from '../../tech/tech';
+import { Unlockable } from '../../unlockable';
 
 @model('Power')
-export class Power extends Model({
-  unlocked: tProp(types.boolean, false),
-}) {
+export class Power extends ExtendedModel(Unlockable, {}) {
   /**
    * Total power production
    */
@@ -38,7 +30,6 @@ export class Power extends Model({
     );
 
     const techConsumption = getTech(this).selectedTech ? 1 : 0;
-
     return actionsConsumption + techConsumption;
   }
 
@@ -52,14 +43,11 @@ export class Power extends Model({
   }
 
   /**
-   * Runs an unlock check.
+   * The unlock check for the power pane
    */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked) {
-      this.unlocked = this.production > 0;
-    }
-  }
+  unlockWhen = () => {
+    return this.production > 0;
+  };
 }
 
 export const getPower = (child: object): Power => {
