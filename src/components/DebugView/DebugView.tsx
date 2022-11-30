@@ -8,10 +8,11 @@ interface DebugProps {}
 
 const DebugView = () => {
   const root = useStore();
+  const debug = root.debug;
   const urlParams = new URLSearchParams(window.location.search);
-  const debug = urlParams.get('debug') === 'true';
+  const debugParam = urlParams.get('debug') === 'true';
 
-  if (!debug) return null;
+  if (!debugParam) return null;
 
   return (
     <div css={styles.debug}>
@@ -35,8 +36,8 @@ const DebugView = () => {
           reset
         </button>
 
-        <button type="button" onClick={() => root.debug.toggleHyperMode()}>
-          {root.debug.hyperMode ? 'disable hyper' : 'enable hyper'}
+        <button type="button" onClick={() => debug.toggleHyperMode()}>
+          {debug.hyperMode ? 'disable hyper' : 'enable hyper'}
         </button>
       </div>
       <div css={styles.debugRow}>
@@ -64,10 +65,18 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            // TODO
+            debug.phaseOne();
           }}
         >
           phase 1
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            debug.phaseTwo();
+          }}
+        >
+          phase 2
         </button>
       </div>
     </div>

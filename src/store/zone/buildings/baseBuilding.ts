@@ -1,9 +1,8 @@
-import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
+import { modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
-import { getResources } from '../resources/resources';
 import { getTech } from '../../tech/tech';
 import { TechEffectNames } from '../../tech/techEffectTypes';
 
@@ -95,8 +94,16 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   }
 
   /**
-   * Attempts to run production
+   * Immediately build
+   */
+  @modelAction
+  cheat(quantity?: number): void {
+    console.log(`CHEAT: BUILDING ${this.name}`);
+    this.quantity += quantity ? quantity : 1;
+  }
 
+  /**
+   * Attempts to run production
    */
   @modelAction
   tick(delta: number): void {

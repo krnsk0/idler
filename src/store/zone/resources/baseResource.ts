@@ -151,6 +151,15 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Sets to cap or to a value. Useful for debug
+   */
+  @modelAction
+  cheat(quantity?: number): void {
+    console.log(`CHEAT: CREATING ${this.name}`);
+    this.quantity = quantity ? quantity : this.currentCap;
+  }
+
+  /**
    * Decreases quantity. Optionally can turn off tracking for average rate
    */
   @modelAction

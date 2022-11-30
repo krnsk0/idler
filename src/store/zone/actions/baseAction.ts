@@ -1,10 +1,4 @@
-import {
-  modelAction,
-  ExtendedModel,
-  tProp,
-  types,
-  getSnapshot,
-} from 'mobx-keystone';
+import { modelAction, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { ZoneEntity } from '../zoneEntity';
 import { ActionNames } from './actionNames';

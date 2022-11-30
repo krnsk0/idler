@@ -35,7 +35,6 @@ function TechButton() {
   }, [root]);
 
   if (!root.game.tech.unlocked) return null;
-  console.log('DEBUG', root.game.tech);
 
   return (
     <ZoneEntityButton

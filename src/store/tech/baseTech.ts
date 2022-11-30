@@ -38,6 +38,16 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * Immediately research; useful mainly for debug
+   */
+  @modelAction
+  cheat(): void {
+    console.log(`CHEAT: RESEARCHING ${this.name}`);
+    this.power = this.powerCost;
+    getTech(this).selectTech(undefined);
+  }
+
+  /**
    * Add power
    */
   @modelAction
