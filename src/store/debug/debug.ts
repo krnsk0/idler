@@ -50,10 +50,11 @@ export class Debug extends Model({
     this.phaseOne();
     const tech = getTech(this);
     const initialZone = getGame(this).initialZone;
-    initialZone.buildings[BuildingNames.FARM].cheat(4);
+    initialZone.buildings[BuildingNames.FARM].cheat(5);
     initialZone.buildings[BuildingNames.HABITAT].cheat(2);
     initialZone.resources[ResourceNames.NUTRIENTS].cheat();
     tech[TechNames.CRYONICS].cheat();
+    tech[TechNames.STORAGE].cheat();
     initialZone.resources[ResourceNames.COLONISTS].cheat(2);
   }
 }

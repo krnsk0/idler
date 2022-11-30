@@ -21,6 +21,7 @@ import { BaseTech } from './baseTech';
 import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
+import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
 
@@ -40,6 +41,7 @@ export class Tech extends ExtendedModel(Unlockable, {
     types.model(Agroforestry),
     () => new Agroforestry({}),
   ),
+  [TechNames.STORAGE]: tProp(types.model(Storage), () => new Storage({})),
 }) {
   /**
    * Returns an iterable list of the action model
