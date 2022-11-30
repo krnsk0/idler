@@ -56,7 +56,9 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
             />
             <Separator />
             <TabButton
-              text="jobs"
+              text={`jobs${
+                zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
+              }`}
               tabName={ZoneTabNames.JOBS}
               selectedTab={selectedTab}
               setSelectedTab={setSelectedTab}
