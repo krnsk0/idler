@@ -23,6 +23,7 @@ const customStyles = {
 
 const OptionsModal = () => {
   const root = useStore();
+  const [resetConfirm, setResetConfirm] = useState(false);
 
   return (
     <Modal
@@ -31,8 +32,26 @@ const OptionsModal = () => {
       style={customStyles}
     >
       <h2>options</h2>
-
-      <div css={styles.optionsContainer}>option option option</div>
+      <div css={styles.optionsContainer}>
+        <button
+          css={styles.button}
+          onClick={() => setResetConfirm(!resetConfirm)}
+        >
+          {resetConfirm ? 'are you sure?' : 'reset game'}
+        </button>
+        {resetConfirm && (
+          <button
+            css={styles.button}
+            onClick={() => {
+              root.reset();
+              setResetConfirm(false);
+              root.gui.closeOptionsModal();
+            }}
+          >
+            confirm reset
+          </button>
+        )}
+      </div>
     </Modal>
   );
 };

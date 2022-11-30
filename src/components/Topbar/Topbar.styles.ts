@@ -14,5 +14,6 @@ export const styles = {
     background: none;
     border: none;
     cursor: pointer;
+    z-index: 100;
   `,
 };

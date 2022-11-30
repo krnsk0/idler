@@ -2,10 +2,9 @@ import { css } from '@emotion/react';
 
 export const styles = {
   debug: css`
-    position: inherit;
+    position: absolute;
     top: 0;
     width: 100%;
-    border-bottom: 1px solid black;
 
     button {
       height: 1.5em;
@@ -17,6 +16,5 @@ export const styles = {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 100%;
   `,
 };

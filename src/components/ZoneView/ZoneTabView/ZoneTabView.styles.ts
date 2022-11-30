@@ -28,6 +28,7 @@ export const styles = {
       text-decoration: underline;
     }
     font-size: 1em;
+    cursor: ${selected ? 'auto' : 'pointer'};
   `,
   tabContent: css`
     padding-top: 0.5em;
