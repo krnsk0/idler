@@ -7,7 +7,11 @@ import {
   types,
   getSnapshot,
   fromSnapshot,
+  modelFlow,
+  _async,
 } from 'mobx-keystone';
+import { computed } from 'mobx';
+
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
@@ -18,14 +22,23 @@ export class Root extends Model({
   debug: tProp(types.model(Debug), () => new Debug({})),
   gui: tProp(types.model(Gui), () => new Gui({})),
 }) {
-  @modelAction
-  save(): void {
-    const savegame = JSON.stringify(getSnapshot(this.game));
-    localStorage.setItem('save', savegame);
+  @computed
+  get savegame(): string {
+    return JSON.stringify(getSnapshot(this.game));
   }
 
   @modelAction
-  load() {
+  saveToLocalstorage(): void {
+    localStorage.setItem('save', this.savegame);
+  }
+
+  @modelAction
+  saveToClipboard() {
+    navigator.clipboard.writeText(this.savegame);
+  }
+
+  @modelAction
+  loadFromLocalstorage() {
     try {
       const savegame = localStorage.getItem('save');
       if (!savegame) {
@@ -37,6 +50,21 @@ export class Root extends Model({
       console.error('error applying snapshot', error);
     }
   }
+
+  @modelFlow
+  loadFromClipboard = _async(function* (this: Root) {
+    try {
+      const savegame = yield navigator.clipboard.readText();
+      if (!savegame) {
+        this.game.selectZone(this.game.initialZone);
+      }
+      this.game = fromSnapshot(Game, JSON.parse(savegame));
+    } catch (error) {
+      console.error('error applying snapshot', error);
+      return false;
+    }
+    return true;
+  });
 
   @modelAction
   reset(): void {

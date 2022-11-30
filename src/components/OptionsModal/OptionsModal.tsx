@@ -24,6 +24,30 @@ const customStyles = {
 const OptionsModal = () => {
   const root = useStore();
   const [resetConfirm, setResetConfirm] = useState(false);
+  const [exported, setExported] = useState(false);
+  const [importFailed, setImportFailed] = useState(false);
+
+  const exportHandler = () => {
+    if (exported) return;
+    root.saveToClipboard();
+    setExported(true);
+    setTimeout(() => {
+      setExported(false);
+    }, 2000);
+  };
+
+  const importHandler = async () => {
+    if (importFailed) return;
+    const success = await root.loadFromClipboard();
+    if (success) {
+      root.gui.closeOptionsModal();
+    } else {
+      setImportFailed(true);
+      setTimeout(() => {
+        setImportFailed(false);
+      }, 2000);
+    }
+  };
 
   return (
     <Modal
@@ -33,6 +57,13 @@ const OptionsModal = () => {
     >
       <h2>options</h2>
       <div css={styles.optionsContainer}>
+        <button css={styles.button} onClick={exportHandler}>
+          {exported ? 'copied to clipboard!' : 'export save'}
+        </button>
+
+        <button css={styles.button} onClick={importHandler}>
+          {importFailed ? 'import failed' : 'import save'}
+        </button>
         <button
           css={styles.button}
           onClick={() => setResetConfirm(!resetConfirm)}
