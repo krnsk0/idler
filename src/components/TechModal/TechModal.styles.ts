@@ -23,7 +23,7 @@ export const styles = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    box-sizing: content-box;
+    box-sizing: border-box;
     cursor: pointer;
 
     &:hover {
