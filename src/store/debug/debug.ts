@@ -41,6 +41,7 @@ export class Debug extends Model({
     tech[TechNames.AGROFORESTRY].cheat();
     tech[TechNames.FARMING].cheat();
     tech[TechNames.SHELTER].cheat();
+    initialZone.power.unlocked = true;
   }
 
   /**

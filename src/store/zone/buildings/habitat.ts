@@ -1,4 +1,4 @@
-import { model, ExtendedModel, modelAction } from 'mobx-keystone';
+import { model, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
