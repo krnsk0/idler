@@ -3,10 +3,10 @@ import { Zone } from '../zone';
 import { computed } from 'mobx';
 import { getActions } from '../actions/actions';
 import { getTech } from '../../tech/tech';
-import { Unlockable } from '../../unlockable';
+import { ZoneEntity } from '../zoneEntity';
 
 @model('Power')
-export class Power extends ExtendedModel(Unlockable, {}) {
+export class Power extends ExtendedModel(ZoneEntity, {}) {
   /**
    * Total power production
    */

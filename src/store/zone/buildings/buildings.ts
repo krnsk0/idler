@@ -4,10 +4,10 @@ import { enumKeys } from '../../../utils/enumKeys';
 import { BuildingNames } from './buildingNames';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
-import { Unlockable } from '../../unlockable';
+import { ZoneEntity } from '../zoneEntity';
 
 @model('Buildings')
-export class Buildings extends ExtendedModel(Unlockable, {
+export class Buildings extends ExtendedModel(ZoneEntity, {
   [BuildingNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
   [BuildingNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {

@@ -7,10 +7,10 @@ import { Biomass } from './biomass';
 import { Lumber } from './lumber';
 import { Colonists } from './colonists';
 import { ResourceNames } from './resourceNames';
-import { Unlockable } from '../../unlockable';
+import { ZoneEntity } from '../zoneEntity';
 
 @model('Resources')
-export class Resources extends ExtendedModel(Unlockable, {
+export class Resources extends ExtendedModel(ZoneEntity, {
   [ResourceNames.COLONISTS]: tProp(
     types.model(Colonists),
     () => new Colonists({}),
