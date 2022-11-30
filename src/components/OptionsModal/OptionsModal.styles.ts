@@ -14,7 +14,7 @@ export const styles = {
   `,
   button: css`
     margin: 0.5em;
-    width: 180px;
+    width: 250px;
     height: 2em;
     position: relative;
     border: 1px solid ${colors.black};

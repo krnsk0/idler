@@ -58,11 +58,11 @@ const OptionsModal = () => {
       <h2>options</h2>
       <div css={styles.optionsContainer}>
         <button css={styles.button} onClick={exportHandler}>
-          {exported ? 'copied to clipboard!' : 'export save'}
+          {exported ? 'copied to clipboard!' : 'export save to clipboard'}
         </button>
 
         <button css={styles.button} onClick={importHandler}>
-          {importFailed ? 'import failed' : 'import save'}
+          {importFailed ? 'import failed' : 'import save from clipboard'}
         </button>
         <button
           css={styles.button}

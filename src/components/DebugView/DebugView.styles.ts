@@ -4,7 +4,11 @@ export const styles = {
   debug: css`
     position: absolute;
     top: 0;
-    width: 100%;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
 
     button {
       height: 1.5em;
