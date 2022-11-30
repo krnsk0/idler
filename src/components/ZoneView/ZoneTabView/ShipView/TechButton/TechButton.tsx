@@ -28,7 +28,11 @@ function TechButton() {
         selectedTech: BaseTech | undefined,
         previousSelectedTech: BaseTech | undefined,
       ) => {
-        if (!selectedTech && previousSelectedTech) {
+        if (
+          !selectedTech &&
+          previousSelectedTech &&
+          previousSelectedTech.researched
+        ) {
           setDidJustFinishResearch(true);
           setTimeout(() => {
             setDidJustFinishResearch(false);
@@ -62,6 +66,10 @@ function TechButton() {
               <TooltipText align={'center'}>
                 {formatNumber(selectedTech.power)} of{' '}
                 {formatNumber(selectedTech.powerCost)} power
+              </TooltipText>
+              <TooltipDivider />
+              <TooltipText align={'center'} italic={true}>
+                click to change target
               </TooltipText>
             </>
           )}

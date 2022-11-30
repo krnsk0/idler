@@ -50,6 +50,20 @@ const TechModal = () => {
             </div>
           );
         })}
+        {root.game.tech.selectedTech && (
+          <div
+            key={'none'}
+            css={styles.techTile}
+            onClick={() => {
+              root.game.tech.selectTech(undefined);
+              root.gui.closeTechModal();
+            }}
+          >
+            <div css={styles.techTitle}>{''}</div>
+            <div css={styles.techDescription}>{'pause research'}</div>
+            <div css={styles.techCost}> </div>
+          </div>
+        )}
       </div>
     </Modal>
   );
