@@ -1,5 +1,4 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { BaseTech } from './baseTech';
 import { getTech } from './tech';
@@ -16,7 +15,7 @@ const effects: TechEffect[] = [
 @model(TechNames.FARMING)
 export class Farming extends ExtendedModel(BaseTech, {}) {
   name = TechNames.FARMING;
-  displayName = 'farming';
+  displayName = 'hydroponic farming';
   description = 'rudimentary applied xenobotany';
   unlockWhen = () => {
     return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;

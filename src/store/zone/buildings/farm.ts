@@ -1,13 +1,12 @@
-import { model, ExtendedModel, modelAction } from 'mobx-keystone';
+import { model, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
-import { getResources } from '../resources/resources';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
 
 @model(BuildingNames.FARM)
 export class Farm extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.FARM;
-  displayName = 'farm';
+  displayName = 'hydroponic farm';
   description = 'cultivates edible xenoflora, producing biomass as byproduct';
   splashText = 'a triumph of xenobotany';
   baseCost = [
