@@ -1,7 +1,7 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BaseResource, ProductionConsumptionDisplay } from './baseResource';
 import { ResourceNames } from './resourceNames';
-import { computed, override } from 'mobx';
+import { override } from 'mobx';
 
 @model(ResourceNames.NUTRIENTS)
 export class Nutrients extends ExtendedModel(BaseResource, {}) {
