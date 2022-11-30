@@ -15,6 +15,4 @@ graph TD;
   A[ZoneEntity] --> L[Resources]
   A[ZoneEntity] --> M[Buildings]
   A[ZoneEntity] --> N[Power]
-
-
 ```

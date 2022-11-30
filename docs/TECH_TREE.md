@@ -1,0 +1,13 @@
+The tech tree:
+
+```mermaid
+
+graph TD;
+  A[BIOMASS_COMPRESSION] --> B[FARMING]
+  A[BIOMASS_COMPRESSION] --> C[SHELTER]
+  B[FARMING] --> D[CRYONICS]
+  C[SHELTER] --> D[CRYONICS]
+  D[CRYONICS] --> E[FORESTRY]
+  D[CRYONICS] --> F[STORAGE]
+
+```
