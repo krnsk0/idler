@@ -14,7 +14,7 @@ export abstract class Unlockable extends Model({
    * i.e. when a colonist fies
    */
   showEntranceAnimation = false;
-  entranceAnimationDuration = 500;
+  entranceAnimationDuration = 300;
 
   /**
    * Runs an unlock check

@@ -1,12 +1,13 @@
-import { model, Model, tProp, types } from 'mobx-keystone';
+import { ExtendedModel, model, Model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { BuildingNames } from './buildingNames';
 import { Farm } from './farm';
 import { Habitat } from './habitat';
+import { Unlockable } from '../../unlockable';
 
 @model('Buildings')
-export class Buildings extends Model({
+export class Buildings extends ExtendedModel(Unlockable, {
   [BuildingNames.FARM]: tProp(types.model(Farm), () => new Farm({})),
   [BuildingNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
 }) {
@@ -29,10 +30,9 @@ export class Buildings extends Model({
   }
 
   /**
-   * Are any resources unlocked?
+   * Unlock check
    */
-  @computed
-  get anyUnlocked(): boolean {
+  unlockWhen = () => {
     return !!this.unlockedAsArray.length;
-  }
+  };
 }

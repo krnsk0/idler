@@ -12,11 +12,15 @@ interface ShipViewProps {
 }
 
 function ShipView({ zone }: ShipViewProps) {
-  const areBuildingsUnlocked = !!zone.buildings.unlockedAsArray.length;
   return (
     <>
       <div css={styles.shipOuter} id="ship-view-outer">
-        <Divider text={'crashed ship'} shown={areBuildingsUnlocked} />
+        <Divider
+          text={'crashed ship'}
+          shown={zone.buildings.unlocked}
+          showEntranceAnimation={zone.buildings.showEntranceAnimation}
+          entranceAnimationDuration={zone.buildings.entranceAnimationDuration}
+        />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           <ActionButton action={zone.actions[ActionNames.HARVEST]} />
           <TechButton />
@@ -26,7 +30,12 @@ function ShipView({ zone }: ShipViewProps) {
         </div>
       </div>
       <div css={styles.shipOuter}>
-        <Divider text={'colony'} shown={areBuildingsUnlocked} />
+        <Divider
+          text={'colony'}
+          shown={zone.buildings.unlocked}
+          showEntranceAnimation={zone.buildings.showEntranceAnimation}
+          entranceAnimationDuration={zone.buildings.entranceAnimationDuration}
+        />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           {zone.buildings.asArray.map((building) => {
             return <BuildingButton building={building} key={building.name} />;

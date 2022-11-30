@@ -37,5 +37,3 @@ export const entranceAnimation = keyframes`
     transform: scale(1, 1);
   }
 `;
-
-export const transitionDuration = '300ms';
