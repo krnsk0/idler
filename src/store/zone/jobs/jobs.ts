@@ -94,13 +94,13 @@ export class Jobs extends Model({
   /**
    * This handles colonists consuming food every tick and possible
    * death of colonists. Colonists have a chance of dying when there is
-   * no food.
+   * no food. Can only kill one colonist per tick.
    */
   @modelAction
   tick(delta: number): void {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
     const nutrients = getResources(this)[ResourceNames.NUTRIENTS];
-    const chanceOfEachWorkerDyingPerSecond = 0.25; // percent
+    const chanceOfEachWorkerDyingPerSecond = 0.15; // percent
 
     const amountToEat = this.foodConsumption * delta;
 
@@ -114,6 +114,7 @@ export class Jobs extends Model({
         const diceRoll = Math.random();
         if (diceRoll < chanceOfAWorkerDyingThisTick) {
           this.killColonist();
+          break;
         }
       }
     }
