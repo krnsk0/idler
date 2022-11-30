@@ -10,6 +10,7 @@ import { Root } from '../root';
 
 @model('Gui')
 export class Gui extends Model({
+  optionsModal: tProp(types.boolean, false),
   techModal: tProp(types.boolean, false),
 }) {
   @modelAction
@@ -20,6 +21,16 @@ export class Gui extends Model({
   @modelAction
   closeTechModal(): void {
     this.techModal = false;
+  }
+
+  @modelAction
+  openOptionsModal(): void {
+    this.optionsModal = true;
+  }
+
+  @modelAction
+  closeOptionsModal(): void {
+    this.optionsModal = false;
   }
 }
 

@@ -6,6 +6,8 @@ import DebugView from './DebugView/DebugView';
 import TechModal from './TechModal/TechModal';
 import { useLocalSave } from './useLocalSave';
 import { useLocalLoad } from './useLocalLoad';
+import OptionsModal from './OptionsModal/OptionsModal';
+import Topbar from './Topbar/Topbar';
 
 function App() {
   const root = useStore();
@@ -17,8 +19,10 @@ function App() {
   return (
     <>
       <DebugView />
+      <Topbar />
       {selectedZone && <ZoneView zone={selectedZone} />}
       <TechModal />
+      <OptionsModal />
     </>
   );
 }
