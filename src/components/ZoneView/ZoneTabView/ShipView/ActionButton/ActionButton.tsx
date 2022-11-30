@@ -62,8 +62,8 @@ function ActionButton({ action }: ActionButtonProps) {
       showEntranceAnimation={action.showEntranceAnimation}
       entranceAnimationDuration={action.entranceAnimationDuration}
     >
-      <span>{action.displayName}</span>{' '}
-      {action.showLowPowerMessage && <div css={styles.noPower}>no power</div>}
+      <span>{action.displayName}</span>
+      {action.showLowPowerMessage && <span>*</span>}
     </ZoneEntityButton>
   );
 }
