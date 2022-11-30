@@ -7,21 +7,21 @@ import { BuildingNames } from './buildingNames';
 export class Habitat extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.HABITAT;
   displayName = 'habitat';
-  description = 'housing for 2 colonists';
+  description = 'housing for one colonist';
   splashText = 'protection from the elements';
   baseCost = [
     {
       resource: ResourceNames.LUMBER,
-      quantity: 6,
+      quantity: 8,
     },
   ];
-  costExponent = 1.45;
+  costExponent = 1.5;
   inputs = [];
   outputs = [];
   storage = [
     {
       resource: ResourceNames.COLONISTS,
-      quantity: 2,
+      quantity: 1,
     },
   ];
   unlockWhen = () => this.isUnlockedByTech;

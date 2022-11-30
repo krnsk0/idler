@@ -13,6 +13,7 @@ import { getTech } from '../tech/tech';
 import { TechNames } from '../tech/techNames';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
+import { JobNames } from '../zone/jobs/jobNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 
 @model('Debug')
@@ -50,12 +51,17 @@ export class Debug extends Model({
     this.phaseOne();
     const tech = getTech(this);
     const initialZone = getGame(this).initialZone;
-    initialZone.buildings[BuildingNames.FARM].cheat(5);
-    initialZone.buildings[BuildingNames.HABITAT].cheat(2);
-    initialZone.resources[ResourceNames.NUTRIENTS].cheat();
     tech[TechNames.CRYONICS].cheat();
     tech[TechNames.STORAGE].cheat();
-    initialZone.resources[ResourceNames.COLONISTS].cheat(2);
+    initialZone.resources[ResourceNames.COLONISTS].cheat(4);
+    for (let i = 0; i < 4; i += 1) {
+      initialZone.jobs[JobNames.ARBORIST].assign();
+    }
+    initialZone.buildings[BuildingNames.CACHE].cheat(5);
+    initialZone.buildings[BuildingNames.FARM].cheat(8);
+    initialZone.buildings[BuildingNames.HABITAT].cheat(4);
+    initialZone.resources[ResourceNames.NUTRIENTS].cheat();
+    initialZone.resources[ResourceNames.BIOMASS].cheat();
   }
 }
 export const getDebug = (child: object): Debug => {
