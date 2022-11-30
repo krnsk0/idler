@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import { useStore } from '../../../../../store/Provider';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 import { BaseTech } from '../../../../../store/tech/baseTech';
-import { styles } from './TechButton.styles';
 import {
   TooltipDivider,
   TooltipText,
@@ -53,17 +52,13 @@ function TechButton() {
           {selectedTech && (
             <>
               {root.game.initialZone.power.outage && (
-                <TooltipText align={'center'}>
-                  *no power, progress stalled
-                </TooltipText>
+                <>
+                  <TooltipText align={'center'}>
+                    *no power, progress stalled
+                  </TooltipText>
+                  <TooltipDivider />
+                </>
               )}
-              <TooltipDivider />
-
-              <TooltipText align={'center'} italic={true}>
-                {selectedTech.displayName}
-              </TooltipText>
-              <TooltipDivider />
-
               <TooltipText align={'center'}>
                 {formatNumber(selectedTech.power)} of{' '}
                 {formatNumber(selectedTech.powerCost)} power
