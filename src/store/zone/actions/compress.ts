@@ -19,7 +19,7 @@ export class Compress extends ExtendedModel(BaseAction, {}) {
   outputs = [
     {
       resource: ResourceNames.LUMBER,
-      quantity: 1,
+      quantity: 2,
     },
   ];
   basePowerProduction = 0;

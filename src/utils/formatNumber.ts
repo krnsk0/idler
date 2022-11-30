@@ -1,3 +1,6 @@
+/**
+ * Defaults to 2 digits
+ */
 export const formatNumber = (
   input: number,
   option?: { showSign?: boolean; digits?: number },

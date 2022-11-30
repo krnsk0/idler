@@ -5,6 +5,11 @@ import { useStore } from '../../../../../store/Provider';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 import { BaseTech } from '../../../../../store/tech/baseTech';
 import { styles } from './TechButton.styles';
+import {
+  TooltipDivider,
+  TooltipText,
+} from '../../../../shared/Tooltip/Tooltip';
+import { formatNumber } from '../../../../../utils/formatNumber';
 
 function TechButton() {
   const root = useStore();
@@ -38,6 +43,41 @@ function TechButton() {
 
   return (
     <ZoneEntityButton
+      tooltip={
+        <>
+          {noTechAvailable && (
+            <TooltipText italic={true} align={'center'} light={true}>
+              the ship sleeps
+            </TooltipText>
+          )}
+          {selectedTech && (
+            <>
+              {root.game.initialZone.power.outage && (
+                <TooltipText align={'center'}>
+                  *no power, progress stalled
+                </TooltipText>
+              )}
+              <TooltipDivider />
+
+              <TooltipText align={'center'} italic={true}>
+                {selectedTech.displayName}
+              </TooltipText>
+              <TooltipDivider />
+
+              <TooltipText align={'center'}>
+                {formatNumber(selectedTech.power)} of{' '}
+                {formatNumber(selectedTech.powerCost)} power
+              </TooltipText>
+            </>
+          )}
+          {!selectedTech && !noTechAvailable && (
+            <TooltipText italic={true} align={'center'} light={true}>
+              to what end should ship turn its contemplation?
+            </TooltipText>
+          )}
+          {}
+        </>
+      }
       onClick={() => {
         root.gui.openTechModal();
       }}
@@ -51,7 +91,7 @@ function TechButton() {
           return (
             <>
               <span>{selectedTech.displayName}</span>
-              {root.game.initialZone.power.production === 0 && <span>*</span>}
+              {root.game.initialZone.power.outage && <span>*</span>}
             </>
           );
         }
