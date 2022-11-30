@@ -100,7 +100,7 @@ export class Tech extends ExtendedModel(Unlockable, {
    */
   unlockWhen = () => {
     return (
-      getGame(this).zones[0].resources[ResourceNames.BIOMASS].quantity >= 5
+      getGame(this).initialZone.resources[ResourceNames.BIOMASS].quantity >= 5
     );
   };
 
@@ -111,7 +111,7 @@ export class Tech extends ExtendedModel(Unlockable, {
    */
   tick(delta: number): void {
     if (this.selectedTech) {
-      const power = getGame(this).zones[0].power;
+      const power = getGame(this).initialZone.power;
       const fudgeFactor = 1.01; // helps w/ rounding errors
       const researchRate = 1;
       const increase = delta * researchRate * power.satisfaction * fudgeFactor;

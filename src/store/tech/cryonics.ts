@@ -25,7 +25,8 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
     return (
       getTech(this)[TechNames.SHELTER].researched &&
       getTech(this)[TechNames.FARMING].researched &&
-      getGame(this).zones[0].resources[ResourceNames.COLONISTS].currentCap > 0
+      getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap >
+        0
     );
   };
   powerCost = 20;

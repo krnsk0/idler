@@ -22,7 +22,7 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   unlockWhen = () => {
     return (
       getTech(this)[TechNames.CRYONICS].researched &&
-      getGame(this).zones[0].resources[ResourceNames.COLONISTS].quantity > 0
+      getGame(this).initialZone.resources[ResourceNames.COLONISTS].quantity > 0
     );
   };
   powerCost = 20;

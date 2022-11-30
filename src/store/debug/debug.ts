@@ -6,6 +6,7 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
+import { getGame } from '../game';
 import { Root } from '../root';
 
 @model('Debug')
@@ -16,6 +17,11 @@ export class Debug extends Model({
   toggleHyperMode() {
     this.hyperMode = !this.hyperMode;
     console.log('hyper', this.hyperMode);
+  }
+
+  @modelAction
+  phaseOne() {
+    const initialZone = getGame(this).initialZone;
   }
 }
 export const getDebug = (child: object): Debug => {

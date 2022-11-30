@@ -30,7 +30,7 @@ export class Root extends Model({
     try {
       const savegame = localStorage.getItem('save');
       if (!savegame) {
-        this.game.selectZone(this.game.zones[0]);
+        this.game.selectZone(this.game.initialZone);
         return;
       }
       this.game = fromSnapshot(Game, JSON.parse(savegame));
@@ -42,7 +42,7 @@ export class Root extends Model({
   @modelAction
   reset(): void {
     this.game = new Game({});
-    this.game.selectZone(this.game.zones[0]);
+    this.game.selectZone(this.game.initialZone);
   }
 }
 

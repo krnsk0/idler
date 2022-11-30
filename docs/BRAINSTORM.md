@@ -1,20 +1,4 @@
 # brainstorm
-https://www.reddit.com/r/incremental_gamedev/
-
-## theme
-combine ideas from some of the best incrementals as well as other games, nostalgia
-combine ideas from: kittens, civilization, factorio (?), mine defense, keepcraft
-there's always a manual game loop at each stage to automate away
-
-civilization of some kind
-very vague theme
-"at night, they come"
-trade, eventually
-DO NOT WORRY ABOUT REALISTIC RECIPES
-STUDY KITTENS, IT IS THE BEST
-SIMULATION A LA CIV
-design based on a dark room - minimalist UI
-
 
 ## tabs
 zone tab is producers
@@ -74,8 +58,7 @@ searchable?
 
 ## release plan
 analytics
-optimize based on A/B?
-observability? see when dropoff is, optimize against dropoff
+see when dropoff is, optimize against dropoff
 
 ## production system for units
 units are produced like

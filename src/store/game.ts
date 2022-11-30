@@ -32,6 +32,11 @@ export class Game extends Model({
     return this.selectedZoneRef ? this.selectedZoneRef.current : undefined;
   }
 
+  @computed
+  get initialZone(): Zone {
+    return this.zones[0];
+  }
+
   @modelAction
   addZone() {
     this.zones.push(new Zone({}));

@@ -52,7 +52,7 @@ function TechButton() {
           return (
             <>
               <div>{selectedTech.displayName}</div>
-              {root.game.zones[0].power.production === 0 && (
+              {root.game.initialZone.power.production === 0 && (
                 <div css={styles.noPower}>no power</div>
               )}
             </>

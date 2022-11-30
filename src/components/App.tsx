@@ -16,8 +16,8 @@ function App() {
 
   return (
     <>
-      {selectedZone && <ZoneView zone={selectedZone} />}
       <DebugView />
+      {selectedZone && <ZoneView zone={selectedZone} />}
       <TechModal />
     </>
   );
