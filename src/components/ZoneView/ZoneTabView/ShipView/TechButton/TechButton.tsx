@@ -51,7 +51,7 @@ function TechButton() {
           )}
           {selectedTech && (
             <>
-              {root.game.initialZone.power.outage && (
+              {root.game.initialZone.power.blackout && (
                 <>
                   <TooltipText align={'center'}>
                     *no power, progress stalled
@@ -86,7 +86,7 @@ function TechButton() {
           return (
             <>
               <span>{selectedTech.displayName}</span>
-              {root.game.initialZone.power.outage && <span>*</span>}
+              {root.game.initialZone.power.blackout && <span>*</span>}
             </>
           );
         }

@@ -6,7 +6,6 @@ import {
   TooltipDivider,
 } from '../../../../shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
-import { getZone } from '../../../../../store/zone/zone';
 
 interface ActionButtonProps {
   action: BaseAction;
@@ -18,7 +17,7 @@ function ActionButton({ action }: ActionButtonProps) {
     <ZoneEntityButton
       tooltip={
         <>
-          {getZone(action).power.outage && (
+          {action.showNoPowerMessage && (
             <>
               <TooltipText align={'center'}>
                 *no power, progress stalled
@@ -26,6 +25,7 @@ function ActionButton({ action }: ActionButtonProps) {
               <TooltipDivider />
             </>
           )}
+
           <TooltipText italic={true} align={'center'} light={true}>
             {action.description}
           </TooltipText>
@@ -71,7 +71,7 @@ function ActionButton({ action }: ActionButtonProps) {
       entranceAnimationDuration={action.entranceAnimationDuration}
     >
       <span>{action.displayName}</span>
-      {action.showLowPowerMessage && <span>*</span>}
+      {action.showNoPowerMessage && <span>*</span>}
     </ZoneEntityButton>
   );
 }

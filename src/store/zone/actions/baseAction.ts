@@ -123,15 +123,11 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Do we show a low power message for this action?
+   * Do we show a no power message for this action?
    */
   @computed
-  get showLowPowerMessage(): boolean {
-    return (
-      this.powerConsumption > 0 &&
-      this.active &&
-      getPower(this).production === 0
-    );
+  get showNoPowerMessage(): boolean {
+    return this.powerConsumption > 0 && this.active && getPower(this).blackout;
   }
 
   /**

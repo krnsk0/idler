@@ -47,16 +47,8 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
    * Are we in a total power outage
    */
   @computed
-  get outage(): boolean {
+  get blackout(): boolean {
     return this.demand > 0 && this.production === 0;
-  }
-
-  /**
-   * Are we in a brownout but not an outage
-   */
-  @computed
-  get brownout(): boolean {
-    return this.demand > 0 && this.demand < this.production;
   }
 
   /**
