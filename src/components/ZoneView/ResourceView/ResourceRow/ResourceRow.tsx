@@ -121,8 +121,8 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
       <span css={styles.quantityContainer}>
         <span
           css={[
-            resource.highlightQuantity &&
-              styles.highlight(resource.highlightQuantityAnimationDuration),
+            resource.showHighlight &&
+              styles.highlight(resource.highlightAnimationDuration),
           ]}
         >
           {formatNumber(resource.quantity)}

@@ -73,6 +73,8 @@ function BuildingButton({ building }: BuildingButtonProps) {
       }
       onClick={() => building.buy(1)}
       disabled={!building.affordable}
+      showEntranceAnimation={building.showEntranceAnimation}
+      entranceAnimationDuration={building.entranceAnimationDuration}
     >
       <span>
         {building.displayName} ({formatNumber(building.quantity, { digits: 0 })}

@@ -14,10 +14,10 @@ export class Colonists extends ExtendedModel(BaseResource, {}) {
    */
   @modelAction
   decrease(quantity: number, options?: { untracked?: boolean }): void {
-    this.highlightQuantity = true;
+    this.showHighlight = true;
     setTimeout(() => {
-      this.highlightQuantity = false;
-    }, this.highlightQuantityAnimationDuration);
+      this.showHighlight = false;
+    }, this.highlightAnimationDuration);
     super.decrease(quantity, options);
   }
 }

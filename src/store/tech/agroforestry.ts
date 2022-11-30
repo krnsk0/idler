@@ -1,7 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { getGame } from '../game';
-import { getRoot } from '../root';
-import { ActionNames } from '../zone/actions/actionNames';
 import { JobNames } from '../zone/jobs/jobNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';

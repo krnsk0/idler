@@ -23,8 +23,13 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   abstract displayName: string;
   abstract initialCap: number;
   private changeSinceLastTick = 0;
-  highlightQuantity = false;
-  highlightQuantityAnimationDuration = 500;
+
+  /**
+   * State for temporary highlight
+   * i.e. when a colonist fies
+   */
+  showHighlight = false;
+  highlightAnimationDuration = 500;
 
   /**
    * What is the storage cap for this resource?

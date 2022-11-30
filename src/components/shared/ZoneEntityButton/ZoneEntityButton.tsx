@@ -15,6 +15,8 @@ interface ZoneEntityButtonProps {
   progress?: number;
   active?: boolean;
   reverseProgressBar?: boolean;
+  showEntranceAnimation: boolean;
+  entranceAnimationDuration: number;
 }
 
 const ZoneEntityButton = ({
@@ -26,6 +28,8 @@ const ZoneEntityButton = ({
   active,
   progress,
   reverseProgressBar,
+  showEntranceAnimation,
+  entranceAnimationDuration,
 }: ZoneEntityButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const possiblyInvertedProgress =
@@ -50,7 +54,12 @@ const ZoneEntityButton = ({
       )}
 
       <div
-        css={[styles.buttonContainer, styleOverride]}
+        css={[
+          styles.buttonContainer,
+          showEntranceAnimation &&
+            styles.animateEntrance(entranceAnimationDuration),
+          styleOverride,
+        ]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}
         ref={containerRef}
       >

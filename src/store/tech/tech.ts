@@ -1,7 +1,7 @@
 import {
   findParent,
   model,
-  Model,
+  ExtendedModel,
   modelAction,
   prop,
   Ref,
@@ -22,12 +22,12 @@ import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
 import { ResourceNames } from '../zone/resources/resourceNames';
+import { Unlockable } from '../unlockable';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
 @model('Tech')
-export class Tech extends Model({
-  unlocked: tProp(types.boolean, false),
+export class Tech extends ExtendedModel(Unlockable, {
   selectedTechRef: prop<Ref<BaseTech> | undefined>(),
   [TechNames.BIOMASS_COMPRESSION]: tProp(
     types.model(BiomassCompression),
@@ -96,15 +96,13 @@ export class Tech extends Model({
   }
 
   /**
-   * Runs an unlock check
+   * The unlock check for the technology button
    */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked) {
-      this.unlocked =
-        getGame(this).zones[0].resources[ResourceNames.BIOMASS].quantity >= 5;
-    }
-  }
+  unlockWhen = () => {
+    return (
+      getGame(this).zones[0].resources[ResourceNames.BIOMASS].quantity >= 5
+    );
+  };
 
   /**
    * Tick to update research

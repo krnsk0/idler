@@ -26,3 +26,16 @@ export const colors = {
   white: 'white',
   black: 'black',
 };
+
+export const entranceAnimation = keyframes`
+  0% {
+    opacity: 0;
+    transform: scale(0.5, 0.5);
+  }
+  100%{
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+`;
+
+export const transitionDuration = '300ms';

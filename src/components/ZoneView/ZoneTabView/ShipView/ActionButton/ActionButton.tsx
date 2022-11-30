@@ -59,6 +59,8 @@ function ActionButton({ action }: ActionButtonProps) {
       disabled={!action.enabled}
       active={action.active}
       reverseProgressBar={action.reverseProgressBar}
+      showEntranceAnimation={action.showEntranceAnimation}
+      entranceAnimationDuration={action.entranceAnimationDuration}
     >
       <span>{action.displayName}</span>{' '}
       {action.showLowPowerMessage && <div css={styles.noPower}>no power</div>}

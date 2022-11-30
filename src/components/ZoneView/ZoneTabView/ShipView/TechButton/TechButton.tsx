@@ -35,6 +35,7 @@ function TechButton() {
   }, [root]);
 
   if (!root.game.tech.unlocked) return null;
+  console.log('DEBUG', root.game.tech);
 
   return (
     <ZoneEntityButton
@@ -43,6 +44,8 @@ function TechButton() {
       }}
       progress={selectedTech?.progress ?? 0}
       disabled={noTechAvailable}
+      showEntranceAnimation={root.game.tech.showEntranceAnimation}
+      entranceAnimationDuration={root.game.tech.entranceAnimationDuration}
     >
       {(() => {
         if (selectedTech) {
