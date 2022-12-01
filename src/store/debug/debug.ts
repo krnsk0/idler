@@ -64,6 +64,8 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.NUTRIENTS].cheat();
     initialZone.resources[ResourceNames.BIOMASS].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
+
+    // getRoot(this).executeTick(0.5);
   }
 }
 export const getDebug = (child: object): Debug => {

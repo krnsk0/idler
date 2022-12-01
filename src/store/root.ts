@@ -117,7 +117,7 @@ export class Root extends Model({
     let timeRemaining = time * (this.debug.hyperMode ? 10 : 1);
 
     // longest allowable tick length
-    const longestTick = 0.2;
+    const longestTick = 1;
     if (timeRemaining > longestTick) {
       console.log('breaking up long tick of length', time);
     }
