@@ -9,12 +9,30 @@ import {
   fromSnapshot,
   modelFlow,
   _async,
+  walkTree,
+  WalkTreeMode,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
+
+interface Tickable {
+  tick: (delta: number) => void;
+}
+
+interface UnlockCheckable {
+  unlockCheck: () => void;
+}
+
+function isTickable(obj: unknown): obj is Tickable {
+  return typeof obj === 'object' && obj !== null && 'tick' in obj;
+}
+
+function isUnlockCheckable(obj: unknown): obj is UnlockCheckable {
+  return typeof obj === 'object' && obj !== null && 'unlockCheck' in obj;
+}
 
 @model('Root')
 export class Root extends Model({
@@ -70,6 +88,22 @@ export class Root extends Model({
   reset(): void {
     this.game = new Game({});
     this.game.selectZone(this.game.initialZone);
+  }
+
+  @modelAction
+  executeTick(delta: number): void {
+    walkTree(
+      this,
+      (node: unknown) => {
+        if (isTickable(node)) {
+          node.tick(delta * (this.debug.hyperMode ? 100 : 1));
+        }
+        if (isUnlockCheckable(node)) {
+          node.unlockCheck();
+        }
+      },
+      WalkTreeMode.ParentFirst,
+    );
   }
 }
 
