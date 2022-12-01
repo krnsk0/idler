@@ -1,7 +1,6 @@
 import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../store/Provider';
-import { Zone } from '../../store/zone/zone';
 import { styles } from './DebugView.styles';
 
 interface DebugProps {}
@@ -32,6 +31,14 @@ const DebugView = () => {
           }}
         >
           1sec tick
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            root.printTickable();
+          }}
+        >
+          print tickable
         </button>
         <button
           type="button"

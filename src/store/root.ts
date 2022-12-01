@@ -11,12 +11,15 @@ import {
   _async,
   walkTree,
   WalkTreeMode,
+  onChildAttachedTo,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
+
+const tickable = new Set();
 
 interface Tickable {
   tick: (delta: number) => void;
@@ -88,6 +91,32 @@ export class Root extends Model({
   reset(): void {
     this.game = new Game({});
     this.game.selectZone(this.game.initialZone);
+  }
+
+  @modelAction
+  printTickable(): void {
+    for (let model of tickable) {
+      console.log(model);
+    }
+  }
+
+  @modelAction
+  onInit() {
+    onChildAttachedTo(
+      () => this,
+      (child) => {
+        if (isTickable(child)) {
+          tickable.add(child);
+        }
+
+        return () => {
+          if (isTickable(child)) {
+            tickable.delete(child);
+          }
+        };
+      },
+      { deep: true },
+    );
   }
 
   /**
