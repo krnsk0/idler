@@ -28,6 +28,14 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
+            root.executeTick(1);
+          }}
+        >
+          long tick
+        </button>
+        <button
+          type="button"
+          onClick={() => {
             root.reset();
             localStorage.removeItem('save');
             console.log('reset complete');
