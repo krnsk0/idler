@@ -90,13 +90,16 @@ export class Root extends Model({
     this.game.selectZone(this.game.initialZone);
   }
 
+  /**
+   * Helper that applies a delta to the tree
+   */
   @modelAction
-  executeTick(delta: number): void {
+  _executeTick(delta: number): void {
     walkTree(
       this,
       (node: unknown) => {
         if (isTickable(node)) {
-          node.tick(delta * (this.debug.hyperMode ? 100 : 1));
+          node.tick(delta);
         }
         if (isUnlockCheckable(node)) {
           node.unlockCheck();
@@ -104,6 +107,25 @@ export class Root extends Model({
       },
       WalkTreeMode.ParentFirst,
     );
+  }
+
+  /**
+   * If a tick is too long, break it up to run as a batch
+   */
+  @modelAction
+  executeTick(time: number): void {
+    let timeRemaining = time * (this.debug.hyperMode ? 10 : 1);
+
+    // longest allowable tick length
+    const longestTick = 0.2;
+    if (timeRemaining > longestTick) {
+      console.log('breaking up long tick of length', time);
+    }
+    while (timeRemaining > longestTick) {
+      this._executeTick(longestTick);
+      timeRemaining -= longestTick;
+    }
+    this._executeTick(timeRemaining);
   }
 }
 
