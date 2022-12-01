@@ -31,7 +31,7 @@ const DebugView = () => {
             root.executeTick(1);
           }}
         >
-          long tick
+          1sec tick
         </button>
         <button
           type="button"
