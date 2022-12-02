@@ -129,12 +129,13 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Ensures average rate of change is tracked.
+   * Ensures average rate of change is tracked, and also reduces to cap
    */
   @modelAction
   tick(delta: number): void {
     if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
     this.changeSinceLastTick = 0;
+    if (this.quantity > this.currentCap) this.quantity = this.currentCap;
   }
 
   /**
@@ -143,11 +144,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @modelAction
   increase(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick += quantity;
-    if (this.quantity + quantity > this.currentCap) {
-      this.quantity = this.currentCap;
-    } else {
-      this.quantity += quantity;
-    }
+    this.quantity += quantity;
   }
 
   /**
