@@ -112,13 +112,10 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
     if (nutrients.quantity < 0 && colonists.quantity > 0) {
       const chanceOfAWorkerDyingThisTick =
         delta * chanceOfEachWorkerDyingPerSecond;
-      console.log('OUT OF FOOD, CHANCE OF DEATH', chanceOfAWorkerDyingThisTick);
 
       for (let i = 0; i < colonists.quantity; i += 1) {
-        console.log('ROLLING...');
         const diceRoll = Math.random();
         if (diceRoll < chanceOfAWorkerDyingThisTick) {
-          console.log('KILLED');
           this.killColonist();
           break;
         }
