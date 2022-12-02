@@ -17,12 +17,19 @@ export interface StorageSummaryDisplay {
 }
 export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
-  estimatedRate: tProp(types.number, 0),
+  /**
+   * Used to show change over time.
+   * Can be null if no change has taken place this tick.
+   * Zero means that increase and decrease cancelled out. This matters
+   * as we might want to display a value of zero when they do cancel, whereas
+   * we might not want to display a null value
+   */
+  estimatedRate: tProp(types.maybeNull(types.number), null),
 }) {
   abstract name: ResourceNames;
   abstract displayName: string;
   abstract initialCap: number;
-  private changeSinceLastTick = 0;
+  private changeSinceLastTick: null | number = 0;
 
   /**
    * State for temporary highlight
@@ -129,12 +136,19 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Ensures average rate of change is tracked, and also reduces to cap
+   * Participates in tick system
    */
   @modelAction
   tick(delta: number): void {
-    if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
-    this.changeSinceLastTick = 0;
+    // track changes to this resource
+    // zero is different from null!
+    this.estimatedRate = null;
+    if (this.changeSinceLastTick !== null) {
+      if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
+    }
+    this.changeSinceLastTick = null;
+
+    // Ensure resources are in storage bounds
     if (this.quantity > this.currentCap) this.quantity = this.currentCap;
     else if (this.quantity < 0) this.quantity = 0;
   }
@@ -144,8 +158,27 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   increase(quantity: number, options?: { untracked?: boolean }): void {
-    if (!options?.untracked) this.changeSinceLastTick += quantity;
+    if (quantity === 0) return;
+    if (!options?.untracked)
+      this.changeSinceLastTick =
+        this.changeSinceLastTick !== null
+          ? this.changeSinceLastTick + quantity
+          : quantity;
     this.quantity += quantity;
+  }
+
+  /**
+   * Decreases quantity. Optionally can turn off tracking for average rate
+   */
+  @modelAction
+  decrease(quantity: number, options?: { untracked?: boolean }): void {
+    if (quantity === 0) return;
+    if (!options?.untracked)
+      this.changeSinceLastTick =
+        this.changeSinceLastTick !== null
+          ? this.changeSinceLastTick - quantity
+          : quantity;
+    this.quantity -= quantity;
   }
 
   /**
@@ -155,14 +188,5 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   cheat(quantity?: number): void {
     console.log(`CHEAT: CREATING ${this.name}`);
     this.quantity = quantity ? quantity : this.currentCap;
-  }
-
-  /**
-   * Decreases quantity. Optionally can turn off tracking for average rate
-   */
-  @modelAction
-  decrease(quantity: number, options?: { untracked?: boolean }): void {
-    if (!options?.untracked) this.changeSinceLastTick -= quantity;
-    this.quantity -= quantity;
   }
 }

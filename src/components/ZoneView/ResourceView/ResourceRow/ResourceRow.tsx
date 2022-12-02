@@ -13,10 +13,6 @@ interface ResourceRowProps {
 }
 const ResourceRow = ({ resource }: ResourceRowProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const displayFudge = 0.000001;
-  const showDelta =
-    resource.estimatedRate > displayFudge ||
-    resource.estimatedRate < -displayFudge;
 
   return (
     <div ref={containerRef} css={styles.resourceRow} key={resource.name}>
@@ -110,7 +106,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         )}
       </Tooltip>
       <span css={styles.displayName}>{resource.displayName}</span>
-      {showDelta && (
+      {resource.estimatedRate !== null && (
         <span css={styles.quantityPerSecond}>
           {formatNumber(resource.estimatedRate, {
             showSign: true,
