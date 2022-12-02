@@ -32,6 +32,7 @@ const DebugView = () => {
         >
           1sec tick
         </button>
+
         <button
           type="button"
           onClick={() => {
@@ -84,6 +85,14 @@ const DebugView = () => {
           }}
         >
           phase 2
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            debug.bugRepro();
+          }}
+        >
+          bug repo
         </button>
       </div>
     </div>

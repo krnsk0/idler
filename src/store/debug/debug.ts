@@ -64,8 +64,15 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.NUTRIENTS].cheat();
     initialZone.resources[ResourceNames.BIOMASS].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
+  }
 
-    // getRoot(this).executeTick(0.5);
+  @modelAction
+  bugRepro() {
+    this.phaseTwo();
+    const initialZone = getGame(this).initialZone;
+    initialZone.buildings[BuildingNames.HABITAT].cheat(1);
+    initialZone.resources[ResourceNames.NUTRIENTS].cheat(0.1);
+    initialZone.resources[ResourceNames.COLONISTS].cheat(5);
   }
 }
 export const getDebug = (child: object): Debug => {

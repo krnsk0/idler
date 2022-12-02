@@ -136,6 +136,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
     if (delta > 0) this.estimatedRate = this.changeSinceLastTick / delta;
     this.changeSinceLastTick = 0;
     if (this.quantity > this.currentCap) this.quantity = this.currentCap;
+    else if (this.quantity < 0) this.quantity = 0;
   }
 
   /**
@@ -162,10 +163,6 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @modelAction
   decrease(quantity: number, options?: { untracked?: boolean }): void {
     if (!options?.untracked) this.changeSinceLastTick -= quantity;
-    if (this.quantity - quantity < 0) {
-      this.quantity = 0;
-    } else {
-      this.quantity -= quantity;
-    }
+    this.quantity -= quantity;
   }
 }
