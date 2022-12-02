@@ -27,6 +27,7 @@ export const styles = {
     min-width: 75px;
     justify-content: space-between;
   `,
+  quantity: css``,
   quantityPerSecond: css`
     color: ${colors.grey};
   `,
