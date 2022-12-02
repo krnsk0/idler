@@ -8,9 +8,9 @@ import { TechNames } from './techNames';
 
 const effects: TechEffect[] = [
   {
-    kind: TechEffectNames.PRODUCTION_MODIFIER,
+    kind: TechEffectNames.BUILDING_PRODUCTION_MODIFIER,
     buildingName: BuildingNames.FARM,
-    resourceName: ResourceNames.NUTRIENTS,
+    resourceName: ResourceNames.BIOMASS,
     multiplier: 2,
   },
 ];
@@ -20,7 +20,7 @@ export class BiomassReclamation extends ExtendedModel(BaseTech, {}) {
   name = TechNames.BIOMASS_RECLAMATION;
   displayName = 'biomass reclamators';
   description =
-    'dismantle the biomass collector and study its design, doubling biomass production in hydroponic farms';
+    "dismantle the biomass collector and study its design, doubling hydroponic farms' biomass production";
   unlockWhen = () => {
     return getTech(this)[TechNames.AGROFORESTRY].researched;
   };

@@ -2,6 +2,10 @@ import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from './resources/resourceNames';
 import { ZoneEntity } from './zoneEntity';
 import { computed } from 'mobx';
+import { BaseBuilding } from './buildings/baseBuilding';
+import { getTech } from '../tech/tech';
+import { BuildingNames } from './buildings/buildingNames';
+import { BuildingProductionModifier } from '../tech/techEffectTypes';
 
 interface Consumption {
   resource: ResourceNames;
@@ -42,10 +46,37 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get productionPerSecond(): Production[] {
+    /**
+     * Get any production mofidiers we need to apply
+     */
+    const productionModifiers: Array<BuildingProductionModifier> = [];
+    if (this instanceof BaseBuilding) {
+      const buildingModifiers =
+        getTech(this).allBuildingModifiers[this.$modelType as BuildingNames];
+      if (buildingModifiers) productionModifiers.push(...buildingModifiers);
+    }
+
+    /**
+     * Iterate products
+     */
     return this.outputs.map(({ resource, quantityPerSecond }) => {
+      /**
+       * Is this product modified?
+       */
+      let productModifier = 1;
+      productionModifiers.forEach((modifier) => {
+        if (modifier.resourceName === resource) {
+          productModifier *= modifier.multiplier;
+        }
+      });
+
+      if (this.$modelType === 'FARM' && resource === 'BIOMASS') {
+        console.log(productionModifiers, productModifier);
+      }
+
       return {
         resource,
-        quantityPerSecond: quantityPerSecond * this.quantity,
+        quantityPerSecond: quantityPerSecond * this.quantity * productModifier,
       };
     });
   }
