@@ -146,7 +146,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     if (this.active) {
-      const fudgeFactor = 1.01; // helps w/ rounding errors
+      const fudgeFactor = 1.02; // helps w/ rounding errors
 
       let satisfaction;
       if (this.basePowerConsumption > 0) {
