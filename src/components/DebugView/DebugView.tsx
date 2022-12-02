@@ -35,14 +35,6 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            root.game.systemRegistry.printSystems();
-          }}
-        >
-          print systems
-        </button>
-        <button
-          type="button"
-          onClick={() => {
             root.reset();
             localStorage.removeItem('save');
             console.log('reset complete');

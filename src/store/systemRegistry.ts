@@ -1,21 +1,11 @@
-import { findParent, Model, model, modelAction } from 'mobx-keystone';
+import { findParent, getRoot, Model, model, modelAction } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { getDebug } from './debug/debug';
 import { Root } from './root';
-
-export interface Tickable {
-  tick: (delta: number) => void;
-}
+import { Game, getGame } from './game';
 
 export interface Unlockable {
   unlockCheck: () => void;
-}
-
-function isTickable(obj: unknown): obj is Tickable {
-  return typeof obj === 'object' && obj !== null && 'tick' in obj;
-}
-
-function isUnlockable(obj: unknown): obj is Unlockable {
-  return typeof obj === 'object' && obj !== null && 'unlockCheck' in obj;
 }
 
 /**
@@ -24,54 +14,91 @@ function isUnlockable(obj: unknown): obj is Unlockable {
  */
 @model('SystemRegistry')
 export class SystemRegistry extends Model({}) {
-  tickables = new Set<Tickable>();
+  /**
+   * There are a lot of unlockables and walking the tree to find them is
+   * a performance cost, so they register themselves here
+   */
   unlockables = new Set<Unlockable>();
-
   @modelAction
-  printSystems(): void {
-    this.tickables.forEach((model: any) => {
-      console.log('TICKABLE:', (model as any).$modelType);
-    });
-    this.unlockables.forEach((model: any) => {
-      console.log('UNLOCKABLE:', (model as any).$modelType);
-    });
+  registerUnlockable(model: Unlockable) {
+    this.unlockables.add(model);
+  }
+  @modelAction
+  deregisterUnlockable(model: Unlockable) {
+    this.unlockables.delete(model);
   }
 
-  @modelAction
-  register(model: object) {
-    if (isTickable(model)) {
-      this.tickables.add(model);
-    }
-    if (isUnlockable(model)) {
-      this.unlockables.add(model);
-    }
-  }
-
-  @modelAction
-  deregister(model: object) {
-    if (isTickable(model)) {
-      this.tickables.delete(model);
-    }
-    if (isUnlockable(model)) {
-      this.unlockables.delete(model);
-    }
+  @computed
+  get game(): Game {
+    return getGame(this);
   }
 
   /**
-   * Helper that applies a delta to the tree
+   * This is the actual tick executor and the order in which things are called
+   * here matters a great deal for the simulation; e.g. if we do a food check
+   * before production we might kill workers unnecessarily
    */
-  @modelAction
-  _executeTick(delta: number): void {
-    this.tickables.forEach((model: any) => {
-      model.tick(delta);
+  private doTick(delta: number): void {
+    /**
+     * Tick all actions.
+     */
+    this.game.zones.forEach((zone) => {
+      zone.actions.asArray.forEach((action) => {
+        action.tick(delta);
+      });
     });
+
+    /**
+     * Tick tech
+     */
+    this.game.tech.tick(delta);
+
+    /**
+     * Tick all buildings.
+     */
+    this.game.zones.forEach((zone) => {
+      zone.buildings.asArray.forEach((building) => {
+        building.tick(delta);
+      });
+    });
+
+    /**
+     * Tick all jobs.
+     */
+    this.game.zones.forEach((zone) => {
+      zone.jobs.asArray.forEach((job) => {
+        job.tick(delta);
+      });
+    });
+
+    /**
+     * Tick food consumption
+     */
+    this.game.zones.forEach((zone) => {
+      zone.jobs.tick(delta);
+    });
+
+    /**
+     * Tick resources
+     */
+    this.game.zones.forEach((zone) => {
+      zone.resources.asArray.forEach((resource) => {
+        resource.tick(delta);
+      });
+    });
+
+    /**
+     * Unlock checks happen after everything else to ensure that unlock
+     * conditions are met before doing the check
+     */
     this.unlockables.forEach((model: any) => {
       model.unlockCheck();
     });
   }
 
   /**
-   * If a tick is too long, break it up to run as a batch
+   * If a tick is too long, break it up to run as a batch. This is intended
+   * to be called externally
    */
   @modelAction
   executeTick(time: number): void {
@@ -83,10 +110,10 @@ export class SystemRegistry extends Model({}) {
       console.log('breaking up long tick of length', time);
     }
     while (timeRemaining > longestTick) {
-      this._executeTick(longestTick);
+      this.doTick(longestTick);
       timeRemaining -= longestTick;
     }
-    this._executeTick(timeRemaining);
+    this.doTick(timeRemaining);
   }
 }
 
