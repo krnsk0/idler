@@ -24,6 +24,7 @@ import { Agroforestry } from './agroforestry';
 import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
+import { BiomassReclamation } from './biomassReclamation';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -42,6 +43,10 @@ export class Tech extends ExtendedModel(Unlockable, {
     () => new Agroforestry({}),
   ),
   [TechNames.STORAGE]: tProp(types.model(Storage), () => new Storage({})),
+  [TechNames.BIOMASS_RECLAMATION]: tProp(
+    types.model(BiomassReclamation),
+    () => new BiomassReclamation({}),
+  ),
 }) {
   /**
    * Returns an iterable list of the action model
