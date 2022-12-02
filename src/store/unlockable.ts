@@ -26,6 +26,7 @@ export abstract class Unlockable extends Model({
       if (this.unlockWhen()) {
         this.unlocked = true;
         this.showEntranceAnimation = true;
+        getSystemRegistry(this).deregisterUnlockable(this);
         setTimeout(() => {
           this.showEntranceAnimation = false;
         }, this.entranceAnimationDuration);
