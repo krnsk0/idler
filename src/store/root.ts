@@ -9,33 +9,12 @@ import {
   fromSnapshot,
   modelFlow,
   _async,
-  walkTree,
-  WalkTreeMode,
-  onChildAttachedTo,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
-
-const tickable = new Set();
-
-interface Tickable {
-  tick: (delta: number) => void;
-}
-
-interface UnlockCheckable {
-  unlockCheck: () => void;
-}
-
-function isTickable(obj: unknown): obj is Tickable {
-  return typeof obj === 'object' && obj !== null && 'tick' in obj;
-}
-
-function isUnlockCheckable(obj: unknown): obj is UnlockCheckable {
-  return typeof obj === 'object' && obj !== null && 'unlockCheck' in obj;
-}
 
 @model('Root')
 export class Root extends Model({
@@ -91,70 +70,6 @@ export class Root extends Model({
   reset(): void {
     this.game = new Game({});
     this.game.selectZone(this.game.initialZone);
-  }
-
-  @modelAction
-  printTickable(): void {
-    for (let model of tickable) {
-      console.log(model);
-    }
-  }
-
-  @modelAction
-  onInit() {
-    onChildAttachedTo(
-      () => this,
-      (child) => {
-        if (isTickable(child)) {
-          tickable.add(child);
-        }
-
-        return () => {
-          if (isTickable(child)) {
-            tickable.delete(child);
-          }
-        };
-      },
-      { deep: true },
-    );
-  }
-
-  /**
-   * Helper that applies a delta to the tree
-   */
-  @modelAction
-  _executeTick(delta: number): void {
-    walkTree(
-      this,
-      (node: unknown) => {
-        if (isTickable(node)) {
-          node.tick(delta);
-        }
-        if (isUnlockCheckable(node)) {
-          node.unlockCheck();
-        }
-      },
-      WalkTreeMode.ParentFirst,
-    );
-  }
-
-  /**
-   * If a tick is too long, break it up to run as a batch
-   */
-  @modelAction
-  executeTick(time: number): void {
-    let timeRemaining = time * (this.debug.hyperMode ? 10 : 1);
-
-    // longest allowable tick length
-    const longestTick = 1;
-    if (timeRemaining > longestTick) {
-      console.log('breaking up long tick of length', time);
-    }
-    while (timeRemaining > longestTick) {
-      this._executeTick(longestTick);
-      timeRemaining -= longestTick;
-    }
-    this._executeTick(timeRemaining);
   }
 }
 
