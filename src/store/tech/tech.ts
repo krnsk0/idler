@@ -114,7 +114,7 @@ export class Tech extends ExtendedModel(Unlockable, {
   tick(delta: number): void {
     if (this.selectedTech) {
       const power = getGame(this).initialZone.power;
-      const fudgeFactor = 1.01; // helps w/ rounding errors
+      const fudgeFactor = 1.02; // helps w/ rounding errors
       const researchRate = 1;
       const increase = delta * researchRate * power.satisfaction * fudgeFactor;
       this.selectedTech.addPower(increase);

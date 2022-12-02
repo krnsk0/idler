@@ -46,7 +46,7 @@ const ZoneTabView = ({ zone }: ZoneTabViewProps) => {
   return (
     <div css={styles.tabViewContainer}>
       <div css={styles.tabRow}>
-        {zone.jobs.anyUnlocked && (
+        {zone.jobs.unlocked && (
           <>
             <TabButton
               text="colony"

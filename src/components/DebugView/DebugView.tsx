@@ -27,7 +27,7 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            root.game.tickSystems.executeTick(1);
+            root.game.systemRegistry.executeTick(1);
           }}
         >
           1sec tick
@@ -35,7 +35,7 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            root.game.tickSystems.printSystems();
+            root.game.systemRegistry.printSystems();
           }}
         >
           print systems

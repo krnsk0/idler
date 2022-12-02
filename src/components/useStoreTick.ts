@@ -11,7 +11,7 @@ export const useStoreTick = () => {
       const delta = (timestamp - lastTimestamp) / 1000;
       lastTimestamp = timestamp;
 
-      root.game.tickSystems.executeTick(delta);
+      root.game.systemRegistry.executeTick(delta);
 
       window.requestAnimationFrame(onAnimationFrame);
     };

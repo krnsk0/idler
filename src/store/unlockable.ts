@@ -1,7 +1,7 @@
-import { Model, modelAction, tProp, types } from 'mobx-keystone';
-import { getTickSystems } from './tickSystems';
+import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
+import { Tickable } from './tickable';
 
-export abstract class Unlockable extends Model({
+export abstract class Unlockable extends ExtendedModel(Tickable, {
   unlocked: tProp(types.boolean, false),
 }) {
   /**
@@ -31,17 +31,5 @@ export abstract class Unlockable extends Model({
         }, this.entranceAnimationDuration);
       }
     }
-  }
-
-  /**
-   * Registers with the tick systems so time-based
-   * effects operate
-   */
-  protected onAttachedToRootStore() {
-    const tickSystems = getTickSystems(this);
-    tickSystems.registerModel(this);
-    return () => {
-      tickSystems.deregisterModel(this);
-    };
   }
 }

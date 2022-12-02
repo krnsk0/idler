@@ -1,7 +1,7 @@
 import {
+  ExtendedModel,
   findParent,
   model,
-  Model,
   modelAction,
   tProp,
   types,
@@ -14,11 +14,12 @@ import { getResources } from '../resources/resources';
 import { ResourceNames } from '../resources/resourceNames';
 import { Zone } from '../zone';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
+import { ZoneEntity } from '../zoneEntity';
 
 const foodConsumptionPerWorkerPerSec = 0.1;
 
 @model('Jobs')
-export class Jobs extends Model({
+export class Jobs extends ExtendedModel(ZoneEntity, {
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
 }) {
   /**
@@ -40,12 +41,11 @@ export class Jobs extends Model({
   }
 
   /**
-   * Are any resources unlocked?
+   * Are any jobs unlocked?
    */
-  @computed
-  get anyUnlocked(): boolean {
+  unlockWhen = () => {
     return !!this.unlockedAsArray.length;
-  }
+  };
 
   /**
    * Total colonists. Convenience getter

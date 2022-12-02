@@ -2,11 +2,11 @@ import { findParent, Model, model, modelAction } from 'mobx-keystone';
 import { getDebug } from './debug/debug';
 import { Root } from './root';
 
-interface Tickable {
+export interface Tickable {
   tick: (delta: number) => void;
 }
 
-interface Unlockable {
+export interface Unlockable {
   unlockCheck: () => void;
 }
 
@@ -18,8 +18,12 @@ function isUnlockable(obj: unknown): obj is Unlockable {
   return typeof obj === 'object' && obj !== null && 'unlockCheck' in obj;
 }
 
-@model('TickSystems')
-export class TickSystems extends Model({}) {
+/**
+ * All animation frame update flow through the models that
+ * get registered here
+ */
+@model('SystemRegistry')
+export class SystemRegistry extends Model({}) {
   tickables = new Set<Tickable>();
   unlockables = new Set<Unlockable>();
 
@@ -34,7 +38,7 @@ export class TickSystems extends Model({}) {
   }
 
   @modelAction
-  registerModel(model: object) {
+  register(model: object) {
     if (isTickable(model)) {
       this.tickables.add(model);
     }
@@ -44,7 +48,7 @@ export class TickSystems extends Model({}) {
   }
 
   @modelAction
-  deregisterModel(model: object) {
+  deregister(model: object) {
     if (isTickable(model)) {
       this.tickables.delete(model);
     }
@@ -86,10 +90,10 @@ export class TickSystems extends Model({}) {
   }
 }
 
-export const getTickSystems = (child: object): TickSystems => {
+export const getSystemRegistry = (child: object): SystemRegistry => {
   const root = findParent<Root>(child, (node) => {
     return node instanceof Root;
   });
   if (!root) throw new Error('no game model found in getGame');
-  return root.game.tickSystems;
+  return root.game.systemRegistry;
 };

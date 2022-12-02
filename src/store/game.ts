@@ -13,7 +13,7 @@ import { computed } from 'mobx';
 import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 import { Root } from './root';
-import { getTickSystems, TickSystems } from './tickSystems';
+import { SystemRegistry } from './systemRegistry';
 
 const initialZoneName = 'landing zone';
 
@@ -21,7 +21,10 @@ const zoneRef = rootRef<Zone>('zone_ref', {});
 
 @model('Game')
 export class Game extends Model({
-  tickSystems: tProp(types.model(TickSystems), () => new TickSystems({})),
+  systemRegistry: tProp(
+    types.model(SystemRegistry),
+    () => new SystemRegistry({}),
+  ),
   zones: tProp(types.array(types.model(Zone)), () => [
     new Zone({ name: initialZoneName }),
   ]),
