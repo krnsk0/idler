@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import Modal from 'react-modal';
 import { useStore } from '../../store/Provider';
+import { formatNumber } from '../../utils/formatNumber';
 import { styles } from './TechModal.styles';
 
 const customStyles = {
@@ -46,7 +47,12 @@ const TechModal = () => {
             <div key={tech.name} css={styles.techTile} onClick={onClick}>
               <div css={styles.techTitle}>{tech.displayName}</div>
               <div css={styles.techDescription}>{tech.description}</div>
-              <div css={styles.techCost}>{tech.powerCost} power</div>
+              <div css={styles.techCost}>
+                {tech.power != 0 && (
+                  <span>{formatNumber(tech.power, { digits: 2 })} / </span>
+                )}
+                <span>{tech.powerCost} power</span>
+              </div>
             </div>
           );
         })}
@@ -59,9 +65,7 @@ const TechModal = () => {
               root.gui.closeTechModal();
             }}
           >
-            <div css={styles.techTitle}>{''}</div>
             <div css={styles.techDescription}>{'pause research'}</div>
-            <div css={styles.techCost}> </div>
           </div>
         )}
       </div>

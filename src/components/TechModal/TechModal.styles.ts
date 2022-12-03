@@ -21,9 +21,9 @@ export const styles = {
     border: 1px solid black;
     margin: 1em;
     display: flex;
-    padding: 0.2em;
+    padding: 1em 0.2em 1em 0.2em;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     box-sizing: border-box;
     cursor: pointer;
 
