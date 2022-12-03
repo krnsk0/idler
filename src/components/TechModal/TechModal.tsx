@@ -49,7 +49,7 @@ const TechModal = () => {
               <div css={styles.techDescription}>{tech.description}</div>
               <div css={styles.techCost}>
                 {tech.power != 0 && (
-                  <span>{formatNumber(tech.power, { digits: 2 })} / </span>
+                  <span>{formatNumber(tech.power, { digits: 0 })} / </span>
                 )}
                 <span>{tech.powerCost} power</span>
               </div>

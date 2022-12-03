@@ -18,7 +18,7 @@ export const styles = {
   techTile: css`
     width: 175px;
     height: 200px;
-    border: 1px solid black;
+    border: 1px solid ${colors.black};
     margin: 1em;
     display: flex;
     padding: 1em 0.2em 1em 0.2em;
@@ -28,7 +28,7 @@ export const styles = {
     cursor: pointer;
 
     &:hover {
-      border: 2px solid black;
+      box-shadow: 0 0 0 0.6px ${colors.black};
     }
   `,
   techTitle: css`
