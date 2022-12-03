@@ -35,7 +35,9 @@ export class Debug extends Model({
     const initialZone = getGame(this).initialZone;
     const tech = getTech(this);
     // unlocks generator action
-    tech.selectTech(tech.BIOMASS_COMPRESSION);
+    initialZone.actions[
+      ActionNames.GENERATE
+    ]._transientUnlockConditionSatisfied = true;
     tech[TechNames.BIOMASS_COMPRESSION].cheat();
     initialZone.resources[ResourceNames.BIOMASS].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
