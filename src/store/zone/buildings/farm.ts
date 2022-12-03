@@ -19,7 +19,7 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
       quantity: 2,
     },
   ];
-  costExponent = 1.45;
+  costExponent = 1.35;
   inputs = [];
   outputs = [
     {
@@ -28,7 +28,7 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.BIOMASS,
-      quantityPerSecond: 0.1,
+      quantityPerSecond: 0.06,
     },
   ];
   storage = [];

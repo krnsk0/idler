@@ -8,7 +8,7 @@ export enum TechEffectNames {
   BUILDING_UNLOCK = 'BUILDING_UNLOCK',
   ACTION_UNLOCK = 'ACTION_UNLOCK',
   JOB_UNLOCK = 'JOB_UNLOCK',
-  PRODUCTION_MODIFIER = 'PRODUCTION_MODIFIER',
+  BUILDING_PRODUCTION_MODIFIER = 'BUILDING_PRODUCTION_MODIFIER',
 }
 
 export interface BuildingUnlockEffect {
@@ -29,8 +29,8 @@ export interface JobUnlockEffect {
   jobName: JobNames;
 }
 
-export interface BuildingModifier {
-  kind: TechEffectNames.PRODUCTION_MODIFIER;
+export interface BuildingProductionModifier {
+  kind: TechEffectNames.BUILDING_PRODUCTION_MODIFIER;
   buildingName: BuildingNames;
   resourceName: ResourceNames;
   multiplier: number;
@@ -41,4 +41,4 @@ export type TechEffect =
   | BuildingUnlockEffect
   | ResourceUnlockEffect
   | JobUnlockEffect
-  | BuildingModifier;
+  | BuildingProductionModifier;

@@ -54,13 +54,14 @@ export class Debug extends Model({
     const initialZone = getGame(this).initialZone;
     tech[TechNames.CRYONICS].cheat();
     tech[TechNames.STORAGE].cheat();
-    initialZone.resources[ResourceNames.COLONISTS].cheat(4);
+    tech[TechNames.BIOMASS_RECLAMATION].cheat();
+    initialZone.buildings[BuildingNames.HABITAT].cheat(5);
+    initialZone.resources[ResourceNames.COLONISTS].cheat(5);
     for (let i = 0; i < 4; i += 1) {
       initialZone.jobs[JobNames.ARBORIST].assign();
     }
     initialZone.buildings[BuildingNames.CACHE].cheat(5);
-    initialZone.buildings[BuildingNames.FARM].cheat(8);
-    initialZone.buildings[BuildingNames.HABITAT].cheat(4);
+    initialZone.buildings[BuildingNames.FARM].cheat(10);
     initialZone.resources[ResourceNames.NUTRIENTS].cheat();
     initialZone.resources[ResourceNames.BIOMASS].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
@@ -70,9 +71,6 @@ export class Debug extends Model({
   bugRepro() {
     this.phaseTwo();
     const initialZone = getGame(this).initialZone;
-    initialZone.buildings[BuildingNames.HABITAT].cheat(1);
-    initialZone.resources[ResourceNames.NUTRIENTS].cheat(0.1);
-    initialZone.resources[ResourceNames.COLONISTS].cheat(5);
   }
 }
 export const getDebug = (child: object): Debug => {
