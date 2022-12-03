@@ -42,10 +42,7 @@ export class Debug extends Model({
     tech[TechNames.AGROFORESTRY].cheat();
     tech[TechNames.FARMING].cheat();
     tech[TechNames.SHELTER].cheat();
-    // unlocks power action
-    initialZone.actions[
-      ActionNames.GENERATE
-    ]._transientUnlockConditionSatisfied = true;
+    initialZone.power._transientUnlockConditionSatisfied = true;
   }
 
   /**
@@ -61,7 +58,7 @@ export class Debug extends Model({
     tech[TechNames.BIOMASS_RECLAMATION].cheat();
     initialZone.buildings[BuildingNames.HABITAT].cheat(5);
     initialZone.resources[ResourceNames.COLONISTS].cheat(5);
-    for (let i = 0; i < 4; i += 1) {
+    for (let i = 0; i < 5; i += 1) {
       initialZone.jobs[JobNames.ARBORIST].assign();
     }
     initialZone.buildings[BuildingNames.CACHE].cheat(5);
