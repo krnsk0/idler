@@ -114,6 +114,15 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get isUnlockedByTech(): boolean {
+    // this takes precedence
+    const isRelocked = getTech(this).allTechEffects.find((effect) => {
+      return (
+        effect.kind === TechEffectNames.ACTION_RELOCK &&
+        effect.actionName === this.name
+      );
+    });
+    if (isRelocked) return false;
+
     return !!getTech(this).allTechEffects.find((effect) => {
       return (
         effect.kind === TechEffectNames.ACTION_UNLOCK &&

@@ -8,8 +8,9 @@ import {
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
 import { getTech } from './tech';
-import { TechEffect } from './techEffectTypes';
+import { TechEffect, TechEffectNames } from './techEffectTypes';
 import { Unlockable } from '../unlockable';
+import { getGame } from '../game';
 export abstract class BaseTech extends ExtendedModel(Unlockable, {
   id: idProp,
   power: tProp(types.number, 0),
@@ -37,12 +38,24 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
     return this.power >= this.powerCost;
   }
 
+  @modelAction
+  handleCompletionEffects(): void {
+    for (const effect of this.effects) {
+      if (effect.kind === TechEffectNames.ACTION_RELOCK) {
+        getGame(this).zones.forEach((zone) => {
+          zone.actions[effect.actionName].relock();
+        });
+      }
+    }
+  }
+
   /**
    * Immediately research; useful mainly for debug
    */
   @modelAction
   cheat(): void {
     console.log(`CHEAT: RESEARCHING ${this.name}`);
+    this.handleCompletionEffects();
     this.power = this.powerCost;
     getTech(this).selectTech(undefined);
   }
@@ -53,6 +66,7 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   @modelAction
   addPower(power: number): void {
     if (this.power + power >= this.powerCost) {
+      this.handleCompletionEffects();
       this.power = this.powerCost;
       getTech(this).selectTech(undefined);
     } else {

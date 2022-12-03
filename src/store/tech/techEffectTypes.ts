@@ -7,6 +7,7 @@ export enum TechEffectNames {
   RESOURCE_UNLOCK = 'RESOURCE_UNLOCK',
   BUILDING_UNLOCK = 'BUILDING_UNLOCK',
   ACTION_UNLOCK = 'ACTION_UNLOCK',
+  ACTION_RELOCK = 'ACTION_RELOCK',
   JOB_UNLOCK = 'JOB_UNLOCK',
   BUILDING_PRODUCTION_MODIFIER = 'BUILDING_PRODUCTION_MODIFIER',
 }
@@ -17,6 +18,12 @@ export interface BuildingUnlockEffect {
 }
 export interface ActionUnlockEffect {
   kind: TechEffectNames.ACTION_UNLOCK;
+  actionName: ActionNames;
+}
+
+// takes precedence over unlock
+export interface ActionRelockEffect {
+  kind: TechEffectNames.ACTION_RELOCK;
   actionName: ActionNames;
 }
 
@@ -41,4 +48,5 @@ export type TechEffect =
   | BuildingUnlockEffect
   | ResourceUnlockEffect
   | JobUnlockEffect
-  | BuildingProductionModifier;
+  | BuildingProductionModifier
+  | ActionRelockEffect;

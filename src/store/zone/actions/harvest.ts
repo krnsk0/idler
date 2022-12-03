@@ -1,4 +1,4 @@
-import { model, ExtendedModel, modelAction } from 'mobx-keystone';
+import { model, ExtendedModel } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
@@ -19,5 +19,5 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 0;
-  unlockWhen = () => true;
+  unlockWhen = () => this.isUnlockedByTech;
 }

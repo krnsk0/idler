@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
@@ -12,6 +13,10 @@ const effects: TechEffect[] = [
     buildingName: BuildingNames.FARM,
     resourceName: ResourceNames.BIOMASS,
     multiplier: 2,
+  },
+  {
+    kind: TechEffectNames.ACTION_RELOCK,
+    actionName: ActionNames.HARVEST,
   },
 ];
 
