@@ -8,7 +8,14 @@ export class Nutrients extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.NUTRIENTS;
   displayName = 'nutrients';
   initialCap = 5;
-  unlockWhen = () => this.quantity > 0;
+  unlockWhen = {
+    observable: () => {
+      return true;
+    },
+    transient: () => {
+      return this.quantity > 0;
+    },
+  };
 
   /**
    * Estimate production per second

@@ -19,7 +19,12 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 0;
-  unlockWhen = () => {
-    return true;
+  unlockWhen = {
+    observable: () => {
+      return true;
+    },
+    transient: () => {
+      return true;
+    },
   };
 }

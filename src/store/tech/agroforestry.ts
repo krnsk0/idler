@@ -10,11 +10,20 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   name = TechNames.AGROFORESTRY;
   displayName = 'agroforestry';
   description = 'sustainable cultivation of arboriform xenoflora';
-  unlockWhen = () => {
+  powerCost = 20;
+
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.CRYONICS].researched;
+    },
+    transient: () => {
+      return true;
+    },
+  };
+
+  shouldUnlockTransient = () => {
     return (
-      getTech(this)[TechNames.CRYONICS].researched &&
       getGame(this).initialZone.resources[ResourceNames.COLONISTS].quantity > 0
     );
   };
-  powerCost = 20;
 }

@@ -36,8 +36,13 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
     },
   ];
   storage = [];
-  unlockWhen = () => {
-    return getTech(this)[TechNames.FARMING].researched;
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.FARMING].researched;
+    },
+    transient: () => {
+      return true;
+    },
   };
 
   @override

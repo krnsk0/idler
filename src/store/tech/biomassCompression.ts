@@ -8,6 +8,14 @@ export class BiomassCompression extends ExtendedModel(BaseTech, {}) {
   displayName = 'biomass compression';
   description =
     'subject to heat and pressure, biomass becomes an arboraceous material suitable for construction';
-  unlockWhen = () => true;
   powerCost = 10;
+
+  unlockWhen = {
+    observable: () => {
+      return true;
+    },
+    transient: () => {
+      return true;
+    },
+  };
 }

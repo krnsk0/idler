@@ -92,10 +92,13 @@ export class Tech extends ExtendedModel(Unlockable, {
   /**
    * The unlock check for the technology button
    */
-  unlockWhen = () => {
-    return (
-      getGame(this).initialZone.resources[ResourceNames.BIOMASS].quantity >= 5
-    );
+  unlockWhen = {
+    observable: () => true,
+    transient: () => {
+      return (
+        getGame(this).initialZone.resources[ResourceNames.BIOMASS].quantity >= 5
+      );
+    },
   };
 
   /**

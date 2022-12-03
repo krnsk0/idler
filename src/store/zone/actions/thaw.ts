@@ -22,7 +22,12 @@ export class Thaw extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 1;
-  unlockWhen = () => {
-    return getTech(this)[TechNames.CRYONICS].researched;
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.CRYONICS].researched;
+    },
+    transient: () => {
+      return true;
+    },
   };
 }

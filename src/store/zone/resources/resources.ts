@@ -43,8 +43,13 @@ export class Resources extends ExtendedModel(ZoneEntity, {
   /**
    * When resource pane shows
    */
-  unlockWhen = () => {
-    return !!this.unlockedAsArray.length;
+  unlockWhen = {
+    observable: () => {
+      return !!this.unlockedAsArray.length;
+    },
+    transient: () => {
+      return true;
+    },
   };
 }
 

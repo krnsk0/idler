@@ -26,7 +26,12 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
       quantity: 1,
     },
   ];
-  unlockWhen = () => {
-    return getTech(this)[TechNames.SHELTER].researched;
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.SHELTER].researched;
+    },
+    transient: () => {
+      return true;
+    },
   };
 }

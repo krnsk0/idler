@@ -9,6 +9,7 @@ import {
 } from 'mobx-keystone';
 import { getGame } from '../game';
 import { Root } from '../root';
+import { getSystemRegistry } from '../systemRegistry';
 import { getTech } from '../tech/tech';
 import { TechNames } from '../tech/techNames';
 import { ActionNames } from '../zone/actions/actionNames';
@@ -33,14 +34,17 @@ export class Debug extends Model({
     getRoot(this).reset();
     const initialZone = getGame(this).initialZone;
     const tech = getTech(this);
-    initialZone.actions[ActionNames.GENERATE].unlocked = true;
-    initialZone.resources[ResourceNames.BIOMASS].cheat();
+    // unlocks generator action
+    tech.selectTech(tech.BIOMASS_COMPRESSION);
     tech[TechNames.BIOMASS_COMPRESSION].cheat();
+    initialZone.resources[ResourceNames.BIOMASS].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
     tech[TechNames.AGROFORESTRY].cheat();
     tech[TechNames.FARMING].cheat();
     tech[TechNames.SHELTER].cheat();
-    initialZone.power.unlocked = true;
+    // unlocks power action
+    initialZone.actions[ActionNames.GENERATE]._transientConditionSatisfied =
+      true;
   }
 
   /**

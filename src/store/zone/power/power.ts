@@ -54,8 +54,13 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
   /**
    * The unlock check for the power pane
    */
-  unlockWhen = () => {
-    return this.production > 0;
+  unlockWhen = {
+    observable: () => {
+      return true;
+    },
+    transient: () => {
+      return this.production > 0;
+    },
   };
 }
 

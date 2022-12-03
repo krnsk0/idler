@@ -8,8 +8,13 @@ export class Shelter extends ExtendedModel(BaseTech, {}) {
   name = TechNames.SHELTER;
   displayName = 'shelter';
   description = 'primitive protection from the elements';
-  unlockWhen = () => {
-    return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
-  };
   powerCost = 15;
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
+    },
+    transient: () => {
+      return true;
+    },
+  };
 }

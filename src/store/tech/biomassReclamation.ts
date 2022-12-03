@@ -9,8 +9,14 @@ export class BiomassReclamation extends ExtendedModel(BaseTech, {}) {
   displayName = 'biomass reclamators';
   description =
     "dismantle the biomass collector and study its design, doubling hydroponic farms' biomass production";
-  unlockWhen = () => {
-    return getTech(this)[TechNames.AGROFORESTRY].researched;
-  };
   powerCost = 25;
+
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.AGROFORESTRY].researched;
+    },
+    transient: () => {
+      return true;
+    },
+  };
 }

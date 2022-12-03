@@ -26,7 +26,12 @@ export class Compress extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 1;
-  unlockWhen = () => {
-    return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
+    },
+    transient: () => {
+      return true;
+    },
   };
 }

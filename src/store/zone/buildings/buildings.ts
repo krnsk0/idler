@@ -34,7 +34,12 @@ export class Buildings extends ExtendedModel(ZoneEntity, {
   /**
    * Unlock check
    */
-  unlockWhen = () => {
-    return !!this.unlockedAsArray.length;
+  unlockWhen = {
+    observable: () => {
+      return !!this.unlockedAsArray.length;
+    },
+    transient: () => {
+      return true;
+    },
   };
 }

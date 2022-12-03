@@ -2,23 +2,30 @@ import { Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { getSystemRegistry } from './systemRegistry';
 
-export abstract class Unlockable extends Model({
-  unlocked: tProp(types.boolean, false),
-}) {
+interface UnlockWhen {
   /**
-   * Instances must specify a fucntion, executed during unlock checks,
-   * which tells this entity whether to become visible ot the player
+   * This function checks non-transient unlock conditions
    */
-  abstract unlockWhen: () => boolean;
+  observable: () => boolean;
+  /**
+   * This function should check transient unlock conditions
+   */
+  transient: () => boolean;
+}
 
+export abstract class Unlockable extends Model({
   /**
-   * A wrapper to memoize unlockWhen without the children needing to worry
-   * about using a getter
+   * Some unlockables depend on a condition being met once. E.g. the player
+   * has held at least N of resource Y. If resource Y drops below the threshhold
+   * this condition remains satisfied.
+   *
+   * Whether this transient condition has been satisfied must be persisted and
+   * cannot be derived from the current state of the application, because it is
+   * derived from past history we don't have access to.
    */
-  @computed
-  get shouldUnlock(): boolean {
-    return this.unlockWhen();
-  }
+  _transientConditionSatisfied: tProp(types.boolean, false),
+}) {
+  abstract unlockWhen: UnlockWhen;
 
   /**
    * State for an aniation we see when something first unlocks
@@ -28,16 +35,30 @@ export abstract class Unlockable extends Model({
   entranceAnimationDuration = 300;
 
   /**
-   * Runs an unlock check
+   * Whether the entity is unlocked and should be e.g. shown to the player
+   * in the UI
    */
-  @modelAction
-  unlockCheck(): void {
-    if (!this.unlocked && this.shouldUnlock) {
-      this.unlocked = true;
+  @computed
+  get unlocked(): boolean {
+    if (!this.unlockWhen.observable()) return false;
+
+    if (this._transientConditionSatisfied) {
       this.showEntranceAnimation = true;
       setTimeout(() => {
         this.showEntranceAnimation = false;
       }, this.entranceAnimationDuration);
+    }
+
+    return this._transientConditionSatisfied;
+  }
+
+  /**
+   * Runs an unlock check
+   */
+  @modelAction
+  runTransientUnlockCheck(): void {
+    if (this.unlockWhen.transient()) {
+      this._transientConditionSatisfied = true;
     }
   }
 

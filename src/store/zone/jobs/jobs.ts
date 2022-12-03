@@ -43,8 +43,13 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   /**
    * Are any jobs unlocked?
    */
-  unlockWhen = () => {
-    return !!this.unlockedAsArray.length;
+  unlockWhen = {
+    observable: () => {
+      return !!this.unlockedAsArray.length;
+    },
+    transient: () => {
+      return true;
+    },
   };
 
   /**

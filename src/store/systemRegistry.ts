@@ -5,7 +5,7 @@ import { Root } from './root';
 import { Game, getGame } from './game';
 
 export interface Unlockable {
-  unlockCheck: () => void;
+  runTransientUnlockCheck: () => void;
 }
 
 /**
@@ -91,8 +91,8 @@ export class SystemRegistry extends Model({}) {
      * Unlock checks happen after everything else to ensure that unlock
      * conditions are met before doing the check
      */
-    this.unlockables.forEach((model: any) => {
-      model.unlockCheck();
+    this.unlockables.forEach((model: Unlockable) => {
+      model.runTransientUnlockCheck();
     });
   }
 

@@ -8,8 +8,13 @@ export class Farming extends ExtendedModel(BaseTech, {}) {
   name = TechNames.FARMING;
   displayName = 'hydroponic farming';
   description = 'rudimentary applied xenobotany';
-  unlockWhen = () => {
-    return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
-  };
   powerCost = 15;
+  unlockWhen = {
+    observable: () => {
+      return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
+    },
+    transient: () => {
+      return true;
+    },
+  };
 }
