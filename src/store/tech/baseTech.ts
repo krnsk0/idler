@@ -35,19 +35,12 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
     return this.power >= this.powerCost;
   }
 
-  @modelAction
-  handleCompletionEffects(): void {
-    // TODO
-    console.log('TODO: completion effects');
-  }
-
   /**
    * Immediately research; useful mainly for debug
    */
   @modelAction
   cheat(): void {
     console.log(`CHEAT: RESEARCHING ${this.name}`);
-    this.handleCompletionEffects();
     this.power = this.powerCost;
     getTech(this).selectTech(undefined);
   }
@@ -58,7 +51,6 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   @modelAction
   addPower(power: number): void {
     if (this.power + power >= this.powerCost) {
-      this.handleCompletionEffects();
       this.power = this.powerCost;
       getTech(this).selectTech(undefined);
     } else {

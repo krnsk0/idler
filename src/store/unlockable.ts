@@ -18,16 +18,6 @@ export abstract class Unlockable extends Model({
   entranceAnimationDuration = 300;
 
   /**
-   * Intended to be called to re-lock something that was previously
-   * unlocked. Does not re-register with the unlock system; re-locked
-   * entities can never be unlocked again by that system.
-   */
-  @modelAction
-  relock(): void {
-    this.unlocked = false;
-  }
-
-  /**
    * Runs an unlock check
    */
   @modelAction

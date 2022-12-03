@@ -23,7 +23,6 @@ export class Debug extends Model({
   @modelAction
   toggleHyperMode() {
     this.hyperMode = !this.hyperMode;
-    console.log('hyper', this.hyperMode);
   }
 
   /**
