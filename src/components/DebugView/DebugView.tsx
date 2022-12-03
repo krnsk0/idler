@@ -27,10 +27,10 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            root.game.systemRegistry.executeTick(1);
+            root.game.systemRegistry.executeTick(10);
           }}
         >
-          1sec tick
+          10sec tick
         </button>
 
         <button

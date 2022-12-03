@@ -103,17 +103,18 @@ export class SystemRegistry extends Model({}) {
   @modelAction
   executeTick(time: number): void {
     let timeRemaining = time * (getDebug(this).hyperMode ? 10 : 1);
-
     // longest allowable tick length
     const longestTick = 1;
-    if (timeRemaining > longestTick) {
-      console.log('breaking up long tick of length', time);
-    }
+    const start = performance.now();
     while (timeRemaining > longestTick) {
       this.doTick(longestTick);
       timeRemaining -= longestTick;
     }
     this.doTick(timeRemaining);
+    if (time > longestTick) {
+      console.log('broke up long tick of length', time);
+      console.log(`took ${(performance.now() - start).toFixed(2)}ms`);
+    }
   }
 }
 
