@@ -18,7 +18,6 @@ import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
 import { Root } from '../root';
 import { BaseTech } from './baseTech';
-import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
 import { Storage } from './storage';
@@ -88,18 +87,6 @@ export class Tech extends ExtendedModel(Unlockable, {
   @computed
   get selectedTech(): BaseTech | undefined {
     return this.selectedTechRef ? this.selectedTechRef.current : undefined;
-  }
-
-  /**
-   * Aggregates all tech effects
-   */
-  @computed
-  get allTechEffects(): TechEffect[] {
-    const allEffects = [];
-    for (const tech of this.researchedAsArray) {
-      allEffects.push(...tech.effects);
-    }
-    return allEffects;
   }
 
   /**

@@ -1,4 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { getTech } from '../../tech/tech';
+import { TechNames } from '../../tech/techNames';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
@@ -24,5 +26,7 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
       quantity: 1,
     },
   ];
-  unlockWhen = () => this.isUnlockedByTech;
+  unlockWhen = () => {
+    return getTech(this)[TechNames.SHELTER].researched;
+  };
 }

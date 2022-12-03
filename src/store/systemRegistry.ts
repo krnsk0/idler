@@ -102,7 +102,7 @@ export class SystemRegistry extends Model({}) {
    */
   @modelAction
   executeTick(time: number): void {
-    let timeRemaining = time * (getDebug(this).hyperMode ? 10 : 1);
+    let timeRemaining = time * (getDebug(this).hyperMode ? 20 : 1);
     // longest allowable tick length
     const longestTick = 1;
     const start = performance.now();

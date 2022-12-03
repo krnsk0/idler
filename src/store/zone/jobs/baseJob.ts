@@ -1,8 +1,6 @@
 import { ExtendedModel, tProp, types, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { JobNames } from './jobNames';
-import { getTech } from '../../tech/tech';
-import { TechEffectNames } from '../../tech/techEffectTypes';
 import { getJobs } from './jobs';
 import { ProducerConsumer } from '../producerConsumer';
 
@@ -25,19 +23,6 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   @modelAction
   unassign(): void {
     this.quantity -= 1;
-  }
-
-  /**
-   * Helper intended to be called in unlockWhen
-   */
-  @computed
-  get isUnlockedByTech(): boolean {
-    return !!getTech(this).allTechEffects.find((effect) => {
-      return (
-        effect.kind === TechEffectNames.JOB_UNLOCK &&
-        effect.jobName === this.name
-      );
-    });
   }
 
   /**

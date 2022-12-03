@@ -1,18 +1,9 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { getGame } from '../game';
-import { ActionNames } from '../zone/actions/actionNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
 import { getTech } from './tech';
-import { TechEffect, TechEffectNames } from './techEffectTypes';
 import { TechNames } from './techNames';
-
-const effects: TechEffect[] = [
-  {
-    kind: TechEffectNames.ACTION_UNLOCK,
-    actionName: ActionNames.THAW,
-  },
-];
 
 @model(TechNames.CRYONICS)
 export class Cryonics extends ExtendedModel(BaseTech, {}) {
@@ -29,5 +20,4 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
     );
   };
   powerCost = 20;
-  effects = effects;
 }

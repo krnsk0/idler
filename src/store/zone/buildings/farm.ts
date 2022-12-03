@@ -36,7 +36,9 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
     },
   ];
   storage = [];
-  unlockWhen = () => this.isUnlockedByTech;
+  unlockWhen = () => {
+    return getTech(this)[TechNames.FARMING].researched;
+  };
 
   @override
   get productionModifiers(): ProductionMultipliers {

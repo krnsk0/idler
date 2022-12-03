@@ -2,8 +2,6 @@ import { tProp, types, modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from './resourceNames';
-import { getTech } from '../../tech/tech';
-import { TechEffectNames } from '../../tech/techEffectTypes';
 
 export interface ProductionConsumptionDisplay {
   producerConsumerDisplayName: string;
@@ -48,19 +46,6 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         output + building.getStorageAmountByKey(this.name) * building.quantity
       );
     }, this.initialCap);
-  }
-
-  /**
-   * Helper intended to be called in unlockWhen
-   */
-  @computed
-  get isUnlockedByTech(): boolean {
-    return !!getTech(this).allTechEffects.find((effect) => {
-      return (
-        effect.kind === TechEffectNames.RESOURCE_UNLOCK &&
-        effect.resourceName === this.name
-      );
-    });
   }
 
   /**

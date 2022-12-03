@@ -3,8 +3,6 @@ import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
-import { getTech } from '../../tech/tech';
-import { TechEffectNames } from '../../tech/techEffectTypes';
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -64,19 +62,6 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   get affordable(): boolean {
     return this.currentCost.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
-    });
-  }
-
-  /**
-   * Helper intended to be called in unlockWhen
-   */
-  @computed
-  get isUnlockedByTech(): boolean {
-    return !!getTech(this).allTechEffects.find((effect) => {
-      return (
-        effect.kind === TechEffectNames.BUILDING_UNLOCK &&
-        effect.buildingName === this.name
-      );
     });
   }
 

@@ -8,9 +8,7 @@ import {
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
 import { getTech } from './tech';
-import { TechEffect, TechEffectNames } from './techEffectTypes';
 import { Unlockable } from '../unlockable';
-import { getGame } from '../game';
 export abstract class BaseTech extends ExtendedModel(Unlockable, {
   id: idProp,
   power: tProp(types.number, 0),
@@ -20,7 +18,6 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   abstract displayName: string;
   abstract description: string;
   abstract powerCost: number;
-  abstract effects: TechEffect[];
 
   /**
    * Progress for selected tech
@@ -40,13 +37,8 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
 
   @modelAction
   handleCompletionEffects(): void {
-    for (const effect of this.effects) {
-      if (effect.kind === TechEffectNames.ACTION_RELOCK) {
-        getGame(this).zones.forEach((zone) => {
-          zone.actions[effect.actionName].relock();
-        });
-      }
-    }
+    // TODO
+    console.log('TODO: completion effects');
   }
 
   /**
