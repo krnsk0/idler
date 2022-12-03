@@ -58,7 +58,6 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   @computed
   get productionPerSecond(): Production[] {
     return this.outputs.map(({ resource, quantityPerSecond }) => {
-      // compute production multiplier
       let productionMultiplier = 1;
       if (this.productionModifiers[resource] !== undefined) {
         productionMultiplier *= this.productionModifiers[resource] as number;
