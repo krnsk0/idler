@@ -18,24 +18,16 @@ import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
 import { Root } from '../root';
 import { BaseTech } from './baseTech';
-import {
-  BuildingProductionModifier,
-  TechEffect,
-  TechEffectNames,
-} from './techEffectTypes';
+import { TechEffect } from './techEffectTypes';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
 import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
 import { BiomassReclamation } from './biomassReclamation';
-import { BuildingNames } from '../zone/buildings/buildingNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
-type BuildingEffectDescriptorMap = {
-  [key in BuildingNames]?: Array<BuildingProductionModifier>;
-};
 @model('Tech')
 export class Tech extends ExtendedModel(Unlockable, {
   selectedTechRef: prop<Ref<BaseTech> | undefined>(),
@@ -108,29 +100,6 @@ export class Tech extends ExtendedModel(Unlockable, {
       allEffects.push(...tech.effects);
     }
     return allEffects;
-  }
-
-  /**
-   * Get all building modifiers by building
-   */
-  @computed
-  get allBuildingModifiers(): BuildingEffectDescriptorMap {
-    const modifiers: BuildingEffectDescriptorMap = {};
-    for (const tech of this.researchedAsArray) {
-      for (const effect of tech.effects) {
-        if (effect.kind === TechEffectNames.BUILDING_PRODUCTION_MODIFIER) {
-          const buildingName = effect.buildingName;
-          modifiers[buildingName];
-          if (!Array.isArray(modifiers[buildingName]))
-            modifiers[buildingName] = [effect];
-          else {
-            // @ts-ignore - known to be array by here
-            modifiers[buildingName].push(effect);
-          }
-        }
-      }
-    }
-    return modifiers;
   }
 
   /**

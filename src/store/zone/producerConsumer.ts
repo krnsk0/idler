@@ -5,7 +5,6 @@ import { computed } from 'mobx';
 import { BaseBuilding } from './buildings/baseBuilding';
 import { getTech } from '../tech/tech';
 import { BuildingNames } from './buildings/buildingNames';
-import { BuildingProductionModifier } from '../tech/techEffectTypes';
 
 interface Consumption {
   resource: ResourceNames;
@@ -22,11 +21,23 @@ interface ProductionConsumptionDisplay {
   quantityPerSecond: number;
 }
 
+export type ProductionMultipliers = {
+  [key in ResourceNames]?: number;
+};
+
 export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
 }) {
   abstract outputs: Consumption[];
   abstract inputs: Production[];
+
+  /**
+   * Intended to be overridden by children
+   */
+  @computed
+  get productionModifiers(): ProductionMultipliers {
+    return {};
+  }
 
   /**
    * Per-second consumption of all at full capacity including quantity
@@ -46,33 +57,17 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get productionPerSecond(): Production[] {
-    /**
-     * Get any production mofidiers we need to apply
-     */
-    const productionModifiers: Array<BuildingProductionModifier> = [];
-    if (this instanceof BaseBuilding) {
-      const buildingModifiers =
-        getTech(this).allBuildingModifiers[this.$modelType as BuildingNames];
-      if (buildingModifiers) productionModifiers.push(...buildingModifiers);
-    }
-
-    /**
-     * Iterate products
-     */
     return this.outputs.map(({ resource, quantityPerSecond }) => {
-      /**
-       * Is this product modified?
-       */
-      let productModifier = 1;
-      productionModifiers.forEach((modifier) => {
-        if (modifier.resourceName === resource) {
-          productModifier *= modifier.multiplier;
-        }
-      });
+      // compute production multiplier
+      let productionMultiplier = 1;
+      if (this.productionModifiers[resource] !== undefined) {
+        productionMultiplier *= this.productionModifiers[resource] as number;
+      }
 
       return {
         resource,
-        quantityPerSecond: quantityPerSecond * this.quantity * productModifier,
+        quantityPerSecond:
+          quantityPerSecond * this.quantity * productionMultiplier,
       };
     });
   }

@@ -9,12 +9,6 @@ import { TechNames } from './techNames';
 
 const effects: TechEffect[] = [
   {
-    kind: TechEffectNames.BUILDING_PRODUCTION_MODIFIER,
-    buildingName: BuildingNames.FARM,
-    resourceName: ResourceNames.BIOMASS,
-    multiplier: 2,
-  },
-  {
     kind: TechEffectNames.ACTION_RELOCK,
     actionName: ActionNames.HARVEST,
   },

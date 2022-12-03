@@ -1,7 +1,11 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { override } from 'mobx';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
+import { ProductionMultipliers } from '../producerConsumer';
+import { TechNames } from '../../tech/techNames';
+import { getTech } from '../../tech/tech';
 
 @model(BuildingNames.FARM)
 export class Farm extends ExtendedModel(BaseBuilding, {}) {
@@ -33,4 +37,15 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   ];
   storage = [];
   unlockWhen = () => this.isUnlockedByTech;
+
+  @override
+  get productionModifiers(): ProductionMultipliers {
+    let biomassMultiplier = 1;
+    if (getTech(this)[TechNames.BIOMASS_RECLAMATION].researched) {
+      biomassMultiplier *= 2;
+    }
+    return {
+      [ResourceNames.BIOMASS]: biomassMultiplier,
+    };
+  }
 }
