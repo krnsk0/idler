@@ -43,8 +43,9 @@ export class Debug extends Model({
     tech[TechNames.FARMING].cheat();
     tech[TechNames.SHELTER].cheat();
     // unlocks power action
-    initialZone.actions[ActionNames.GENERATE]._transientConditionSatisfied =
-      true;
+    initialZone.actions[
+      ActionNames.GENERATE
+    ]._transientUnlockConditionSatisfied = true;
   }
 
   /**

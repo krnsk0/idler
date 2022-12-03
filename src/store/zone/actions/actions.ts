@@ -12,7 +12,7 @@ import { Thaw } from './thaw';
 export class Actions extends Model({
   [ActionNames.HARVEST]: tProp(
     types.model(Harvest),
-    () => new Harvest({ _transientConditionSatisfied: true }),
+    () => new Harvest({ _transientUnlockConditionSatisfied: true }),
   ),
   [ActionNames.GENERATE]: tProp(types.model(Generate), () => new Generate({})),
   [ActionNames.COMPRESS]: tProp(types.model(Compress), () => new Compress({})),

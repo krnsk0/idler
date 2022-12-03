@@ -23,7 +23,7 @@ export abstract class Unlockable extends Model({
    * cannot be derived from the current state of the application, because it is
    * derived from past history we don't have access to.
    */
-  _transientConditionSatisfied: tProp(types.boolean, false),
+  _transientUnlockConditionSatisfied: tProp(types.boolean, false),
 }) {
   abstract unlockWhen: UnlockWhen;
 
@@ -42,14 +42,14 @@ export abstract class Unlockable extends Model({
   get unlocked(): boolean {
     if (!this.unlockWhen.observable()) return false;
 
-    if (this._transientConditionSatisfied) {
+    if (this._transientUnlockConditionSatisfied) {
       this.showEntranceAnimation = true;
       setTimeout(() => {
         this.showEntranceAnimation = false;
       }, this.entranceAnimationDuration);
     }
 
-    return this._transientConditionSatisfied;
+    return this._transientUnlockConditionSatisfied;
   }
 
   /**
@@ -58,7 +58,7 @@ export abstract class Unlockable extends Model({
   @modelAction
   runTransientUnlockCheck(): void {
     if (this.unlockWhen.transient()) {
-      this._transientConditionSatisfied = true;
+      this._transientUnlockConditionSatisfied = true;
     }
   }
 
