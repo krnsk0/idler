@@ -70,10 +70,6 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
         }
       });
 
-      if (this.$modelType === 'FARM' && resource === 'BIOMASS') {
-        console.log(productionModifiers, productModifier);
-      }
-
       return {
         resource,
         quantityPerSecond: quantityPerSecond * this.quantity * productModifier,
