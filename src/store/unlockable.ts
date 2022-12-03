@@ -25,10 +25,6 @@ export abstract class Unlockable extends Model({
   @modelAction
   relock(): void {
     this.unlocked = false;
-    console.log('relocking', {
-      model: this.$modelType,
-      unlocked: this.unlocked,
-    });
   }
 
   /**
