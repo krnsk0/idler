@@ -139,11 +139,11 @@ export class Tech extends ExtendedModel(Unlockable, {
    */
   @computed
   get unlockedBuildings(): BuildingNames[] {
-    const actions: BuildingNames[] = [];
+    const buildings: BuildingNames[] = [];
     for (const tech of this.researchedAsArray) {
-      actions.push(...tech.buildingsUnlocked);
+      buildings.push(...tech.buildingsUnlocked);
     }
-    return actions;
+    return buildings;
   }
 
   /**
@@ -151,11 +151,11 @@ export class Tech extends ExtendedModel(Unlockable, {
    */
   @computed
   get unlockedJobs(): JobNames[] {
-    const actions: JobNames[] = [];
+    const jobs: JobNames[] = [];
     for (const tech of this.researchedAsArray) {
-      actions.push(...tech.jobsUnlocked);
+      jobs.push(...tech.jobsUnlocked);
     }
-    return actions;
+    return jobs;
   }
 
   /**
