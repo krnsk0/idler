@@ -8,11 +8,7 @@ import { ZoneEntity } from '../zoneEntity';
 @model('Power')
 export class Power extends ExtendedModel(ZoneEntity, {}) {
   transientUnlockCheck = () => this.production > 0;
-
-  @computed
-  get observableUnlockCheck(): boolean {
-    return true;
-  }
+  observableUnlockCheck = () => true;
 
   /**
    * Total power production

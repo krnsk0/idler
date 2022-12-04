@@ -22,7 +22,16 @@ export abstract class Unlockable extends Model({
    * Intended to be implemented by abstract classes that inherit this one,
    * teaching them what to observe to unlock
    */
-  abstract observableUnlockCheck: boolean;
+  abstract observableUnlockCheck: () => boolean;
+
+  /**
+   * Helper that lets us get around child classes implementing an
+   * `@observable`-decorated `observableUnlockCheck`
+   */
+  @computed
+  get _observableUnlockCheck(): boolean {
+    return this.observableUnlockCheck();
+  }
 
   /**
    * State for an aniation we see when something first unlocks
@@ -37,7 +46,7 @@ export abstract class Unlockable extends Model({
    */
   @computed
   get unlocked(): boolean {
-    if (!this.observableUnlockCheck) return false;
+    if (!this._observableUnlockCheck) return false;
 
     if (this._transientUnlockConditionSatisfied) {
       this.showEntranceAnimation = true;

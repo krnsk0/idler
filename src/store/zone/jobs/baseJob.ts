@@ -9,10 +9,13 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract displayName: string;
   abstract description: string;
 
-  @computed
-  get observableUnlockCheck(): boolean {
+  /**
+   * Responsible for managing when actions are unlocked
+   * TODO
+   */
+  observableUnlockCheck = () => {
     return true;
-  }
+  };
 
   /**
    * Assign a free worker if possible

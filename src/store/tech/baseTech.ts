@@ -59,10 +59,13 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
    */
   abstract unlocksBuildings: BuildingNames[];
 
-  @computed
-  get observableUnlockCheck(): boolean {
+  /**
+   * Responsible for managing when tech is unlocked
+   * TODO
+   */
+  observableUnlockCheck = () => {
     return true;
-  }
+  };
 
   /**
    * Progress for selected tech

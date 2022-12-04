@@ -23,11 +23,7 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
 }) {
   transientUnlockCheck = () => !!this.unlockedAsArray.length;
-
-  @computed
-  get observableUnlockCheck(): boolean {
-    return true;
-  }
+  observableUnlockCheck = () => true;
 
   /**
    * Returns an iterable list of the job models

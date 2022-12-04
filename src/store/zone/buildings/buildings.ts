@@ -14,11 +14,7 @@ export class Buildings extends ExtendedModel(ZoneEntity, {
   [BuildingNames.CACHE]: tProp(types.model(Cache), () => new Cache({})),
 }) {
   transientUnlockCheck = () => !!this.unlockedAsArray.length;
-
-  @computed
-  get observableUnlockCheck(): boolean {
-    return true;
-  }
+  observableUnlockCheck = () => true;
 
   /**
    * Returns an iterable list of the building models

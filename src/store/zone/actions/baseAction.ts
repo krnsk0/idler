@@ -40,10 +40,13 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   abstract basePowerProduction: number;
   abstract basePowerConsumption: number;
 
-  @computed
-  get observableUnlockCheck(): boolean {
+  /**
+   * Responsible for managing when actions are unlocked
+   * TODO
+   */
+  observableUnlockCheck = () => {
     return true;
-  }
+  };
 
   /**
    * Current inputs with displayable names

@@ -30,11 +30,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   private changeSinceLastTick: null | number = 0;
 
   transientUnlockCheck = () => this.quantity > 0;
-
-  @computed
-  get observableUnlockCheck(): boolean {
-    return true;
-  }
+  observableUnlockCheck = () => true;
 
   /**
    * State for temporary highlight

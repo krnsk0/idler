@@ -62,10 +62,7 @@ export class Tech extends ExtendedModel(Unlockable, {
       getGame(this).initialZone.resources[ResourceNames.BIOMASS].quantity >= 5
     );
   };
-  @computed
-  get observableUnlockCheck(): boolean {
-    return true;
-  }
+  observableUnlockCheck = () => true;
 
   /**
    * Returns an iterable list of the action model
