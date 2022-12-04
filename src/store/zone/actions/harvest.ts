@@ -1,5 +1,4 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-
 import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';
