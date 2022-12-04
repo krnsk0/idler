@@ -40,7 +40,7 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   /**
    * What tech is unlocked by this tech
    *
-   * Techs do not unlock until all dependencies are satisfied
+   * Note that techs do not unlock until all dependencies are satisfied!!
    */
   abstract techUnlocked: TechNames[];
 
