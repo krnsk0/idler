@@ -42,22 +42,22 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
    *
    * Techs do not unlock until all dependencies are satisfied
    */
-  abstract unlocksTech: TechNames[];
+  abstract techUnlocked: TechNames[];
 
   /**
    * What actions are unlocked by this tech
    */
-  abstract unlocksActions: ActionNames[];
+  abstract actionsUnlocked: ActionNames[];
 
   /**
    * What jobs are unlocked by this tech
    */
-  abstract unlocksJobs: JobNames[];
+  abstract jobsUnlocked: JobNames[];
 
   /**
    * What buildings are unlocked by this tech
    */
-  abstract unlocksBuildings: BuildingNames[];
+  abstract buildingsUnlocked: BuildingNames[];
 
   /**
    * Responsible for managing when tech is unlocked

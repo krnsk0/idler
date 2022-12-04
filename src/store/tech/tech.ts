@@ -26,6 +26,9 @@ import { Unlockable } from '../unlockable';
 import { BiomassReclamation } from './biomassReclamation';
 import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
+import { ActionNames } from '../zone/actions/actionNames';
+import { BuildingNames } from '../zone/buildings/buildingNames';
+import { JobNames } from '../zone/jobs/jobNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -104,6 +107,42 @@ export class Tech extends ExtendedModel(Unlockable, {
   @computed
   get selectedTech(): BaseTech | undefined {
     return this.selectedTechRef ? this.selectedTechRef.current : undefined;
+  }
+
+  /**
+   * What actions are unlocked by tech?
+   */
+  @computed
+  get unlockedActions(): ActionNames[] {
+    const actions: ActionNames[] = [];
+    for (const tech of this.researchedAsArray) {
+      actions.push(...tech.actionsUnlocked);
+    }
+    return actions;
+  }
+
+  /**
+   * What buildings are unlocked by tech?
+   */
+  @computed
+  get unlockedBuildings(): BuildingNames[] {
+    const actions: BuildingNames[] = [];
+    for (const tech of this.researchedAsArray) {
+      actions.push(...tech.buildingsUnlocked);
+    }
+    return actions;
+  }
+
+  /**
+   * What buildings are unlocked by tech?
+   */
+  @computed
+  get unlockedJobs(): JobNames[] {
+    const actions: JobNames[] = [];
+    for (const tech of this.researchedAsArray) {
+      actions.push(...tech.jobsUnlocked);
+    }
+    return actions;
   }
 
   /**

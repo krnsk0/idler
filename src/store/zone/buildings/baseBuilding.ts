@@ -3,6 +3,7 @@ import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
+import { getTech } from '../../tech/tech';
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -26,11 +27,10 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract costExponent: number;
 
   /**
-   * Responsible for managing when actions are unlocked
-   * TODO
+   * Responsible for managing when buildings are unlocked
    */
   observableUnlockCheck = () => {
-    return true;
+    return getTech(this).unlockedBuildings.includes(this.name);
   };
 
   /**

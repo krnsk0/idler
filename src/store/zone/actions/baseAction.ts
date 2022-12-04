@@ -5,6 +5,7 @@ import { ActionNames } from './actionNames';
 import { computed } from 'mobx';
 import { getResources } from '../resources/resources';
 import { getPower } from '../power/power';
+import { getTech } from '../../tech/tech';
 
 interface ActionInput {
   resource: ResourceNames;
@@ -42,10 +43,9 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
 
   /**
    * Responsible for managing when actions are unlocked
-   * TODO
    */
   observableUnlockCheck = () => {
-    return true;
+    return getTech(this).unlockedActions.includes(this.name);
   };
 
   /**

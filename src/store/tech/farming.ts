@@ -10,8 +10,8 @@ export class Farming extends ExtendedModel(BaseTech, {}) {
   description = 'rudimentary applied xenobotany';
   powerCost = 15;
   transientUnlockCheck = () => true;
-  unlocksTech = [TechNames.CRYONICS];
-  unlocksActions = [];
-  unlocksJobs = [];
-  unlocksBuildings = [BuildingNames.FARM];
+  techUnlocked = [TechNames.CRYONICS];
+  actionsUnlocked = [];
+  jobsUnlocked = [];
+  buildingsUnlocked = [BuildingNames.FARM];
 }

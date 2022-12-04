@@ -9,8 +9,8 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   description = 'ship asks: might the ore yield a useful alloy?';
   powerCost = 20;
   transientUnlockCheck = () => true;
-  unlocksTech = [];
-  unlocksActions = [];
-  unlocksJobs = [];
-  unlocksBuildings = [];
+  techUnlocked = [];
+  actionsUnlocked = [];
+  jobsUnlocked = [];
+  buildingsUnlocked = [];
 }

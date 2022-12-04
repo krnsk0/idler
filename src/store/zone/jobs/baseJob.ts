@@ -3,6 +3,7 @@ import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs } from './jobs';
 import { ProducerConsumer } from '../producerConsumer';
+import { getTech } from '../../tech/tech';
 
 export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract name: JobNames;
@@ -10,11 +11,11 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract description: string;
 
   /**
-   * Responsible for managing when actions are unlocked
+   * Responsible for managing when jobs are unlocked
    * TODO
    */
   observableUnlockCheck = () => {
-    return true;
+    return getTech(this).unlockedJobs.includes(this.name);
   };
 
   /**
