@@ -7,8 +7,9 @@ import { TechNames } from './techNames';
 export class Excavation extends ExtendedModel(BaseTech, {}) {
   name = TechNames.EXCAVATION;
   displayName = 'terrain excavation';
-  description = "ship detects mineral deposits beneath planet's surface";
-  powerCost = 20;
+  description =
+    "ship detects mineral deposits beneath planet's surface; can we reach them?";
+  powerCost = 15;
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.METALLURGY];
   actionsUnlocked = [];
