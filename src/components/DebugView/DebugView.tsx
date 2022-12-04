@@ -1,5 +1,6 @@
 import { getSnapshot } from 'mobx-keystone';
 import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
 import { useStore } from '../../store/Provider';
 import { styles } from './DebugView.styles';
 
@@ -10,6 +11,10 @@ const DebugView = () => {
   const debug = root.debug;
   const urlParams = new URLSearchParams(window.location.search);
   const debugParam = urlParams.get('debug') === 'true';
+
+  useEffect(() => {
+    debug.enableHyper();
+  }, [debugParam, debug]);
 
   if (!debugParam) return null;
 
@@ -89,10 +94,10 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            debug.bugRepro();
+            debug.phaseThree();
           }}
         >
-          bug repo
+          phase 3
         </button>
       </div>
     </div>

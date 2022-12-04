@@ -128,7 +128,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   onActionComplete(): void {
-    this.outputs.every(({ resource, quantity }) => {
+    this.outputs.forEach(({ resource, quantity }) => {
       this.zoneResources[resource].increase(quantity, { untracked: true });
     });
   }
@@ -166,7 +166,7 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   @modelAction
   start(): void {
     if (!this.active && this.enabled) {
-      this.inputs.every(({ resource, quantity }) => {
+      this.inputs.forEach(({ resource, quantity }) => {
         this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
       this.active = true;

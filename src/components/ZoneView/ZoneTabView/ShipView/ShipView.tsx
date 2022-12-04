@@ -27,6 +27,7 @@ function ShipView({ zone }: ShipViewProps) {
           <ActionButton action={zone.actions[ActionNames.GENERATE]} />
           <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
           <ActionButton action={zone.actions[ActionNames.THAW]} />
+          <ActionButton action={zone.actions[ActionNames.EXCAVATE]} />
         </div>
       </div>
       <div css={styles.shipOuter}>

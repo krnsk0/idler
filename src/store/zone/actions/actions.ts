@@ -7,6 +7,7 @@ import { Generate } from './generate';
 import { Compress } from './compress';
 import { Zone } from '../zone';
 import { Thaw } from './thaw';
+import { Excavate } from './excavate';
 
 @model('Actions')
 export class Actions extends Model({
@@ -17,6 +18,7 @@ export class Actions extends Model({
   [ActionNames.GENERATE]: tProp(types.model(Generate), () => new Generate({})),
   [ActionNames.COMPRESS]: tProp(types.model(Compress), () => new Compress({})),
   [ActionNames.THAW]: tProp(types.model(Thaw), () => new Thaw({})),
+  [ActionNames.EXCAVATE]: tProp(types.model(Excavate), () => new Excavate({})),
 }) {
   /**
    * Returns an iterable list of the action model

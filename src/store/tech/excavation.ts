@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { ActionNames } from '../zone/actions/actionNames';
 
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
@@ -6,13 +7,12 @@ import { TechNames } from './techNames';
 @model(TechNames.EXCAVATION)
 export class Excavation extends ExtendedModel(BaseTech, {}) {
   name = TechNames.EXCAVATION;
-  displayName = 'terrain excavation';
-  description =
-    "ship detects mineral deposits beneath planet's surface; can we reach them?";
+  displayName = 'repair excavator';
+  description = "ship suggets it might help drill beneath planet's surface";
   powerCost = 15;
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.METALLURGY];
-  actionsUnlocked = [];
+  actionsUnlocked = [ActionNames.EXCAVATE];
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];

@@ -9,7 +9,6 @@ import {
 } from 'mobx-keystone';
 import { getGame } from '../game';
 import { Root } from '../root';
-import { getSystemRegistry } from '../systemRegistry';
 import { getTech } from '../tech/tech';
 import { TechNames } from '../tech/techNames';
 import { ActionNames } from '../zone/actions/actionNames';
@@ -24,6 +23,11 @@ export class Debug extends Model({
   @modelAction
   toggleHyperMode() {
     this.hyperMode = !this.hyperMode;
+  }
+
+  @modelAction
+  enableHyper() {
+    this.hyperMode = true;
   }
 
   /**
@@ -71,9 +75,11 @@ export class Debug extends Model({
   }
 
   @modelAction
-  bugRepro() {
+  phaseThree() {
     this.phaseTwo();
+    const tech = getTech(this);
     const initialZone = getGame(this).initialZone;
+    tech[TechNames.EXCAVATION].cheat();
   }
 }
 export const getDebug = (child: object): Debug => {

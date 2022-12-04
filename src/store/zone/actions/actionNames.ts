@@ -3,4 +3,5 @@ export enum ActionNames {
   GENERATE = 'GENERATE',
   COMPRESS = 'COMPRESS',
   THAW = 'THAW',
+  EXCAVATE = 'EXCAVATE',
 }

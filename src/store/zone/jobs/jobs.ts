@@ -22,7 +22,12 @@ const foodConsumptionPerWorkerPerSec = 0.1;
 export class Jobs extends ExtendedModel(ZoneEntity, {
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
 }) {
-  transientUnlockCheck = () => !!this.unlockedAsArray.length;
+  transientUnlockCheck = () => {
+    return (
+      !!this.unlockedAsArray.length &&
+      getResources(this)[ResourceNames.COLONISTS].quantity > 0
+    );
+  };
   observableUnlockCheck = () => true;
 
   /**
