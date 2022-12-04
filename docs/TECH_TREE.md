@@ -2,13 +2,24 @@ The tech tree:
 
 ```mermaid
 
-graph TD;
-  A[BIOMASS_COMPRESSION] --> B[FARMING]
-  A[BIOMASS_COMPRESSION] --> C[SHELTER]
-  B[FARMING] --> D[CRYONICS]
-  C[SHELTER] --> D[CRYONICS]
-  D[CRYONICS] --> E[FORESTRY]
-  D[CRYONICS] --> F[STORAGE]
-  E[FORESTRY] --> G[BIOMASS_RECLAMATION]
+flowchart TD;
+  A[BIOMASS_COMPRESSION]
+  B[FARMING]
+  C[SHELTER]
+  D[CRYONICS]
+  E[FORESTRY]
+  F[STORAGE]
+  G[BIOMASS_RECLAMATION]
+  H[EXCAVATION]
+
+  A --> B
+  A --> C
+  A --> H
+  B --> D
+  C --> D
+  D --> E
+  D --> F
+  E --> G
+
 
 ```

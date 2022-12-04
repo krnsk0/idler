@@ -45,10 +45,10 @@ export class Resources extends ExtendedModel(ZoneEntity, {
    */
   unlockWhen = {
     observable: () => {
-      return !!this.unlockedAsArray.length;
+      return true;
     },
     transient: () => {
-      return true;
+      return !!this.unlockedAsArray.length;
     },
   };
 }

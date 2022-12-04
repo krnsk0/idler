@@ -20,10 +20,4 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
       return true;
     },
   };
-
-  shouldUnlockTransient = () => {
-    return (
-      getGame(this).initialZone.resources[ResourceNames.COLONISTS].quantity > 0
-    );
-  };
 }
