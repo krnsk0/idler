@@ -30,12 +30,10 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
       quantity: 10,
     },
   ];
+  transientUnlockCheck = () => true;
   unlockWhen = {
     observable: () => {
       return getTech(this)[TechNames.STORAGE].researched;
-    },
-    transient: () => {
-      return true;
     },
   };
 }

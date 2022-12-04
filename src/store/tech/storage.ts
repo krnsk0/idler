@@ -9,6 +9,7 @@ export class Storage extends ExtendedModel(BaseTech, {}) {
   displayName = 'matter storage';
   description = 'facilities for long-term warehousing';
   powerCost = 20;
+  transientUnlockCheck = () => true;
   unlockWhen = {
     observable: () => {
       return getTech(this)[TechNames.CRYONICS].researched;

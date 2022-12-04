@@ -13,6 +13,13 @@ export class Buildings extends ExtendedModel(ZoneEntity, {
   [BuildingNames.HABITAT]: tProp(types.model(Habitat), () => new Habitat({})),
   [BuildingNames.CACHE]: tProp(types.model(Cache), () => new Cache({})),
 }) {
+  transientUnlockCheck = () => !!this.unlockedAsArray.length;
+
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Returns an iterable list of the building models
    */
@@ -30,16 +37,4 @@ export class Buildings extends ExtendedModel(ZoneEntity, {
   get unlockedAsArray() {
     return this.asArray.filter((action) => action.unlocked);
   }
-
-  /**
-   * Unlock check
-   */
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return !!this.unlockedAsArray.length;
-    },
-  };
 }

@@ -7,6 +7,13 @@ import { ZoneEntity } from '../zoneEntity';
 
 @model('Power')
 export class Power extends ExtendedModel(ZoneEntity, {}) {
+  transientUnlockCheck = () => this.production > 0;
+
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Total power production
    */
@@ -55,18 +62,6 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
   get blackout(): boolean {
     return this.demand > 0 && this.production === 0;
   }
-
-  /**
-   * The unlock check for the power pane
-   */
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return this.production > 0;
-    },
-  };
 }
 
 export const getPower = (child: object): Power => {

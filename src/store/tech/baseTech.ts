@@ -19,6 +19,11 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   abstract description: string;
   abstract powerCost: number;
 
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Progress for selected tech
    */

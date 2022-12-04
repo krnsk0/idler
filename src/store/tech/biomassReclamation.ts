@@ -10,6 +10,7 @@ export class BiomassReclamation extends ExtendedModel(BaseTech, {}) {
   description =
     "dismantle the biomass collector and study its design, doubling hydroponic farms' biomass production";
   powerCost = 25;
+  transientUnlockCheck = () => true;
 
   unlockWhen = {
     observable: () => {

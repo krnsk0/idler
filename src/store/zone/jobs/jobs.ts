@@ -22,6 +22,13 @@ const foodConsumptionPerWorkerPerSec = 0.1;
 export class Jobs extends ExtendedModel(ZoneEntity, {
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
 }) {
+  transientUnlockCheck = () => !!this.unlockedAsArray.length;
+
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Returns an iterable list of the job models
    */
@@ -39,18 +46,6 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   get unlockedAsArray() {
     return this.asArray.filter((job) => job.unlocked);
   }
-
-  /**
-   * Are any jobs unlocked?
-   */
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return !!this.unlockedAsArray.length;
-    },
-  };
 
   /**
    * Total colonists. Convenience getter

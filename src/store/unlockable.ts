@@ -2,17 +2,6 @@ import { Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { getSystemRegistry } from './systemRegistry';
 
-interface UnlockWhen {
-  /**
-   * This function checks non-transient unlock conditions
-   */
-  observable: () => boolean;
-  /**
-   * This function should check transient unlock conditions
-   */
-  transient: () => boolean;
-}
-
 export abstract class Unlockable extends Model({
   /**
    * Some unlockables depend on a condition being met once. E.g. the player
@@ -25,7 +14,15 @@ export abstract class Unlockable extends Model({
    */
   _transientUnlockConditionSatisfied: tProp(types.boolean, false),
 }) {
-  abstract unlockWhen: UnlockWhen;
+  /**
+   * Not memoizeable, runs every tick until satisfied.
+   */
+  abstract transientUnlockCheck: () => boolean;
+  /**
+   * Intended to be implemented by abstract classes that inherit this one,
+   * teaching them what to observe to unlock
+   */
+  abstract observableUnlockCheck: boolean;
 
   /**
    * State for an aniation we see when something first unlocks
@@ -40,7 +37,7 @@ export abstract class Unlockable extends Model({
    */
   @computed
   get unlocked(): boolean {
-    if (!this.unlockWhen.observable()) return false;
+    if (!this.observableUnlockCheck) return false;
 
     if (this._transientUnlockConditionSatisfied) {
       this.showEntranceAnimation = true;
@@ -57,7 +54,7 @@ export abstract class Unlockable extends Model({
    */
   @modelAction
   runTransientUnlockCheck(): void {
-    if (this.unlockWhen.transient()) {
+    if (this.transientUnlockCheck()) {
       this._transientUnlockConditionSatisfied = true;
     }
   }

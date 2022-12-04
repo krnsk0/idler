@@ -9,6 +9,7 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   displayName = 'metallurgy';
   description = 'ship asks: might the ore yield a useful alloy?';
   powerCost = 20;
+  transientUnlockCheck = () => true;
   unlockWhen = {
     observable: () => {
       return getTech(this)[TechNames.EXCAVATION].researched;

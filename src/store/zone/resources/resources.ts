@@ -26,6 +26,13 @@ export class Resources extends ExtendedModel(ZoneEntity, {
   [ResourceNames.ROCK]: tProp(types.model(Rock), () => new Rock({})),
   [ResourceNames.ORE]: tProp(types.model(Ore), () => new Ore({})),
 }) {
+  transientUnlockCheck = () => !!this.unlockedAsArray.length;
+
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Returns an iterable list of the resource models
    */

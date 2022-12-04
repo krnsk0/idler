@@ -7,12 +7,4 @@ export class Biomass extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.BIOMASS;
   displayName = 'biomass';
   initialCap = 20;
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return this.quantity > 0;
-    },
-  };
 }

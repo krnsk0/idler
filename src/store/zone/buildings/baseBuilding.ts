@@ -25,6 +25,11 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract baseCost: PurchaseCost[];
   abstract costExponent: number;
 
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Resource cost adjusted according to exponentiation
    */

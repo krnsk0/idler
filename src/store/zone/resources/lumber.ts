@@ -7,12 +7,4 @@ export class Lumber extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.LUMBER;
   displayName = 'lumber';
   initialCap = 10;
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return this.quantity > 0;
-    },
-  };
 }

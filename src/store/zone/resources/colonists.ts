@@ -7,14 +7,6 @@ export class Colonists extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.COLONISTS;
   displayName = 'colonist';
   initialCap = 0;
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return this.currentCap > 0;
-    },
-  };
 
   /**
    * Decreases quantity. Optionally can turn off tracking for average rate

@@ -57,6 +57,16 @@ export class Tech extends ExtendedModel(Unlockable, {
     () => new Metallurgy({}),
   ),
 }) {
+  transientUnlockCheck = () => {
+    return (
+      getGame(this).initialZone.resources[ResourceNames.BIOMASS].quantity >= 5
+    );
+  };
+  @computed
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
+
   /**
    * Returns an iterable list of the action model
    */
@@ -98,18 +108,6 @@ export class Tech extends ExtendedModel(Unlockable, {
   get selectedTech(): BaseTech | undefined {
     return this.selectedTechRef ? this.selectedTechRef.current : undefined;
   }
-
-  /**
-   * The unlock check for the technology button
-   */
-  unlockWhen = {
-    observable: () => true,
-    transient: () => {
-      return (
-        getGame(this).initialZone.resources[ResourceNames.BIOMASS].quantity >= 5
-      );
-    },
-  };
 
   /**
    * Tick to update research

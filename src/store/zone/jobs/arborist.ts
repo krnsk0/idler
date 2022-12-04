@@ -17,12 +17,10 @@ export class Arborist extends ExtendedModel(BaseJob, {}) {
       quantityPerSecond: 0.1,
     },
   ];
+  transientUnlockCheck = () => true;
   unlockWhen = {
     observable: () => {
       return getTech(this)[TechNames.AGROFORESTRY].researched;
-    },
-    transient: () => {
-      return true;
     },
   };
 }

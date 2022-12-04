@@ -10,6 +10,7 @@ export class Excavation extends ExtendedModel(BaseTech, {}) {
   displayName = 'terrain excavation';
   description = "ship detects mineral deposits beneath planet's surface";
   powerCost = 20;
+  transientUnlockCheck = () => true;
 
   unlockWhen = {
     observable: () => {

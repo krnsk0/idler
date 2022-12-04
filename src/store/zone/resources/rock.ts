@@ -7,12 +7,4 @@ export class Rock extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.ROCK;
   displayName = 'rock';
   initialCap = 15;
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return this.quantity > 0;
-    },
-  };
 }

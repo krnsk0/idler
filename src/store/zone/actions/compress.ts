@@ -26,12 +26,11 @@ export class Compress extends ExtendedModel(BaseAction, {}) {
   ];
   basePowerProduction = 0;
   basePowerConsumption = 1;
+  transientUnlockCheck = () => true;
+
   unlockWhen = {
     observable: () => {
       return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
-    },
-    transient: () => {
-      return true;
     },
   };
 }

@@ -12,18 +12,14 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   description =
     'in the wreckage, thousands sleep in suspended animation. ship says it can wake them';
   powerCost = 20;
+  transientUnlockCheck = () =>
+    getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
 
   unlockWhen = {
     observable: () => {
       return (
         getTech(this)[TechNames.SHELTER].researched &&
         getTech(this)[TechNames.FARMING].researched
-      );
-    },
-    transient: () => {
-      return (
-        getGame(this).initialZone.resources[ResourceNames.COLONISTS]
-          .currentCap > 0
       );
     },
   };

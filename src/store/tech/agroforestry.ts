@@ -11,6 +11,7 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   displayName = 'agroforestry';
   description = 'sustainable cultivation of arboriform xenoflora';
   powerCost = 20;
+  transientUnlockCheck = () => true;
 
   unlockWhen = {
     observable: () => {
