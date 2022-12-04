@@ -1,7 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-import { getGame } from '../game';
 import { ActionNames } from '../zone/actions/actionNames';
-import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -12,8 +10,7 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   description =
     'in the wreckage, thousands sleep in suspended animation. ship says it can wake them';
   powerCost = 20;
-  transientUnlockCheck = () =>
-    getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
+  transientUnlockCheck = () => true;
   techUnlocked = [TechNames.AGROFORESTRY, TechNames.STORAGE];
   actionsUnlocked = [ActionNames.THAW];
   jobsUnlocked = [];
