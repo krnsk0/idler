@@ -25,6 +25,7 @@ import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
 import { BiomassReclamation } from './biomassReclamation';
 import { Excavation } from './excavation';
+import { Metallurgy } from './metallurgy';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -50,6 +51,10 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.EXCAVATION]: tProp(
     types.model(Excavation),
     () => new Excavation({}),
+  ),
+  [TechNames.METALLURGY]: tProp(
+    types.model(Metallurgy),
+    () => new Metallurgy({}),
   ),
 }) {
   /**
