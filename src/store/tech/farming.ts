@@ -10,12 +10,8 @@ export class Farming extends ExtendedModel(BaseTech, {}) {
   description = 'rudimentary applied xenobotany';
   powerCost = 15;
   transientUnlockCheck = () => true;
-  unlockWhen = {
-    observable: () => {
-      return getTech(this)[TechNames.BIOMASS_COMPRESSION].researched;
-    },
-    transient: () => {
-      return true;
-    },
-  };
+  unlocksTech = [TechNames.CRYONICS];
+  unlocksActions = [];
+  unlocksJobs = [];
+  unlocksBuildings = [];
 }

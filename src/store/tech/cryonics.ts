@@ -14,13 +14,8 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   powerCost = 20;
   transientUnlockCheck = () =>
     getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
-
-  unlockWhen = {
-    observable: () => {
-      return (
-        getTech(this)[TechNames.SHELTER].researched &&
-        getTech(this)[TechNames.FARMING].researched
-      );
-    },
-  };
+  unlocksTech = [TechNames.AGROFORESTRY, TechNames.STORAGE];
+  unlocksActions = [];
+  unlocksJobs = [];
+  unlocksBuildings = [];
 }

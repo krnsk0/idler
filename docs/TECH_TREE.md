@@ -11,6 +11,7 @@ flowchart TD;
   F[STORAGE]
   G[BIOMASS_RECLAMATION]
   H[EXCAVATION]
+  I[METALLURGY]
 
   A --> B
   A --> C
@@ -20,6 +21,7 @@ flowchart TD;
   D --> E
   D --> F
   E --> G
+  H --> I
 
 
 ```

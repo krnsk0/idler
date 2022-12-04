@@ -1,8 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-import { getGame } from '../game';
-import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
-import { getTech } from './tech';
 import { TechNames } from './techNames';
 
 @model(TechNames.AGROFORESTRY)
@@ -12,13 +9,8 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   description = 'sustainable cultivation of arboriform xenoflora';
   powerCost = 20;
   transientUnlockCheck = () => true;
-
-  unlockWhen = {
-    observable: () => {
-      return getTech(this)[TechNames.CRYONICS].researched;
-    },
-    transient: () => {
-      return true;
-    },
-  };
+  unlocksTech = [];
+  unlocksActions = [];
+  unlocksJobs = [];
+  unlocksBuildings = [];
 }
