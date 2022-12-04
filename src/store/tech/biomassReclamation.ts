@@ -12,7 +12,8 @@ export class BiomassReclamation extends ExtendedModel(BaseTech, {}) {
   powerCost = 25;
   transientUnlockCheck = () => true;
   techUnlocked = [];
-  actionsUnlocked = [ActionNames.HARVEST];
+  actionsUnlocked = [];
+  actionsRelocked = [ActionNames.HARVEST];
   jobsUnlocked = [];
   buildingsUnlocked = [];
 }

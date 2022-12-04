@@ -12,6 +12,7 @@ export class Farming extends ExtendedModel(BaseTech, {}) {
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.CRYONICS];
   actionsUnlocked = [];
+  actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.FARM];
 }

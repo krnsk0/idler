@@ -11,6 +11,7 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   transientUnlockCheck = () => true;
   techUnlocked = [];
   actionsUnlocked = [];
+  actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
 }

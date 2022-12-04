@@ -15,6 +15,7 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
     getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
   techUnlocked = [TechNames.BIOMASS_RECLAMATION];
   actionsUnlocked = [];
+  actionsRelocked = [];
   jobsUnlocked = [JobNames.ARBORIST];
   buildingsUnlocked = [];
 }

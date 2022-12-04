@@ -13,6 +13,7 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.AGROFORESTRY, TechNames.STORAGE];
   actionsUnlocked = [ActionNames.THAW];
+  actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
 }

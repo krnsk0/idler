@@ -21,5 +21,4 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   basePowerProduction = 0;
   basePowerConsumption = 0;
   transientUnlockCheck = () => true;
-  observableUnlockCheck = () => true;
 }

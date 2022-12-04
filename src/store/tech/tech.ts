@@ -32,6 +32,14 @@ import { JobNames } from '../zone/jobs/jobNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
+/**
+ * These actions are unlocked at the start of the game
+ */
+const startingActions: ActionNames[] = [
+  ActionNames.HARVEST,
+  ActionNames.GENERATE,
+];
+
 @model('Tech')
 export class Tech extends ExtendedModel(Unlockable, {
   selectedTechRef: prop<Ref<BaseTech> | undefined>(),
@@ -111,12 +119,22 @@ export class Tech extends ExtendedModel(Unlockable, {
 
   /**
    * What actions are unlocked by tech?
+   * Relocks override unlocks
    */
   @computed
   get unlockedActions(): ActionNames[] {
-    const actions: ActionNames[] = [];
+    let actions: ActionNames[] = startingActions;
+
+    // add unlocked
     for (const tech of this.researchedAsArray) {
       actions.push(...tech.actionsUnlocked);
+    }
+
+    // remove relocked
+    for (const tech of this.researchedAsArray) {
+      actions = actions.filter((action) => {
+        return !tech.actionsRelocked.includes(action);
+      });
     }
     return actions;
   }

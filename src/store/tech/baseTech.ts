@@ -50,6 +50,11 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
   abstract actionsUnlocked: ActionNames[];
 
   /**
+   * Actions which get locked by researching this
+   */
+  abstract actionsRelocked: ActionNames[];
+
+  /**
    * What jobs are unlocked by this tech
    */
   abstract jobsUnlocked: JobNames[];

@@ -13,6 +13,7 @@ export class Excavation extends ExtendedModel(BaseTech, {}) {
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.METALLURGY];
   actionsUnlocked = [];
+  actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
 }
