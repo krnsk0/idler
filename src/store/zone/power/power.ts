@@ -12,9 +12,14 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
    */
   @computed
   get production(): number {
-    return getActions(this).asArray.reduce((total, action) => {
-      return total + action.powerProduction;
-    }, 0);
+    const actionsProduction = getActions(this).asArray.reduce(
+      (total, action) => {
+        return total + action.powerProduction;
+      },
+      0,
+    );
+
+    return actionsProduction;
   }
 
   /**
