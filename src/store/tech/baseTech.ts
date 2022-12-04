@@ -61,9 +61,11 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
 
   /**
    * Responsible for managing when tech is unlocked
-   * TODO
    */
   observableUnlockCheck = () => {
+    const techThatUnlocksThisTech = getTech(this).asArray.filter((tech) => {
+      const unlocked = tech.techUnlocked;
+    });
     return true;
   };
 
