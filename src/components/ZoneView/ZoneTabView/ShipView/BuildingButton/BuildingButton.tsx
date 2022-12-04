@@ -1,11 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseBuilding } from '../../../../../store/zone/buildings/baseBuilding';
-import {
-  TooltipText,
-  TooltipDivider,
-} from '../../../../shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
+import BuildingTooltip from './BuildingTooltip';
 
 interface BuildingButtonProps {
   building: BaseBuilding;
@@ -16,61 +13,7 @@ function BuildingButton({ building }: BuildingButtonProps) {
 
   return (
     <ZoneEntityButton
-      tooltip={
-        <>
-          <TooltipText italic={true} align={'center'} light={true}>
-            {building.description}
-          </TooltipText>
-          <TooltipDivider text={'cost'} />
-          <TooltipText>
-            {building.currentCostDisplay.map(
-              ({
-                resourceDisplayName,
-                quantity,
-                isSatisfied,
-                availableQuantity,
-                storageConstrained,
-              }) => {
-                return (
-                  <div key={resourceDisplayName}>
-                    {resourceDisplayName}:{' '}
-                    {isSatisfied ? '' : `${formatNumber(availableQuantity)} / `}
-                    {formatNumber(quantity)}
-                    {storageConstrained ? '*' : ''}
-                  </div>
-                );
-              },
-            )}
-          </TooltipText>
-          <TooltipDivider text={'effects'} />
-          <TooltipText light={false}>
-            {building.displayEffects.map(
-              ({ resourceDisplayName, quantityPerSecond }) => {
-                return (
-                  <div key={resourceDisplayName}>
-                    {resourceDisplayName}:{' '}
-                    {formatNumber(quantityPerSecond, { showSign: true })}/sec
-                  </div>
-                );
-              },
-            )}
-            {building.displayStorage.map(
-              ({ resourceDisplayName, quantity }) => {
-                return (
-                  <div key={resourceDisplayName}>
-                    {formatNumber(quantity, { showSign: true })}{' '}
-                    {resourceDisplayName} capacity
-                  </div>
-                );
-              },
-            )}
-          </TooltipText>
-          <TooltipDivider />
-          <TooltipText light={true} align={'right'} italic={true}>
-            {building.splashText}
-          </TooltipText>
-        </>
-      }
+      tooltip={<BuildingTooltip building={building} />}
       onClick={() => building.buy(1)}
       disabled={!building.affordable}
       showEntranceAnimation={building.showEntranceAnimation}
