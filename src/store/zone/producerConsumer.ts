@@ -93,8 +93,10 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * TODO: only run when we have enough inputs
-   * TODO: stop production when hitting maximums
+   * Runs production
+   *
+   * TODO: set up decrementing of inputs and constraining production
+   * base on inputs
    */
   @modelAction
   runProduction(delta: number): void {

@@ -12,7 +12,6 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
 
   /**
    * Responsible for managing when jobs are unlocked
-   * TODO
    */
   observableUnlockCheck = () => {
     return getTech(this).unlockedJobs.includes(this.name);
