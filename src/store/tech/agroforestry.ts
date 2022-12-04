@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { JobNames } from '../zone/jobs/jobNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -11,6 +12,6 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   transientUnlockCheck = () => true;
   unlocksTech = [];
   unlocksActions = [];
-  unlocksJobs = [];
+  unlocksJobs = [JobNames.ARBORIST];
   unlocksBuildings = [];
 }

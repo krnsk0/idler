@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { BuildingNames } from '../zone/buildings/buildingNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -12,5 +13,5 @@ export class Storage extends ExtendedModel(BaseTech, {}) {
   unlocksTech = [];
   unlocksActions = [];
   unlocksJobs = [];
-  unlocksBuildings = [];
+  unlocksBuildings = [BuildingNames.CACHE];
 }

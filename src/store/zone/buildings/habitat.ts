@@ -27,9 +27,4 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
     },
   ];
   transientUnlockCheck = () => true;
-  unlockWhen = {
-    observable: () => {
-      return getTech(this)[TechNames.SHELTER].researched;
-    },
-  };
 }

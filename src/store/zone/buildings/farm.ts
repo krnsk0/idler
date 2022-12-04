@@ -37,11 +37,6 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   ];
   storage = [];
   transientUnlockCheck = () => true;
-  unlockWhen = {
-    observable: () => {
-      return getTech(this)[TechNames.FARMING].researched;
-    },
-  };
 
   @override
   get productionModifiers(): ProductionMultipliers {

@@ -1,8 +1,8 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { getGame } from '../game';
+import { ActionNames } from '../zone/actions/actionNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
-import { getTech } from './tech';
 import { TechNames } from './techNames';
 
 @model(TechNames.CRYONICS)
@@ -15,7 +15,7 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   transientUnlockCheck = () =>
     getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
   unlocksTech = [TechNames.AGROFORESTRY, TechNames.STORAGE];
-  unlocksActions = [];
+  unlocksActions = [ActionNames.THAW];
   unlocksJobs = [];
   unlocksBuildings = [];
 }

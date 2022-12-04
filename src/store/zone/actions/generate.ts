@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { override } from 'mobx';
 import { getTech } from '../../tech/tech';
 import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
@@ -22,9 +23,9 @@ export class Generate extends ExtendedModel(BaseAction, {}) {
   basePowerProduction = 1;
   basePowerConsumption = 0;
   transientUnlockCheck = () => !!getTech(this).selectedTech;
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-  };
+
+  @override
+  get observableUnlockCheck(): boolean {
+    return true;
+  }
 }

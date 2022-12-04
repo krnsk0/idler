@@ -1,6 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { BuildingNames } from '../zone/buildings/buildingNames';
 import { BaseTech } from './baseTech';
-import { getTech } from './tech';
 import { TechNames } from './techNames';
 
 @model(TechNames.FARMING)
@@ -13,5 +13,5 @@ export class Farming extends ExtendedModel(BaseTech, {}) {
   unlocksTech = [TechNames.CRYONICS];
   unlocksActions = [];
   unlocksJobs = [];
-  unlocksBuildings = [];
+  unlocksBuildings = [BuildingNames.FARM];
 }

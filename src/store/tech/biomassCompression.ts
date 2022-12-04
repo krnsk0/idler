@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { ActionNames } from '../zone/actions/actionNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -11,7 +12,7 @@ export class BiomassCompression extends ExtendedModel(BaseTech, {}) {
   powerCost = 10;
   transientUnlockCheck = () => true;
   unlocksTech = [TechNames.FARMING, TechNames.SHELTER, TechNames.EXCAVATION];
-  unlocksActions = [];
+  unlocksActions = [ActionNames.COMPRESS];
   unlocksJobs = [];
   unlocksBuildings = [];
 }

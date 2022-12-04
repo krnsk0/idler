@@ -22,9 +22,4 @@ export class Harvest extends ExtendedModel(BaseAction, {}) {
   basePowerProduction = 0;
   basePowerConsumption = 0;
   transientUnlockCheck = () => true;
-  unlockWhen = {
-    observable: () => {
-      return !getTech(this)[TechNames.BIOMASS_RECLAMATION].researched;
-    },
-  };
 }

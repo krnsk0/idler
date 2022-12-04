@@ -50,18 +50,6 @@ export class Resources extends ExtendedModel(ZoneEntity, {
   get unlockedAsArray() {
     return this.asArray.filter((resource) => resource.unlocked);
   }
-
-  /**
-   * When resource pane shows
-   */
-  unlockWhen = {
-    observable: () => {
-      return true;
-    },
-    transient: () => {
-      return !!this.unlockedAsArray.length;
-    },
-  };
 }
 
 export const getResources = (child: object): Resources => {
