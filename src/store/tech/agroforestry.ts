@@ -13,7 +13,7 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   powerCost = 20;
   transientUnlockCheck = () =>
     getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
-  techUnlocked = [];
+  techUnlocked = [TechNames.BIOMASS_RECLAMATION];
   actionsUnlocked = [];
   jobsUnlocked = [JobNames.ARBORIST];
   buildingsUnlocked = [];
