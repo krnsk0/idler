@@ -32,14 +32,6 @@ import { JobNames } from '../zone/jobs/jobNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
-/**
- * These actions are unlocked at the start of the game
- */
-const startingActions: ActionNames[] = [
-  ActionNames.HARVEST,
-  ActionNames.GENERATE,
-];
-
 @model('Tech')
 export class Tech extends ExtendedModel(Unlockable, {
   selectedTechRef: prop<Ref<BaseTech> | undefined>(),
@@ -123,7 +115,10 @@ export class Tech extends ExtendedModel(Unlockable, {
    */
   @computed
   get unlockedActions(): ActionNames[] {
-    let actions: ActionNames[] = startingActions;
+    /**
+     * These actions are unlocked at the start of the game
+     */
+    let actions: ActionNames[] = [ActionNames.HARVEST, ActionNames.GENERATE];
 
     // add unlocked
     for (const tech of this.researchedAsArray) {
