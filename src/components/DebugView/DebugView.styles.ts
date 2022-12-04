@@ -8,7 +8,7 @@ export const styles = {
     right: 0;
     margin-left: auto;
     margin-right: auto;
-    width: 80%;
+    width: 60%;
 
     button {
       height: 1.5em;

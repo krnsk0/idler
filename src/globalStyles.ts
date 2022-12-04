@@ -7,10 +7,7 @@ export const globalStyles = css`
     box-sizing: content-box;
     user-select: none;
   }
-  #app {
-    width: 100%;
-    height: 100vh;
-  }
+
   button {
     font-family: 'Lekton', sans-serif;
     font-size: 1em;

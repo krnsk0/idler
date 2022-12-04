@@ -1,3 +1,8 @@
 import { css } from '@emotion/react';
 
-export const styles = {};
+export const styles = {
+  app: css`
+    width: 98%;
+    margin: auto;
+  `,
+};
