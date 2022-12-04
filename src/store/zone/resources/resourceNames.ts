@@ -5,4 +5,5 @@ export enum ResourceNames {
   NUTRIENTS = 'NUTRIENTS',
   ROCK = 'ROCK',
   ORE = 'ORE',
+  ALLOY = 'ALLOY',
 }

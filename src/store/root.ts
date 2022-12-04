@@ -68,7 +68,7 @@ export class Root extends Model({
 
   @modelAction
   reset(): void {
-    this.game = new Game({});
+    this.game = fromSnapshot(Game, {});
     this.game.selectZone(this.game.initialZone);
   }
 }

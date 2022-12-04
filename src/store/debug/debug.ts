@@ -80,6 +80,9 @@ export class Debug extends Model({
     const tech = getTech(this);
     const initialZone = getGame(this).initialZone;
     tech[TechNames.EXCAVATION].cheat();
+    initialZone.resources[ResourceNames.ROCK].cheat();
+    initialZone.resources[ResourceNames.ORE].cheat();
+    tech[TechNames.METALLURGY].cheat();
   }
 }
 export const getDebug = (child: object): Debug => {

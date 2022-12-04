@@ -38,6 +38,7 @@ export class SystemRegistry extends Model({}) {
    * here matters a great deal for the simulation; e.g. if we do a food check
    * before production we might kill workers unnecessarily
    */
+  @modelAction
   private doTick(delta: number): void {
     /**
      * Tick all actions.

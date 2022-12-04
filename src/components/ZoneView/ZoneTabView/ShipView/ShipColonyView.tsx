@@ -5,13 +5,14 @@ import ActionButton from './ActionButton/ActionButton';
 import { ActionNames } from '../../../../store/zone/actions/actionNames';
 import { Divider } from '../../../shared/Divider/Divider';
 import BuildingButton from './BuildingButton/BuildingButton';
-import { styles } from './ShipView.styles';
+import { styles } from './ShipColonyView.styles';
+import { enumKeys } from '../../../../utils/enumKeys';
 
 interface ShipViewProps {
   zone: Zone;
 }
 
-function ShipView({ zone }: ShipViewProps) {
+function ShipColonyView({ zone }: ShipViewProps) {
   return (
     <>
       <div css={styles.shipOuter} id="ship-view-outer">
@@ -47,4 +48,4 @@ function ShipView({ zone }: ShipViewProps) {
   );
 }
 
-export default observer(ShipView);
+export default observer(ShipColonyView);
