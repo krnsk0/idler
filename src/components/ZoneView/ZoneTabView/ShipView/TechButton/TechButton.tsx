@@ -64,7 +64,7 @@ function TechButton() {
                 </>
               )}
               <TooltipText align={'center'}>
-                {formatNumber(selectedTech.power)} of{' '}
+                {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
                 {formatNumber(selectedTech.powerCost)} power
               </TooltipText>
               <TooltipDivider />
