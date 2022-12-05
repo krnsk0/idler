@@ -1,3 +1,3 @@
 # planetfall idler
 
-project board [here](https://github.com/users/krnsk0/projects/1/views/1).
+project board [here](https://trello.com/b/I8XKOe0Z/planetfall-idler).
