@@ -22,7 +22,10 @@ export class Furnace extends ExtendedModel(BaseBuilding, {}) {
     },
   ];
   costExponent = 1.5;
-  inputs = [{ resource: ResourceNames.ORE, quantityPerSecond: 0.1 }];
+  inputs = [
+    { resource: ResourceNames.BIOMASS, quantityPerSecond: 0.2 },
+    { resource: ResourceNames.ORE, quantityPerSecond: 0.1 },
+  ];
   outputs = [{ resource: ResourceNames.ALLOY, quantityPerSecond: 0.1 }];
   storage = [];
   transientUnlockCheck = () => true;
