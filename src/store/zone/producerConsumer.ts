@@ -2,9 +2,7 @@ import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from './resources/resourceNames';
 import { ZoneEntity } from './zoneEntity';
 import { computed } from 'mobx';
-import { BaseBuilding } from './buildings/baseBuilding';
-import { getTech } from '../tech/tech';
-import { BuildingNames } from './buildings/buildingNames';
+import { getResources } from './resources/resources';
 
 interface Consumption {
   resource: ResourceNames;
@@ -95,13 +93,35 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   /**
    * Runs production
    *
-   * TODO: set up decrementing of inputs and constraining production
-   * base on inputs
+   * TODO: handle room for output
    */
   @modelAction
   runProduction(delta: number): void {
+    // zero deltas cause NaNs
+    if (delta === 0) return;
+
+    // calculate prorate
+    let prorate = 1;
+    this.consumptionPerSecond.forEach((input) => {
+      const resourceName = input.resource;
+      const potentialConsumption = input.quantityPerSecond * delta;
+
+      const thisProrate =
+        getResources(this)[resourceName].quantity / potentialConsumption;
+      prorate = Math.min(thisProrate, prorate);
+    });
+
+    // do consumption
+    this.consumptionPerSecond.forEach((input) => {
+      const potentialConsumption = input.quantityPerSecond * delta * prorate;
+      const resourceModel = this.zoneResources[input.resource];
+
+      resourceModel.decrease(potentialConsumption);
+    });
+
+    // do production
     this.productionPerSecond.forEach((product) => {
-      const potentialProduction = product.quantityPerSecond * delta;
+      const potentialProduction = product.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });

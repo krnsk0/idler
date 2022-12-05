@@ -24,11 +24,29 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
    */
   estimatedRate: tProp(types.maybeNull(types.number), null),
 }) {
+  /**
+   * For reflection
+   */
   abstract name: ResourceNames;
+
+  /**
+   * User-facing
+   */
   abstract displayName: string;
+
+  /**
+   * Zone's starting storage
+   */
   abstract initialCap: number;
+
+  /**
+   * Used to help compute rate of change shown to user
+   */
   private changeSinceLastTick: null | number = 0;
 
+  /**
+   * Unlock conditions
+   */
   transientUnlockCheck = () => this.quantity > 0;
   observableUnlockCheck = () => true;
 
@@ -166,6 +184,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         this.changeSinceLastTick !== null
           ? this.changeSinceLastTick - quantity
           : quantity;
+
     this.quantity -= quantity;
   }
 
