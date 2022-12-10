@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 import { useStore } from '../../store/Provider';
 import { styles } from './DebugView.styles';
 
-interface DebugProps {}
-
 const DebugView = () => {
   const root = useStore();
   const debug = root.debug;
@@ -13,7 +11,9 @@ const DebugView = () => {
   const debugParam = urlParams.get('debug') === 'true';
 
   useEffect(() => {
-    debug.enableHyper();
+    if (debugParam) {
+      debug.enableHyper();
+    }
   }, [debugParam, debug]);
 
   if (!debugParam) return null;
