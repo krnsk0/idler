@@ -178,6 +178,10 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   decrease(quantity: number, options?: { untracked?: boolean }): void {
+    if (Number.isNaN(quantity))
+      throw new Error(
+        `decrease function for resource ${this.name} got quantity NaN`,
+      );
     if (quantity === 0) return;
     if (!options?.untracked)
       this.changeSinceLastTick =
