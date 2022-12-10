@@ -105,6 +105,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
     this.consumptionPerSecond.forEach((input) => {
       const resourceName = input.resource;
       const potentialConsumption = input.quantityPerSecond * delta;
+      if (potentialConsumption === 0) return;
 
       const thisProrate =
         getResources(this)[resourceName].quantity / potentialConsumption;
