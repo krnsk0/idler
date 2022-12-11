@@ -8,7 +8,8 @@
     "preview": "vite preview",
     "test": "vitest watch",
     "test-ci": "vitest run",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "make-docs": "vite-node -w ./scripts/makeDocs.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -30,6 +31,7 @@
     "prettier": "^2.7.1",
     "typescript": "^4.6.3",
     "vite": "^3.0.0",
+    "vite-node": "^0.25.7",
     "vite-plugin-checker": "^0.4.7",
     "vitest": "^0.18.0"
   }
