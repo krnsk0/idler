@@ -3,7 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "scripts": {
-    "start": "vite & open https://trello.com/b/I8XKOe0Z/planetfall-idler",
+    "start": "vite & npm run make-docs & npm run open-trello",
+    "open-trello": "open https://trello.com/b/I8XKOe0Z/planetfall-idler",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest watch",
