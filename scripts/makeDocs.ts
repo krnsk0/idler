@@ -11,10 +11,9 @@ const FILE_PATH = join('docs', 'TECH_TREE.md');
 type Tech = string;
 type Relationship = [Tech, Tech];
 
-function writeFile(data: string) {
-  writeFileSync(FILE_PATH, data);
-}
-
+/**
+ * Create the string describing a mermaid diagram
+ */
 function makeTree(relationships: Relationship[]) {
   return `
 \`\`\`mermaid
@@ -29,6 +28,10 @@ ${relationships
 `;
 }
 
+/**
+ * Given a root state tree, walk through tech and generate
+ * tuples describing edges in the tech tree
+ */
 function getRelationships(root: Root): Relationship[] {
   const relationships: Relationship[] = [];
   root.game.tech.asArray.forEach((parent) => {
@@ -40,4 +43,4 @@ function getRelationships(root: Root): Relationship[] {
 }
 
 console.log('REGENERATING ./docs/TECH_TREE.md');
-writeFile(makeTree(getRelationships(new Root({}))));
+writeFileSync(FILE_PATH, makeTree(getRelationships(new Root({}))));
