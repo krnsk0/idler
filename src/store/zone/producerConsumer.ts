@@ -25,9 +25,11 @@ export type ProductionMultipliers = {
 
 export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
+  numberDisabled: tProp(types.number, 0),
 }) {
   abstract outputs: Consumption[];
   abstract inputs: Production[];
+  abstract canBeTurnedOff: boolean;
 
   /**
    * Intended to be overridden by children

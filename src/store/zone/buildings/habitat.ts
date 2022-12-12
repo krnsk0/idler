@@ -27,4 +27,5 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
     },
   ];
   transientUnlockCheck = () => true;
+  canBeTurnedOff = false;
 }

@@ -1,4 +1,4 @@
-import { ExtendedModel, tProp, types, modelAction } from 'mobx-keystone';
+import { ExtendedModel, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs } from './jobs';
@@ -9,6 +9,13 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract name: JobNames;
   abstract displayName: string;
   abstract description: string;
+
+  /**
+   * The concept of disabling or enabling a job does not exist
+   * where it does for other ProducerConsumers, as workers can just be
+   * assigned/unassigned
+   */
+  canBeTurnedOff = false;
 
   /**
    * Responsible for managing when jobs are unlocked
