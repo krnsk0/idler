@@ -14,7 +14,7 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
     'dismantle ship’s generator and study its design, allowing the construction of additional generators';
   powerCost = 25;
   transientUnlockCheck = () =>
-    getGame(this).initialZone.resources[ResourceNames.ALLOY].currentCap > 8;
+    getGame(this).initialZone.resources[ResourceNames.ALLOY].quantity >= 5;
   techUnlocked = [];
   actionsUnlocked = [];
   actionsRelocked = [ActionNames.GENERATE];
