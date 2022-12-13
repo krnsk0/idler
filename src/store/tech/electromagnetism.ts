@@ -7,7 +7,7 @@ import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
 @model(TechNames.ELECTROMAGNETISM)
-export class CombustionGeneration extends ExtendedModel(BaseTech, {}) {
+export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
   name = TechNames.ELECTROMAGNETISM;
   displayName = 'electromagnetism';
   description =

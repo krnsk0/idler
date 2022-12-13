@@ -29,7 +29,7 @@ import { Unlockable } from '../unlockable';
 import { BiomassReclamation } from './biomassReclamation';
 import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
-import { CombustionGeneration } from './combustionGeneration';
+import { Electromagnetism } from './electromagnetism';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -61,8 +61,8 @@ export class Tech extends ExtendedModel(Unlockable, {
     () => new Metallurgy({}),
   ),
   [TechNames.ELECTROMAGNETISM]: tProp(
-    types.model(CombustionGeneration),
-    () => new CombustionGeneration({}),
+    types.model(Electromagnetism),
+    () => new Electromagnetism({}),
   ),
 }) {
   transientUnlockCheck = () => {
