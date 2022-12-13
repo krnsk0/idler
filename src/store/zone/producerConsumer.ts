@@ -127,27 +127,45 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
     // zero deltas cause NaNs
     if (delta === 0) return;
 
-    // calculate prorate
+    // prorate limits production based on available input
+    // and storage space for output
+
     let prorate = 1;
+
+    // here we constrain the prorate based on available inputs
     this.consumptionPerSecond.forEach((input) => {
       const resourceName = input.resource;
       const potentialConsumption = input.quantityPerSecond * delta;
       if (potentialConsumption === 0) return;
-
       const thisProrate =
         getResources(this)[resourceName].quantity / potentialConsumption;
       prorate = Math.min(thisProrate, prorate);
     });
 
-    // do consumption
+    // here we constrain the prorate based on available space for outputs
+    // we do this only if there's something to consume; e.g. we always
+    // "overproduce" if there's no consumers.
+    if (this.consumptionPerSecond.length) {
+      this.productionPerSecond.forEach((product) => {
+        const resourceName = product.resource;
+        const potentialProduction = product.quantityPerSecond * delta;
+        if (potentialProduction === 0) return;
+        const resourceModel = this.zoneResources[resourceName];
+        const availableSpace =
+          resourceModel.currentCap - resourceModel.quantity;
+        const thisProrate = availableSpace / potentialProduction;
+        prorate = Math.min(thisProrate, prorate);
+      });
+    }
+
+    // perform consumption
     this.consumptionPerSecond.forEach((input) => {
       const potentialConsumption = input.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[input.resource];
-
       resourceModel.decrease(potentialConsumption);
     });
 
-    // do production
+    // perform production
     this.productionPerSecond.forEach((product) => {
       const potentialProduction = product.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[product.resource];
