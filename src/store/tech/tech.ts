@@ -11,12 +11,15 @@ import {
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../utils/enumKeys';
+import { Root } from '../root';
+import { ActionNames } from '../zone/actions/actionNames';
+import { BuildingNames } from '../zone/buildings/buildingNames';
+import { JobNames } from '../zone/jobs/jobNames';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Farming } from './farming';
 import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
-import { Root } from '../root';
 import { BaseTech } from './baseTech';
 import { getGame } from '../game';
 import { Agroforestry } from './agroforestry';
@@ -26,9 +29,7 @@ import { Unlockable } from '../unlockable';
 import { BiomassReclamation } from './biomassReclamation';
 import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
-import { ActionNames } from '../zone/actions/actionNames';
-import { BuildingNames } from '../zone/buildings/buildingNames';
-import { JobNames } from '../zone/jobs/jobNames';
+import { CombustionGeneration } from './combustionGeneration';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -58,6 +59,10 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.METALLURGY]: tProp(
     types.model(Metallurgy),
     () => new Metallurgy({}),
+  ),
+  [TechNames.COMBUSTION_GENERATION]: tProp(
+    types.model(CombustionGeneration),
+    () => new CombustionGeneration({}),
   ),
 }) {
   transientUnlockCheck = () => {
