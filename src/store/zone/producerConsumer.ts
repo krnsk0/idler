@@ -52,7 +52,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
     return this.inputs.map(({ resource, quantityPerSecond }) => {
       return {
         resource,
-        quantityPerSecond: quantityPerSecond * this.quantity,
+        quantityPerSecond: this.numberActive * quantityPerSecond,
       };
     });
   }
@@ -71,7 +71,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
       return {
         resource,
         quantityPerSecond:
-          quantityPerSecond * this.quantity * productionMultiplier,
+          quantityPerSecond * this.numberActive * productionMultiplier,
       };
     });
   }
