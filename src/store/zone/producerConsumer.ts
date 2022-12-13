@@ -27,8 +27,20 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
   numberDisabled: tProp(types.number, 0),
 }) {
+  /**
+   * Things consumed by this producerConsumer
+   */
   abstract outputs: Consumption[];
+
+  /**
+   * Things produced by this producerConsumer
+   */
   abstract inputs: Production[];
+
+  /**
+   * Is it possible for only some of this producer to be active?
+   * E.g. "4 of 5 furnaces are enabled"
+   */
   abstract canSomeBeTurnedOff: boolean;
 
   @computed
@@ -144,7 +156,8 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
 
     // here we constrain the prorate based on available space for outputs
     // we do this only if there's something to consume; e.g. we always
-    // "overproduce" if there's no consumers.
+    // "overproduce" if there's no consumers. in future this behavior could be
+    // configurable per producer or even per resource.
     if (this.consumptionPerSecond.length) {
       this.productionPerSecond.forEach((product) => {
         const resourceName = product.resource;
