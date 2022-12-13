@@ -15,7 +15,6 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
     digits: 0,
   });
 
-  console.log('debug', zone.power.production % 1);
   return (
     <div css={styles.paneContainer}>
       {zone.power.unlocked && (

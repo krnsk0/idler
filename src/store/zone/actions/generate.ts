@@ -22,5 +22,4 @@ export class Generate extends ExtendedModel(BaseAction, {}) {
   basePowerProduction = 1;
   basePowerConsumption = 0;
   transientUnlockCheck = () => !!getTech(this).selectedTech;
-  observableUnlockCheck = () => true;
 }
