@@ -3,9 +3,21 @@
  */
 export const formatNumber = (
   input: number,
-  option?: { showSign?: boolean; digits?: number },
+  option?: {
+    showSign?: boolean;
+    digits?: number;
+    hideDecimalWhenNotNeeded?: boolean;
+  },
 ) => {
-  const digits = typeof option?.digits === 'number' ? option.digits : 2;
+  let digits = 2;
+  if (typeof option?.digits === 'number') {
+    digits = option.digits;
+  }
+
+  if (input % 1 === 0 && option?.hideDecimalWhenNotNeeded) {
+    digits = 0;
+  }
+
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,

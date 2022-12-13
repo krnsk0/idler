@@ -42,4 +42,5 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
   ];
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = false;
+  powerOutputPerSecond = 0;
 }

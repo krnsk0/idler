@@ -38,6 +38,7 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   storage = [];
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = false;
+  powerOutputPerSecond = 0;
 
   @override
   get productionModifiers(): ProductionMultipliers {

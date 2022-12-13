@@ -1,4 +1,4 @@
-import { ExtendedModel, model, tProp, types } from 'mobx-keystone';
+import { ExtendedModel, findParent, model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { BuildingNames } from './buildingNames';
@@ -8,6 +8,7 @@ import { Cache } from './cache';
 import { Furnace } from './furnace';
 import { ZoneEntity } from '../zoneEntity';
 import { Dynamo } from './dynamo';
+import { Zone } from '../zone';
 
 @model('Buildings')
 export class Buildings extends ExtendedModel(ZoneEntity, {
@@ -38,3 +39,11 @@ export class Buildings extends ExtendedModel(ZoneEntity, {
     return this.asArray.filter((action) => action.unlocked);
   }
 }
+
+export const getBuildings = (child: object): Buildings => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
+  });
+  if (!zone) throw new Error('no parent zone model found in getZone');
+  return zone.buildings;
+};

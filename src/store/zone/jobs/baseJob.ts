@@ -18,6 +18,11 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   canSomeBeTurnedOff = false;
 
   /**
+   * People do not produce power
+   */
+  powerOutputPerSecond = 0;
+
+  /**
    * Responsible for managing when jobs are unlocked
    */
   observableUnlockCheck = () => {

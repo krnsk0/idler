@@ -4,6 +4,7 @@ import { computed } from 'mobx';
 import { getActions } from '../actions/actions';
 import { getTech } from '../../tech/tech';
 import { ZoneEntity } from '../zoneEntity';
+import { getBuildings } from '../buildings/buildings';
 
 @model('Power')
 export class Power extends ExtendedModel(ZoneEntity, {}) {
@@ -22,7 +23,14 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
       0,
     );
 
-    return actionsProduction;
+    const buildingsProduction = getBuildings(this).asArray.reduce(
+      (total, building) => {
+        return total + building.powerProduction;
+      },
+      0,
+    );
+
+    return actionsProduction + buildingsProduction;
   }
 
   /**

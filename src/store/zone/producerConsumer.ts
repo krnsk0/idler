@@ -26,7 +26,13 @@ export type ProductionMultipliers = {
 export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
   numberDisabled: tProp(types.number, 0),
+  powerProducitonProrate: tProp(types.number, 0),
 }) {
+  /**
+   * Did this generator (if it is a generator) have enough input last tick
+   * to produce power this tick? If so, this is 1. Otherwise, less than 1.
+   */
+
   /**
    * Things consumed by this producerConsumer
    */
@@ -36,6 +42,11 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * Things produced by this producerConsumer
    */
   abstract inputs: Production[];
+
+  /**
+   * Power output per sec when active
+   */
+  abstract powerOutputPerSecond: number;
 
   /**
    * Is it possible for only some of this producer to be active?
@@ -49,6 +60,14 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   @computed
   get numberActive(): number {
     return this.quantity - this.numberDisabled;
+  }
+
+  /**
+   * Current power production
+   */
+  @computed
+  get powerProduction(): number {
+    return this.powerOutputPerSecond * this.powerProducitonProrate;
   }
 
   /**
@@ -173,6 +192,10 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
         prorate = Math.min(thisProrate, prorate);
       });
     }
+
+    // store prorate to help with calculating power produced next tick
+    // as power production intentionally lags behind by one tick
+    this.powerProducitonProrate = prorate;
 
     // perform consumption
     this.consumptionPerSecond.forEach((input) => {

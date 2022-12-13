@@ -15,6 +15,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
     digits: 0,
   });
 
+  console.log('debug', zone.power.production % 1);
   return (
     <div css={styles.paneContainer}>
       {zone.power.unlocked && (
@@ -31,11 +32,21 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
         >
           <div css={styles.powerRow}>
             <span>production</span>
-            <span>{zone.power.production}</span>
+            <span>
+              {formatNumber(zone.power.production, {
+                digits: 2,
+                hideDecimalWhenNotNeeded: true,
+              })}
+            </span>
           </div>
           <div css={styles.powerRow}>
             <span>demand</span>
-            <span>{zone.power.demand}</span>
+            <span>
+              {formatNumber(zone.power.demand, {
+                digits: 2,
+                hideDecimalWhenNotNeeded: true,
+              })}
+            </span>
           </div>
         </BorderContainer>
       )}

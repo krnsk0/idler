@@ -22,4 +22,5 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
   storage = [];
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = true;
+  powerOutputPerSecond = 1;
 }
