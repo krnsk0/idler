@@ -29,12 +29,7 @@ function BuildingButton({ building }: BuildingButtonProps) {
           {formatNumber(building.quantity, { digits: 0 })})
         </span>
         {building.quantity > 0 && building.canSomeBeTurnedOff && (
-          <div
-            css={styles.onOff}
-            style={{
-              borderColor: !building.affordable ? colors.grey : colors.black,
-            }}
-          >
+          <div css={styles.onOff}>
             <div
               onClick={(e) => {
                 e.stopPropagation();
