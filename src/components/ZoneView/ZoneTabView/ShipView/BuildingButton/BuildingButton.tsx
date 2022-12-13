@@ -24,8 +24,8 @@ function BuildingButton({ building }: BuildingButtonProps) {
       <>
         <span>
           {building.displayName} (
-          {building.numberEnabled < building.quantity &&
-            formatNumber(building.numberEnabled, { digits: 0 }) + '/'}
+          {building.numberActive < building.quantity &&
+            formatNumber(building.numberActive, { digits: 0 }) + '/'}
           {formatNumber(building.quantity, { digits: 0 })})
         </span>
         {building.quantity > 0 && building.canSomeBeTurnedOff && (

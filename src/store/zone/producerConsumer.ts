@@ -25,11 +25,16 @@ export type ProductionMultipliers = {
 
 export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   quantity: tProp(types.number, 0),
-  numberEnabled: tProp(types.number, 0),
+  numberDisabled: tProp(types.number, 0),
 }) {
   abstract outputs: Consumption[];
   abstract inputs: Production[];
   abstract canSomeBeTurnedOff: boolean;
+
+  @computed
+  get numberActive(): number {
+    return this.quantity - this.numberDisabled;
+  }
 
   /**
    * Intended to be overridden by children
@@ -97,8 +102,8 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   disableEntity(): void {
-    if (this.numberEnabled > 0) {
-      this.numberEnabled -= 1;
+    if (this.numberDisabled < this.quantity) {
+      this.numberDisabled += 1;
     }
   }
 
@@ -107,8 +112,8 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   enableEntity(): void {
-    if (this.numberEnabled < this.quantity) {
-      this.numberEnabled += 1;
+    if (this.numberDisabled > 0) {
+      this.numberDisabled -= 1;
     }
   }
 

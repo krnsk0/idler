@@ -83,7 +83,6 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
         this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
       this.quantity += quantity;
-      this.numberEnabled += quantity;
     }
   }
 
@@ -94,7 +93,6 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   cheat(quantity?: number): void {
     console.log(`CHEAT: BUILDING ${this.name}`);
     this.quantity += quantity ? quantity : 1;
-    this.numberEnabled += quantity ? quantity : 1;
   }
 
   /**
