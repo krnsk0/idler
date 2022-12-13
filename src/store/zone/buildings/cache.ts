@@ -27,6 +27,18 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
       resource: ResourceNames.LUMBER,
       quantity: 10,
     },
+    {
+      resource: ResourceNames.ROCK,
+      quantity: 10,
+    },
+    {
+      resource: ResourceNames.ORE,
+      quantity: 5,
+    },
+    {
+      resource: ResourceNames.ALLOY,
+      quantity: 5,
+    },
   ];
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = false;

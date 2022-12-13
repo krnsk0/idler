@@ -60,7 +60,7 @@ export class Tech extends ExtendedModel(Unlockable, {
     types.model(Metallurgy),
     () => new Metallurgy({}),
   ),
-  [TechNames.COMBUSTION_GENERATION]: tProp(
+  [TechNames.ELECTROMAGNETISM]: tProp(
     types.model(CombustionGeneration),
     () => new CombustionGeneration({}),
   ),

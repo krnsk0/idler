@@ -32,7 +32,7 @@ export const styles = {
     }
   `,
   techTitle: css`
-    font-size: 1.4em;
+    font-size: 1.2em;
     text-align: center;
     font-weight: bold;
   `,

@@ -13,7 +13,7 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   powerCost = 20;
   transientUnlockCheck = () =>
     getGame(this).initialZone.resources[ResourceNames.ORE].quantity > 4;
-  techUnlocked = [TechNames.COMBUSTION_GENERATION];
+  techUnlocked = [TechNames.ELECTROMAGNETISM];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];

@@ -1,14 +1,15 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { getGame } from '../game';
 import { ActionNames } from '../zone/actions/actionNames';
+import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
-@model(TechNames.COMBUSTION_GENERATION)
+@model(TechNames.ELECTROMAGNETISM)
 export class CombustionGeneration extends ExtendedModel(BaseTech, {}) {
-  name = TechNames.COMBUSTION_GENERATION;
-  displayName = 'combustion generation';
+  name = TechNames.ELECTROMAGNETISM;
+  displayName = 'electromagnetism';
   description =
     'dismantle ship’s generator and study its design, allowing the construction of additional generators';
   powerCost = 25;
@@ -18,5 +19,5 @@ export class CombustionGeneration extends ExtendedModel(BaseTech, {}) {
   actionsUnlocked = [];
   actionsRelocked = [ActionNames.GENERATE];
   jobsUnlocked = [];
-  buildingsUnlocked = [];
+  buildingsUnlocked = [BuildingNames.DYNAMO];
 }

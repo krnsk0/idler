@@ -3,4 +3,5 @@ export enum BuildingNames {
   HABITAT = 'HABITAT',
   CACHE = 'CACHE',
   FURNACE = 'FURNACE',
+  DYNAMO = 'DYNAMO',
 }
