@@ -43,6 +43,9 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   abstract canSomeBeTurnedOff: boolean;
 
+  /**
+   * How many are active
+   */
   @computed
   get numberActive(): number {
     return this.quantity - this.numberDisabled;
