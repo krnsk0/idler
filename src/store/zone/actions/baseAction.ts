@@ -79,6 +79,8 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get enabled(): boolean {
+    if (this.active) return false;
+
     const affordable = this.inputs.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
     });
