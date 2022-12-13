@@ -24,6 +24,8 @@ function BuildingButton({ building }: BuildingButtonProps) {
       <>
         <span>
           {building.displayName} (
+          {building.numberEnabled < building.quantity &&
+            formatNumber(building.numberEnabled, { digits: 0 }) + '/'}
           {formatNumber(building.quantity, { digits: 0 })})
         </span>
         {building.quantity > 0 && building.canSomeBeTurnedOff && (
@@ -33,8 +35,22 @@ function BuildingButton({ building }: BuildingButtonProps) {
               borderColor: !building.affordable ? colors.grey : colors.black,
             }}
           >
-            <div>+</div>
-            <div>-</div>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                building.enableEntity();
+              }}
+            >
+              +
+            </div>
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                building.disableEntity();
+              }}
+            >
+              -
+            </div>
           </div>
         )}
       </>

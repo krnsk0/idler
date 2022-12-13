@@ -12,6 +12,7 @@ export const styles = {
   `,
   button: css`
     border: 1px solid ${colors.black};
+
     width: 100%;
     height: 100%;
     background: none;
