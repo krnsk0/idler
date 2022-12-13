@@ -1,7 +1,7 @@
 import { SerializedStyles } from '@emotion/react';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { colors } from '../../../globalStyles';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';

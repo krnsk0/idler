@@ -15,7 +15,7 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
    * where it does for other ProducerConsumers, as workers can just be
    * assigned/unassigned
    */
-  canBeTurnedOff = false;
+  canSomeBeTurnedOff = false;
 
   /**
    * Responsible for managing when jobs are unlocked

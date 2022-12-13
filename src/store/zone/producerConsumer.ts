@@ -29,7 +29,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
 }) {
   abstract outputs: Consumption[];
   abstract inputs: Production[];
-  abstract canBeTurnedOff: boolean;
+  abstract canSomeBeTurnedOff: boolean;
 
   /**
    * Intended to be overridden by children

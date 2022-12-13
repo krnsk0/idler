@@ -1,11 +1,13 @@
 import { css } from '@emotion/react';
+import { colors } from '../../../../../globalStyles';
 
 export const styles = {
-  buildingBox: css`
-    border: 1px solid black;
-    margin: 0.3em 0em 0.3em 0em;
-    padding: 0.2em;
-    width: 180px;
-    background: none;
+  onOff: css`
+    position: absolute;
+    right: 0.5em;
+    top: 0;
+    height: 100%;
+    border-left: 1px solid ${colors.black};
+    padding-left: 0.5em;
   `,
 };

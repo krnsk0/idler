@@ -29,5 +29,5 @@ export class Furnace extends ExtendedModel(BaseBuilding, {}) {
   outputs = [{ resource: ResourceNames.ALLOY, quantityPerSecond: 0.05 }];
   storage = [];
   transientUnlockCheck = () => true;
-  canBeTurnedOff = false;
+  canSomeBeTurnedOff = true;
 }
