@@ -84,6 +84,7 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.ORE].cheat();
     tech[TechNames.METALLURGY].cheat();
     initialZone.buildings[BuildingNames.FURNACE].cheat(2);
+    initialZone.resources[ResourceNames.ALLOY].cheat();
   }
 }
 export const getDebug = (child: object): Debug => {
