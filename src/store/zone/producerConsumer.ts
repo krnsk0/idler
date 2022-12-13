@@ -24,15 +24,20 @@ export type ProductionMultipliers = {
 };
 
 export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
+  /**
+   * How many does the player own?
+   */
   quantity: tProp(types.number, 0),
+  /**
+   * Are any disabled?
+   */
   numberDisabled: tProp(types.number, 0),
-  powerProducitonProrate: tProp(types.number, 0),
-}) {
   /**
    * Did this generator (if it is a generator) have enough input last tick
    * to produce power this tick? If so, this is 1. Otherwise, less than 1.
    */
-
+  powerProducitonProrate: tProp(types.number, 0),
+}) {
   /**
    * Things consumed by this producerConsumer
    */
@@ -67,7 +72,11 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get powerProduction(): number {
-    return this.powerOutputPerSecond * this.powerProducitonProrate;
+    return (
+      this.powerOutputPerSecond *
+      this.powerProducitonProrate *
+      this.numberActive
+    );
   }
 
   /**

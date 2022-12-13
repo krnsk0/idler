@@ -67,7 +67,7 @@ export class Debug extends Model({
     for (let i = 0; i < 5; i += 1) {
       initialZone.jobs[JobNames.ARBORIST].assign();
     }
-    initialZone.buildings[BuildingNames.CACHE].cheat(5);
+    initialZone.buildings[BuildingNames.CACHE].cheat(3);
     initialZone.buildings[BuildingNames.FARM].cheat(10);
     initialZone.resources[ResourceNames.NUTRIENTS].cheat();
     initialZone.resources[ResourceNames.BIOMASS].cheat();

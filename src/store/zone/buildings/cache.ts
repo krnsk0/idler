@@ -15,7 +15,7 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
       quantity: 10,
     },
   ];
-  costExponent = 1.45;
+  costExponent = 1.6;
   inputs = [];
   outputs = [];
   storage = [
