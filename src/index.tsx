@@ -5,7 +5,8 @@ import { globalStyles } from './globalStyles';
 import { StoreProvider } from './store/Provider';
 import Modal from 'react-modal';
 import LogRocket from 'logrocket';
-LogRocket.init('fupdlu/idler-test');
+LogRocket.init('z0jb7c/idler-demo');
+
 
 Modal.setAppElement('#root');
 
