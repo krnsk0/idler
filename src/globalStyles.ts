@@ -6,6 +6,7 @@ export const globalStyles = css`
     font-family: 'Lekton', sans-serif;
     box-sizing: content-box;
     user-select: none;
+    touch-action: manipulation;
   }
 
   button {
