@@ -6,7 +6,7 @@
     "start": "vite & npm run make-docs & npm run open-trello",
     "open-trello": "open https://trello.com/b/I8XKOe0Z/planetfall-idler",
     "mobile-build": "cap sync",
-    "start-ios": "cap run ios -l --external",
+    "start-ios": "cap run ios",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest watch",
