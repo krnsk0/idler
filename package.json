@@ -5,6 +5,8 @@
   "scripts": {
     "start": "vite & npm run make-docs & npm run open-trello",
     "open-trello": "open https://trello.com/b/I8XKOe0Z/planetfall-idler",
+    "mobile-build": "cap sync",
+    "start-ios": "cap run ios -l --external",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "test": "vitest watch",
@@ -13,6 +15,8 @@
     "make-docs": "vite-node -w ./scripts/makeDocs.ts"
   },
   "dependencies": {
+    "@capacitor/core": "^4.6.2",
+    "@capacitor/ios": "^4.6.2",
     "@emotion/react": "^11.9.3",
     "logrocket": "^3.0.1",
     "mobx-keystone": "^0.69.4",
@@ -22,6 +26,7 @@
     "react-modal": "^3.15.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^4.6.2",
     "@testing-library/react": "^13.3.0",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
@@ -29,6 +34,7 @@
     "@vitejs/plugin-react": "^2.0.0",
     "happy-dom": "^6.0.3",
     "husky": "^8.0.1",
+    "native-run": "^1.7.1",
     "prettier": "^2.7.1",
     "typescript": "^4.6.3",
     "vite": "^3.0.0",
