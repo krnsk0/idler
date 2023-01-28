@@ -169,11 +169,16 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         `increase function for resource ${this.name} got quantity NaN`,
       );
     if (quantity === 0) return;
-    if (!options?.untracked)
+
+    // track consumption
+    if (!options?.untracked) {
       this.changeSinceLastTick =
         this.changeSinceLastTick !== null
           ? this.changeSinceLastTick + quantity
           : quantity;
+    }
+
+    // actually do mutation
     this.quantity += quantity;
   }
 
@@ -187,12 +192,16 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         `decrease function for resource ${this.name} got quantity NaN`,
       );
     if (quantity === 0) return;
-    if (!options?.untracked)
+
+    // track consumption
+    if (!options?.untracked) {
       this.changeSinceLastTick =
         this.changeSinceLastTick !== null
           ? this.changeSinceLastTick - quantity
-          : quantity;
+          : -quantity;
+    }
 
+    // actually do mutation
     this.quantity -= quantity;
   }
 
