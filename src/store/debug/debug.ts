@@ -61,7 +61,6 @@ export class Debug extends Model({
     const initialZone = getGame(this).initialZone;
     tech[TechNames.CRYONICS].cheat();
     tech[TechNames.STORAGE].cheat();
-    tech[TechNames.BIOMASS_RECLAMATION].cheat();
     initialZone.buildings[BuildingNames.HABITAT].cheat(5);
     initialZone.resources[ResourceNames.COLONISTS].cheat(5);
     for (let i = 0; i < 5; i += 1) {
