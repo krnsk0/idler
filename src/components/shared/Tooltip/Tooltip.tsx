@@ -2,23 +2,33 @@ import { observer } from 'mobx-react-lite';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { styles } from './Tooltip.styles';
 
+type Position = 'BOTTOM' | 'RIGHT' | 'LEFT';
+
+const bufferPx = 15;
+
 interface TooltipProps {
   containerRef: React.RefObject<HTMLDivElement>;
   children: React.ReactNode;
-  tooltipTop: number;
-  tooltipLeft: number;
+  position: Position;
   width?: number;
 }
 
 const Tooltip = ({
   containerRef,
   children,
-  tooltipTop,
-  tooltipLeft,
+  position,
   width = 200,
 }: TooltipProps) => {
   const tooltipRef = useRef<HTMLDivElement>(null);
+
+  /**
+   * How far up do we bump tooltip when it ends up off bottom of screen?
+   */
   const [yOffset, setYOffset] = useState<number>(0);
+
+  /**
+   * Is tooltip visible, and where on screen if so?
+   */
   const [tooltipPosition, setTooltipPosition] = useState<
     | {
         x: number;
@@ -29,8 +39,15 @@ const Tooltip = ({
 
   const openTooltip = () => {
     if (containerRef.current) {
-      const { x, y } = containerRef.current.getBoundingClientRect();
-      setTooltipPosition({ x: x + tooltipLeft, y: y + tooltipTop });
+      const { top, left, bottom, right } =
+        containerRef.current.getBoundingClientRect();
+      if (position === 'BOTTOM') {
+        setTooltipPosition({ x: left, y: bottom + bufferPx });
+      } else if (position === 'RIGHT') {
+        setTooltipPosition({ x: right + bufferPx, y: top });
+      } else if (position === 'LEFT') {
+        setTooltipPosition({ x: left - width - bufferPx, y: top });
+      }
     }
   };
 

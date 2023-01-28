@@ -18,12 +18,7 @@ const JobRow = ({ job }: JobRowProps) => {
 
   return (
     <div css={styles.jobRowContainer} ref={containerRef}>
-      <Tooltip
-        containerRef={containerRef}
-        tooltipTop={0}
-        tooltipLeft={200}
-        width={200}
-      >
+      <Tooltip containerRef={containerRef} position="RIGHT" width={200}>
         <TooltipText italic={true} align={'center'} light={true}>
           {job.description}
         </TooltipText>

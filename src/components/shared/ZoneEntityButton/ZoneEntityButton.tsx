@@ -43,12 +43,7 @@ const ZoneEntityButton = ({
   return (
     <>
       {tooltip && (
-        <Tooltip
-          containerRef={containerRef}
-          tooltipTop={14}
-          tooltipLeft={185}
-          width={200}
-        >
+        <Tooltip containerRef={containerRef} position="RIGHT" width={200}>
           {tooltip}
         </Tooltip>
       )}

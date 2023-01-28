@@ -16,12 +16,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
 
   return (
     <div ref={containerRef} css={styles.resourceRow} key={resource.name}>
-      <Tooltip
-        containerRef={containerRef}
-        tooltipTop={20}
-        tooltipLeft={10}
-        width={240}
-      >
+      <Tooltip containerRef={containerRef} position="BOTTOM" width={240}>
         <TooltipText light={true} align={'center'} italic={true}>
           {resource.displayName}
         </TooltipText>
