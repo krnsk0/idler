@@ -1,6 +1,5 @@
-import { SerializedStyles } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { styles } from './Tooltip.styles';
 
 interface TooltipProps {
@@ -18,6 +17,8 @@ const Tooltip = ({
   tooltipLeft,
   width = 200,
 }: TooltipProps) => {
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [yOffset, setYOffset] = useState<number>(0);
   const [tooltipPosition, setTooltipPosition] = useState<
     | {
         x: number;
@@ -51,9 +52,29 @@ const Tooltip = ({
     };
   }, []);
 
+  /**
+   * Ensure tooltip does not go off bottom of screen
+   */
+  useLayoutEffect(() => {
+    if (tooltipRef.current && tooltipPosition) {
+      const { bottom } = tooltipRef.current.getBoundingClientRect();
+      const overflowY = bottom - window.innerHeight;
+      if (overflowY > 0) {
+        setYOffset(overflowY);
+      }
+    }
+  }, [tooltipPosition]);
+
   if (!tooltipPosition) return null;
   return (
-    <div css={styles.tooltipOuter(tooltipPosition.y, tooltipPosition.x, width)}>
+    <div
+      css={styles.tooltipOuter(
+        tooltipPosition.y - yOffset,
+        tooltipPosition.x,
+        width,
+      )}
+      ref={tooltipRef}
+    >
       {children}
     </div>
   );
