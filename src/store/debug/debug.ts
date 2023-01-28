@@ -86,6 +86,14 @@ export class Debug extends Model({
     initialZone.buildings[BuildingNames.FURNACE].cheat(2);
     initialZone.resources[ResourceNames.ALLOY].cheat();
   }
+
+  /**
+   * Put stuff here to get game in state to repro bugs
+   */
+  @modelAction
+  debug() {
+    this.phaseTwo();
+  }
 }
 export const getDebug = (child: object): Debug => {
   const root = findParent<Root>(child, (node) => {

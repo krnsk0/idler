@@ -99,6 +99,14 @@ const DebugView = () => {
         >
           phase 3
         </button>
+        <button
+          type="button"
+          onClick={() => {
+            debug.debug();
+          }}
+        >
+          debug
+        </button>
       </div>
     </div>
   );
