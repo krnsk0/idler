@@ -9,12 +9,14 @@ import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButt
 
 interface ActionButtonProps {
   action: BaseAction;
+  tooltipPosition: 'LEFT' | 'RIGHT';
 }
 
-function ActionButton({ action }: ActionButtonProps) {
+function ActionButton({ action, tooltipPosition }: ActionButtonProps) {
   if (!action.unlocked) return null;
   return (
     <ZoneEntityButton
+      tooltipPosition={tooltipPosition}
       tooltip={
         <>
           {action.showNoPowerMessage && (

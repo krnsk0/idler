@@ -22,12 +22,27 @@ function ShipColonyView({ zone }: ShipViewProps) {
           entranceAnimationDuration={zone.buildings.entranceAnimationDuration}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
-          <ActionButton action={zone.actions[ActionNames.HARVEST]} />
-          <TechButton />
-          <ActionButton action={zone.actions[ActionNames.GENERATE]} />
-          <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
-          <ActionButton action={zone.actions[ActionNames.THAW]} />
-          <ActionButton action={zone.actions[ActionNames.EXCAVATE]} />
+          <ActionButton
+            action={zone.actions[ActionNames.HARVEST]}
+            tooltipPosition="RIGHT"
+          />
+          <TechButton tooltipPosition="LEFT" />
+          <ActionButton
+            action={zone.actions[ActionNames.GENERATE]}
+            tooltipPosition="RIGHT"
+          />
+          <ActionButton
+            action={zone.actions[ActionNames.COMPRESS]}
+            tooltipPosition="LEFT"
+          />
+          <ActionButton
+            action={zone.actions[ActionNames.THAW]}
+            tooltipPosition="RIGHT"
+          />
+          <ActionButton
+            action={zone.actions[ActionNames.EXCAVATE]}
+            tooltipPosition="LEFT"
+          />
         </div>
       </div>
       <div css={styles.shipOuter}>
@@ -38,8 +53,14 @@ function ShipColonyView({ zone }: ShipViewProps) {
           entranceAnimationDuration={zone.buildings.entranceAnimationDuration}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
-          {zone.buildings.asArray.map((building) => {
-            return <BuildingButton building={building} key={building.name} />;
+          {zone.buildings.asArray.map((building, index) => {
+            return (
+              <BuildingButton
+                building={building}
+                key={building.name}
+                tooltipPosition={index % 2 ? 'LEFT' : 'RIGHT'}
+              />
+            );
           })}
         </div>
       </div>

@@ -17,6 +17,7 @@ interface ZoneEntityButtonProps {
   reverseProgressBar?: boolean;
   showEntranceAnimation: boolean;
   entranceAnimationDuration: number;
+  tooltipPosition: 'RIGHT' | 'LEFT';
 }
 
 const ZoneEntityButton = ({
@@ -30,6 +31,7 @@ const ZoneEntityButton = ({
   reverseProgressBar,
   showEntranceAnimation,
   entranceAnimationDuration,
+  tooltipPosition,
 }: ZoneEntityButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const possiblyInvertedProgress =
@@ -43,7 +45,11 @@ const ZoneEntityButton = ({
   return (
     <>
       {tooltip && (
-        <Tooltip containerRef={containerRef} position="RIGHT" width={200}>
+        <Tooltip
+          containerRef={containerRef}
+          position={tooltipPosition}
+          width={200}
+        >
           {tooltip}
         </Tooltip>
       )}

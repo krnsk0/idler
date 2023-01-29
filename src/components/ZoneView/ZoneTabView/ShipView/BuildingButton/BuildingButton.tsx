@@ -4,17 +4,18 @@ import { BaseBuilding } from '../../../../../store/zone/buildings/baseBuilding';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 import BuildingTooltip from './BuildingTooltip';
 import { styles } from './BuildingButton.styles';
-import { colors } from '../../../../../globalStyles';
 
 interface BuildingButtonProps {
   building: BaseBuilding;
+  tooltipPosition: 'RIGHT' | 'LEFT';
 }
 
-function BuildingButton({ building }: BuildingButtonProps) {
+function BuildingButton({ building, tooltipPosition }: BuildingButtonProps) {
   if (!building.unlocked) return null;
 
   return (
     <ZoneEntityButton
+      tooltipPosition={tooltipPosition}
       tooltip={<BuildingTooltip building={building} />}
       onClick={() => building.buy(1)}
       disabled={!building.affordable}

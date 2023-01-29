@@ -4,7 +4,7 @@ import { styles } from './Tooltip.styles';
 
 type Position = 'BOTTOM' | 'RIGHT' | 'LEFT';
 
-const bufferPx = 15;
+const sideBufferPx = 20;
 
 interface TooltipProps {
   containerRef: React.RefObject<HTMLDivElement>;
@@ -42,11 +42,11 @@ const Tooltip = ({
       const { top, left, bottom, right } =
         containerRef.current.getBoundingClientRect();
       if (position === 'BOTTOM') {
-        setTooltipPosition({ x: left, y: bottom + bufferPx });
+        setTooltipPosition({ x: left, y: bottom + sideBufferPx });
       } else if (position === 'RIGHT') {
-        setTooltipPosition({ x: right + bufferPx, y: top });
+        setTooltipPosition({ x: right + sideBufferPx, y: top });
       } else if (position === 'LEFT') {
-        setTooltipPosition({ x: left - width - bufferPx, y: top });
+        setTooltipPosition({ x: left - width - 2 * sideBufferPx, y: top });
       }
     }
   };
