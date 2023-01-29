@@ -71,10 +71,10 @@ function ActionButton({ action, tooltipPosition }: ActionButtonProps) {
       reverseProgressBar={action.reverseProgressBar}
       showEntranceAnimation={action.showEntranceAnimation}
       entranceAnimationDuration={action.entranceAnimationDuration}
-    >
-      <span>{action.displayName}</span>
-      {action.showNoPowerMessage && <span>*</span>}
-    </ZoneEntityButton>
+      buttonText={`${action.displayName}${
+        action.showNoPowerMessage ? `*` : ''
+      }`}
+    />
   );
 }
 

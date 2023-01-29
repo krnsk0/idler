@@ -21,36 +21,12 @@ function BuildingButton({ building, tooltipPosition }: BuildingButtonProps) {
       disabled={!building.affordable}
       showEntranceAnimation={building.showEntranceAnimation}
       entranceAnimationDuration={building.entranceAnimationDuration}
-    >
-      <>
-        <span>
-          {building.displayName} (
-          {building.numberActive < building.quantity &&
-            formatNumber(building.numberActive, { digits: 0 }) + '/'}
-          {formatNumber(building.quantity, { digits: 0 })})
-        </span>
-        {building.quantity > 0 && building.canSomeBeTurnedOff && (
-          <div css={styles.onOff}>
-            <div
-              onClick={(e) => {
-                e.stopPropagation();
-                building.enableEntity();
-              }}
-            >
-              +
-            </div>
-            <div
-              onClick={(e) => {
-                e.stopPropagation();
-                building.disableEntity();
-              }}
-            >
-              -
-            </div>
-          </div>
-        )}
-      </>
-    </ZoneEntityButton>
+      buttonText={`${building.displayName} (${
+        building.numberActive < building.quantity
+          ? formatNumber(building.numberActive, { digits: 0 }) + '/'
+          : ''
+      }${formatNumber(building.quantity, { digits: 0 })})`}
+    />
   );
 }
 

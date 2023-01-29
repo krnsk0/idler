@@ -83,7 +83,6 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
               to what end should ship turn its contemplation?
             </TooltipText>
           )}
-          {}
         </>
       }
       onClick={() => {
@@ -93,25 +92,22 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
       disabled={noTechAvailable}
       showEntranceAnimation={root.game.tech.showEntranceAnimation}
       entranceAnimationDuration={root.game.tech.entranceAnimationDuration}
-    >
-      {(() => {
+      buttonText={(() => {
         if (selectedTech) {
-          return (
-            <>
-              <span>{selectedTech.displayName}</span>
-              {root.game.initialZone.power.blackout && <span>*</span>}
-            </>
-          );
+          return `${selectedTech.displayName}${
+            root.game.initialZone.power.blackout ? '*' : ''
+          }
+            `;
         }
         if (didJustFinishResearch) {
-          return <div>research complete</div>;
+          return `research complete`;
         }
         if (noTechAvailable) {
-          return <div>no new tech</div>;
+          return `no new tech`;
         }
-        return <div>pick research target</div>;
+        return `pick research target`;
       })()}
-    </ZoneEntityButton>
+    />
   );
 }
 

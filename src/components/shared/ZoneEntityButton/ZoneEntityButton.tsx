@@ -10,7 +10,6 @@ interface ZoneEntityButtonProps {
   styleOverride?: SerializedStyles;
   tooltip?: React.ReactNode | EmotionJSX.Element;
   disabled?: boolean;
-  children: React.ReactNode | EmotionJSX.Element;
   onClick?: () => void;
   progress?: number;
   active?: boolean;
@@ -18,12 +17,12 @@ interface ZoneEntityButtonProps {
   showEntranceAnimation: boolean;
   entranceAnimationDuration: number;
   tooltipPosition: 'RIGHT' | 'LEFT';
+  buttonText: string;
 }
 
 const ZoneEntityButton = ({
   styleOverride,
   tooltip,
-  children,
   disabled,
   onClick,
   active,
@@ -32,6 +31,7 @@ const ZoneEntityButton = ({
   showEntranceAnimation,
   entranceAnimationDuration,
   tooltipPosition,
+  buttonText,
 }: ZoneEntityButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const possiblyInvertedProgress =
@@ -74,7 +74,7 @@ const ZoneEntityButton = ({
           disabled={disabled}
           onClick={onClick ? onClick : () => {}}
         >
-          <>{children}</>
+          <span>{buttonText}</span>
         </button>
       </div>
     </>
