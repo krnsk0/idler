@@ -2,24 +2,23 @@ import { css } from '@emotion/react';
 import { colors, entranceAnimation } from '../../../globalStyles';
 
 export const styles = {
-  buttonContainer: css`
+  buttonOuterContainer: css`
     width: 180px;
     height: 2em;
     position: relative;
+    display: flex;
+    border: 1px solid;
   `,
   animateEntrance: (duration: number) => css`
     animation: ${entranceAnimation} ${duration}ms ease;
   `,
   button: css`
-    border: 1px solid ${colors.black};
-
+    border: none;
     width: 100%;
     height: 100%;
     background: none;
     position: relative;
-
     &:disabled {
-      border-color: ${colors.mediumdarkgrey};
       color: ${colors.mediumdarkgrey};
     }
   `,
@@ -28,5 +27,10 @@ export const styles = {
     height: 100%;
     width: 100%;
     background-color: ${colors.mediumgrey};
+  `,
+  smallButton: css`
+    border: none;
+    border-left: 1px solid;
+    background: none;
   `,
 };

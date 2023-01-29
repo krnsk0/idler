@@ -141,11 +141,27 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Can more producers be enabled?
+   */
+  @computed
+  get canEnableEntity(): boolean {
+    return this.numberDisabled > 0;
+  }
+
+  /**
+   * Can more producers be disabled?
+   */
+  @computed
+  get canDisableEntity(): boolean {
+    return this.numberDisabled < this.quantity;
+  }
+
+  /**
    * Allows disabling a producer
    */
   @modelAction
   disableEntity(): void {
-    if (this.numberDisabled < this.quantity) {
+    if (this.canDisableEntity) {
       this.numberDisabled += 1;
     }
   }
@@ -155,7 +171,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   enableEntity(): void {
-    if (this.numberDisabled > 0) {
+    if (this.canEnableEntity) {
       this.numberDisabled -= 1;
     }
   }

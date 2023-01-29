@@ -18,6 +18,10 @@ interface ZoneEntityButtonProps {
   entranceAnimationDuration: number;
   tooltipPosition: 'RIGHT' | 'LEFT';
   buttonText: string;
+  enableEntity?: () => void;
+  disableEntity?: () => void;
+  canEnableEntity?: boolean;
+  canDisableEntity?: boolean;
 }
 
 const ZoneEntityButton = ({
@@ -32,6 +36,10 @@ const ZoneEntityButton = ({
   entranceAnimationDuration,
   tooltipPosition,
   buttonText,
+  enableEntity,
+  disableEntity,
+  canEnableEntity,
+  canDisableEntity,
 }: ZoneEntityButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const possiblyInvertedProgress =
@@ -56,7 +64,7 @@ const ZoneEntityButton = ({
 
       <div
         css={[
-          styles.buttonContainer,
+          styles.buttonOuterContainer,
           showEntranceAnimation &&
             styles.animateEntrance(entranceAnimationDuration),
           styleOverride,
@@ -74,8 +82,34 @@ const ZoneEntityButton = ({
           disabled={disabled}
           onClick={onClick ? onClick : () => {}}
         >
-          <span>{buttonText}</span>
+          {buttonText}
         </button>
+        {disableEntity && (
+          <button
+            css={styles.smallButton}
+            style={{
+              color: disabled ? colors.mediumdarkgrey : colors.black,
+              cursor: canDisableEntity ? 'pointer' : 'inherit',
+            }}
+            onClick={disableEntity}
+            type="button"
+          >
+            -
+          </button>
+        )}
+        {enableEntity && (
+          <button
+            css={styles.smallButton}
+            style={{
+              color: disabled ? colors.mediumdarkgrey : colors.black,
+              cursor: canEnableEntity ? 'pointer' : 'inherit',
+            }}
+            onClick={enableEntity}
+            type="button"
+          >
+            +
+          </button>
+        )}
       </div>
     </>
   );
