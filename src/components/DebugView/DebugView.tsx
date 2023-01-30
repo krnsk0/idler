@@ -27,15 +27,7 @@ const DebugView = () => {
             console.log('ROOT:', JSON.stringify(getSnapshot(root), null, 2));
           }}
         >
-          print snapshot
-        </button>
-        <button
-          type="button"
-          onClick={() => {
-            root.game.systemRegistry.executeTick(10);
-          }}
-        >
-          10sec tick
+          snapshot
         </button>
 
         <button
@@ -81,7 +73,7 @@ const DebugView = () => {
             debug.phaseOne();
           }}
         >
-          phase 1
+          1
         </button>
         <button
           type="button"
@@ -89,7 +81,7 @@ const DebugView = () => {
             debug.phaseTwo();
           }}
         >
-          phase 2
+          2
         </button>
         <button
           type="button"
@@ -97,7 +89,7 @@ const DebugView = () => {
             debug.phaseThree();
           }}
         >
-          phase 3
+          3
         </button>
         <button
           type="button"
