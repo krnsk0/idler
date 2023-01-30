@@ -5,6 +5,7 @@ export const styles = {
   tabViewContainer: css`
     display: flex;
     flex-direction: column;
+    margin-top: 1em;
   `,
   tabRow: css`
     font-size: 1.1em;
