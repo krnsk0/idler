@@ -3,7 +3,7 @@ import { colors, entranceAnimation } from '../../../globalStyles';
 
 export const styles = {
   buttonOuterContainer: css`
-    width: 80vw;
+    width: 80%;
     height: 2em;
     position: relative;
     display: flex;
