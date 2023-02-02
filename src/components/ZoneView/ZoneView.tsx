@@ -44,7 +44,7 @@ function ZoneView({ zone }: ZoneViewProps) {
     ZoneTabNames.ACTIONS,
   );
 
-  const [resourcesOpen, setResourceOpen] = useState<boolean>(false);
+  const [resourcesOpen, setResourceOpen] = useState<boolean>(true);
 
   return (
     <>
@@ -68,7 +68,7 @@ function ZoneView({ zone }: ZoneViewProps) {
       </div>
       <div css={styles.tabRow}>
         <button css={styles.resourceButton} type="button">
-          resources
+          RES
         </button>
         {zone.jobs.unlocked && (
           <>

@@ -24,10 +24,16 @@ export const styles = {
     position: fixed;
     bottom: 0;
     width: 100vw;
+    height: 2em;
     border-top: 1px solid ${colors.black};
     font-size: 1.1em;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
   `,
   resourceButton: css`
+    background: none;
+    border: none;
     margin: 0.2em;
   `,
   separator: css`
