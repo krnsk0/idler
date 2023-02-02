@@ -21,9 +21,14 @@ export const styles = {
     margin-top: 1em;
   `,
   tabRow: css`
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    border-top: 1px solid ${colors.black};
     font-size: 1.1em;
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
+  `,
+  resourceButton: css`
+    margin: 0.2em;
   `,
   separator: css`
     margin-left: 0.5em;

@@ -8,7 +8,6 @@ import { useLocalSave } from './useLocalSave';
 import { useLocalLoad } from './useLocalLoad';
 import OptionsModal from './OptionsModal/OptionsModal';
 import Topbar from './Topbar/Topbar';
-import { styles } from './App.styles';
 
 function App() {
   const root = useStore();
@@ -18,13 +17,13 @@ function App() {
   useStoreTick();
 
   return (
-    <div css={styles.app}>
+    <>
       <DebugView />
       <Topbar />
       {selectedZone && <ZoneView zone={selectedZone} />}
       <TechModal />
       <OptionsModal />
-    </div>
+    </>
   );
 }
 

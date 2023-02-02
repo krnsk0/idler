@@ -44,46 +44,53 @@ function ZoneView({ zone }: ZoneViewProps) {
     ZoneTabNames.ACTIONS,
   );
 
+  const [resourcesOpen, setResourceOpen] = useState<boolean>(false);
+
   return (
-    <div css={styles.zoneOuter} id="zone-outer">
-      <h2 css={styles.zoneHeader}>{zone.name}</h2>
-      <div css={styles.tabViewContainer}>
-        <div css={styles.tabRow}>
-          {zone.jobs.unlocked && (
-            <>
-              <TabButton
-                text="colony"
-                tabName={ZoneTabNames.ACTIONS}
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-              />
-              <Separator />
-              <TabButton
-                text={`jobs${
-                  zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
-                }`}
-                tabName={ZoneTabNames.JOBS}
-                selectedTab={selectedTab}
-                setSelectedTab={setSelectedTab}
-              />
-            </>
-          )}
-        </div>
-        <div css={styles.tabContent} id="zone-view-tab-content">
-          {(() => {
-            switch (selectedTab) {
-              case ZoneTabNames.ACTIONS:
-                return <ShipColonyView zone={zone} />;
-              case ZoneTabNames.JOBS:
-                return <JobsView zone={zone} />;
-              default:
-                throw new Error('should not reach this case');
-            }
-          })()}
+    <>
+      <div css={styles.zoneOuter} id="zone-outer">
+        <h2 css={styles.zoneHeader}>{zone.name}</h2>
+        {resourcesOpen && <ResourceView zone={zone} />}
+        <div css={styles.tabViewContainer}>
+          <div css={styles.tabContent} id="zone-view-tab-content">
+            {(() => {
+              switch (selectedTab) {
+                case ZoneTabNames.ACTIONS:
+                  return <ShipColonyView zone={zone} />;
+                case ZoneTabNames.JOBS:
+                  return <JobsView zone={zone} />;
+                default:
+                  throw new Error('should not reach this case');
+              }
+            })()}
+          </div>
         </div>
       </div>
-      <ResourceView zone={zone} />
-    </div>
+      <div css={styles.tabRow}>
+        <button css={styles.resourceButton} type="button">
+          resources
+        </button>
+        {zone.jobs.unlocked && (
+          <>
+            <TabButton
+              text="colony"
+              tabName={ZoneTabNames.ACTIONS}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+            <Separator />
+            <TabButton
+              text={`jobs${
+                zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
+              }`}
+              tabName={ZoneTabNames.JOBS}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
+          </>
+        )}
+      </div>
+    </>
   );
 }
 
