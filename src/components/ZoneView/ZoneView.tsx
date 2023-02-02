@@ -67,7 +67,11 @@ function ZoneView({ zone }: ZoneViewProps) {
         </div>
       </div>
       <div css={styles.tabRow}>
-        <button css={styles.resourceButton} type="button">
+        <button
+          css={styles.resourceButton}
+          type="button"
+          onClick={() => setResourceOpen(!resourcesOpen)}
+        >
           RES
         </button>
         {zone.jobs.unlocked && (
