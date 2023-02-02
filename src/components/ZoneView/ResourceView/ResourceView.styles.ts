@@ -10,7 +10,6 @@ export const styles = {
   `,
   paneContainer: css`
     display: flex;
-    min-width: 300px;
     flex-direction: column;
   `,
   resourcesContainer: css`

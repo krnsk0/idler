@@ -12,8 +12,8 @@ function ZoneView({ zone }: ZoneViewProps) {
   return (
     <div css={styles.zoneOuter} id="zone-outer">
       <h2 css={styles.zoneHeader}>{zone.name}</h2>
-      <ResourceView zone={zone} />
       <ZoneTabView zone={zone} />
+      <ResourceView zone={zone} />
     </div>
   );
 }

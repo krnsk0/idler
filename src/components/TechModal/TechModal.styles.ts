@@ -3,8 +3,6 @@ import { colors } from '../../globalStyles';
 
 export const styles = {
   techsContainer: css`
-    min-width: 600px;
-    min-height: 400px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -14,6 +12,7 @@ export const styles = {
   `,
   modalDescripiton: css`
     font-size: 1em;
+    text-align: center;
   `,
   techTile: css`
     width: 175px;

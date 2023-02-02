@@ -33,6 +33,5 @@ export const styles = {
   `,
   tabContent: css`
     padding-top: 0.5em;
-    height: 100%;
   `,
 };
