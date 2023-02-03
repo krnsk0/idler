@@ -25,7 +25,7 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
               ? `satisfaction: ${satisfactionPercentage}%`
               : ``
           }
-          styleOverride={styles.resourcesContainer}
+          styleOverride={styles.powerContainer}
           showEntranceAnimation={zone.power.showEntranceAnimation}
           entranceAnimationDuration={zone.power.entranceAnimationDuration}
         >

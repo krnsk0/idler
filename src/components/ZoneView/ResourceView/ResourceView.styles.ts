@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { colors } from '../../../globalStyles';
+import { colors, mq } from '../../../globalStyles';
 
 export const styles = {
   powerRow: css`
@@ -12,8 +12,16 @@ export const styles = {
     display: flex;
     flex-direction: column;
   `,
+  powerContainer: css`
+    display: flex;
+    flex-direction: column;
+  `,
   resourcesContainer: css`
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.4em;
+    ${mq['tablet']} {
+      margin-bottom: 0em;
+    }
   `,
 };
