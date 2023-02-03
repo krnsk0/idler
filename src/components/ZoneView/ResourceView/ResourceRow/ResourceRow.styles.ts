@@ -17,7 +17,7 @@ export const styles = {
     width: 5em;
   `,
   resourceRowOuter: css`
-    margin-bottom: 0.1em;
+    margin-bottom: 0.4em;
   `,
   resourceRowTop: css`
     margin: 0.1em;
