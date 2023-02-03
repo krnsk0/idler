@@ -57,7 +57,7 @@ function ZoneView({ zone }: ZoneViewProps) {
             <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
           )}
           <div css={styles.zoneRight} id="zone-right">
-            <div css={styles.zoneRightInner}>
+            <div css={styles.zoneRightInner} id="zone-right-inner">
               {(() => {
                 switch (selectedTab) {
                   case ZoneTabNames.ACTIONS:

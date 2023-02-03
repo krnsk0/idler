@@ -48,6 +48,7 @@ export const styles = {
     max-width: 500px;
   `,
   zoneRightInner: css`
+    width: 90%;
     max-width: 400px;
     flex-direction: column;
     justify-content: space-between;
