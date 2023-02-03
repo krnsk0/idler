@@ -18,7 +18,7 @@ const QuantityPerSecond = ({
   emotionStyles,
 }: {
   estimatedRate: number;
-  emotionStyles: SerializedStyles;
+  emotionStyles: SerializedStyles | SerializedStyles[];
 }) => {
   return (
     <span css={emotionStyles}>
@@ -36,10 +36,17 @@ const ResourceCap = ({ currentCap }: { currentCap: number }) => {
   );
 };
 
-const ResourceQuantity = ({ resource }: { resource: BaseResource }) => {
+const ResourceQuantity = ({
+  resource,
+  emotionStyles,
+}: {
+  resource: BaseResource;
+  emotionStyles?: SerializedStyles | SerializedStyles[];
+}) => {
   return (
     <span
       css={[
+        emotionStyles,
         styles.quantity,
         resource.showHighlight &&
           styles.highlight(resource.highlightAnimationDuration),
@@ -55,23 +62,32 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
 
   return (
     <div ref={containerRef} css={styles.resourceRowOuter} key={resource.name}>
-      <div css={styles.resourceRowInner}>
+      <div css={styles.resourceRowTop}>
         <span css={styles.displayName}>{resource.displayName}</span>
         {resource.estimatedRate !== null && (
           <QuantityPerSecond
             estimatedRate={resource.estimatedRate}
-            emotionStyles={styles.largeScreenQuantityPerSecond}
+            emotionStyles={[styles.largeScreenOnly, styles.quantityPerSecond]}
           />
         )}
-        <span css={styles.largeScreenQuantityConainer}>
+        <span css={[styles.largeScreenOnly, styles.quantityContainer]}>
           <ResourceQuantity resource={resource} />
           <ResourceCap currentCap={resource.currentCap} />
         </span>
-        <span css={styles.smallScreenOnly}>
-          <ResourceQuantity resource={resource} />
-        </span>
+
+        <ResourceQuantity
+          resource={resource}
+          emotionStyles={styles.smallScreenOnly}
+        />
       </div>
-      <div css={styles.resourceRowInner}></div>
+      <div css={[styles.smallScreenOnly, styles.resourceRowBottom]}>
+        {resource.estimatedRate !== null && (
+          <QuantityPerSecond
+            estimatedRate={resource.estimatedRate}
+            emotionStyles={[styles.quantityPerSecond]}
+          />
+        )}
+      </div>
       <Tooltip containerRef={containerRef} position="BOTTOM" width={240}>
         <TooltipText light={true} align={'center'} italic={true}>
           {resource.displayName}

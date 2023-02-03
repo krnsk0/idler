@@ -16,20 +16,27 @@ export const styles = {
   displayName: css`
     width: 5em;
   `,
-  resourceRowOuter: css``,
-  resourceRowInner: css`
+  resourceRowOuter: css`
+    margin-bottom: 0.1em;
+  `,
+  resourceRowTop: css`
     margin: 0.1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   `,
-  largeScreenQuantityConainer: css`
-    display: none;
+  resourceRowBottom: css`
+    margin: 0.1em;
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: end;
+    font-size: 0.8em;
+    height: 0.8em;
+  `,
+  quantityContainer: css`
     min-width: 75px;
     justify-content: space-between;
-    ${mq['tablet']} {
-      display: flex;
-    }
   `,
   smallScreenOnly: css`
     display: inherit;
@@ -37,19 +44,15 @@ export const styles = {
       display: none;
     }
   `,
-  quantity: css``,
-  smallScreenQuantityPerSecond: css`
-    display: inherit;
-    ${mq['tablet']} {
-      display: none;
-    }
-    color: ${colors.grey};
-  `,
-  largeScreenQuantityPerSecond: css`
+  largeScreenOnly: css`
     display: none;
     ${mq['tablet']} {
       display: inherit;
     }
+  `,
+
+  quantity: css``,
+  quantityPerSecond: css`
     color: ${colors.grey};
   `,
   cap: css`
