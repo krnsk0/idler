@@ -16,12 +16,7 @@ export const styles = {
   displayName: css`
     width: 5em;
   `,
-  resourceRowOuter: css`
-    margin-bottom: 0.4em;
-    ${mq['tablet']} {
-      margin-bottom: 0em;
-    }
-  `,
+  resourceRowOuter: css``,
   resourceRowTop: css`
     margin: 0.1em;
     display: flex;

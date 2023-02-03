@@ -20,5 +20,9 @@ export const styles = {
   resourcesContainer: css`
     display: flex;
     flex-direction: column;
+    gap: 0.4em;
+    ${mq['tablet']} {
+      gap: 0em;
+    }
   `,
 };
