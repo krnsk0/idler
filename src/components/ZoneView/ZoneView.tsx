@@ -48,21 +48,29 @@ function ZoneView({ zone }: ZoneViewProps) {
 
   return (
     <>
-      <div css={styles.zoneOuter} id="zone-outer">
-        <h2 css={styles.zoneHeader}>{zone.name}</h2>
-        {resourcesOpen && <ResourceView zone={zone} />}
-        <div css={styles.tabViewContainer}>
-          <div css={styles.tabContent} id="zone-view-tab-content">
-            {(() => {
-              switch (selectedTab) {
-                case ZoneTabNames.ACTIONS:
-                  return <ShipColonyView zone={zone} />;
-                case ZoneTabNames.JOBS:
-                  return <JobsView zone={zone} />;
-                default:
-                  throw new Error('should not reach this case');
-              }
-            })()}
+      <div css={styles.zoneOuter}>
+        <div css={styles.zoneHeader}>
+          <h2>{zone.name}</h2>
+        </div>
+        <div css={styles.zoneColumns}>
+          {resourcesOpen && (
+            <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
+          )}
+          <div css={styles.zoneRight} id="zone-right">
+            <div css={styles.tabViewContainer}>
+              <div css={styles.tabContent} id="zone-view-tab-content">
+                {(() => {
+                  switch (selectedTab) {
+                    case ZoneTabNames.ACTIONS:
+                      return <ShipColonyView zone={zone} />;
+                    case ZoneTabNames.JOBS:
+                      return <JobsView zone={zone} />;
+                    default:
+                      throw new Error('should not reach this case');
+                  }
+                })()}
+              </div>
+            </div>
           </div>
         </div>
       </div>

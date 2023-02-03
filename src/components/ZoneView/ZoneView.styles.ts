@@ -3,18 +3,31 @@ import { colors } from '../../globalStyles';
 
 export const styles = {
   zoneOuter: css`
+    background-color: ${colors.white};
+    height: 100%;
+  `,
+  zoneHeader: css`
+    padding: 1em;
+    width: 100%;
+
+    h2 {
+      margin: 0;
+    }
+  `,
+  zoneColumns: css`
+    display: flex;
+    flex-direction: row;
+  `,
+  zoneLeft: css``,
+  zoneRight: css`
     padding: 0em 1em 0em 1em;
     background-color: ${colors.white};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     margin: 0.6em 0 0 0;
-    height: 100%;
   `,
-  zoneHeader: css`
-    margin-top: 0.3em;
-    margin-bottom: 0.5em;
-  `,
+
   tabViewContainer: css`
     display: flex;
     flex-direction: column;
