@@ -5,7 +5,6 @@ export const styles = {
   divider: css`
     border-top: 1px solid ${colors.black};
     width: 90%;
-    padding-top: 0.8em;
     position: relative;
   `,
   animateEntrance: (duration: number) => css`

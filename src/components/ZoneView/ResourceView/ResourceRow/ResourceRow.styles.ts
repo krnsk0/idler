@@ -33,7 +33,7 @@ export const styles = {
     display: flex;
     width: 100%;
     flex-direction: row;
-    justify-content: end;
+    justify-content: space-between;
     font-size: 0.8em;
     height: 0.8em;
   `,
@@ -58,7 +58,10 @@ export const styles = {
   quantity: css``,
   quantityPerSecond: css`
     color: ${colors.grey};
-    margin-left: 1em;
+    margin-left: 0em;
+    ${mq['tablet']} {
+      margin-left: 1em;
+    }
   `,
   cap: css`
     color: ${colors.grey};

@@ -74,19 +74,21 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
           <ResourceQuantity resource={resource} />
           <ResourceCap currentCap={resource.currentCap} />
         </span>
-
         <ResourceQuantity
           resource={resource}
           emotionStyles={styles.smallScreenOnly}
         />
       </div>
       <div css={[styles.smallScreenOnly, styles.resourceRowBottom]}>
-        {resource.estimatedRate !== null && (
+        {resource.estimatedRate !== null ? (
           <QuantityPerSecond
             estimatedRate={resource.estimatedRate}
             emotionStyles={[styles.quantityPerSecond]}
           />
+        ) : (
+          <div />
         )}
+        <ResourceCap currentCap={resource.currentCap} />
       </div>
       <Tooltip containerRef={containerRef} position="BOTTOM" width={240}>
         <TooltipText light={true} align={'center'} italic={true}>

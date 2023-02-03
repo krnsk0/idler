@@ -17,6 +17,5 @@ export const styles = {
     align-items: flex-start;
     justify-content: center;
     gap: 0.6em;
-    margin: 0 -0.6em 0 0;
   `,
 };
