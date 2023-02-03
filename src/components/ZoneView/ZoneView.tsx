@@ -2,9 +2,11 @@ import { observer } from 'mobx-react-lite';
 import { Zone } from '../../store/zone/zone';
 import { styles } from './ZoneView.styles';
 import ResourceView from './ResourceView/ResourceView';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ShipColonyView from './ZoneTabView/ShipView/ShipColonyView';
 import JobsView from './ZoneTabView/JobsView/JobsView';
+import { useMediaQuery } from '../shared/useMediaQuery';
+import { useStore } from '../../store/Provider';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -40,11 +42,15 @@ const TabButton = ({
 const Separator = () => <span css={styles.separator} />;
 
 function ZoneView({ zone }: ZoneViewProps) {
+  const { gui } = useStore();
+
   const [selectedTab, setSelectedTab] = useState<ZoneTabNames>(
     ZoneTabNames.ACTIONS,
   );
 
-  const [resourcesOpen, setResourceOpen] = useState<boolean>(true);
+  const { isTablet } = useMediaQuery();
+
+  const isResourcePaneOpen = isTablet || gui.isResourcePaneOpen;
 
   return (
     <>
@@ -53,7 +59,7 @@ function ZoneView({ zone }: ZoneViewProps) {
           <h2>{zone.name}</h2>
         </div>
         <div css={styles.zoneColumns}>
-          {resourcesOpen && (
+          {isResourcePaneOpen && (
             <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
           )}
           <div css={styles.zoneRight} id="zone-right">
@@ -76,7 +82,7 @@ function ZoneView({ zone }: ZoneViewProps) {
         <button
           css={styles.resourceButton}
           type="button"
-          onClick={() => setResourceOpen(!resourcesOpen)}
+          onClick={() => gui.toggleResourcePane()}
         >
           RES
         </button>

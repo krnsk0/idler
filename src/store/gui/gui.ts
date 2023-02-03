@@ -6,12 +6,17 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { Root } from '../root';
+import { getGame } from '../game';
 
 @model('Gui')
 export class Gui extends Model({
   optionsModal: tProp(types.boolean, false),
   techModal: tProp(types.boolean, false),
+  // UI should not subscript to this,
+  // use the derivation instead
+  _resourcePaneOpen: tProp(types.boolean, true),
 }) {
   @modelAction
   openTechModal(): void {
@@ -31,6 +36,19 @@ export class Gui extends Model({
   @modelAction
   closeOptionsModal(): void {
     this.optionsModal = false;
+  }
+
+  @modelAction
+  toggleResourcePane(): void {
+    this._resourcePaneOpen = !this._resourcePaneOpen;
+  }
+
+  @computed
+  get isResourcePaneOpen(): boolean {
+    const selectedZone = getGame(this).selectedZone;
+    const resourcesUnlocked = selectedZone?.resources.unlocked ?? false;
+
+    return resourcesUnlocked && this._resourcePaneOpen;
   }
 }
 
