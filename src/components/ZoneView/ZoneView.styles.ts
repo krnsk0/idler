@@ -41,12 +41,10 @@ export const styles = {
   zoneRight: css`
     flex-grow: 2;
     background-color: ${colors.white};
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 240px;
+    min-width: 230px;
     max-width: 500px;
+    display: flex;
+    justify-content: center;
   `,
   zoneRightInner: css`
     width: 90%;

@@ -15,13 +15,10 @@ export const styles = {
   powerContainer: css`
     display: flex;
     flex-direction: column;
+    margin-bottom: 1em;
   `,
   resourcesContainer: css`
     display: flex;
     flex-direction: column;
-    margin-bottom: 0.4em;
-    ${mq['tablet']} {
-      margin-bottom: 0em;
-    }
   `,
 };
