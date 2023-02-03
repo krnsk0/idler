@@ -43,7 +43,7 @@ export const entranceAnimation = keyframes`
 `;
 
 export const breakpoints = {
-  tablet: 668,
+  tablet: 576,
   desktop: 992,
 } as const;
 

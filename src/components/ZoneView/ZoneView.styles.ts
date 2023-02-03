@@ -38,6 +38,7 @@ export const styles = {
     margin-top: 1em;
   `,
   tabRow: css`
+    background: ${colors.white};
     position: fixed;
     bottom: 0;
     width: 100vw;
