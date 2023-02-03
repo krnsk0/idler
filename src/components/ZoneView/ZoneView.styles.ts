@@ -18,14 +18,18 @@ export const styles = {
     display: flex;
     flex-direction: row;
   `,
-  zoneLeft: css``,
+  zoneLeft: css`
+    flex-shrink: 1;
+    min-width: 140px;
+  `,
   zoneRight: css`
-    padding: 0em 1em 0em 1em;
+    flex-shrink: 2;
     background-color: ${colors.white};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    margin: 0.6em 0 0 0;
+    min-width: 240px;
+    max-width: 400px;
   `,
 
   tabViewContainer: css`

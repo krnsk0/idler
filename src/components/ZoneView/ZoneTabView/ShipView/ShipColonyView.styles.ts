@@ -10,7 +10,6 @@ export const styles = {
   `,
   shipColumnWrap: css`
     width: 100%;
-    min-width: 374px;
     min-height: 77px;
     display: inline-flex;
     flex-wrap: wrap;

@@ -4,7 +4,7 @@ import { colors, entranceAnimation } from '../../../globalStyles';
 export const styles = {
   divider: (shown: boolean) => css`
     border-top: 1px solid ${colors.black};
-    width: 100%;
+    width: 90%;
     padding-top: 0.8em;
     position: relative;
     visibility: ${shown ? 'inherit' : 'hidden'};

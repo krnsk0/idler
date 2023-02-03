@@ -37,6 +37,7 @@ export const styles = {
   quantityContainer: css`
     min-width: 75px;
     justify-content: space-between;
+    margin-left: 1em;
   `,
   smallScreenOnly: css`
     display: inherit;
@@ -54,6 +55,7 @@ export const styles = {
   quantity: css``,
   quantityPerSecond: css`
     color: ${colors.grey};
+    margin-left: 1em;
   `,
   cap: css`
     color: ${colors.grey};
