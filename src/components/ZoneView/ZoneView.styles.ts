@@ -19,23 +19,22 @@ export const styles = {
     flex-direction: row;
   `,
   zoneLeft: css`
-    flex-shrink: 1;
     min-width: 140px;
   `,
   zoneRight: css`
-    flex-shrink: 2;
+    flex-grow: 1;
+    padding-top: 0.7em;
     background-color: ${colors.white};
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     min-width: 240px;
-    max-width: 400px;
   `,
-
-  tabViewContainer: css`
-    display: flex;
+  zoneRightInner: css`
+    max-width: 400px;
     flex-direction: column;
-    margin-top: 1em;
+    justify-content: space-between;
   `,
   tabRow: css`
     background: ${colors.white};
@@ -72,8 +71,5 @@ export const styles = {
     }
     font-size: 1em;
     cursor: ${selected ? 'auto' : 'pointer'};
-  `,
-  tabContent: css`
-    padding-top: 0.5em;
   `,
 };
