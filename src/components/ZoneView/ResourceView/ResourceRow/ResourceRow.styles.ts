@@ -18,6 +18,9 @@ export const styles = {
   `,
   resourceRowOuter: css`
     margin-bottom: 0.4em;
+    ${mq['tablet']} {
+      margin-bottom: 0em;
+    }
   `,
   resourceRowTop: css`
     margin: 0.1em;

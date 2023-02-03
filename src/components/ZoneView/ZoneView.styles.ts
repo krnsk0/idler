@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '../../globalStyles';
+import { colors, mq } from '../../globalStyles';
 
 export const styles = {
   zoneOuter: css`
@@ -13,16 +13,32 @@ export const styles = {
     h2 {
       margin: 0;
     }
+
+    text-align: left;
+    margin: 0;
+    ${mq['tablet']} {
+      text-align: center;
+    }
+    ${mq['desktop']} {
+      margin: 1em 0 1em 0;
+    }
   `,
   zoneColumns: css`
     display: flex;
     flex-direction: row;
+    justify-content: left;
+
+    ${mq['tablet']} {
+      justify-content: center;
+    }
   `,
   zoneLeft: css`
     min-width: 140px;
+    max-width: 300px;
+    flex-grow: 1;
   `,
   zoneRight: css`
-    flex-grow: 1;
+    flex-grow: 2;
     padding-top: 0.7em;
     background-color: ${colors.white};
     display: flex;
@@ -30,6 +46,7 @@ export const styles = {
     justify-content: space-between;
     align-items: center;
     min-width: 240px;
+    max-width: 500px;
   `,
   zoneRightInner: css`
     max-width: 400px;
