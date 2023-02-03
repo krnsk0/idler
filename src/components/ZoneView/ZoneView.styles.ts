@@ -36,6 +36,7 @@ export const styles = {
     min-width: 140px;
     max-width: 300px;
     flex-grow: 1;
+    padding-left: 0.7em;
   `,
   zoneRight: css`
     flex-grow: 2;

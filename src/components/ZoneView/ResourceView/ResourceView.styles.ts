@@ -11,7 +11,6 @@ export const styles = {
   paneContainer: css`
     display: flex;
     flex-direction: column;
-    margin-left: 0.4em;
   `,
   resourcesContainer: css`
     display: flex;
