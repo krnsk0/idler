@@ -13,49 +13,53 @@ interface ResourceRowProps {
   resource: BaseResource;
 }
 
-const QuantityPerSecond = ({
-  estimatedRate,
-  emotionStyles,
-}: {
-  estimatedRate: number;
-  emotionStyles: SerializedStyles | SerializedStyles[];
-}) => {
-  return (
-    <span css={emotionStyles}>
-      {formatNumber(estimatedRate, {
-        showSign: true,
-      })}
-      /s
-    </span>
-  );
-};
+const QuantityPerSecond = observer(
+  ({
+    estimatedRate,
+    emotionStyles,
+  }: {
+    estimatedRate: number;
+    emotionStyles: SerializedStyles | SerializedStyles[];
+  }) => {
+    return (
+      <span css={emotionStyles}>
+        {formatNumber(estimatedRate, {
+          showSign: true,
+        })}
+        /s
+      </span>
+    );
+  },
+);
 
-const ResourceCap = ({ currentCap }: { currentCap: number }) => {
+const ResourceCap = observer(({ currentCap }: { currentCap: number }) => {
   return (
     <span css={styles.cap}>/{formatNumber(currentCap, { digits: 0 })}</span>
   );
-};
+});
 
-const ResourceQuantity = ({
-  resource,
-  emotionStyles,
-}: {
-  resource: BaseResource;
-  emotionStyles?: SerializedStyles | SerializedStyles[];
-}) => {
-  return (
-    <span
-      css={[
-        emotionStyles,
-        styles.quantity,
-        resource.showHighlight &&
-          styles.highlight(resource.highlightAnimationDuration),
-      ]}
-    >
-      {formatNumber(resource.quantity)}
-    </span>
-  );
-};
+const ResourceQuantity = observer(
+  ({
+    resource,
+    emotionStyles,
+  }: {
+    resource: BaseResource;
+    emotionStyles?: SerializedStyles | SerializedStyles[];
+  }) => {
+    return (
+      <span
+        css={[
+          emotionStyles,
+          styles.quantity,
+          resource.showHighlight &&
+            styles.highlight(resource.highlightAnimationDuration),
+        ]}
+      >
+        {formatNumber(resource.quantity)}
+      </span>
+    );
+  },
+);
 
 const ResourceRow = ({ resource }: ResourceRowProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
