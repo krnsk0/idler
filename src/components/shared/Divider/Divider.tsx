@@ -15,11 +15,12 @@ export const Divider = observer(
     showEntranceAnimation,
     entranceAnimationDuration,
   }: DividerProps) => {
+    if (!shown) return null;
     return (
       <>
         <div
           css={[
-            styles.divider(shown),
+            styles.divider,
             showEntranceAnimation &&
               styles.animateEntrance(entranceAnimationDuration),
           ]}

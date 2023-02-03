@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const styles = {
   shipOuter: css`
-    margin-bottom: 3em;
+    padding-top: 0.65em;
     display: flex;
     flex-direction: column;
     align-items: center;
