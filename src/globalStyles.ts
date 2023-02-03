@@ -41,3 +41,13 @@ export const entranceAnimation = keyframes`
     transform: scale(1, 1);
   }
 `;
+
+export const breakpoints = {
+  tablet: 576,
+  desktop: 992,
+} as const;
+
+export const mq = {
+  tablet: `@media (min-width: ${breakpoints.tablet}px)`,
+  desktop: `@media (min-width: ${breakpoints.desktop}px)`,
+} as const;

@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { colors } from '../../../../globalStyles';
+import { colors, mq } from '../../../../globalStyles';
 
 const flash = keyframes`
   0% {
@@ -16,19 +16,40 @@ export const styles = {
   displayName: css`
     width: 5em;
   `,
-  resourceRow: css`
+  resourceRowOuter: css``,
+  resourceRowInner: css`
     margin: 0.1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   `,
-  quantityContainer: css`
-    display: flex;
+  largeScreenQuantityConainer: css`
+    display: none;
     min-width: 75px;
     justify-content: space-between;
+    ${mq['tablet']} {
+      display: flex;
+    }
+  `,
+  smallScreenOnly: css`
+    display: inherit;
+    ${mq['tablet']} {
+      display: none;
+    }
   `,
   quantity: css``,
-  quantityPerSecond: css`
+  smallScreenQuantityPerSecond: css`
+    display: inherit;
+    ${mq['tablet']} {
+      display: none;
+    }
+    color: ${colors.grey};
+  `,
+  largeScreenQuantityPerSecond: css`
+    display: none;
+    ${mq['tablet']} {
+      display: inherit;
+    }
     color: ${colors.grey};
   `,
   cap: css`
