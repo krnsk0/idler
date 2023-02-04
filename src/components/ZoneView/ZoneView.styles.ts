@@ -44,6 +44,7 @@ export const styles = {
     min-width: 230px;
     max-width: 400px;
     display: flex;
+    flex-direction: column;
     justify-content: center;
   `,
   tabRow: css`
