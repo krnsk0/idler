@@ -21,7 +21,7 @@ export const styles = {
     display: flex;
     flex-direction: column;
     gap: 0.4em;
-    ${mq['tablet']} {
+    ${mq['desktop']} {
       gap: 0em;
     }
   `,

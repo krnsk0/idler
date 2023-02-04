@@ -34,7 +34,7 @@ export const styles = {
   `,
   zoneLeft: css`
     min-width: 140px;
-    max-width: 320px;
+    max-width: 280px;
     flex-grow: 2;
     padding-left: 0.7em;
   `,
@@ -42,10 +42,7 @@ export const styles = {
     flex-grow: 3;
     background-color: ${colors.white};
     min-width: 230px;
-    max-width: 100%;
-    ${mq['tablet']} {
-      max-width: 400px;
-    }
+    max-width: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;

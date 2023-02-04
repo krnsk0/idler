@@ -3,7 +3,7 @@ import { css, keyframes } from '@emotion/react';
 export const globalStyles = css`
   html,
   body {
-    overflow-x: hidden;
+    overflow: hidden;
     overscroll-behavior: none;
   }
 
