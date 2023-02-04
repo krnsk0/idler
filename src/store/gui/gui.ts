@@ -47,7 +47,6 @@ export class Gui extends Model({
   get isResourcePaneOpen(): boolean {
     const selectedZone = getGame(this).selectedZone;
     const resourcesUnlocked = selectedZone?.resources.unlocked ?? false;
-
     return resourcesUnlocked && this._resourcePaneOpen;
   }
 }

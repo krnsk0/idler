@@ -42,7 +42,10 @@ export const styles = {
     flex-grow: 3;
     background-color: ${colors.white};
     min-width: 230px;
-    max-width: 400px;
+    max-width: 100%;
+    ${mq['tablet']} {
+      max-width: 400px;
+    }
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,8 +64,19 @@ export const styles = {
   `,
   resourceButton: css`
     background: none;
-    border: none;
-    margin: 0.2em;
+    border: 1px solid ${colors.black};
+    width: 2.5em;
+    height: 2.5em;
+    position: fixed;
+    bottom: 0.5em;
+    left: 0.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  `,
+  caret: css`
+    font-size: 2em;
+    color: ${colors.black};
   `,
   separator: css`
     margin-left: 0.5em;

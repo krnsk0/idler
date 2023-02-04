@@ -2,11 +2,12 @@ import { observer } from 'mobx-react-lite';
 import { Zone } from '../../store/zone/zone';
 import { styles } from './ZoneView.styles';
 import ResourceView from './ResourceView/ResourceView';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ShipColonyView from './ZoneTabView/ShipView/ShipColonyView';
 import JobsView from './ZoneTabView/JobsView/JobsView';
 import { useMediaQuery } from '../shared/useMediaQuery';
 import { useStore } from '../../store/Provider';
+import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -39,8 +40,6 @@ const TabButton = ({
   );
 };
 
-const Separator = () => <span css={styles.separator} />;
-
 function ZoneView({ zone }: ZoneViewProps) {
   const { gui } = useStore();
 
@@ -48,7 +47,7 @@ function ZoneView({ zone }: ZoneViewProps) {
     ZoneTabNames.ACTIONS,
   );
 
-  const { isTablet } = useMediaQuery();
+  const { isTablet, isMobile } = useMediaQuery();
 
   const isResourcePaneOpen = isTablet || gui.isResourcePaneOpen;
 
@@ -76,14 +75,20 @@ function ZoneView({ zone }: ZoneViewProps) {
           </div>
         </div>
       </div>
-      <div css={styles.tabRow}>
+      {isMobile && zone.resources.unlocked && (
         <button
           css={styles.resourceButton}
           type="button"
           onClick={() => gui.toggleResourcePane()}
         >
-          RES
+          {gui.isResourcePaneOpen ? (
+            <RxChevronRight css={styles.caret} />
+          ) : (
+            <RxChevronLeft css={styles.caret} />
+          )}
         </button>
+      )}
+      {/* <div css={styles.tabRow}>
         {zone.jobs.unlocked && (
           <>
             <TabButton
@@ -103,7 +108,7 @@ function ZoneView({ zone }: ZoneViewProps) {
             />
           </>
         )}
-      </div>
+      </div> */}
     </>
   );
 }
