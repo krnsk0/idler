@@ -8,10 +8,10 @@ const customStyles = {
   content: {
     border: '1px solid black',
     borderRadius: 0,
-    display: 'flex',
+    overflow: 'hidden' as const,
+    padding: '0em' as const,
+    display: 'flex' as const,
     flexDirection: 'column' as const,
-    alignItems: 'center' as const,
-    flexWrap: 'wrap' as const,
   },
 };
 
@@ -23,20 +23,20 @@ const TechModal = () => {
       onRequestClose={() => root.gui.closeTechModal()}
       style={customStyles}
     >
-      <h2>databanks</h2>
-      <div css={styles.modalDescripiton}>
-        the ship wants power. it says it can help.
+      <div css={styles.modalHeader}>
+        <h2>databanks</h2>
+        <div>the ship wants power. it says it can help.</div>
       </div>
       <div css={styles.techsContainer}>
         {root.game.tech.noTechAvailable && (
           <em>no compute targets available</em>
         )}
+        {!root.game.tech.noTechAvailable && <div css={styles.paddingTile} />}
         {root.game.tech.availableAsArray.map((tech) => {
           const onClick = () => {
             root.game.tech.selectTech(tech);
             root.gui.closeTechModal();
           };
-
           return (
             <div key={tech.name} css={styles.techTile} onClick={onClick}>
               <div css={styles.techTitle}>{tech.displayName}</div>
@@ -50,6 +50,7 @@ const TechModal = () => {
             </div>
           );
         })}
+        {!root.game.tech.noTechAvailable && <div css={styles.paddingTile} />}
         {root.game.tech.selectedTech && (
           <div
             key={'none'}

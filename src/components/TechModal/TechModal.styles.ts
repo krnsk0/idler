@@ -2,21 +2,46 @@ import { css } from '@emotion/react';
 import { colors } from '../../globalStyles';
 
 export const styles = {
-  techsContainer: css`
+  modalHeader: css`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
-    padding: 1em;
+
+    h2 {
+      font-size: 1.2em;
+      margin: 1em 0 1em 0;
+    }
+
+    @media (orientation: landscape) {
+      h2 {
+        margin: 0.5em 0 0.5em 0;
+      }
+    }
+
+    div {
+      font-size: 1em;
+      text-align: center;
+      padding: 0 2em 0 2em;
+    }
   `,
-  modalDescripiton: css`
-    font-size: 1em;
-    text-align: center;
+
+  techsContainer: css`
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    overflow-x: scroll;
+    align-items: center;
+  `,
+  paddingTile: css`
+    display: inline-block;
+    padding-left: calc(50vw - 52px - 90px);
   `,
   techTile: css`
     width: 175px;
+    min-width: 175px;
     height: 200px;
+    min-height: 200px;
     border: 1px solid ${colors.black};
     margin: 1em;
     display: flex;
