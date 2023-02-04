@@ -47,7 +47,7 @@ function ShipColonyView({ zone }: ShipViewProps) {
       </div>
       <div css={styles.shipOuter}>
         <Divider
-          text={'colony'}
+          text={'outpost'}
           shown={zone.buildings.unlocked}
           showEntranceAnimation={zone.buildings.showEntranceAnimation}
           entranceAnimationDuration={zone.buildings.entranceAnimationDuration}

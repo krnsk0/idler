@@ -92,7 +92,7 @@ function ZoneView({ zone }: ZoneViewProps) {
         {zone.jobs.unlocked && (
           <>
             <TabButton
-              text="colony"
+              text="outpost"
               tabName={ZoneTabNames.ACTIONS}
               selectedTab={selectedTab}
               setSelectedTab={setSelectedTab}
