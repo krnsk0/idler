@@ -34,23 +34,17 @@ export const styles = {
   `,
   zoneLeft: css`
     min-width: 140px;
-    max-width: 300px;
-    flex-grow: 1;
+    max-width: 320px;
+    flex-grow: 2;
     padding-left: 0.7em;
   `,
   zoneRight: css`
-    flex-grow: 2;
+    flex-grow: 3;
     background-color: ${colors.white};
     min-width: 230px;
-    max-width: 500px;
+    max-width: 400px;
     display: flex;
     justify-content: center;
-  `,
-  zoneRightInner: css`
-    width: 90%;
-    max-width: 400px;
-    flex-direction: column;
-    justify-content: space-between;
   `,
   tabRow: css`
     background: ${colors.white};
