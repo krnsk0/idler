@@ -105,7 +105,7 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
         if (noTechAvailable) {
           return `no new tech`;
         }
-        return `pick research target`;
+        return `databanks`;
       })()}
     />
   );
