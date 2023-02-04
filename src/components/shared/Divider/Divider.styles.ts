@@ -6,6 +6,7 @@ export const styles = {
     border-top: 1px solid ${colors.black};
     width: 90%;
     position: relative;
+    margin-bottom: 1em;
   `,
   animateEntrance: (duration: number) => css`
     animation: ${entranceAnimation} ${duration}ms ease;
