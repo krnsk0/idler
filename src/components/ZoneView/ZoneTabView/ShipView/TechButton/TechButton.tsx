@@ -10,11 +10,9 @@ import {
 } from '../../../../shared/Tooltip/Tooltip';
 import { formatNumber } from '../../../../../utils/formatNumber';
 
-interface TechButtonProps {
-  tooltipPosition: 'LEFT' | 'RIGHT';
-}
+interface TechButtonProps {}
 
-function TechButton({ tooltipPosition }: TechButtonProps) {
+function TechButton({}: TechButtonProps) {
   const root = useStore();
   const selectedTech = root.game.tech.selectedTech;
   const noTechAvailable = root.game.tech.noTechAvailable;
@@ -50,7 +48,6 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
 
   return (
     <ZoneEntityButton
-      tooltipPosition={tooltipPosition}
       tooltip={
         <>
           {noTechAvailable && (

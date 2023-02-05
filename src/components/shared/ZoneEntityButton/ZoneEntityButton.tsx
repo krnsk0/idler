@@ -16,7 +16,6 @@ interface ZoneEntityButtonProps {
   active?: boolean;
   reverseProgressBar?: boolean;
   showEntranceAnimation: boolean;
-  tooltipPosition: 'RIGHT' | 'LEFT';
   buttonText: string;
   enableEntity?: () => void;
   disableEntity?: () => void;
@@ -35,7 +34,6 @@ const ZoneEntityButton = ({
   progress,
   reverseProgressBar,
   showEntranceAnimation,
-  tooltipPosition,
   buttonText,
   enableEntity,
   disableEntity,
@@ -133,7 +131,7 @@ const ZoneEntityButton = ({
             color: disabled ? colors.mediumdarkgrey : colors.black,
           }}
         >
-          {tooltip}
+          <>{tooltip}</>
         </div>
       )}
     </div>

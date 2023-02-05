@@ -6,8 +6,6 @@ import { ActionNames } from '../../../../store/zone/actions/actionNames';
 import { Divider } from '../../../shared/Divider/Divider';
 import BuildingButton from './BuildingButton/BuildingButton';
 import { styles } from './ShipColonyView.styles';
-import { useState } from 'react';
-import { BuildingNames } from '../../../../store/zone/buildings/buildingNames';
 
 interface ShipViewProps {
   zone: Zone;
@@ -23,27 +21,12 @@ function ShipColonyView({ zone }: ShipViewProps) {
           showEntranceAnimation={zone.buildings.showEntranceAnimation}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
-          <ActionButton
-            action={zone.actions[ActionNames.HARVEST]}
-            tooltipPosition="RIGHT"
-          />
-          <TechButton tooltipPosition="LEFT" />
-          <ActionButton
-            action={zone.actions[ActionNames.GENERATE]}
-            tooltipPosition="RIGHT"
-          />
-          <ActionButton
-            action={zone.actions[ActionNames.COMPRESS]}
-            tooltipPosition="LEFT"
-          />
-          <ActionButton
-            action={zone.actions[ActionNames.THAW]}
-            tooltipPosition="RIGHT"
-          />
-          <ActionButton
-            action={zone.actions[ActionNames.EXCAVATE]}
-            tooltipPosition="LEFT"
-          />
+          <ActionButton action={zone.actions[ActionNames.HARVEST]} />
+          <TechButton />
+          <ActionButton action={zone.actions[ActionNames.GENERATE]} />
+          <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
+          <ActionButton action={zone.actions[ActionNames.THAW]} />
+          <ActionButton action={zone.actions[ActionNames.EXCAVATE]} />
         </div>
       </div>
       <div css={styles.shipOuter}>
@@ -54,13 +37,7 @@ function ShipColonyView({ zone }: ShipViewProps) {
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           {zone.buildings.asArray.map((building, index) => {
-            return (
-              <BuildingButton
-                building={building}
-                key={building.name}
-                tooltipPosition={index % 2 ? 'LEFT' : 'RIGHT'}
-              />
-            );
+            return <BuildingButton building={building} key={building.name} />;
           })}
         </div>
       </div>

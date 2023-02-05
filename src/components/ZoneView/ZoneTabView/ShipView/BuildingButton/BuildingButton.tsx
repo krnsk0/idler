@@ -6,15 +6,13 @@ import BuildingTooltip from './BuildingTooltip';
 
 interface BuildingButtonProps {
   building: BaseBuilding;
-  tooltipPosition: 'RIGHT' | 'LEFT';
 }
 
-function BuildingButton({ building, tooltipPosition }: BuildingButtonProps) {
+function BuildingButton({ building }: BuildingButtonProps) {
   if (!building.unlocked) return null;
 
   return (
     <ZoneEntityButton
-      tooltipPosition={tooltipPosition}
       tooltip={<BuildingTooltip building={building} />}
       onClick={() => building.buy(1)}
       disabled={!building.affordable}
