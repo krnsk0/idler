@@ -7,8 +7,7 @@ import { BuildingNames } from './buildingNames';
 export class Farm extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.FARM;
   displayName = 'farm';
-  description = 'cultivates edible xenoflora, producing biomass as byproduct';
-  splashText = 'a triumph of xenobotany';
+  description = 'a triumph of xenobotany';
   baseCost = [
     {
       resource: ResourceNames.BIOMASS,

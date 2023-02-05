@@ -10,7 +10,6 @@ export class Furnace extends ExtendedModel(BaseBuilding, {}) {
   displayName = 'furnace';
   description =
     'uses endothermic reduction to extract a malleable alloy from the ore ';
-  splashText = 'from ore, alloy';
   baseCost = [
     {
       resource: ResourceNames.LUMBER,

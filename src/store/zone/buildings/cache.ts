@@ -7,8 +7,7 @@ import { BuildingNames } from './buildingNames';
 export class Cache extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.CACHE;
   displayName = 'cache';
-  description = '';
-  splashText = 'protection from the elements';
+  description = 'a bulwark against our ruin';
   baseCost = [
     {
       resource: ResourceNames.LUMBER,

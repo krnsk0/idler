@@ -23,7 +23,6 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract name: BuildingNames;
   abstract displayName: string;
   abstract description: string;
-  abstract splashText: string;
   abstract baseCost: PurchaseCost[];
   abstract costExponent: number;
 

@@ -9,7 +9,6 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
   displayName = 'dynamo';
   description =
     'generate electrical potential from exothermic, self-perpetuating reaction';
-  splashText = 'from biomass, power';
   baseCost = [
     {
       resource: ResourceNames.ALLOY,

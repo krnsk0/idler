@@ -59,9 +59,6 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
         })}
       </TooltipText>
       <TooltipDivider />
-      <TooltipText align={'right'} italic={true}>
-        {building.splashText}
-      </TooltipText>
     </>
   );
 };
