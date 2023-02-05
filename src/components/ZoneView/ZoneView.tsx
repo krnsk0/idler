@@ -62,7 +62,7 @@ function ZoneView({ zone }: ZoneViewProps) {
           {isResourcePaneOpen && (
             <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
           )}
-          <div css={styles.zoneRight} id="zone-right">
+          <div css={styles.zoneCenter} id="zone-right">
             {(() => {
               switch (selectedTab) {
                 case ZoneTabNames.ACTIONS:
@@ -73,6 +73,9 @@ function ZoneView({ zone }: ZoneViewProps) {
                   throw new Error('should not reach this case');
               }
             })()}
+          </div>
+          <div css={styles.zoneRight} id="zone-right">
+            right column
           </div>
         </div>
       </div>

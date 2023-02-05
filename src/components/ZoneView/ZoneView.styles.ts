@@ -53,16 +53,27 @@ export const styles = {
       max-width: 280px;
     }
   `,
-  zoneRight: css`
+  zoneCenter: css`
     flex-grow: 3;
     background-color: ${colors.white};
     min-width: 200px;
-    max-width: 480px;
+    max-width: 680px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
+      min-width: 300px;
+    }
+  `,
+  zoneRight: css`
+    display: none;
+    ${mq['hoverableDesktop']} {
+      display: flex;
+      width: 280px;
+      min-width: 280px;
+      max-width: 280px;
+    }
   `,
   tabRow: css`
     background: ${colors.white};
