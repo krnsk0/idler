@@ -6,7 +6,7 @@ import { BuildingNames } from './buildingNames';
 @model(BuildingNames.FARM)
 export class Farm extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.FARM;
-  displayName = 'hydroponic farm';
+  displayName = 'farm';
   description = 'cultivates edible xenoflora, producing biomass as byproduct';
   splashText = 'a triumph of xenobotany';
   baseCost = [

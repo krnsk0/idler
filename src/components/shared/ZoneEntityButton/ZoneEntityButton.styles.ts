@@ -27,7 +27,7 @@ export const styles = {
       color: ${colors.mediumdarkgrey};
     }
 
-    font-size: 0.9em;
+    font-size: 0.95em;
     ${mq['tablet']} {
       font-size: 1em;
     }
