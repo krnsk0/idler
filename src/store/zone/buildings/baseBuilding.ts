@@ -4,6 +4,7 @@ import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
 import { getTech } from '../../tech/tech';
+import { getGui } from '../../gui/gui';
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -71,6 +72,22 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
     return this.currentCost.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
     });
+  }
+
+  /**
+   * Is the button expanded?
+   */
+  @computed
+  get isExpanded(): boolean {
+    return getGui(this).expandedShipColonyButton === this.name;
+  }
+
+  /**
+   * Expand this button
+   */
+  @modelAction
+  expandButton() {
+    getGui(this).setExpandedShipColonyButton(this.name);
   }
 
   /**

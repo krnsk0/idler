@@ -73,6 +73,8 @@ function ActionButton({ action, tooltipPosition }: ActionButtonProps) {
       buttonText={`${action.displayName}${
         action.showNoPowerMessage ? `*` : ''
       }`}
+      isButtonExpanded={action.isExpanded}
+      expandButton={() => action.expandButton()}
     />
   );
 }

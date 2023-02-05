@@ -6,6 +6,7 @@ import { computed } from 'mobx';
 import { getResources } from '../resources/resources';
 import { getPower } from '../power/power';
 import { getTech } from '../../tech/tech';
+import { getGui } from '../../gui/gui';
 
 interface ActionInput {
   resource: ResourceNames;
@@ -123,6 +124,22 @@ export abstract class BaseAction extends ExtendedModel(ZoneEntity, {
   @computed
   get showNoPowerMessage(): boolean {
     return this.powerConsumption > 0 && this.active && getPower(this).blackout;
+  }
+
+  /**
+   * Is the button expanded?
+   */
+  @computed
+  get isExpanded(): boolean {
+    return getGui(this).expandedShipColonyButton === this.name;
+  }
+
+  /**
+   * Expand this button
+   */
+  @modelAction
+  expandButton() {
+    getGui(this).setExpandedShipColonyButton(this.name);
   }
 
   /**

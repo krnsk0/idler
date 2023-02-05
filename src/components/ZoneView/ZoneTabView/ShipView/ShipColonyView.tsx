@@ -6,6 +6,8 @@ import { ActionNames } from '../../../../store/zone/actions/actionNames';
 import { Divider } from '../../../shared/Divider/Divider';
 import BuildingButton from './BuildingButton/BuildingButton';
 import { styles } from './ShipColonyView.styles';
+import { useState } from 'react';
+import { BuildingNames } from '../../../../store/zone/buildings/buildingNames';
 
 interface ShipViewProps {
   zone: Zone;

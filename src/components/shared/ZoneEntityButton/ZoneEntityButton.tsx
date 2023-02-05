@@ -2,7 +2,7 @@ import { SerializedStyles } from '@emotion/react';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
-import { RxChevronRight } from 'react-icons/rx';
+import { RxChevronDown, RxChevronRight } from 'react-icons/rx';
 import { colors } from '../../../globalStyles';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
@@ -22,6 +22,8 @@ interface ZoneEntityButtonProps {
   disableEntity?: () => void;
   canEnableEntity?: boolean;
   canDisableEntity?: boolean;
+  isButtonExpanded?: boolean;
+  expandButton?: () => void;
 }
 
 const ZoneEntityButton = ({
@@ -39,6 +41,8 @@ const ZoneEntityButton = ({
   disableEntity,
   canEnableEntity,
   canDisableEntity,
+  isButtonExpanded,
+  expandButton,
 }: ZoneEntityButtonProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const possiblyInvertedProgress =
@@ -113,10 +117,10 @@ const ZoneEntityButton = ({
           style={{
             color: disabled ? colors.mediumdarkgrey : colors.black,
           }}
-          onClick={() => {}}
+          onClick={expandButton}
           type="button"
         >
-          <RxChevronRight />
+          {isButtonExpanded ? <RxChevronDown /> : <RxChevronRight />}
         </button>
       </div>
     </>

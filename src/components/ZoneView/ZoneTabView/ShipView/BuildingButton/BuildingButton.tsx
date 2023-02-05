@@ -32,6 +32,8 @@ function BuildingButton({ building, tooltipPosition }: BuildingButtonProps) {
       }
       canEnableEntity={building.canEnableEntity}
       canDisableEntity={building.canDisableEntity}
+      isButtonExpanded={building.isExpanded}
+      expandButton={() => building.expandButton()}
     />
   );
 }
