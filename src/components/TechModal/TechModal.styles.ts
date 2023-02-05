@@ -35,15 +35,15 @@ export const styles = {
   `,
   paddingTile: css`
     display: inline-block;
-    padding-left: calc(50vw - 52px - 90px);
+    padding-left: calc(50vw - 134px);
   `,
   techTile: css`
     width: 175px;
     min-width: 175px;
     height: 200px;
     min-height: 200px;
+    margin: 0.5em;
     border: 1px solid ${colors.black};
-    margin: 1em;
     display: flex;
     padding: 1em 0.2em 1em 0.2em;
     flex-direction: column;

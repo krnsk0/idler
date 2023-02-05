@@ -50,7 +50,6 @@ const TechModal = () => {
             </div>
           );
         })}
-        {!root.game.tech.noTechAvailable && <div css={styles.paddingTile} />}
         {root.game.tech.selectedTech && (
           <div
             key={'none'}
@@ -63,6 +62,7 @@ const TechModal = () => {
             <div css={styles.techDescription}>{'pause research'}</div>
           </div>
         )}
+        {!root.game.tech.noTechAvailable && <div css={styles.paddingTile} />}
       </div>
     </Modal>
   );
