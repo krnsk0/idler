@@ -64,5 +64,8 @@ export const styles = {
     position: relative;
     display: flex;
   `,
-  tooltipContainer: css``,
+  tooltipContainer: css`
+    padding: 1em;
+    font-size: 0.9em;
+  `,
 };
