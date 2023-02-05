@@ -2,6 +2,7 @@ import { SerializedStyles } from '@emotion/react';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
+import { RxChevronRight } from 'react-icons/rx';
 import { colors } from '../../../globalStyles';
 import Tooltip from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
@@ -83,7 +84,7 @@ const ZoneEntityButton = ({
         </button>
         {disableEntity && (
           <button
-            css={styles.smallButton}
+            css={[styles.smallButton, styles.visibleOnDesktop]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,
               cursor: canDisableEntity ? 'pointer' : 'inherit',
@@ -96,7 +97,7 @@ const ZoneEntityButton = ({
         )}
         {enableEntity && (
           <button
-            css={styles.smallButton}
+            css={[styles.smallButton, styles.visibleOnDesktop]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,
               cursor: canEnableEntity ? 'pointer' : 'inherit',
@@ -107,6 +108,16 @@ const ZoneEntityButton = ({
             +
           </button>
         )}
+        <button
+          css={[styles.smallButton, styles.invisibleOnDesktop]}
+          style={{
+            color: disabled ? colors.mediumdarkgrey : colors.black,
+          }}
+          onClick={() => {}}
+          type="button"
+        >
+          <RxChevronRight />
+        </button>
       </div>
     </>
   );

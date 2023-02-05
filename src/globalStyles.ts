@@ -50,6 +50,8 @@ export const breakpoints = {
 export const mq = {
   tablet: `@media (min-width: ${breakpoints.tablet}px)`,
   desktop: `@media (min-width: ${breakpoints.desktop}px)`,
+  hoverableDesktop: `@media (min-width: ${breakpoints.desktop}px) and (hover: hover)`,
+  landscape: `@media (orientation: landscape)`,
 } as const;
 
 export const entranceAnimationDuration = 300;

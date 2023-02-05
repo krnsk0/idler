@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '../../globalStyles';
+import { colors, mq } from '../../globalStyles';
 
 export const styles = {
   modalHeader: css`
@@ -13,7 +13,7 @@ export const styles = {
       margin: 1em 0 1em 0;
     }
 
-    @media (orientation: landscape) {
+    ${mq['landscape']} {
       h2 {
         margin: 0.5em 0 0.5em 0;
       }

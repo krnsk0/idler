@@ -8,7 +8,7 @@ import {
 
 export const styles = {
   buttonOuterContainer: css`
-    width: 80%;
+    width: 85%;
     height: 2em;
     position: relative;
     display: flex;
@@ -27,7 +27,7 @@ export const styles = {
       color: ${colors.mediumdarkgrey};
     }
 
-    font-size: 0.95em;
+    font-size: 0.9em;
     ${mq['tablet']} {
       font-size: 1em;
     }
@@ -42,5 +42,21 @@ export const styles = {
     border: none;
     border-left: 1px solid;
     background: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 2em;
+    width: 2em;
+  `,
+  invisibleOnDesktop: css`
+    ${mq['hoverableDesktop']} {
+      display: none;
+    }
+  `,
+  visibleOnDesktop: css`
+    display: none;
+    ${mq['hoverableDesktop']} {
+      display: flex;
+    }
   `,
 };
