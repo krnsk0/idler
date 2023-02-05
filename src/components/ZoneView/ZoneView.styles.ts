@@ -5,7 +5,6 @@ export const styles = {
   zoneOuter: css`
     background-color: ${colors.white};
     height: 100vh;
-    box-sizing: border-box;
     display: flex;
     flex-direction: column;
   `,
@@ -34,7 +33,6 @@ export const styles = {
       height: calc(100vh - 88px);
     }
 
-    box-sizing: border-box;
     display: flex;
     flex-direction: row;
 
