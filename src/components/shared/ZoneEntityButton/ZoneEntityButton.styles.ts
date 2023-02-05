@@ -3,6 +3,7 @@ import {
   colors,
   entranceAnimation,
   entranceAnimationDuration,
+  mq,
 } from '../../../globalStyles';
 
 export const styles = {
@@ -24,6 +25,11 @@ export const styles = {
     position: relative;
     &:disabled {
       color: ${colors.mediumdarkgrey};
+    }
+
+    font-size: 0.95em;
+    ${mq['tablet']} {
+      font-size: 1em;
     }
   `,
   progressBar: css`
