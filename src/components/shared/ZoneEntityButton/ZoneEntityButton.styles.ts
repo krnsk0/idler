@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import { colors, entranceAnimation } from '../../../globalStyles';
+import {
+  colors,
+  entranceAnimation,
+  entranceAnimationDuration,
+} from '../../../globalStyles';
 
 export const styles = {
   buttonOuterContainer: css`
@@ -9,8 +13,8 @@ export const styles = {
     display: flex;
     border: 1px solid;
   `,
-  animateEntrance: (duration: number) => css`
-    animation: ${entranceAnimation} ${duration}ms ease;
+  animateEntrance: css`
+    animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
   button: css`
     border: none;

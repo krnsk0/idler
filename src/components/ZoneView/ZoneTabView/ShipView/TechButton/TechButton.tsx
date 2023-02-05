@@ -91,7 +91,6 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
       progress={selectedTech?.progress ?? 0}
       disabled={noTechAvailable}
       showEntranceAnimation={root.game.tech.showEntranceAnimation}
-      entranceAnimationDuration={root.game.tech.entranceAnimationDuration}
       buttonText={(() => {
         if (selectedTech) {
           return `${selectedTech.displayName}${

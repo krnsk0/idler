@@ -19,7 +19,6 @@ function ShipColonyView({ zone }: ShipViewProps) {
           text={'crashed ship'}
           shown={zone.buildings.unlocked}
           showEntranceAnimation={zone.buildings.showEntranceAnimation}
-          entranceAnimationDuration={zone.buildings.entranceAnimationDuration}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           <ActionButton
@@ -50,7 +49,6 @@ function ShipColonyView({ zone }: ShipViewProps) {
           text={'outpost'}
           shown={zone.buildings.unlocked}
           showEntranceAnimation={zone.buildings.showEntranceAnimation}
-          entranceAnimationDuration={zone.buildings.entranceAnimationDuration}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           {zone.buildings.asArray.map((building, index) => {

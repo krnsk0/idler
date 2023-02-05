@@ -51,3 +51,5 @@ export const mq = {
   tablet: `@media (min-width: ${breakpoints.tablet}px)`,
   desktop: `@media (min-width: ${breakpoints.desktop}px)`,
 } as const;
+
+export const entranceAnimationDuration = 300;

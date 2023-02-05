@@ -5,24 +5,17 @@ interface DividerProps {
   text: string;
   shown: boolean;
   showEntranceAnimation: boolean;
-  entranceAnimationDuration: number;
 }
 
 export const Divider = observer(
-  ({
-    text,
-    shown,
-    showEntranceAnimation,
-    entranceAnimationDuration,
-  }: DividerProps) => {
+  ({ text, shown, showEntranceAnimation }: DividerProps) => {
     if (!shown) return null;
     return (
       <>
         <div
           css={[
             styles.divider,
-            showEntranceAnimation &&
-              styles.animateEntrance(entranceAnimationDuration),
+            showEntranceAnimation && styles.animateEntrance,
           ]}
         >
           {text && (

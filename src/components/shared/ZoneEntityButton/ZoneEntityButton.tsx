@@ -15,7 +15,6 @@ interface ZoneEntityButtonProps {
   active?: boolean;
   reverseProgressBar?: boolean;
   showEntranceAnimation: boolean;
-  entranceAnimationDuration: number;
   tooltipPosition: 'RIGHT' | 'LEFT';
   buttonText: string;
   enableEntity?: () => void;
@@ -33,7 +32,6 @@ const ZoneEntityButton = ({
   progress,
   reverseProgressBar,
   showEntranceAnimation,
-  entranceAnimationDuration,
   tooltipPosition,
   buttonText,
   enableEntity,
@@ -65,8 +63,7 @@ const ZoneEntityButton = ({
       <div
         css={[
           styles.buttonOuterContainer,
-          showEntranceAnimation &&
-            styles.animateEntrance(entranceAnimationDuration),
+          showEntranceAnimation && styles.animateEntrance,
           styleOverride,
         ]}
         style={{ borderColor: !disabled ? colors.black : colors.grey }}

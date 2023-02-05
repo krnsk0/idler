@@ -27,7 +27,6 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           }
           styleOverride={styles.powerContainer}
           showEntranceAnimation={zone.power.showEntranceAnimation}
-          entranceAnimationDuration={zone.power.entranceAnimationDuration}
         >
           <div css={styles.powerRow}>
             <span>production</span>
@@ -54,7 +53,6 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
           title="resources"
           styleOverride={styles.resourcesContainer}
           showEntranceAnimation={zone.resources.showEntranceAnimation}
-          entranceAnimationDuration={zone.resources.entranceAnimationDuration}
         >
           {zone.resources.unlockedAsArray.map((resource) => {
             return <ResourceRow resource={resource} key={resource.name} />;

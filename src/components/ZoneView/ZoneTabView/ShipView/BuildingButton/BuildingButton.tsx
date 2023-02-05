@@ -19,7 +19,6 @@ function BuildingButton({ building, tooltipPosition }: BuildingButtonProps) {
       onClick={() => building.buy(1)}
       disabled={!building.affordable}
       showEntranceAnimation={building.showEntranceAnimation}
-      entranceAnimationDuration={building.entranceAnimationDuration}
       buttonText={`${building.displayName} (${
         building.numberActive < building.quantity
           ? formatNumber(building.numberActive, { digits: 0 }) + '/'

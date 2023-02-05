@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import { colors, entranceAnimation } from '../../../globalStyles';
+import {
+  colors,
+  entranceAnimation,
+  entranceAnimationDuration,
+} from '../../../globalStyles';
 
 export const styles = {
   divider: css`
@@ -8,8 +12,8 @@ export const styles = {
     position: relative;
     margin-bottom: 1em;
   `,
-  animateEntrance: (duration: number) => css`
-    animation: ${entranceAnimation} ${duration}ms ease;
+  animateEntrance: css`
+    animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
   dividerTextContainer: css`
     position: absolute;

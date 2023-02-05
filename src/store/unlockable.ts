@@ -1,6 +1,7 @@
 import { Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { getSystemRegistry } from './systemRegistry';
+import { entranceAnimationDuration } from '../globalStyles';
 
 export abstract class Unlockable extends Model({
   /**
@@ -37,7 +38,6 @@ export abstract class Unlockable extends Model({
    * State for an aniation we see when something first unlocks
    */
   showEntranceAnimation = false;
-  entranceAnimationDuration = 300;
 
   /**
    * Whether the entity is unlocked and should be e.g. shown to the player
@@ -51,7 +51,7 @@ export abstract class Unlockable extends Model({
       this.showEntranceAnimation = true;
       setTimeout(() => {
         this.showEntranceAnimation = false;
-      }, this.entranceAnimationDuration);
+      }, entranceAnimationDuration);
     }
 
     return this._transientUnlockConditionSatisfied;

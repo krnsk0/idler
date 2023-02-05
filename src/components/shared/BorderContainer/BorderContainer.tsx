@@ -7,7 +7,6 @@ interface BorderContainerProps {
   styleOverride?: SerializedStyles;
   rightText?: string;
   showEntranceAnimation: boolean;
-  entranceAnimationDuration: number;
 }
 
 const BorderContainer = ({
@@ -16,14 +15,12 @@ const BorderContainer = ({
   styleOverride,
   rightText,
   showEntranceAnimation,
-  entranceAnimationDuration,
 }: BorderContainerProps) => {
   return (
     <div
       css={[
         styles.container,
-        showEntranceAnimation &&
-          styles.animateEntrance(entranceAnimationDuration),
+        showEntranceAnimation && styles.animateEntrance,
         styleOverride,
       ]}
     >

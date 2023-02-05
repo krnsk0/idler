@@ -1,5 +1,8 @@
 import { css } from '@emotion/react';
-import { entranceAnimation } from '../../../globalStyles';
+import {
+  entranceAnimation,
+  entranceAnimationDuration,
+} from '../../../globalStyles';
 
 const titleOffset = '10px';
 
@@ -11,8 +14,8 @@ export const styles = {
     top: ${titleOffset};
     height: calc(100% - ${titleOffset});
   `,
-  animateEntrance: (duration: number) => css`
-    animation: ${entranceAnimation} ${duration}ms ease;
+  animateEntrance: css`
+    animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
   textContainer: css`
     position: absolute;

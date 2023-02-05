@@ -70,7 +70,6 @@ function ActionButton({ action, tooltipPosition }: ActionButtonProps) {
       active={action.active}
       reverseProgressBar={action.reverseProgressBar}
       showEntranceAnimation={action.showEntranceAnimation}
-      entranceAnimationDuration={action.entranceAnimationDuration}
       buttonText={`${action.displayName}${
         action.showNoPowerMessage ? `*` : ''
       }`}
