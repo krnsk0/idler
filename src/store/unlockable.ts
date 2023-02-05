@@ -35,7 +35,6 @@ export abstract class Unlockable extends Model({
 
   /**
    * State for an aniation we see when something first unlocks
-   * i.e. when a colonist fies
    */
   showEntranceAnimation = false;
   entranceAnimationDuration = 300;
