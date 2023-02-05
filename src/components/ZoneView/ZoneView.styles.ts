@@ -29,7 +29,12 @@ export const styles = {
     }
   `,
   zoneColumns: css`
-    border: 3px solid red;
+    height: calc(100vh - 56px);
+    ${mq['desktop']} {
+      height: calc(100vh - 88px);
+    }
+
+    box-sizing: border-box;
     display: flex;
     flex-direction: row;
 
@@ -52,7 +57,8 @@ export const styles = {
     max-width: 480px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
+    align-items: center;
     overflow-y: scroll;
   `,
   tabRow: css`
