@@ -65,7 +65,7 @@ export const styles = {
     display: flex;
   `,
   tooltipContainer: css`
-    padding: 1em;
+    padding: 0.7em 0.6em 0.7em 0.6em;
     font-size: 0.9em;
   `,
 };
