@@ -14,6 +14,11 @@ export abstract class Unlockable extends Model({
    * derived from past history we don't have access to.
    */
   _transientUnlockConditionSatisfied: tProp(types.boolean, false),
+  /**
+   * At what timestamp did this element unlock?
+   * Useful for detemining when entrance animation is done
+   */
+  _unlockTime: tProp(types.maybe(types.number), undefined),
 }) {
   /**
    * Not memoizeable, runs every tick until satisfied.
@@ -37,7 +42,10 @@ export abstract class Unlockable extends Model({
   /**
    * State for an aniation we see when something first unlocks
    */
-  showEntranceAnimation = false;
+  get showEntranceAnimation(): boolean {
+    if (!this._unlockTime) return false;
+    return Date.now() - this._unlockTime < entranceAnimationDuration;
+  }
 
   /**
    * Whether the entity is unlocked and should be e.g. shown to the player
@@ -46,13 +54,6 @@ export abstract class Unlockable extends Model({
   @computed
   get unlocked(): boolean {
     if (!this._observableUnlockCheck) return false;
-
-    if (this._transientUnlockConditionSatisfied) {
-      this.showEntranceAnimation = true;
-      setTimeout(() => {
-        this.showEntranceAnimation = false;
-      }, entranceAnimationDuration);
-    }
 
     return this._transientUnlockConditionSatisfied;
   }
@@ -64,6 +65,10 @@ export abstract class Unlockable extends Model({
   runTransientUnlockCheck(): void {
     if (this.transientUnlockCheck()) {
       this._transientUnlockConditionSatisfied = true;
+
+      if (!this._unlockTime) {
+        this._unlockTime = Date.now();
+      }
     }
   }
 
