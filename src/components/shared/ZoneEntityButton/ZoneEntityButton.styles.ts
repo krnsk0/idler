@@ -22,6 +22,8 @@ export const styles = {
     height: 2em;
     background: none;
     position: relative;
+    word-break: break-word;
+    hyphens: auto;
     &:disabled {
       color: ${colors.mediumdarkgrey};
     }

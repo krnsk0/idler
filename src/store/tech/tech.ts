@@ -29,6 +29,7 @@ import { Unlockable } from '../unlockable';
 import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
 import { Electromagnetism } from './electromagnetism';
+import { getGui, TechName } from '../gui/gui';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -156,6 +157,22 @@ export class Tech extends ExtendedModel(Unlockable, {
       jobs.push(...tech.jobsUnlocked);
     }
     return jobs;
+  }
+
+  /**
+   * Is the button expanded?
+   */
+  @computed
+  get isExpanded(): boolean {
+    return getGui(this).expandedShipColonyButton === TechName;
+  }
+
+  /**
+   * Expand this button
+   */
+  @modelAction
+  expandButton() {
+    getGui(this).setExpandedShipColonyButton(TechName);
   }
 
   /**

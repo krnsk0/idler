@@ -12,7 +12,13 @@ import { getGame } from '../game';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 
-type ShipColonyExpandables = ActionNames | BuildingNames | undefined;
+export const TechName = 'TECH' as const;
+
+type ShipColonyExpandables =
+  | ActionNames
+  | BuildingNames
+  | typeof TechName
+  | undefined;
 
 @model('Gui')
 export class Gui extends Model({
@@ -22,7 +28,13 @@ export class Gui extends Model({
   // use the derivation instead
   _resourcePaneOpen: tProp(types.boolean, true),
   expandedShipColonyButton: tProp(
-    types.maybe(types.or(types.enum(ActionNames), types.enum(BuildingNames))),
+    types.maybe(
+      types.or(
+        types.enum(ActionNames),
+        types.enum(BuildingNames),
+        types.literal(TechName),
+      ),
+    ),
     undefined,
   ),
 }) {

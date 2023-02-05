@@ -8,6 +8,7 @@ export const styles = {
     margin-top: ${largeMargin ? '1.4em' : '0.8em'};
     padding-top: 0.8em;
     position: relative;
+    color: ${colors.mediumdarkgrey};
   `,
   tooltipDividerTextContainer: css`
     position: absolute;

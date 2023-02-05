@@ -67,7 +67,7 @@ function TechButton({}: TechButtonProps) {
               )}
               <TooltipText align={'center'}>
                 {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
-                {formatNumber(selectedTech.powerCost)} power
+                {formatNumber(selectedTech.powerCost, { digits: 0 })} power
               </TooltipText>
               <TooltipDivider />
               <TooltipText align={'center'} italic={true}>
@@ -103,6 +103,8 @@ function TechButton({}: TechButtonProps) {
         }
         return `databanks`;
       })()}
+      isButtonExpanded={root.game.tech.isExpanded}
+      expandButton={() => root.game.tech.expandButton()}
     />
   );
 }
