@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 export const styles = {
   debug: css`
-    z-index: 99;
+    z-index: +1;
     font-size: 0.8em;
     position: absolute;
     top: 0;
