@@ -60,7 +60,9 @@ export class Gui extends Model({
 
   @modelAction
   setExpandedShipColonyButton(name: ShipColonyExpandables) {
-    this.expandedShipColonyButton = name;
+    if (name === this.expandedShipColonyButton) {
+      this.expandedShipColonyButton = undefined;
+    } else this.expandedShipColonyButton = name;
   }
 }
 
