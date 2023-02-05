@@ -75,19 +75,6 @@ function ZoneView({ zone }: ZoneViewProps) {
           </div>
         </div>
       </div>
-      {isMobile && zone.resources.unlocked && (
-        <button
-          css={styles.resourceButton}
-          type="button"
-          onClick={() => gui.toggleResourcePane()}
-        >
-          {gui.isResourcePaneOpen ? (
-            <RxChevronRight css={styles.caret} />
-          ) : (
-            <RxChevronLeft css={styles.caret} />
-          )}
-        </button>
-      )}
       {/* <div css={styles.tabRow}>
         {zone.jobs.unlocked && (
           <>
@@ -109,6 +96,19 @@ function ZoneView({ zone }: ZoneViewProps) {
           </>
         )}
       </div> */}
+      {isMobile && zone.resources.unlocked && (
+        <button
+          css={styles.resourceButton}
+          type="button"
+          onClick={() => gui.toggleResourcePane()}
+        >
+          {gui.isResourcePaneOpen ? (
+            <RxChevronRight css={styles.caret} />
+          ) : (
+            <RxChevronLeft css={styles.caret} />
+          )}
+        </button>
+      )}
     </>
   );
 }

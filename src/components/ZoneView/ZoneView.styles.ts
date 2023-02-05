@@ -4,9 +4,14 @@ import { colors, mq } from '../../globalStyles';
 export const styles = {
   zoneOuter: css`
     background-color: ${colors.white};
-    height: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
   `,
   zoneHeader: css`
+    flex: 0 1 auto;
+
     padding: 1em;
     width: 100%;
 
@@ -24,10 +29,11 @@ export const styles = {
     }
   `,
   zoneColumns: css`
+    border: 3px solid red;
     display: flex;
     flex-direction: row;
-    justify-content: left;
 
+    justify-content: left;
     ${mq['tablet']} {
       justify-content: center;
     }
@@ -37,6 +43,7 @@ export const styles = {
     max-width: 280px;
     flex-grow: 2;
     padding-left: 0.7em;
+    overflow-y: scroll;
   `,
   zoneRight: css`
     flex-grow: 3;
@@ -46,6 +53,7 @@ export const styles = {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    overflow-y: scroll;
   `,
   tabRow: css`
     background: ${colors.white};
