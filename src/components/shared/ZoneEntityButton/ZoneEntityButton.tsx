@@ -112,16 +112,18 @@ const ZoneEntityButton = ({
             +
           </button>
         )}
-        <button
-          css={[styles.smallButton, styles.invisibleOnDesktop]}
-          style={{
-            color: disabled ? colors.mediumdarkgrey : colors.black,
-          }}
-          onClick={expandButton}
-          type="button"
-        >
-          {isButtonExpanded ? <RxChevronDown /> : <RxChevronRight />}
-        </button>
+        {expandButton && (
+          <button
+            css={[styles.smallButton, styles.invisibleOnDesktop]}
+            style={{
+              color: disabled ? colors.mediumdarkgrey : colors.black,
+            }}
+            onClick={expandButton}
+            type="button"
+          >
+            {isButtonExpanded ? <RxChevronDown /> : <RxChevronRight />}
+          </button>
+        )}
       </div>
     </>
   );
