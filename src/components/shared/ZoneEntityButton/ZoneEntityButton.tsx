@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { RxChevronDown, RxChevronRight } from 'react-icons/rx';
 import { colors } from '../../../globalStyles';
-import Tooltip from '../Tooltip/Tooltip';
+import { TooltipDivider } from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 
 interface ZoneEntityButtonProps {
@@ -51,6 +51,8 @@ const ZoneEntityButton = ({
     ? possiblyInvertedProgress * 100 + '%'
     : '0%';
 
+  const showEnablementButtons = enableEntity && disableEntity;
+
   return (
     <div
       css={[
@@ -75,38 +77,40 @@ const ZoneEntityButton = ({
         >
           {buttonText}
         </button>
-        {disableEntity && (
-          <button
-            css={[
-              styles.smallButton(isButtonExpanded),
-              styles.visibleOnDesktop,
-            ]}
-            style={{
-              color: disabled ? colors.mediumdarkgrey : colors.black,
-              cursor: canDisableEntity ? 'pointer' : 'inherit',
-            }}
-            onClick={disableEntity}
-            type="button"
-          >
-            -
-          </button>
+
+        {showEnablementButtons && (
+          <>
+            <button
+              css={[
+                styles.smallButton(isButtonExpanded),
+                styles.visibleOnDesktop,
+              ]}
+              style={{
+                color: disabled ? colors.mediumdarkgrey : colors.black,
+                cursor: canDisableEntity ? 'pointer' : 'inherit',
+              }}
+              onClick={disableEntity}
+              type="button"
+            >
+              -
+            </button>
+            <button
+              css={[
+                styles.smallButton(isButtonExpanded),
+                styles.visibleOnDesktop,
+              ]}
+              style={{
+                color: disabled ? colors.mediumdarkgrey : colors.black,
+                cursor: canEnableEntity ? 'pointer' : 'inherit',
+              }}
+              onClick={enableEntity}
+              type="button"
+            >
+              +
+            </button>
+          </>
         )}
-        {enableEntity && (
-          <button
-            css={[
-              styles.smallButton(isButtonExpanded),
-              styles.visibleOnDesktop,
-            ]}
-            style={{
-              color: disabled ? colors.mediumdarkgrey : colors.black,
-              cursor: canEnableEntity ? 'pointer' : 'inherit',
-            }}
-            onClick={enableEntity}
-            type="button"
-          >
-            +
-          </button>
-        )}
+
         {expandButton && (
           <button
             css={[
@@ -126,12 +130,48 @@ const ZoneEntityButton = ({
       </div>
       {isButtonExpanded && (
         <div
-          css={styles.tooltipContainer}
+          css={[styles.tooltipContainer, styles.invisibleOnDesktop]}
           style={{
             color: disabled ? colors.mediumdarkgrey : colors.black,
           }}
         >
-          <>{tooltip}</>
+          <>
+            {tooltip}
+            {showEnablementButtons && (
+              <>
+                <TooltipDivider text={'activation'} />
+                <div css={styles.tooltipActivationButtons}>
+                  <button
+                    css={styles.tooltipActivationButton}
+                    style={{
+                      cursor: canDisableEntity ? 'pointer' : 'inherit',
+                      color: canDisableEntity
+                        ? colors.black
+                        : colors.mediumdarkgrey,
+                    }}
+                    onClick={disableEntity}
+                    type="button"
+                  >
+                    -
+                  </button>
+
+                  <button
+                    css={styles.tooltipActivationButton}
+                    style={{
+                      cursor: canEnableEntity ? 'pointer' : 'inherit',
+                      color: canEnableEntity
+                        ? colors.black
+                        : colors.mediumdarkgrey,
+                    }}
+                    onClick={enableEntity}
+                    type="button"
+                  >
+                    +
+                  </button>
+                </div>
+              </>
+            )}
+          </>
         </div>
       )}
     </div>

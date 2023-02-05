@@ -40,7 +40,11 @@ export const styles = {
   smallButton: (expanded: boolean | undefined) => css`
     border: none;
     border-left: 1px solid;
+
     border-bottom: ${expanded ? '1px solid' : 'none'};
+    ${mq['hoverableDesktop']} {
+      border-bottom: none;
+    }
     background: none;
     display: flex;
     justify-content: center;
@@ -67,5 +71,18 @@ export const styles = {
   tooltipContainer: css`
     padding: 0.7em 0.6em 0.7em 0.6em;
     font-size: 0.9em;
+  `,
+  tooltipActivationButtons: css`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+  `,
+  tooltipActivationButton: css`
+    background: none;
+    border: 1px solid;
+    width: 3em;
+    height: 1.5em;
+    font-size: 1.2em;
   `,
 };

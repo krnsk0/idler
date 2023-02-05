@@ -58,7 +58,6 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
           );
         })}
       </TooltipText>
-      <TooltipDivider />
     </>
   );
 };
