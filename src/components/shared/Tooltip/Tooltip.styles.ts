@@ -2,18 +2,6 @@ import { css } from '@emotion/react';
 import { colors } from '../../../globalStyles';
 
 export const styles = {
-  tooltipOuter: (top: number, left: number, width: number) => css`
-    border: 1px solid black;
-    padding: 0.4em 0.4em 0.4em 0.4em;
-    position: fixed;
-    width: ${width}px;
-    left: ${left}px;
-    top: ${top}px;
-    background-color: ${colors.white};
-    z-index: +1;
-    font-size: 1em;
-  `,
-
   tooltipDivider: (largeMargin: boolean) => css`
     border-top: 1px solid;
     width: 100%;

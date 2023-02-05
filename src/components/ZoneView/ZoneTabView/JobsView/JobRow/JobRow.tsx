@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
-import Tooltip, {
+import {
   TooltipDivider,
   TooltipText,
 } from '../../../../shared/Tooltip/Tooltip';
@@ -18,8 +18,7 @@ const JobRow = ({ job }: JobRowProps) => {
 
   return (
     <div css={styles.jobRowContainer} ref={containerRef}>
-      <Tooltip containerRef={containerRef} position="RIGHT" width={200}>
-        <TooltipText italic={true} align={'center'}>
+      {/* <TooltipText italic={true} align={'center'}>
           {job.description}
         </TooltipText>
         <TooltipDivider text="effects" />
@@ -34,9 +33,7 @@ const JobRow = ({ job }: JobRowProps) => {
               );
             },
           )}
-        </TooltipText>
-      </Tooltip>
-
+        </TooltipText> */}
       <div css={styles.name}>{job.displayName}</div>
       <div css={styles.workers}>{job.quantity}</div>
       <div css={styles.buttons}>

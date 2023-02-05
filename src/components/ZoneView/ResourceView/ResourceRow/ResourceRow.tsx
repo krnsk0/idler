@@ -3,10 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { BaseResource } from '../../../../store/zone/resources/baseResource';
 import { formatNumber } from '../../../../utils/formatNumber';
-import Tooltip, {
-  TooltipDivider,
-  TooltipText,
-} from '../../../shared/Tooltip/Tooltip';
+import { TooltipDivider, TooltipText } from '../../../shared/Tooltip/Tooltip';
 import { styles } from './ResourceRow.styles';
 
 interface ResourceRowProps {
@@ -94,8 +91,8 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         )}
         <ResourceCap currentCap={resource.currentCap} />
       </div>
-      <Tooltip containerRef={containerRef} position="BOTTOM" width={240}>
-        <TooltipText align={'center'} italic={true}>
+
+      {/* <TooltipText align={'center'} italic={true}>
           {resource.displayName}
         </TooltipText>
         {!!resource.consumptionSummary.length && (
@@ -176,8 +173,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
               })}
             </TooltipText>
           </>
-        )}
-      </Tooltip>
+        )} */}
     </div>
   );
 };
