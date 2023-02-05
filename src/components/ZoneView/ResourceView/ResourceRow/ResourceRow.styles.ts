@@ -39,13 +39,13 @@ export const styles = {
   `,
   smallScreenOnly: css`
     display: inherit;
-    ${mq['desktop']} {
+    ${mq['tablet']} {
       display: none;
     }
   `,
   largeScreenOnly: css`
     display: none;
-    ${mq['desktop']} {
+    ${mq['tablet']} {
       display: inherit;
     }
   `,
@@ -54,7 +54,7 @@ export const styles = {
   quantityPerSecond: css`
     color: ${colors.grey};
     margin-left: 0em;
-    ${mq['desktop']} {
+    ${mq['tablet']} {
       margin-left: 1em;
     }
   `,

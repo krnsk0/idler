@@ -44,9 +44,11 @@ export const styles = {
   zoneLeft: css`
     min-width: 140px;
     max-width: 280px;
-    flex-grow: 2;
     padding-left: 0.7em;
     overflow-y: scroll;
+    ${mq['tablet']} {
+      width: 280px;
+    }
   `,
   zoneRight: css`
     flex-grow: 3;
