@@ -117,6 +117,7 @@ const ZoneEntityButton = ({
             ]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,
+              cursor: 'pointer',
             }}
             onClick={expandButton}
             type="button"
@@ -128,7 +129,9 @@ const ZoneEntityButton = ({
       {isButtonExpanded && (
         <div
           css={styles.tooltipContainer}
-          style={{ color: disabled ? colors.mediumdarkgrey : colors.black }}
+          style={{
+            color: disabled ? colors.mediumdarkgrey : colors.black,
+          }}
         >
           {tooltip}
         </div>

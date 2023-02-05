@@ -42,12 +42,15 @@ export const styles = {
     }
   `,
   zoneLeft: css`
+    width: 140px;
     min-width: 140px;
-    max-width: 280px;
+    max-width: 140px;
     padding-left: 0.7em;
     overflow-y: scroll;
     ${mq['tablet']} {
       width: 280px;
+      min-width: 280px;
+      max-width: 280px;
     }
   `,
   zoneRight: css`
