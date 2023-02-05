@@ -54,7 +54,7 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
       tooltip={
         <>
           {noTechAvailable && (
-            <TooltipText italic={true} align={'center'} light={true}>
+            <TooltipText italic={true} align={'center'}>
               the ship sleeps
             </TooltipText>
           )}
@@ -79,7 +79,7 @@ function TechButton({ tooltipPosition }: TechButtonProps) {
             </>
           )}
           {!selectedTech && !noTechAvailable && (
-            <TooltipText italic={true} align={'center'} light={true}>
+            <TooltipText italic={true} align={'center'}>
               to what end should ship turn its contemplation?
             </TooltipText>
           )}

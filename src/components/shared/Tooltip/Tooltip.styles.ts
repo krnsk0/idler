@@ -15,7 +15,7 @@ export const styles = {
   `,
 
   tooltipDivider: (largeMargin: boolean) => css`
-    border-top: 1px solid ${colors.darkgrey};
+    border-top: 1px solid;
     width: 100%;
     margin-top: ${largeMargin ? '1.4em' : '0.8em'};
     padding-top: 0.8em;
@@ -28,18 +28,15 @@ export const styles = {
     width: 100%;
   `,
   tooltipDividerText: css`
-    color: ${colors.darkgrey};
     background-color: ${colors.white};
     padding: 0em 0.4em 0em 0.4em;
   `,
   tooltipText: (
     italic: boolean | undefined,
-    light: boolean | undefined,
     align: 'left' | 'center' | 'right' | undefined,
   ) => css`
     width: 100%;
     text-align: ${!align ? 'left' : align};
-    color: ${!light ? 'inherit' : colors.darkgrey};
     font-style: ${!italic ? 'inherit' : 'italic'};
   `,
 };

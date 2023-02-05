@@ -95,7 +95,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         <ResourceCap currentCap={resource.currentCap} />
       </div>
       <Tooltip containerRef={containerRef} position="BOTTOM" width={240}>
-        <TooltipText light={true} align={'center'} italic={true}>
+        <TooltipText align={'center'} italic={true}>
           {resource.displayName}
         </TooltipText>
         {!!resource.consumptionSummary.length && (

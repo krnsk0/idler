@@ -13,7 +13,7 @@ interface BuildingTooltipProps {
 const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
   return (
     <>
-      <TooltipText italic={true} align={'center'} light={true}>
+      <TooltipText italic={true} align={'center'}>
         {building.description}
       </TooltipText>
       <TooltipDivider text={'cost'} />
@@ -38,7 +38,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
         )}
       </TooltipText>
       <TooltipDivider text={'effects'} />
-      <TooltipText light={false}>
+      <TooltipText>
         {building.displayEffects.map(
           ({ resourceDisplayName, quantityPerSecond }) => {
             return (
@@ -59,7 +59,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
         })}
       </TooltipText>
       <TooltipDivider />
-      <TooltipText light={true} align={'right'} italic={true}>
+      <TooltipText align={'right'} italic={true}>
         {building.splashText}
       </TooltipText>
     </>

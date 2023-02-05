@@ -7,12 +7,11 @@ import {
 } from '../../../globalStyles';
 
 export const styles = {
-  buttonOuterContainer: css`
+  buttonOuterContainer: (expanded: boolean | undefined) => css`
     width: 85%;
-    height: 2em;
-    position: relative;
-    display: flex;
+    height: ${expanded ? 'inherit' : '2em'};
     border: 1px solid;
+    position: relative;
   `,
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
@@ -20,7 +19,7 @@ export const styles = {
   button: css`
     border: none;
     width: 100%;
-    height: 100%;
+    height: 2em;
     background: none;
     position: relative;
     &:disabled {
@@ -34,19 +33,21 @@ export const styles = {
   `,
   progressBar: css`
     position: absolute;
-    height: 100%;
+    height: 2em;
     width: 100%;
     background-color: ${colors.mediumgrey};
   `,
-  smallButton: css`
+  smallButton: (expanded: boolean | undefined) => css`
     border: none;
     border-left: 1px solid;
+    border-bottom: ${expanded ? '1px solid' : 'none'};
     background: none;
     display: flex;
     justify-content: center;
     align-items: center;
     min-width: 2em;
     width: 2em;
+    height: 2em;
   `,
   invisibleOnDesktop: css`
     ${mq['hoverableDesktop']} {
@@ -59,4 +60,9 @@ export const styles = {
       display: flex;
     }
   `,
+  buttonInner: css`
+    position: relative;
+    display: flex;
+  `,
+  tooltipContainer: css``,
 };

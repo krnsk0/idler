@@ -54,26 +54,17 @@ const ZoneEntityButton = ({
     : '0%';
 
   return (
-    <>
-      {tooltip && (
-        <Tooltip
-          containerRef={containerRef}
-          position={tooltipPosition}
-          width={200}
-        >
-          {tooltip}
-        </Tooltip>
-      )}
-
-      <div
-        css={[
-          styles.buttonOuterContainer,
-          showEntranceAnimation && styles.animateEntrance,
-          styleOverride,
-        ]}
-        style={{ borderColor: !disabled ? colors.black : colors.grey }}
-        ref={containerRef}
-      >
+    <div
+      css={[
+        styles.buttonOuterContainer(isButtonExpanded),
+        showEntranceAnimation && styles.animateEntrance,
+        styleOverride,
+      ]}
+      style={{ borderColor: !disabled ? colors.black : colors.grey }}
+      ref={containerRef}
+      data-test-id={`button-outer`}
+    >
+      <div css={styles.buttonInner} data-test-id={`button-inner`}>
         <div css={styles.progressBar} style={{ width: progressWidth }} />
         <button
           css={styles.button}
@@ -88,7 +79,10 @@ const ZoneEntityButton = ({
         </button>
         {disableEntity && (
           <button
-            css={[styles.smallButton, styles.visibleOnDesktop]}
+            css={[
+              styles.smallButton(isButtonExpanded),
+              styles.visibleOnDesktop,
+            ]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,
               cursor: canDisableEntity ? 'pointer' : 'inherit',
@@ -101,7 +95,10 @@ const ZoneEntityButton = ({
         )}
         {enableEntity && (
           <button
-            css={[styles.smallButton, styles.visibleOnDesktop]}
+            css={[
+              styles.smallButton(isButtonExpanded),
+              styles.visibleOnDesktop,
+            ]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,
               cursor: canEnableEntity ? 'pointer' : 'inherit',
@@ -114,7 +111,10 @@ const ZoneEntityButton = ({
         )}
         {expandButton && (
           <button
-            css={[styles.smallButton, styles.invisibleOnDesktop]}
+            css={[
+              styles.smallButton(isButtonExpanded),
+              styles.invisibleOnDesktop,
+            ]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,
             }}
@@ -125,7 +125,15 @@ const ZoneEntityButton = ({
           </button>
         )}
       </div>
-    </>
+      {isButtonExpanded && (
+        <div
+          css={styles.tooltipContainer}
+          style={{ color: disabled ? colors.mediumdarkgrey : colors.black }}
+        >
+          {tooltip}
+        </div>
+      )}
+    </div>
   );
 };
 

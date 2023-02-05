@@ -102,13 +102,12 @@ export default Tooltip;
 interface TooltipText {
   children: React.ReactNode;
   italic?: boolean;
-  light?: boolean;
   align?: 'left' | 'center' | 'right';
 }
 
 export const TooltipText = observer(
-  ({ children, italic, light, align }: TooltipText) => {
-    return <div css={styles.tooltipText(italic, light, align)}>{children}</div>;
+  ({ children, italic, align }: TooltipText) => {
+    return <div css={styles.tooltipText(italic, align)}>{children}</div>;
   },
 );
 

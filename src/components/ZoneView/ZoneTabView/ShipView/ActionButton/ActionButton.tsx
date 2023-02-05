@@ -28,7 +28,7 @@ function ActionButton({ action, tooltipPosition }: ActionButtonProps) {
             </>
           )}
 
-          <TooltipText italic={true} align={'center'} light={true}>
+          <TooltipText italic={true} align={'center'}>
             {action.description}
           </TooltipText>
           <TooltipDivider text="cost" />
