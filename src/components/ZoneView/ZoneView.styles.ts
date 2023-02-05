@@ -53,7 +53,7 @@ export const styles = {
   zoneRight: css`
     flex-grow: 3;
     background-color: ${colors.white};
-    min-width: 230px;
+    min-width: 200px;
     max-width: 480px;
     display: flex;
     flex-direction: column;
