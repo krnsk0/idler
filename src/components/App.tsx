@@ -7,7 +7,7 @@ import TechModal from './TechModal/TechModal';
 import { useLocalSave } from './useLocalSave';
 import { useLocalLoad } from './useLocalLoad';
 import OptionsModal from './OptionsModal/OptionsModal';
-import Topbar from './Topbar/Topbar';
+import OptionsButton from './OptionsButton/OptionsButton';
 
 function App() {
   const root = useStore();
@@ -19,7 +19,7 @@ function App() {
   return (
     <>
       <DebugView />
-      <Topbar />
+      <OptionsButton />
       {selectedZone && <ZoneView zone={selectedZone} />}
       <TechModal />
       <OptionsModal />

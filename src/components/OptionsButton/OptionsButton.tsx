@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useStore } from '../../store/Provider';
-import { styles } from './Topbar.styles';
+import { styles } from './OptionsButton.styles';
 
-const Topbar = () => {
+const OptionsButton = () => {
   const root = useStore();
   return (
     <div css={styles.topbarContainer}>
@@ -18,4 +18,4 @@ const Topbar = () => {
   );
 };
 
-export default observer(Topbar);
+export default observer(OptionsButton);

@@ -4,11 +4,13 @@ export const styles = {
   topbarContainer: css`
     position: absolute;
     top: 0;
+    right: 0;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     width: 100%;
     height: 3.5em;
+    width: 6em;
   `,
   button: css`
     background: none;
