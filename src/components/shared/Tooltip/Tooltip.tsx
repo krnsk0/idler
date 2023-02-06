@@ -1,6 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useStore } from '../../../store/Provider';
 import { styles } from './Tooltip.styles';
 
 export const TooltipContainerId = 'tooltip-container';
@@ -13,6 +14,10 @@ interface TooltipPortalRendererProps {
 export const TooltipPortalRenderer = observer(
   ({ children, containerRef }: TooltipPortalRendererProps) => {
     const [isHovered, setIsHovered] = useState(false);
+
+    const {
+      gui: { areSideTooltipsVisible },
+    } = useStore();
 
     useEffect(() => {
       const openTooltip = () => setIsHovered(true);
@@ -31,7 +36,7 @@ export const TooltipPortalRenderer = observer(
     }, []);
 
     const el = document.getElementById(TooltipContainerId);
-    if (el && isHovered) {
+    if (el && isHovered && areSideTooltipsVisible) {
       return createPortal(children, el);
     } else return null;
   },
