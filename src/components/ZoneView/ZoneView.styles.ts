@@ -63,8 +63,6 @@ export const styles = {
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
-      min-width: 300px;
-    }
   `,
   zoneRight: css`
     display: none;
@@ -73,6 +71,8 @@ export const styles = {
       width: 280px;
       min-width: 280px;
       max-width: 280px;
+      flex-direction: column;
+      padding: 1em;
     }
   `,
   tabRow: css`

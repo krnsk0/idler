@@ -8,6 +8,7 @@ import JobsView from './ZoneTabView/JobsView/JobsView';
 import { useMediaQuery } from '../shared/useMediaQuery';
 import { useStore } from '../../store/Provider';
 import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
+import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -74,9 +75,7 @@ function ZoneView({ zone }: ZoneViewProps) {
               }
             })()}
           </div>
-          <div css={styles.zoneRight} id="zone-right">
-            right column
-          </div>
+          <div css={styles.zoneRight} id={TooltipContainerId}></div>
         </div>
       </div>
       {/* <div css={styles.tabRow}>
