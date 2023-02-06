@@ -11,6 +11,7 @@ import { Root } from '../root';
 import { getGame } from '../game';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
+import { ResourceNames } from '../zone/resources/resourceNames';
 
 export const TechName = 'TECH' as const;
 
@@ -68,6 +69,14 @@ export class Gui extends Model({
     const selectedZone = getGame(this).selectedZone;
     const resourcesUnlocked = selectedZone?.resources.unlocked ?? false;
     return resourcesUnlocked && this._resourcePaneOpen;
+  }
+
+  @computed
+  get areSideTooltipsVisible(): boolean {
+    return (
+      getGame(this).selectedZone?.resources[ResourceNames.BIOMASS].unlocked ??
+      false
+    );
   }
 
   @modelAction
