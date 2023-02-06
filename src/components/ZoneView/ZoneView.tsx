@@ -48,10 +48,9 @@ function ZoneView({ zone }: ZoneViewProps) {
     ZoneTabNames.ACTIONS,
   );
 
-  const { isTablet, isMobile } = useMediaQuery();
+  const { isDesktop, isMobile } = useMediaQuery();
 
-  const isResourcePaneOpen =
-    zone.resources.unlocked && (isTablet || gui.isResourcePaneOpen);
+  const isResourcePaneOpen = isDesktop || gui.isResourcePaneOpen;
 
   return (
     <>
