@@ -79,6 +79,14 @@ export class Gui extends Model({
     );
   }
 
+  showSideTooltipsEntranceAnimtion(): boolean {
+    return (
+      getGame(this).selectedZone?.resources[
+        ResourceNames.BIOMASS
+      ].showEntranceAnimation() ?? false
+    );
+  }
+
   @modelAction
   setExpandedShipColonyButton(name: ShipColonyExpandables) {
     if (name === this.expandedShipColonyButton) {

@@ -18,7 +18,7 @@ function ShipColonyView({ zone }: ShipViewProps) {
         <Divider
           text={'crashed ship'}
           shown={zone.buildings.unlocked}
-          showEntranceAnimation={zone.buildings.showEntranceAnimation}
+          showEntranceAnimation={zone.buildings.showEntranceAnimation()}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           <ActionButton action={zone.actions[ActionNames.HARVEST]} />
@@ -33,7 +33,7 @@ function ShipColonyView({ zone }: ShipViewProps) {
         <Divider
           text={'outpost'}
           shown={zone.buildings.unlocked}
-          showEntranceAnimation={zone.buildings.showEntranceAnimation}
+          showEntranceAnimation={zone.buildings.showEntranceAnimation()}
         />
         <div css={styles.shipColumnWrap} id="ship-column-wrap">
           {zone.buildings.asArray.map((building, index) => {

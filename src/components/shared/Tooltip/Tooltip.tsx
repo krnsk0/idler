@@ -15,9 +15,7 @@ export const TooltipPortalRenderer = observer(
   ({ children, containerRef }: TooltipPortalRendererProps) => {
     const [isHovered, setIsHovered] = useState(false);
 
-    const {
-      gui: { areSideTooltipsVisible },
-    } = useStore();
+    const { gui } = useStore();
 
     useEffect(() => {
       const openTooltip = () => setIsHovered(true);
@@ -36,8 +34,17 @@ export const TooltipPortalRenderer = observer(
     }, []);
 
     const el = document.getElementById(TooltipContainerId);
-    if (el && isHovered && areSideTooltipsVisible) {
-      return createPortal(children, el);
+    if (el && isHovered && gui.areSideTooltipsVisible) {
+      return createPortal(
+        <div
+          css={[
+            gui.showSideTooltipsEntranceAnimtion() && styles.animateEntrance,
+          ]}
+        >
+          {children}
+        </div>,
+        el,
+      );
     } else return null;
   },
 );

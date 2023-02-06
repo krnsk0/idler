@@ -1,5 +1,9 @@
 import { css } from '@emotion/react';
-import { colors } from '../../../globalStyles';
+import {
+  colors,
+  entranceAnimation,
+  entranceAnimationDuration,
+} from '../../../globalStyles';
 
 export const styles = {
   tooltipDivider: (largeMargin: boolean) => css`
@@ -9,6 +13,9 @@ export const styles = {
     padding-top: 0.8em;
     position: relative;
     color: ${colors.mediumdarkgrey};
+  `,
+  animateEntrance: css`
+    animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
   tooltipDividerTextContainer: css`
     position: absolute;

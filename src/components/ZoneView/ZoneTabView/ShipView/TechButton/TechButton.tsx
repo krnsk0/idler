@@ -87,7 +87,7 @@ function TechButton({}: TechButtonProps) {
       }}
       progress={selectedTech?.progress ?? 0}
       disabled={noTechAvailable}
-      showEntranceAnimation={root.game.tech.showEntranceAnimation}
+      showEntranceAnimation={root.game.tech.showEntranceAnimation()}
       buttonText={(() => {
         if (selectedTech) {
           return `${selectedTech.displayName}${

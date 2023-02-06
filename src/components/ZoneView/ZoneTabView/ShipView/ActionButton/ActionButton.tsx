@@ -67,7 +67,7 @@ function ActionButton({ action }: ActionButtonProps) {
       disabled={!action.enabled}
       active={action.active}
       reverseProgressBar={action.reverseProgressBar}
-      showEntranceAnimation={action.showEntranceAnimation}
+      showEntranceAnimation={action.showEntranceAnimation()}
       buttonText={`${action.displayName}${
         action.showNoPowerMessage ? `*` : ''
       }`}

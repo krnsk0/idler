@@ -42,8 +42,9 @@ export abstract class Unlockable extends Model({
   /**
    * State for an aniation we see when something first unlocks
    */
-  get showEntranceAnimation(): boolean {
+  showEntranceAnimation(): boolean {
     if (!this._unlockTime) return false;
+
     return Date.now() - this._unlockTime < entranceAnimationDuration;
   }
 
