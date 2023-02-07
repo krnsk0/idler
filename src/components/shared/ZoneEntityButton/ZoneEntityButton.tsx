@@ -1,9 +1,10 @@
 import { SerializedStyles } from '@emotion/react';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { RxChevronDown, RxChevronRight } from 'react-icons/rx';
 import { colors } from '../../../globalStyles';
+import { useStore } from '../../../store/Provider';
 import { TooltipDivider, TooltipPortalRenderer } from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 
@@ -52,6 +53,8 @@ const ZoneEntityButton = ({
     : '0%';
 
   const showEnablementButtons = enableEntity && disableEntity;
+
+  const { gui } = useStore();
 
   return (
     <>
@@ -114,12 +117,12 @@ const ZoneEntityButton = ({
               </button>
             </>
           )}
-
-          {expandButton && (
+          {expandButton && gui.areTooltipsVisible && (
             <button
               css={[
                 styles.smallButton(isButtonExpanded),
                 styles.invisibleOnDesktop,
+                gui.showTooltipEntranceAnimation() && styles.animateEntrance,
               ]}
               style={{
                 color: disabled ? colors.mediumdarkgrey : colors.black,
@@ -132,7 +135,7 @@ const ZoneEntityButton = ({
             </button>
           )}
         </div>
-        {isButtonExpanded && (
+        {isButtonExpanded && gui.areTooltipsVisible && (
           <div
             css={[styles.tooltipContainer, styles.invisibleOnDesktop]}
             style={{

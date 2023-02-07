@@ -72,14 +72,14 @@ export class Gui extends Model({
   }
 
   @computed
-  get areSideTooltipsVisible(): boolean {
+  get areTooltipsVisible(): boolean {
     return (
       getGame(this).selectedZone?.resources[ResourceNames.BIOMASS].unlocked ??
       false
     );
   }
 
-  showSideTooltipsEntranceAnimtion(): boolean {
+  showTooltipEntranceAnimation(): boolean {
     return (
       getGame(this).selectedZone?.resources[
         ResourceNames.BIOMASS

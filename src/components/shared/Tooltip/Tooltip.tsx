@@ -34,12 +34,10 @@ export const TooltipPortalRenderer = observer(
     }, []);
 
     const el = document.getElementById(TooltipContainerId);
-    if (el && isHovered && gui.areSideTooltipsVisible) {
+    if (el && isHovered && gui.areTooltipsVisible) {
       return createPortal(
         <div
-          css={[
-            gui.showSideTooltipsEntranceAnimtion() && styles.animateEntrance,
-          ]}
+          css={[gui.showTooltipEntranceAnimation() && styles.animateEntrance]}
         >
           {children}
         </div>,
