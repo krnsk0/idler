@@ -62,7 +62,14 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={containerRef} css={styles.resourceRowOuter} key={resource.name}>
+    <div
+      ref={containerRef}
+      css={[
+        styles.resourceRowOuter,
+        resource.showEntranceAnimation() && styles.animateEntrance,
+      ]}
+      key={resource.name}
+    >
       <div css={styles.resourceRowTop}>
         <span css={styles.displayName}>{resource.displayName}</span>
         {resource.estimatedRate !== null && (

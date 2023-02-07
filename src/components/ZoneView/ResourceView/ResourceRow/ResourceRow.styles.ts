@@ -1,5 +1,10 @@
 import { css, keyframes } from '@emotion/react';
-import { colors, mq } from '../../../../globalStyles';
+import {
+  colors,
+  entranceAnimation,
+  entranceAnimationDuration,
+  mq,
+} from '../../../../globalStyles';
 
 const flash = keyframes`
   0% {
@@ -67,5 +72,8 @@ export const styles = {
   tooltipRow: css`
     display: flex;
     justify-content: space-between;
+  `,
+  animateEntrance: css`
+    animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
 };
