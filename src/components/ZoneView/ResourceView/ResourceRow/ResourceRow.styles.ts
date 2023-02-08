@@ -58,9 +58,11 @@ export const styles = {
   quantity: css``,
   quantityPerSecond: css`
     color: ${colors.grey};
-    margin-left: 0em;
     ${mq['tablet']} {
-      margin-left: 1em;
+      margin-right: 1em;
+      display: flex;
+      justify-content: flex-end;
+      width: 6em;
     }
   `,
   cap: css`

@@ -5,7 +5,7 @@ import { ResourceNames } from './resourceNames';
 @model(ResourceNames.COLONISTS)
 export class Colonists extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.COLONISTS;
-  displayName = 'colonist';
+  displayName = 'colonists';
   initialCap = 0;
 
   /**
