@@ -21,9 +21,14 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
         <BorderContainer
           title="power"
           rightText={
-            satisfaction > 0 && satisfaction < 1
-              ? `satisfaction: ${satisfactionPercentage}%`
-              : ``
+            satisfaction > 0 && satisfaction < 1 ? (
+              <span>
+                <span css={styles.tabletOnly}>satisfaction </span>
+                <span>{satisfactionPercentage}%</span>
+              </span>
+            ) : (
+              ''
+            )
           }
           styleOverride={styles.powerContainer}
           showEntranceAnimation={zone.power.showEntranceAnimation()}

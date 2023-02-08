@@ -36,4 +36,10 @@ export const styles = {
       font-size: 1em;
     }
   `,
+  tabletOnly: css`
+    display: none;
+    ${mq['tablet']} {
+      display: inherit;
+    }
+  `,
 };

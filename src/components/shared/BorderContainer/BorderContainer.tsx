@@ -5,7 +5,7 @@ interface BorderContainerProps {
   title: string;
   children: React.ReactNode;
   styleOverride?: SerializedStyles;
-  rightText?: string;
+  rightText?: React.ReactNode | string | undefined;
   showEntranceAnimation: boolean;
 }
 
