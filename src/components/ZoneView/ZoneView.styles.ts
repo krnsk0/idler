@@ -75,7 +75,7 @@ export const styles = {
       min-width: 280px;
       max-width: 280px;
       flex-direction: column;
-      padding: 1em 1em 1em 0em;
+      padding: 1em 1em 1em 1em;
     }
   `,
   tabRow: css`
