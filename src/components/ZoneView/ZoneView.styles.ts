@@ -56,17 +56,12 @@ export const styles = {
     flex-grow: 3;
     background-color: ${colors.white};
     min-width: 200px;
-    max-width: 522px;
+    max-width: 425px;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
-
-    ${mq['hoverableDesktop']} {
-      padding-left: 3em;
-      padding-right: 3em;
-    }
   `,
   zoneRight: css`
     display: none;
