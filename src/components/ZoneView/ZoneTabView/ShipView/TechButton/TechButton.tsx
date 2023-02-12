@@ -10,12 +10,65 @@ import {
 } from '../../../../shared/Tooltip/Tooltip';
 import { formatNumber } from '../../../../../utils/formatNumber';
 
-interface TechButtonProps {}
+interface TechButtonTooltipProps {
+  noTechAvailable: boolean;
+  selectedTech: BaseTech | undefined;
+  blackout: boolean;
+}
 
-function TechButton({}: TechButtonProps) {
+const TechButtonTooltip = observer(
+  ({ noTechAvailable, selectedTech, blackout }: TechButtonTooltipProps) => {
+    return (
+      <>
+        <>
+          <TooltipText align={'center'}>databanks</TooltipText>
+          <TooltipDivider />
+        </>
+        {noTechAvailable && (
+          <TooltipText italic={true} align={'center'}>
+            the ship sleeps
+          </TooltipText>
+        )}
+        {selectedTech && (
+          <>
+            <TooltipText
+              align={'center'}
+              italic={true}
+              largeBottomMargin={true}
+            >
+              click to change research target
+            </TooltipText>
+
+            <TooltipText align={'center'}>
+              {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
+              {formatNumber(selectedTech.powerCost, { digits: 0 })} power
+            </TooltipText>
+
+            {blackout && (
+              <>
+                <TooltipDivider />
+                <TooltipText align={'center'}>
+                  *no power, progress stalled
+                </TooltipText>
+              </>
+            )}
+          </>
+        )}
+        {!selectedTech && !noTechAvailable && (
+          <TooltipText italic={true} align={'center'}>
+            to what end should ship turn its contemplation?
+          </TooltipText>
+        )}
+      </>
+    );
+  },
+);
+
+function TechButton({}: {}) {
   const root = useStore();
   const selectedTech = root.game.tech.selectedTech;
   const noTechAvailable = root.game.tech.noTechAvailable;
+  const blackout = root.game.initialZone.power.blackout;
   const [didJustFinishResearch, setDidJustFinishResearch] = useState(false);
 
   /**
@@ -49,47 +102,11 @@ function TechButton({}: TechButtonProps) {
   return (
     <ZoneEntityButton
       tooltip={
-        <>
-          <>
-            <TooltipText align={'center'}>databanks</TooltipText>
-            <TooltipDivider />
-          </>
-          {noTechAvailable && (
-            <TooltipText italic={true} align={'center'}>
-              the ship sleeps
-            </TooltipText>
-          )}
-          {selectedTech && (
-            <>
-              <TooltipText
-                align={'center'}
-                italic={true}
-                largeBottomMargin={true}
-              >
-                click to change research target
-              </TooltipText>
-
-              <TooltipText align={'center'}>
-                {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
-                {formatNumber(selectedTech.powerCost, { digits: 0 })} power
-              </TooltipText>
-
-              {root.game.initialZone.power.blackout && (
-                <>
-                  <TooltipDivider />
-                  <TooltipText align={'center'}>
-                    *no power, progress stalled
-                  </TooltipText>
-                </>
-              )}
-            </>
-          )}
-          {!selectedTech && !noTechAvailable && (
-            <TooltipText italic={true} align={'center'}>
-              to what end should ship turn its contemplation?
-            </TooltipText>
-          )}
-        </>
+        <TechButtonTooltip
+          noTechAvailable={noTechAvailable}
+          selectedTech={selectedTech}
+          blackout={blackout}
+        />
       }
       onClick={() => {
         root.gui.openTechModal();
