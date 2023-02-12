@@ -8,7 +8,7 @@ export const styles = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 1em;
+    margin-bottom: 2em;
     width: 100%;
   `,
   shipColumnWrap: css`
@@ -19,7 +19,7 @@ export const styles = {
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    gap: 0.6em;
+    gap: 0.5em;
 
     ${mq['hoverableDesktop']} {
       flex-direction: row;
