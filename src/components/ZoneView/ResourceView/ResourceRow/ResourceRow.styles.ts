@@ -85,8 +85,13 @@ export const styles = {
   `,
   expandedResourceTooltip: css`
     color: ${colors.grey};
-    font-size: 0.9em;
+    font-size: 0.8em;
     padding: 0 0.2em 0.2em;
     margin-bottom: 0.4em;
+  `,
+  tooltipLeftText: css``,
+  tooltipRightText: css`
+    display: flex;
+    align-items: end;
   `,
 };

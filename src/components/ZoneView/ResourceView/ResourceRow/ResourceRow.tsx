@@ -85,11 +85,11 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
                   key={entry.producerConsumerDisplayName}
                   css={styles.tooltipRow}
                 >
-                  <span>
+                  <span css={styles.tooltipLeftText}>
                     {entry.producerConsumerQuantity}x{' '}
                     {entry.producerConsumerDisplayName}
                   </span>
-                  <span>
+                  <span css={styles.tooltipRightText}>
                     {formatNumber(-entry.resourceQuantityPerSecond, {
                       showSign: true,
                     })}
@@ -111,11 +111,11 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
                   key={entry.producerConsumerDisplayName}
                   css={styles.tooltipRow}
                 >
-                  <span>
+                  <span css={styles.tooltipLeftText}>
                     {entry.producerConsumerQuantity}x{' '}
                     {entry.producerConsumerDisplayName}
                   </span>
-                  <span>
+                  <span css={styles.tooltipRightText}>
                     {formatNumber(entry.resourceQuantityPerSecond, {
                       showSign: true,
                     })}
@@ -137,13 +137,13 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
                   key={entry.storageProviderDisplayName}
                   css={styles.tooltipRow}
                 >
-                  <span>
+                  <span css={styles.tooltipLeftText}>
                     {entry.storageProviderQuantity
                       ? `${entry.storageProviderQuantity}x `
                       : ``}
                     {entry.storageProviderDisplayName}
                   </span>
-                  <span>
+                  <span css={styles.tooltipRightText}>
                     {formatNumber(entry.storage, {
                       digits: 0,
                     })}
