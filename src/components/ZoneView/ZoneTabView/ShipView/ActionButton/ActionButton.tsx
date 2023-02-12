@@ -4,6 +4,7 @@ import { BaseAction } from '../../../../../store/zone/actions/baseAction';
 import {
   TooltipText,
   TooltipDivider,
+  DesktopTooltipTitle,
 } from '../../../../shared/Tooltip/Tooltip';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 
@@ -17,8 +18,10 @@ function ActionButton({ action }: ActionButtonProps) {
     <ZoneEntityButton
       tooltip={
         <>
-          <TooltipText align={'center'}>{action.displayName}</TooltipText>
-          <TooltipDivider />
+          <DesktopTooltipTitle showDivider={true}>
+            {action.displayName}
+          </DesktopTooltipTitle>
+
           <TooltipText italic={true} align={'center'}>
             {action.description}
           </TooltipText>

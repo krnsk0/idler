@@ -5,6 +5,7 @@ import { useStore } from '../../../../../store/Provider';
 import ZoneEntityButton from '../../../../shared/ZoneEntityButton/ZoneEntityButton';
 import { BaseTech } from '../../../../../store/tech/baseTech';
 import {
+  DesktopTooltipTitle,
   TooltipDivider,
   TooltipText,
 } from '../../../../shared/Tooltip/Tooltip';
@@ -20,10 +21,7 @@ const TechButtonTooltip = observer(
   ({ noTechAvailable, selectedTech, blackout }: TechButtonTooltipProps) => {
     return (
       <>
-        <>
-          <TooltipText align={'center'}>databanks</TooltipText>
-          <TooltipDivider />
-        </>
+        <DesktopTooltipTitle showDivider={true}>databanks</DesktopTooltipTitle>
         {noTechAvailable && (
           <TooltipText italic={true} align={'center'}>
             the ship sleeps

@@ -64,6 +64,22 @@ export const TooltipText = observer(
   },
 );
 
+interface DesktopTooltipTitleProps {
+  children: React.ReactNode;
+  showDivider?: boolean;
+}
+
+export const DesktopTooltipTitle = observer(
+  ({ children, showDivider }: DesktopTooltipTitleProps) => {
+    return (
+      <>
+        <div css={styles.tooltipTitle}>{children}</div>
+        {showDivider && <div css={styles.desktopTooltipDivider} />}
+      </>
+    );
+  },
+);
+
 interface TooltipDividerProps {
   text?: string;
   smallMargin?: boolean;

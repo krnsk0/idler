@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { BaseBuilding } from '../../../../../store/zone/buildings/baseBuilding';
 import { formatNumber } from '../../../../../utils/formatNumber';
 import {
+  DesktopTooltipTitle,
   TooltipDivider,
   TooltipText,
 } from '../../../../shared/Tooltip/Tooltip';
@@ -13,6 +14,9 @@ interface BuildingTooltipProps {
 const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
   return (
     <>
+      <DesktopTooltipTitle showDivider={true}>
+        {building.displayName}
+      </DesktopTooltipTitle>
       <TooltipText italic={true} align={'center'}>
         {building.description}
       </TooltipText>

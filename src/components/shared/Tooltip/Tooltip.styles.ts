@@ -3,6 +3,7 @@ import {
   colors,
   entranceAnimation,
   entranceAnimationDuration,
+  mq,
 } from '../../../globalStyles';
 
 export const styles = {
@@ -36,5 +37,27 @@ export const styles = {
     text-align: ${!align ? 'left' : align};
     font-style: ${!italic ? 'inherit' : 'italic'};
     margin-bottom: ${largeBottomMargin ? '1.5em' : 'none'};
+  `,
+  tooltipTitle: css`
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1em;
+
+    display: none;
+    ${mq['hoverableDesktop']} {
+      display: inherit;
+    }
+  `,
+  desktopTooltipDivider: css`
+    border-top: 1px solid;
+    width: 100%;
+    padding-top: 0.8em;
+    position: relative;
+    color: ${colors.mediumdarkgrey};
+
+    display: none;
+    ${mq['hoverableDesktop']} {
+      display: inherit;
+    }
   `,
 };

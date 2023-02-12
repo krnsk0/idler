@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { BaseResource } from '../../../../store/zone/resources/baseResource';
 import { formatNumber } from '../../../../utils/formatNumber';
 import {
+  DesktopTooltipTitle,
   TooltipDivider,
   TooltipPortalRenderer,
   TooltipText,
@@ -64,17 +65,12 @@ const ResourceQuantity = observer(
 
 interface ResourceRowTooltipProps {
   resource: BaseResource;
-  side: 'right' | 'left';
 }
 
-const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
+const ResourceRowTooltip = ({ resource }: ResourceRowTooltipProps) => {
   return (
     <>
-      {side === 'right' && (
-        <TooltipText align={'center'} italic={true} largeBottomMargin={true}>
-          {resource.displayName}
-        </TooltipText>
-      )}
+      <DesktopTooltipTitle>{resource.displayName}</DesktopTooltipTitle>
       {!!resource.consumptionSummary.length && (
         <>
           <TooltipDivider text="consumption" smallMargin={true} />
@@ -154,7 +150,6 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
           </TooltipText>
         </>
       )}
-      {side === 'left' && <TooltipDivider />}
     </>
   );
 };
@@ -165,7 +160,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
   return (
     <>
       <TooltipPortalRenderer containerRef={containerRef}>
-        {<ResourceRowTooltip resource={resource} side="right" />}
+        {<ResourceRowTooltip resource={resource} />}
       </TooltipPortalRenderer>
       <div
         ref={containerRef}
@@ -208,7 +203,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
           <div
             css={[styles.invisibleOnDesktop, styles.expandedResourceTooltip]}
           >
-            <ResourceRowTooltip resource={resource} side="left" />
+            <ResourceRowTooltip resource={resource} />
           </div>
         )}
       </div>
