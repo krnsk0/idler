@@ -2,6 +2,7 @@ import { tProp, types, modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from './resourceNames';
+import { getGui } from '../../gui/gui';
 
 export interface ProductionConsumptionDisplay {
   producerConsumerDisplayName: string;
@@ -142,6 +143,14 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Is the resource row expanded?
+   */
+  @computed
+  get isExpanded(): boolean {
+    return getGui(this).expandedResourceRow === this.name;
+  }
+
+  /**
    * Participates in tick system
    */
   @modelAction
@@ -212,5 +221,13 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   cheat(quantity?: number): void {
     console.log(`CHEAT: CREATING ${this.name}`);
     this.quantity = quantity ? quantity : this.currentCap;
+  }
+
+  /**
+   * Expand this resource row
+   */
+  @modelAction
+  expandResource() {
+    getGui(this).setExpandedResourceRow(this.name);
   }
 }

@@ -38,6 +38,7 @@ export class Gui extends Model({
     ),
     undefined,
   ),
+  expandedResourceRow: tProp(types.maybe(types.enum(ResourceNames)), undefined),
 }) {
   @modelAction
   openTechModal(): void {
@@ -92,6 +93,13 @@ export class Gui extends Model({
     if (name === this.expandedShipColonyButton) {
       this.expandedShipColonyButton = undefined;
     } else this.expandedShipColonyButton = name;
+  }
+
+  @modelAction
+  setExpandedResourceRow(name: ResourceNames | undefined) {
+    if (name === this.expandedResourceRow) {
+      this.expandedResourceRow = undefined;
+    } else this.expandedResourceRow = name;
   }
 }
 

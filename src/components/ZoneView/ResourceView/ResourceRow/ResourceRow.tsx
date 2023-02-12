@@ -62,12 +62,19 @@ const ResourceQuantity = observer(
   },
 );
 
-const ResourceRowTooltip = ({ resource }: ResourceRowProps) => {
+interface ResourceRowTooltipProps {
+  resource: BaseResource;
+  side: 'right' | 'left';
+}
+
+const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
   return (
     <>
-      <TooltipText align={'center'} italic={true}>
-        {resource.displayName}
-      </TooltipText>
+      {side === 'right' && (
+        <TooltipText align={'center'} italic={true}>
+          {resource.displayName}
+        </TooltipText>
+      )}
       {!!resource.consumptionSummary.length && (
         <>
           <TooltipDivider text="consumption" />
@@ -147,6 +154,7 @@ const ResourceRowTooltip = ({ resource }: ResourceRowProps) => {
           </TooltipText>
         </>
       )}
+      {side === 'left' && <TooltipDivider />}
     </>
   );
 };
@@ -157,7 +165,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
   return (
     <>
       <TooltipPortalRenderer containerRef={containerRef}>
-        {<ResourceRowTooltip resource={resource} />}
+        {<ResourceRowTooltip resource={resource} side="right" />}
       </TooltipPortalRenderer>
       <div
         ref={containerRef}
@@ -166,6 +174,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
           resource.showEntranceAnimation() && styles.animateEntrance,
         ]}
         key={resource.name}
+        onClick={() => resource.expandResource()}
       >
         <div css={styles.resourceRowTop}>
           <span css={styles.displayName}>{resource.displayName}</span>
@@ -184,7 +193,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
             emotionStyles={styles.smallScreenOnly}
           />
         </div>
-        <div css={[styles.smallScreenOnly, styles.resourceRowBottom]}>
+        <div css={[styles.smallScreenOnly, styles.secondResourceRow]}>
           {resource.estimatedRate !== null ? (
             <QuantityPerSecond
               estimatedRate={resource.estimatedRate}
@@ -195,6 +204,13 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
           )}
           <ResourceCap currentCap={resource.currentCap} />
         </div>
+        {resource.isExpanded && (
+          <div
+            css={[styles.invisibleOnDesktop, styles.expandedResourceTooltip]}
+          >
+            <ResourceRowTooltip resource={resource} side="left" />
+          </div>
+        )}
       </div>
     </>
   );

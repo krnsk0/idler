@@ -28,7 +28,7 @@ export const styles = {
     flex-direction: row;
     justify-content: space-between;
   `,
-  resourceRowBottom: css`
+  secondResourceRow: css`
     margin: 0.1em;
     display: flex;
     width: 100%;
@@ -77,5 +77,16 @@ export const styles = {
   `,
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
+  `,
+  invisibleOnDesktop: css`
+    ${mq['hoverableDesktop']} {
+      display: none;
+    }
+  `,
+  expandedResourceTooltip: css`
+    color: ${colors.grey};
+    font-size: 0.9em;
+    padding: 0 0.2em 0.2em;
+    margin-bottom: 0.4em;
   `,
 };
