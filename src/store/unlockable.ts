@@ -64,7 +64,7 @@ export abstract class Unlockable extends Model({
    */
   @modelAction
   runTransientUnlockCheck(): void {
-    if (this.transientUnlockCheck()) {
+    if (!this.unlocked && this.transientUnlockCheck()) {
       this._transientUnlockConditionSatisfied = true;
 
       if (!this._unlockTime) {
