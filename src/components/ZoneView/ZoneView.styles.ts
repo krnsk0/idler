@@ -62,6 +62,11 @@ export const styles = {
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
+
+    ${mq['hoverableDesktop']} {
+      padding-left: 3em;
+      padding-right: 3em;
+    }
   `,
   zoneRight: css`
     display: none;

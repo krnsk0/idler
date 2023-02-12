@@ -36,6 +36,11 @@ export const styles = {
     ${mq['tablet']} {
       font-size: 1em;
     }
+
+    ${mq['hoverableDesktop']} {
+      text-align: left;
+      padding-left: 1em;
+    }
   `,
   progressBar: css`
     position: absolute;
