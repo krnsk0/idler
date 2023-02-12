@@ -2,11 +2,13 @@ import { css } from '@emotion/react';
 
 export const styles = {
   jobsContainer: css`
-    width: 100%;
+    padding-top: 0.65em;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2em;
+    width: 100%;
   `,
   unassigned: css`
     margin-top: 0em;
