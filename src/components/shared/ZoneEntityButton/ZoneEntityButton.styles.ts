@@ -9,6 +9,10 @@ import {
 export const styles = {
   buttonOuterContainer: (expanded: boolean | undefined) => css`
     width: 85%;
+    ${mq['hoverableDesktop']} {
+      max-width: 14em;
+    }
+
     height: ${expanded ? 'inherit' : '2em'};
     border: 1px solid;
     position: relative;

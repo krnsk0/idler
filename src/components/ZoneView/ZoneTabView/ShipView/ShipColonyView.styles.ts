@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { mq } from '../../../../globalStyles';
 
 export const styles = {
   shipOuter: css`
@@ -19,5 +20,11 @@ export const styles = {
     align-items: center;
     justify-content: start;
     gap: 0.6em;
+
+    ${mq['hoverableDesktop']} {
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
   `,
 };

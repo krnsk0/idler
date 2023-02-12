@@ -35,7 +35,6 @@ export const styles = {
 
     display: flex;
     flex-direction: row;
-
     justify-content: left;
     ${mq['tablet']} {
       justify-content: center;
@@ -57,7 +56,7 @@ export const styles = {
     flex-grow: 3;
     background-color: ${colors.white};
     min-width: 200px;
-    max-width: 680px;
+    max-width: 522px;
     display: flex;
     flex-direction: column;
     justify-content: start;
