@@ -68,17 +68,20 @@ function TechButton({}: TechButtonProps) {
               >
                 click to change research target
               </TooltipText>
+
+              <TooltipText align={'center'}>
+                {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
+                {formatNumber(selectedTech.powerCost, { digits: 0 })} power
+              </TooltipText>
+
               {root.game.initialZone.power.blackout && (
                 <>
+                  <TooltipDivider />
                   <TooltipText align={'center'}>
                     *no power, progress stalled
                   </TooltipText>
                 </>
               )}
-              <TooltipText align={'center'}>
-                {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
-                {formatNumber(selectedTech.powerCost, { digits: 0 })} power
-              </TooltipText>
             </>
           )}
           {!selectedTech && !noTechAvailable && (

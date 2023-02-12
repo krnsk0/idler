@@ -17,15 +17,8 @@ function ActionButton({ action }: ActionButtonProps) {
     <ZoneEntityButton
       tooltip={
         <>
-          {action.showNoPowerMessage && (
-            <>
-              <TooltipText align={'center'}>
-                *no power, progress stalled
-              </TooltipText>
-              <TooltipDivider />
-            </>
-          )}
-
+          <TooltipText align={'center'}>{action.displayName}</TooltipText>
+          <TooltipDivider />
           <TooltipText italic={true} align={'center'}>
             {action.description}
           </TooltipText>
@@ -60,6 +53,14 @@ function ActionButton({ action }: ActionButtonProps) {
               <div>{action.basePowerProduction} power while active</div>
             )}
           </TooltipText>
+          {action.showNoPowerMessage && (
+            <>
+              <TooltipDivider />
+              <TooltipText align={'center'}>
+                *no power, progress stalled
+              </TooltipText>
+            </>
+          )}
         </>
       }
       onClick={() => action.start()}
