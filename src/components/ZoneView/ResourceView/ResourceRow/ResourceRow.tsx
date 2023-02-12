@@ -77,7 +77,7 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
       )}
       {!!resource.consumptionSummary.length && (
         <>
-          <TooltipDivider text="consumption" />
+          <TooltipDivider text="consumption" smallMargin={true} />
           <TooltipText>
             {resource.consumptionSummary.map((entry) => {
               return (
@@ -103,7 +103,7 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
       )}
       {!!resource.productionSummary.length && (
         <>
-          <TooltipDivider text="production" />
+          <TooltipDivider text="production" smallMargin={true} />
           <TooltipText>
             {resource.productionSummary.map((entry) => {
               return (
@@ -129,7 +129,7 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
       )}
       {!!resource.storageSummary.length && (
         <>
-          <TooltipDivider text="storage" />
+          <TooltipDivider text="storage" smallMargin={true} />
           <TooltipText>
             {resource.storageSummary.map((entry) => {
               return (

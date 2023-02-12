@@ -61,18 +61,21 @@ export const TooltipText = observer(
 
 interface TooltipDividerProps {
   text?: string;
+  smallMargin?: boolean;
 }
 
-export const TooltipDivider = observer(({ text }: TooltipDividerProps) => {
-  return (
-    <>
-      <div css={styles.tooltipDivider(!!text)}>
-        {text && (
-          <div css={styles.tooltipDividerTextContainer}>
-            {<span css={styles.tooltipDividerText}>{text}</span>}
-          </div>
-        )}
-      </div>
-    </>
-  );
-});
+export const TooltipDivider = observer(
+  ({ text, smallMargin }: TooltipDividerProps) => {
+    return (
+      <>
+        <div css={styles.tooltipDivider(!!text && !smallMargin)}>
+          {text && (
+            <div css={styles.tooltipDividerTextContainer}>
+              {<span css={styles.tooltipDividerText}>{text}</span>}
+            </div>
+          )}
+        </div>
+      </>
+    );
+  },
+);
