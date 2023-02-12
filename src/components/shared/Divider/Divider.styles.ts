@@ -8,7 +8,7 @@ import {
 export const styles = {
   divider: css`
     border-top: 1px solid ${colors.black};
-    width: 95%;
+    width: 90%;
     position: relative;
     margin-bottom: 1em;
   `,
