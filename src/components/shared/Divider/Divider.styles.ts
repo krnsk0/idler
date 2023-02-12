@@ -3,6 +3,7 @@ import {
   colors,
   entranceAnimation,
   entranceAnimationDuration,
+  mq,
 } from '../../../globalStyles';
 
 export const styles = {
@@ -11,6 +12,10 @@ export const styles = {
     width: 90%;
     position: relative;
     margin-bottom: 1em;
+
+    ${mq['hoverableDesktop']} {
+      width: 100%;
+    }
   `,
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
