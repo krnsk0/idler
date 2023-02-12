@@ -51,11 +51,16 @@ interface TooltipTextProps {
   children: React.ReactNode;
   italic?: boolean;
   align?: 'left' | 'center' | 'right';
+  largeBottomMargin?: boolean;
 }
 
 export const TooltipText = observer(
-  ({ children, italic, align }: TooltipTextProps) => {
-    return <div css={styles.tooltipText(italic, align)}>{children}</div>;
+  ({ children, italic, align, largeBottomMargin }: TooltipTextProps) => {
+    return (
+      <div css={styles.tooltipText(italic, align, largeBottomMargin)}>
+        {children}
+      </div>
+    );
   },
 );
 

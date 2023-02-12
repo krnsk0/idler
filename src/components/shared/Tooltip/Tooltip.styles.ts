@@ -30,9 +30,11 @@ export const styles = {
   tooltipText: (
     italic: boolean | undefined,
     align: 'left' | 'center' | 'right' | undefined,
+    largeBottomMargin?: boolean,
   ) => css`
     width: 100%;
     text-align: ${!align ? 'left' : align};
     font-style: ${!italic ? 'inherit' : 'italic'};
+    margin-bottom: ${largeBottomMargin ? '1.5em' : 'none'};
   `,
 };

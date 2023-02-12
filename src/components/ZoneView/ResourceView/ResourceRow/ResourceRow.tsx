@@ -71,7 +71,7 @@ const ResourceRowTooltip = ({ resource, side }: ResourceRowTooltipProps) => {
   return (
     <>
       {side === 'right' && (
-        <TooltipText align={'center'} italic={true}>
+        <TooltipText align={'center'} italic={true} largeBottomMargin={true}>
           {resource.displayName}
         </TooltipText>
       )}
