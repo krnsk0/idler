@@ -24,7 +24,7 @@ export const styles = {
   invisibleSpacerButton: css`
     display: none;
     visibility: inherit;
-    :last-child:nth-child(even) {
+    :last-child:nth-of-type(even) {
       display: inherit;
       visibility: hidden;
     }

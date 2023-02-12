@@ -134,7 +134,6 @@ const ZoneEntityButton = ({
               css={[
                 styles.smallButton(isButtonExpanded),
                 styles.invisibleOnDesktop,
-                gui.showTooltipEntranceAnimation() && styles.animateEntrance,
               ]}
               style={{
                 color: disabled ? colors.mediumdarkgrey : colors.black,
