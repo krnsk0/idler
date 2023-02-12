@@ -44,7 +44,7 @@ export const entranceAnimation = keyframes`
 
 export const breakpoints = {
   tablet: 600,
-  desktop: 800,
+  desktop: 960,
 } as const;
 
 export const mq = {
