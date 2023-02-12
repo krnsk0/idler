@@ -50,6 +50,10 @@ function TechButton({}: TechButtonProps) {
     <ZoneEntityButton
       tooltip={
         <>
+          <>
+            <TooltipText align={'center'}>databanks</TooltipText>
+            <TooltipDivider />
+          </>
           {noTechAvailable && (
             <TooltipText italic={true} align={'center'}>
               the ship sleeps
@@ -57,21 +61,23 @@ function TechButton({}: TechButtonProps) {
           )}
           {selectedTech && (
             <>
+              <TooltipText
+                align={'center'}
+                italic={true}
+                largeBottomMargin={true}
+              >
+                click to change research target
+              </TooltipText>
               {root.game.initialZone.power.blackout && (
                 <>
                   <TooltipText align={'center'}>
                     *no power, progress stalled
                   </TooltipText>
-                  <TooltipDivider />
                 </>
               )}
               <TooltipText align={'center'}>
                 {formatNumber(selectedTech.power, { digits: 0 })} of{' '}
                 {formatNumber(selectedTech.powerCost, { digits: 0 })} power
-              </TooltipText>
-              <TooltipDivider />
-              <TooltipText align={'center'} italic={true}>
-                click to change target
               </TooltipText>
             </>
           )}
