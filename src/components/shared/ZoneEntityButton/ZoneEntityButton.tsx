@@ -8,6 +8,18 @@ import { useStore } from '../../../store/Provider';
 import { TooltipDivider, TooltipPortalRenderer } from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
 
+/**
+ * Same size but invisible; used to ensure proper alignment
+ * in a flex wrap context
+ */
+export const ZoneEntityButtonSpacer = () => {
+  return (
+    <div
+      css={[styles.buttonOuterContainer(false), styles.invisibleSpacerButton]}
+    />
+  );
+};
+
 interface ZoneEntityButtonProps {
   styleOverride?: SerializedStyles;
   tooltip?: React.ReactNode | EmotionJSX.Element;

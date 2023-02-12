@@ -17,6 +17,19 @@ export const styles = {
     border: 1px solid;
     position: relative;
   `,
+  /**
+   * Allows forcing the last item in an odd number of flex-wrapped
+   * items to the left
+   */
+  invisibleSpacerButton: css`
+    display: none;
+    visibility: inherit;
+    :last-child:nth-child(even) {
+      display: inherit;
+      visibility: hidden;
+    }
+  `,
+
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
