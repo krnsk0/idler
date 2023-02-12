@@ -14,7 +14,7 @@ export const styles = {
     margin-bottom: 1em;
 
     ${mq['hoverableDesktop']} {
-      width: 100%;
+      width: 95%;
     }
   `,
   animateEntrance: css`

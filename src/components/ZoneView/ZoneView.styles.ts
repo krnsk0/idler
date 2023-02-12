@@ -62,6 +62,10 @@ export const styles = {
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
+
+    ${mq['desktop']} {
+      margin-left: 1em;
+    }
   `,
   zoneRight: css`
     display: none;
