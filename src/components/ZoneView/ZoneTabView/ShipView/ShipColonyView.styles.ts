@@ -23,8 +23,8 @@ export const styles = {
 
     ${mq['hoverableDesktop']} {
       flex-direction: row;
-      justify-content: center;
       flex-wrap: wrap;
+      justify-content: center;
     }
   `,
 };
