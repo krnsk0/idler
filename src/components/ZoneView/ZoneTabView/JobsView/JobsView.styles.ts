@@ -10,8 +10,14 @@ export const styles = {
     margin-bottom: 2em;
     width: 100%;
   `,
+  jobsInner: css``,
+  unassignedContainer: css`
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  `,
   unassigned: css`
-    margin-top: 0em;
-    margin-bottom: 2em;
+    width: 6em;
   `,
 };

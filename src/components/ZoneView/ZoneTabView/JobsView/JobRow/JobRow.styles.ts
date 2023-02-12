@@ -29,7 +29,7 @@ export const styles = {
     width: 2em;
   `,
   buttons: css`
-    margin-left: 1em;
+    margin-left: 0em;
     width: 4em;
   `,
   inc: css`

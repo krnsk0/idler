@@ -10,15 +10,15 @@ interface JobsViewProps {
 function JobsView({ zone }: JobsViewProps) {
   return (
     <div css={styles.jobsContainer}>
-      <div css={styles.unassigned}>
-        unassigned colonists: {zone.jobs.unassigned}
-        {' / '}
-        {zone.jobs.totalColonists}
+      <div css={styles.jobsInner}>
+        <div css={styles.unassignedContainer}>
+          <div css={styles.unassigned}>unassigned</div>
+          <div>{zone.jobs.unassigned}</div>
+        </div>
+        {zone.jobs.unlockedAsArray.map((job) => {
+          return <JobRow job={job} key={job.name} />;
+        })}
       </div>
-
-      {zone.jobs.unlockedAsArray.map((job) => {
-        return <JobRow job={job} key={job.name} />;
-      })}
     </div>
   );
 }
