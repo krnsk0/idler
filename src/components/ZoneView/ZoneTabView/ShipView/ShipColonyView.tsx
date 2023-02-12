@@ -7,12 +7,15 @@ import { Divider } from '../../../shared/Divider/Divider';
 import BuildingButton from './BuildingButton/BuildingButton';
 import { styles } from './ShipColonyView.styles';
 import { ZoneEntityButtonSpacer } from '../../../shared/ZoneEntityButton/ZoneEntityButton';
+import { useStore } from '../../../../store/Provider';
 
 interface ShipViewProps {
   zone: Zone;
 }
 
 function ShipColonyView({ zone }: ShipViewProps) {
+  const root = useStore();
+
   return (
     <>
       <div css={styles.shipOuter} id="ship-view-outer">
@@ -28,7 +31,7 @@ function ShipColonyView({ zone }: ShipViewProps) {
           <ActionButton action={zone.actions[ActionNames.COMPRESS]} />
           <ActionButton action={zone.actions[ActionNames.THAW]} />
           <ActionButton action={zone.actions[ActionNames.EXCAVATE]} />
-          <ZoneEntityButtonSpacer />
+          {root.game.tech.unlocked && <ZoneEntityButtonSpacer />}
         </div>
       </div>
       <div css={styles.shipOuter}>
