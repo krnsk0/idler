@@ -12,11 +12,9 @@ export abstract class Unlockable extends Model({
    * Whether this transient condition has been satisfied must be persisted and
    * cannot be derived from the current state of the application, because it is
    * derived from past history we don't have access to.
-   */
-  _transientUnlockConditionSatisfied: tProp(types.boolean, false),
-  /**
+   *
    * At what timestamp did this element unlock?
-   * Useful for detemining when entrance animation is done
+   * We store time as it is useful for detemining when entrance animation is done
    */
   _unlockTime: tProp(types.maybe(types.number), undefined),
 }) {
@@ -54,9 +52,7 @@ export abstract class Unlockable extends Model({
    */
   @computed
   get unlocked(): boolean {
-    if (!this._observableUnlockCheck) return false;
-
-    return this._transientUnlockConditionSatisfied;
+    return !!this._unlockTime;
   }
 
   /**
@@ -64,9 +60,13 @@ export abstract class Unlockable extends Model({
    */
   @modelAction
   runTransientUnlockCheck(): void {
-    if (!this.unlocked && this.transientUnlockCheck()) {
-      this._transientUnlockConditionSatisfied = true;
-
+    if (
+      // prevents premature unlocking
+      // also a perf optimization
+      this._observableUnlockCheck &&
+      // did we pass the transient check
+      this.transientUnlockCheck()
+    ) {
       if (!this._unlockTime) {
         this._unlockTime = Date.now();
       }

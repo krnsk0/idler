@@ -39,16 +39,14 @@ export class Debug extends Model({
     const initialZone = getGame(this).initialZone;
     const tech = getTech(this);
     // unlocks generator action
-    initialZone.actions[
-      ActionNames.GENERATE
-    ]._transientUnlockConditionSatisfied = true;
+    initialZone.actions[ActionNames.GENERATE]._unlockTime = Date.now();
     tech[TechNames.BIOMASS_COMPRESSION].cheat();
     initialZone.resources[ResourceNames.BIOMASS].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
     tech[TechNames.AGROFORESTRY].cheat();
     tech[TechNames.FARMING].cheat();
     tech[TechNames.SHELTER].cheat();
-    initialZone.power._transientUnlockConditionSatisfied = true;
+    initialZone.power._unlockTime = Date.now();
   }
 
   /**
