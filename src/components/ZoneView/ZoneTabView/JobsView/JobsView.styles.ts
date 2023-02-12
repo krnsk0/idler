@@ -7,7 +7,6 @@ export const styles = {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-bottom: 2em;
     width: 100%;
   `,
   jobsInner: css``,
