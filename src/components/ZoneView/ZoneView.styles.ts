@@ -78,18 +78,6 @@ export const styles = {
       padding: 1em 1em 1em 1em;
     }
   `,
-  tabRow: css`
-    background: ${colors.white};
-    position: fixed;
-    bottom: 0;
-    width: 100vw;
-    height: 2em;
-    border-top: 1px solid ${colors.black};
-    font-size: 1.1em;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-  `,
   resourceButton: css`
     background: none;
     border: 1px solid ${colors.black};
@@ -106,10 +94,13 @@ export const styles = {
     font-size: 2em;
     color: ${colors.black};
   `,
-  separator: css`
-    margin-left: 0.5em;
-    padding-left: 0.5em;
-    border-left: 1px solid black;
+  tabRow: css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: 1.5em;
+    width: 100%;
   `,
   tabButton: (selected: boolean) => css`
     border: none;
@@ -124,5 +115,11 @@ export const styles = {
     }
     font-size: 1em;
     cursor: ${selected ? 'auto' : 'pointer'};
+  `,
+  separator: css`
+    margin-left: 0.5em;
+    padding-left: 0.5em;
+    border-left: 1px solid black;
+    height: 1em;
   `,
 };

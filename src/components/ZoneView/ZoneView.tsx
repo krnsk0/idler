@@ -63,6 +63,29 @@ function ZoneView({ zone }: ZoneViewProps) {
             <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
           )}
           <div css={styles.zoneCenter} id="zone-right">
+            <div css={styles.tabRow}>
+              {zone.jobs.unlocked && (
+                <>
+                  <TabButton
+                    text="outpost"
+                    tabName={ZoneTabNames.ACTIONS}
+                    selectedTab={selectedTab}
+                    setSelectedTab={setSelectedTab}
+                  />
+                  <div css={styles.separator} />
+                  <TabButton
+                    text={`jobs${
+                      zone.jobs.unassigned > 0
+                        ? ` (${zone.jobs.unassigned})`
+                        : ''
+                    }`}
+                    tabName={ZoneTabNames.JOBS}
+                    selectedTab={selectedTab}
+                    setSelectedTab={setSelectedTab}
+                  />
+                </>
+              )}
+            </div>
             {(() => {
               switch (selectedTab) {
                 case ZoneTabNames.ACTIONS:
@@ -77,27 +100,6 @@ function ZoneView({ zone }: ZoneViewProps) {
           <div css={styles.zoneRight} id={TooltipContainerId}></div>
         </div>
       </div>
-      {/* <div css={styles.tabRow}>
-        {zone.jobs.unlocked && (
-          <>
-            <TabButton
-              text="outpost"
-              tabName={ZoneTabNames.ACTIONS}
-              selectedTab={selectedTab}
-              setSelectedTab={setSelectedTab}
-            />
-            <Separator />
-            <TabButton
-              text={`jobs${
-                zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
-              }`}
-              tabName={ZoneTabNames.JOBS}
-              selectedTab={selectedTab}
-              setSelectedTab={setSelectedTab}
-            />
-          </>
-        )}
-      </div> */}
       {isMobile && zone.resources.unlocked && (
         <button
           css={styles.resourceButton}
