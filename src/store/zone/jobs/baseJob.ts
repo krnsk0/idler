@@ -4,6 +4,7 @@ import { JobNames } from './jobNames';
 import { getJobs } from './jobs';
 import { ProducerConsumer } from '../producerConsumer';
 import { getTech } from '../../tech/tech';
+import { getGui } from '../../gui/gui';
 
 export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract name: JobNames;
@@ -59,6 +60,22 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   @computed
   get canDecrement(): boolean {
     return this.quantity > 0;
+  }
+
+  /**
+   * Is the row expanded?
+   */
+  @computed
+  get isExpanded(): boolean {
+    return getGui(this).expandedJobRow === this.name;
+  }
+
+  /**
+   * Expand this button
+   */
+  @modelAction
+  expandButton() {
+    getGui(this).setExpandedJobRow(this.name);
   }
 
   /**

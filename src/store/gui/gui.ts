@@ -12,6 +12,7 @@ import { getGame } from '../game';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
+import { JobNames } from '../zone/jobs/jobNames';
 
 export const TechName = 'TECH' as const;
 
@@ -39,6 +40,7 @@ export class Gui extends Model({
     undefined,
   ),
   expandedResourceRow: tProp(types.maybe(types.enum(ResourceNames)), undefined),
+  expandedJobRow: tProp(types.maybe(types.enum(JobNames)), undefined),
 }) {
   @modelAction
   openTechModal(): void {
@@ -100,6 +102,13 @@ export class Gui extends Model({
     if (name === this.expandedResourceRow) {
       this.expandedResourceRow = undefined;
     } else this.expandedResourceRow = name;
+  }
+
+  @modelAction
+  setExpandedJobRow(name: JobNames | undefined) {
+    if (name === this.expandedJobRow) {
+      this.expandedJobRow = undefined;
+    } else this.expandedJobRow = name;
   }
 }
 
