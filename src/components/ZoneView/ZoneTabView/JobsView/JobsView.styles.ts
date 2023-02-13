@@ -15,6 +15,7 @@ export const styles = {
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    margin-left: 2em;
   `,
   unassigned: css`
     width: 6em;

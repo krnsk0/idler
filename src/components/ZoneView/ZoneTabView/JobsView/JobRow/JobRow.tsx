@@ -10,6 +10,7 @@ import {
 } from '../../../../shared/Tooltip/Tooltip';
 
 import { styles } from './JobRow.styles';
+import { RxChevronDown, RxChevronRight } from 'react-icons/rx';
 
 interface JobRowTooltipProps {
   job: BaseJob;
@@ -53,14 +54,24 @@ const JobRow = ({ job }: JobRowProps) => {
       <TooltipPortalRenderer containerRef={containerRef}>
         {<JobRowTooltip job={job} />}
       </TooltipPortalRenderer>
-      <div css={styles.jobRowContainer} ref={containerRef}>
+      <div
+        css={styles.jobRowContainer}
+        ref={containerRef}
+        onClick={() => job.expandButton()}
+      >
+        <button type="button" css={styles.expand}>
+          {job.isExpanded ? <RxChevronDown /> : <RxChevronRight />}
+        </button>
         <div css={styles.name}>{job.displayName}</div>
         <div css={styles.workers}>{job.quantity}</div>
         <div css={styles.buttons}>
           <button
             type="button"
             css={styles.inc}
-            onClick={() => job.decrement()}
+            onClick={(e) => {
+              e.stopPropagation();
+              job.decrement();
+            }}
             disabled={!job.canDecrement}
           >
             -
@@ -68,7 +79,10 @@ const JobRow = ({ job }: JobRowProps) => {
           <button
             type="button"
             css={styles.dec}
-            onClick={() => job.increment()}
+            onClick={(e) => {
+              e.stopPropagation();
+              job.increment();
+            }}
             disabled={!job.canIncrement}
           >
             +

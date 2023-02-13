@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { mq } from '../../../../../globalStyles';
 
 const buttonCommon = css`
   background: none;
@@ -37,5 +38,14 @@ export const styles = {
   `,
   dec: css`
     ${buttonCommon}
+  `,
+  expand: css`
+    background: none;
+    border: none;
+    width: 2em;
+
+    ${mq['desktop']} {
+      visibility: hidden;
+    }
   `,
 };
