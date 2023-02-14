@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { mq } from '../../../../../globalStyles';
+import { colors, mq } from '../../../../../globalStyles';
 
 const buttonCommon = css`
   background: none;
@@ -17,7 +17,11 @@ const buttonCommon = css`
 `;
 
 export const styles = {
-  jobRowContainer: css`
+  jobRowOuter: css`
+    display: flex;
+    flex-direction: row;
+  `,
+  jobRowInner: css`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -47,5 +51,18 @@ export const styles = {
     ${mq['desktop']} {
       visibility: hidden;
     }
+  `,
+  invisibleOnDesktop: css`
+    ${mq['hoverableDesktop']} {
+      display: none;
+    }
+  `,
+  expandedJobTooltip: css`
+    width: 15em;
+    color: ${colors.grey};
+    font-size: 0.8em;
+    padding: 0 1em 1em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
   `,
 };

@@ -54,40 +54,43 @@ const JobRow = ({ job }: JobRowProps) => {
       <TooltipPortalRenderer containerRef={containerRef}>
         {<JobRowTooltip job={job} />}
       </TooltipPortalRenderer>
-      <div
-        css={styles.jobRowContainer}
-        ref={containerRef}
-        onClick={() => job.expandButton()}
-      >
-        <button type="button" css={styles.expand}>
-          {job.isExpanded ? <RxChevronDown /> : <RxChevronRight />}
-        </button>
-        <div css={styles.name}>{job.displayName}</div>
-        <div css={styles.workers}>{job.quantity}</div>
-        <div css={styles.buttons}>
-          <button
-            type="button"
-            css={styles.inc}
-            onClick={(e) => {
-              e.stopPropagation();
-              job.decrement();
-            }}
-            disabled={!job.canDecrement}
-          >
-            -
+      <div css={styles.jobRowOuter} onClick={() => job.expandButton()}>
+        <div css={styles.jobRowInner} ref={containerRef}>
+          <button type="button" css={styles.expand}>
+            {job.isExpanded ? <RxChevronDown /> : <RxChevronRight />}
           </button>
-          <button
-            type="button"
-            css={styles.dec}
-            onClick={(e) => {
-              e.stopPropagation();
-              job.increment();
-            }}
-            disabled={!job.canIncrement}
-          >
-            +
-          </button>
+          <div css={styles.name}>{job.displayName}</div>
+          <div css={styles.workers}>{job.quantity}</div>
+          <div css={styles.buttons}>
+            <button
+              type="button"
+              css={styles.inc}
+              onClick={(e) => {
+                e.stopPropagation();
+                job.decrement();
+              }}
+              disabled={!job.canDecrement}
+            >
+              -
+            </button>
+            <button
+              type="button"
+              css={styles.dec}
+              onClick={(e) => {
+                e.stopPropagation();
+                job.increment();
+              }}
+              disabled={!job.canIncrement}
+            >
+              +
+            </button>
+          </div>
         </div>
+        {job.isExpanded && (
+          <div css={[styles.invisibleOnDesktop, styles.expandedJobTooltip]}>
+            <JobRowTooltip job={job} />
+          </div>
+        )}
       </div>
     </>
   );
