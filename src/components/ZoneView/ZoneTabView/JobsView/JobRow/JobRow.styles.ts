@@ -19,7 +19,7 @@ const buttonCommon = css`
 export const styles = {
   jobRowOuter: css`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   `,
   jobRowInner: css`
     display: flex;
