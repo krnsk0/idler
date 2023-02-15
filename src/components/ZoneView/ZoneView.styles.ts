@@ -93,6 +93,8 @@ export const styles = {
   caret: css`
     font-size: 2em;
     color: ${colors.black};
+    width: 2em;
+    height: 2em;
   `,
   tabRow: css`
     display: flex;
