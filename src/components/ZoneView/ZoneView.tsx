@@ -108,7 +108,7 @@ function ZoneView({ zone }: ZoneViewProps) {
           <div
             css={styles.caret}
             style={{
-              transform: gui.isResourcePaneOpen ? 'rotate(180deg)' : 'none',
+              transform: !gui.isResourcePaneOpen ? 'rotate(180deg)' : 'none',
             }}
           >
             {'>'}
