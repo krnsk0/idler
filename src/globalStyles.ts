@@ -1,5 +1,15 @@
 import { css, keyframes } from '@emotion/react';
 
+export const colors = {
+  lightgrey: '#F1F1F1',
+  mediumgrey: '#D1D1D1',
+  mediumdarkgrey: '#919191',
+  darkgrey: '#383838',
+  grey: 'grey',
+  white: 'white',
+  black: 'black',
+};
+
 export const globalStyles = css`
   html,
   body {
@@ -18,18 +28,9 @@ export const globalStyles = css`
   button {
     font-family: 'Lekton', sans-serif;
     font-size: 1em;
+    color: ${colors.black};
   }
 `;
-
-export const colors = {
-  lightgrey: '#F1F1F1',
-  mediumgrey: '#D1D1D1',
-  mediumdarkgrey: '#919191',
-  darkgrey: '#383838',
-  grey: 'grey',
-  white: 'white',
-  black: 'black',
-};
 
 export const entranceAnimation = keyframes`
   0% {
