@@ -10,7 +10,6 @@ import {
 } from '../../../../shared/Tooltip/Tooltip';
 
 import { styles } from './JobRow.styles';
-import { RxChevronDown, RxChevronRight } from 'react-icons/rx';
 
 interface JobRowTooltipProps {
   job: BaseJob;
@@ -57,7 +56,13 @@ const JobRow = ({ job }: JobRowProps) => {
       <div css={styles.jobRowOuter} onClick={() => job.expandButton()}>
         <div css={styles.jobRowInner} ref={containerRef}>
           <button type="button" css={styles.expand}>
-            {job.isExpanded ? <RxChevronDown /> : <RxChevronRight />}
+            <div
+              style={{
+                transform: job.isExpanded ? 'rotate(90deg)' : 'none',
+              }}
+            >
+              {'>'}
+            </div>
           </button>
           <div css={styles.name}>{job.displayName}</div>
           <div css={styles.workers}>{job.quantity}</div>

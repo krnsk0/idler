@@ -7,7 +7,6 @@ import ShipColonyView from './ZoneTabView/ShipView/ShipColonyView';
 import JobsView from './ZoneTabView/JobsView/JobsView';
 import { useMediaQuery } from '../shared/useMediaQuery';
 import { useStore } from '../../store/Provider';
-import { RxChevronLeft, RxChevronRight } from 'react-icons/rx';
 import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
 
 interface ZoneViewProps {
@@ -106,11 +105,14 @@ function ZoneView({ zone }: ZoneViewProps) {
           type="button"
           onClick={() => gui.toggleResourcePane()}
         >
-          {gui.isResourcePaneOpen ? (
-            <RxChevronLeft css={styles.caret} />
-          ) : (
-            <RxChevronRight css={styles.caret} />
-          )}
+          <div
+            css={styles.caret}
+            style={{
+              transform: gui.isResourcePaneOpen ? 'rotate(180deg)' : 'none',
+            }}
+          >
+            {'>'}
+          </div>
         </button>
       )}
     </>

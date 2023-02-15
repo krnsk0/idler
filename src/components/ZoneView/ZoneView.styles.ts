@@ -91,10 +91,8 @@ export const styles = {
     align-items: center;
   `,
   caret: css`
-    font-size: 2em;
+    font-size: 1.4em;
     color: ${colors.black};
-    width: 2em;
-    height: 2em;
   `,
   tabRow: css`
     display: flex;

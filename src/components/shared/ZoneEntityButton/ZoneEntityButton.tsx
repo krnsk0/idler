@@ -2,7 +2,6 @@ import { SerializedStyles } from '@emotion/react';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
-import { RxChevronDown, RxChevronRight } from 'react-icons/rx';
 import { colors } from '../../../globalStyles';
 import { useStore } from '../../../store/Provider';
 import { TooltipDivider, TooltipPortalRenderer } from '../Tooltip/Tooltip';
@@ -142,7 +141,13 @@ const ZoneEntityButton = ({
               onClick={expandButton}
               type="button"
             >
-              {isButtonExpanded ? <RxChevronDown /> : <RxChevronRight />}
+              <span
+                style={{
+                  transform: isButtonExpanded ? 'rotate(90deg)' : 'none',
+                }}
+              >
+                {'>'}
+              </span>
             </button>
           )}
         </div>
