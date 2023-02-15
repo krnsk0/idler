@@ -31,6 +31,11 @@ export const globalStyles = css`
     color: ${colors.black};
     padding: none;
   }
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 export const entranceAnimation = keyframes`
