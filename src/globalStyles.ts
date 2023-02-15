@@ -29,6 +29,7 @@ export const globalStyles = css`
     font-family: 'Lekton', sans-serif;
     font-size: 1em;
     color: ${colors.black};
+    padding: none;
   }
 `;
 
