@@ -79,7 +79,7 @@ export const styles = {
     }
   `,
   resourceButton: css`
-    background: none;
+    background: ${colors.white};
     border: 1px solid ${colors.black};
     width: 2.5em;
     height: 2.5em;

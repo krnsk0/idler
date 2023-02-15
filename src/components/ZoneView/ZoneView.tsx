@@ -107,9 +107,9 @@ function ZoneView({ zone }: ZoneViewProps) {
           onClick={() => gui.toggleResourcePane()}
         >
           {gui.isResourcePaneOpen ? (
-            <RxChevronRight css={styles.caret} />
-          ) : (
             <RxChevronLeft css={styles.caret} />
+          ) : (
+            <RxChevronRight css={styles.caret} />
           )}
         </button>
       )}
