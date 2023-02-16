@@ -23,6 +23,7 @@ export const globalStyles = css`
     box-sizing: content-box;
     user-select: none;
     touch-action: manipulation;
+    text-size-adjust: none;
   }
 
   button {
