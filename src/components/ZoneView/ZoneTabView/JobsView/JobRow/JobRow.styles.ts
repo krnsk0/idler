@@ -11,7 +11,7 @@ const buttonCommon = css`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0em;
+  padding: 0em 0.3em 0em 0.3em;
 
 
   &:enabled {
