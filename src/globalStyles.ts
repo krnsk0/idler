@@ -52,7 +52,7 @@ export const entranceAnimation = keyframes`
 export const breakpoints = {
   tablet: 600,
   // anything less than 1k tends to flex-wrap the center area
-  desktop: 1000,
+  desktop: 1020,
 } as const;
 
 export const mq = {
