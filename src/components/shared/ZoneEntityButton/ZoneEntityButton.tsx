@@ -82,77 +82,82 @@ const ZoneEntityButton = ({
         ref={containerRef}
         data-test-id={`button-outer`}
       >
-        <div css={styles.buttonInner} data-test-id={`button-inner`}>
-          <div css={styles.progressBar} style={{ width: progressWidth }} />
-          <button
-            css={styles.button}
-            style={{
-              cursor: disabled ? 'inherit' : 'pointer',
-            }}
-            type="button"
-            disabled={disabled}
-            onClick={onClick ? onClick : () => {}}
-          >
-            {buttonText}
-          </button>
-
-          {showEnablementButtons && (
-            <>
-              <button
-                css={[
-                  styles.smallButton(isButtonExpanded),
-                  styles.visibleOnDesktop,
-                ]}
-                style={{
-                  color: disabled ? colors.mediumdarkgrey : colors.black,
-                  cursor: canDisableEntity ? 'pointer' : 'inherit',
-                }}
-                onClick={disableEntity}
-                type="button"
-              >
-                -
-              </button>
-              <button
-                css={[
-                  styles.smallButton(isButtonExpanded),
-                  styles.visibleOnDesktop,
-                ]}
-                style={{
-                  color: disabled ? colors.mediumdarkgrey : colors.black,
-                  cursor: canEnableEntity ? 'pointer' : 'inherit',
-                }}
-                onClick={enableEntity}
-                type="button"
-              >
-                +
-              </button>
-            </>
-          )}
-          {expandButton && gui.areTooltipsVisible && (
+        <div css={styles.buttonTopRow}>
+          <div css={styles.buttonInnerLeft}>
+            <div css={styles.progressBar} style={{ width: progressWidth }} />
             <button
-              css={[
-                styles.smallButton(isButtonExpanded),
-                styles.invisibleOnDesktop,
-              ]}
+              css={styles.button}
               style={{
-                color: disabled ? colors.mediumdarkgrey : colors.black,
-                cursor: 'pointer',
+                cursor: disabled ? 'inherit' : 'pointer',
               }}
-              onClick={expandButton}
               type="button"
+              disabled={disabled}
+              onClick={onClick ? onClick : () => {}}
             >
-              <span
-                style={{
-                  transform: isButtonExpanded ? 'rotate(90deg)' : 'none',
-                }}
-              >
-                {'>'}
-              </span>
+              {buttonText}
             </button>
-          )}
+          </div>
+
+          <div css={styles.buttonInnerRight}>
+            {showEnablementButtons && (
+              <>
+                <button
+                  css={[
+                    styles.smallButton(isButtonExpanded),
+                    styles.visibleOnDesktop,
+                  ]}
+                  style={{
+                    color: disabled ? colors.mediumdarkgrey : colors.black,
+                    cursor: canDisableEntity ? 'pointer' : 'inherit',
+                  }}
+                  onClick={disableEntity}
+                  type="button"
+                >
+                  -
+                </button>
+                <button
+                  css={[
+                    styles.smallButton(isButtonExpanded),
+                    styles.visibleOnDesktop,
+                  ]}
+                  style={{
+                    color: disabled ? colors.mediumdarkgrey : colors.black,
+                    cursor: canEnableEntity ? 'pointer' : 'inherit',
+                  }}
+                  onClick={enableEntity}
+                  type="button"
+                >
+                  +
+                </button>
+              </>
+            )}
+            {expandButton && gui.areTooltipsVisible && (
+              <button
+                css={[
+                  styles.smallButton(isButtonExpanded),
+                  styles.invisibleOnDesktop,
+                ]}
+                style={{
+                  color: disabled ? colors.mediumdarkgrey : colors.black,
+                  cursor: 'pointer',
+                }}
+                onClick={expandButton}
+                type="button"
+              >
+                <span
+                  style={{
+                    transform: isButtonExpanded ? 'rotate(90deg)' : 'none',
+                  }}
+                >
+                  {'>'}
+                </span>
+              </button>
+            )}
+          </div>
         </div>
         {isButtonExpanded && gui.areTooltipsVisible && (
           <div
+            data-test-id={'tooltip'}
             css={[styles.tooltipContainer, styles.invisibleOnDesktop]}
             style={{
               color: disabled ? colors.mediumdarkgrey : colors.black,

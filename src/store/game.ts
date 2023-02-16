@@ -14,6 +14,7 @@ import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 import { Root } from './root';
 import { SystemRegistry } from './systemRegistry';
+import { Metadata } from './metadata';
 
 const initialZoneName = 'landing zone';
 
@@ -30,6 +31,7 @@ export class Game extends Model({
   ]),
   tech: tProp(types.model(Tech), () => new Tech({})),
   selectedZoneRef: prop<Ref<Zone> | undefined>(),
+  metadata: tProp(types.model(Metadata), () => new Metadata({})),
 }) {
   @computed
   get selectedZone(): Zone | undefined {

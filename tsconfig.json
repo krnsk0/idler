@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "@emotion/react",
     "experimentalDecorators": true,
-    "types": ["vitest/importMeta"]
+    "types": ["vitest/importMeta", "vite/client"]
   },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]

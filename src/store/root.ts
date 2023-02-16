@@ -15,6 +15,8 @@ import { computed } from 'mobx';
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
+import { CURRENT_SAVE_VERSION } from './metadata';
+import { migrator } from './migrator/migrator';
 
 @model('Root')
 export class Root extends Model({
@@ -38,14 +40,19 @@ export class Root extends Model({
   }
 
   @modelAction
+  loadFromString(savegame: string | null) {
+    if (!savegame) {
+      this.game.selectZone(this.game.initialZone);
+      return;
+    }
+    this.game = migrator(savegame, CURRENT_SAVE_VERSION);
+  }
+
+  @modelAction
   loadFromLocalstorage() {
     try {
       const savegame = localStorage.getItem('save');
-      if (!savegame) {
-        this.game.selectZone(this.game.initialZone);
-        return;
-      }
-      this.game = fromSnapshot(Game, JSON.parse(savegame));
+      this.loadFromString(savegame);
     } catch (error) {
       console.error('error applying snapshot', error);
     }
@@ -55,10 +62,7 @@ export class Root extends Model({
   loadFromClipboard = _async(function* (this: Root) {
     try {
       const savegame = yield navigator.clipboard.readText();
-      if (!savegame) {
-        this.game.selectZone(this.game.initialZone);
-      }
-      this.game = fromSnapshot(Game, JSON.parse(savegame));
+      this.loadFromString(savegame);
     } catch (error) {
       console.error('error applying snapshot', error);
       return false;

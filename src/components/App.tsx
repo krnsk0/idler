@@ -6,6 +6,7 @@ import DebugView from './DebugView/DebugView';
 import TechModal from './TechModal/TechModal';
 import { useLocalSave } from './useLocalSave';
 import { useLocalLoad } from './useLocalLoad';
+import { useUser } from './useUser';
 import OptionsModal from './OptionsModal/OptionsModal';
 import OptionsButton from './OptionsButton/OptionsButton';
 
@@ -15,6 +16,7 @@ function App() {
   useLocalLoad();
   useLocalSave();
   useStoreTick();
+  useUser();
 
   return (
     <>

@@ -172,6 +172,14 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         onClick={() => resource.expandResource()}
       >
         <div css={styles.resourceRowTop}>
+          <span
+            css={styles.smallScreenOnly}
+            style={{
+              transform: resource.isExpanded ? 'rotate(90deg)' : 'none',
+            }}
+          >
+            {'> '}
+          </span>
           <span css={styles.displayName}>{resource.displayName}</span>
           {resource.estimatedRate !== null && (
             <QuantityPerSecond

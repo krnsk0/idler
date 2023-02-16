@@ -62,7 +62,6 @@ export const styles = {
       margin-right: 1em;
       display: flex;
       justify-content: flex-end;
-      width: 6em;
     }
   `,
   cap: css`

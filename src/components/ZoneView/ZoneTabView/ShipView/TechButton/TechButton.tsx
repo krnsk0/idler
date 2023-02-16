@@ -34,7 +34,7 @@ const TechButtonTooltip = observer(
               italic={true}
               largeBottomMargin={true}
             >
-              click to change research target
+              change research target
             </TooltipText>
 
             <TooltipText align={'center'}>

@@ -33,10 +33,13 @@ export const styles = {
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
   `,
+  buttonTopRow: css`
+    display: flex;
+  `,
   button: css`
     border: none;
-    width: 100%;
     height: 2em;
+    width: 100%;
     background: none;
     position: relative;
     word-break: break-word;
@@ -73,7 +76,7 @@ export const styles = {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-width: 2em;
+
     width: 2em;
     height: 2em;
   `,
@@ -88,10 +91,17 @@ export const styles = {
       display: flex;
     }
   `,
-  buttonInner: css`
+  buttonInnerLeft: css`
     position: relative;
     display: flex;
+    flex-grow: 1;
   `,
+  buttonInnerRight: css`
+    position: relative;
+    display: flex;
+    flex-grow: 0;
+  `,
+
   tooltipContainer: css`
     padding: 0.7em 0.6em 0.7em 0.6em;
     font-size: 0.9em;

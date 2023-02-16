@@ -5,7 +5,9 @@ import { StoreProvider } from './store/Provider';
 import Modal from 'react-modal';
 import LogRocket from 'logrocket';
 import App from './components/App';
-LogRocket.init('z0jb7c/idler-demo');
+LogRocket.init('z0jb7c/idler-demo', {
+  release: import.meta.env.PACKAGE_VERSION,
+});
 
 Modal.setAppElement('#root');
 
