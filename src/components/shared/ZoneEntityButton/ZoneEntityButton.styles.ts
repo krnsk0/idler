@@ -43,6 +43,7 @@ export const styles = {
     background: none;
     position: relative;
     word-break: break-word;
+    word-wrap: break-word;
     hyphens: auto;
     &:disabled {
       color: ${colors.mediumdarkgrey};
