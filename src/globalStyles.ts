@@ -24,6 +24,7 @@ export const globalStyles = css`
     user-select: none;
     touch-action: manipulation;
     text-size-adjust: none;
+    line-height: 1em;
   }
 
   button {
