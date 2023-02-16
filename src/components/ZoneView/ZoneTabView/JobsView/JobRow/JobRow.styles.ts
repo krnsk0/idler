@@ -11,6 +11,8 @@ const buttonCommon = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: none;
+
 
   &:enabled {
     outline: 1px solid black;
