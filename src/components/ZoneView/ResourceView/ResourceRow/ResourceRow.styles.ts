@@ -18,12 +18,10 @@ const flash = keyframes`
 `;
 
 export const styles = {
-  displayName: css`
-    width: 5em;
-  `,
+  displayName: css``,
   resourceRowOuter: css``,
   resourceRowTop: css`
-    margin: 0.1em;
+    margin: 0.1em 0 0.1em 0;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -48,6 +46,7 @@ export const styles = {
       display: none;
     }
   `,
+
   largeScreenOnly: css`
     display: none;
     ${mq['tablet']} {

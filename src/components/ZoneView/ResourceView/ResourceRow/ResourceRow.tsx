@@ -172,15 +172,18 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
         onClick={() => resource.expandResource()}
       >
         <div css={styles.resourceRowTop}>
-          <span
-            css={styles.smallScreenOnly}
-            style={{
-              transform: resource.isExpanded ? 'rotate(90deg)' : 'none',
-            }}
-          >
-            {'> '}
+          <span css={styles.displayName}>
+            <span
+              css={styles.invisibleOnDesktop}
+              style={{
+                transform: resource.isExpanded ? 'rotate(90deg)' : 'none',
+                marginRight: '0.2em',
+              }}
+            >
+              {'>'}
+            </span>
+            {resource.displayName}
           </span>
-          <span css={styles.displayName}>{resource.displayName}</span>
 
           <span css={[styles.largeScreenOnly, styles.quantityContainer]}>
             {resource.estimatedRate !== null && (
