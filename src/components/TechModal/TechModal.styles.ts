@@ -45,7 +45,7 @@ export const styles = {
     margin: 0.5em;
     border: 1px solid ${colors.black};
     display: flex;
-    padding: 1em 0.2em 1em 0.2em;
+    padding: 0.5em 0.2em 0.5em 0.2em;
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
@@ -56,19 +56,19 @@ export const styles = {
     }
   `,
   techTitle: css`
-    font-size: 1.2em;
+    font-size: 1em;
     text-align: center;
     font-weight: bold;
   `,
   techDescription: css`
-    font-size: 0.8em;
-    margin: 1.8em 1em 0em 1em;
+    font-size: 0.7em;
+    margin: 1.3em 1em 0em 1em;
     font-style: italic;
     text-align: center;
   `,
   techCost: css`
     font-size: 0.8em;
-    margin: 1.8em 1em 0em 1em;
+    margin: 1em 1em 0em 1em;
     text-align: center;
   `,
 };
