@@ -1,7 +1,6 @@
-import { findParent, model, ExtendedModel, tProp, types } from 'mobx-keystone';
+import { model, ExtendedModel, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
-import { Zone } from '../zone';
 import { Nutrients } from './nutrients';
 import { Biomass } from './biomass';
 import { Lumber } from './lumber';
@@ -49,11 +48,3 @@ export class Resources extends ExtendedModel(ZoneEntity, {
     return this.asArray.filter((resource) => resource.unlocked);
   }
 }
-
-export const getResources = (child: object): Resources => {
-  const zone = findParent<Zone>(child, (node) => {
-    return node instanceof Zone;
-  });
-  if (!zone) throw new Error('no parent zone model found in getResources');
-  return zone.resources;
-};

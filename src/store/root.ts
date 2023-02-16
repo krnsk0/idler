@@ -1,5 +1,4 @@
 import {
-  findParent,
   model,
   Model,
   modelAction,
@@ -76,11 +75,3 @@ export class Root extends Model({
     this.game.selectZone(this.game.initialZone);
   }
 }
-
-export const getRoot = (child: object): Root => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no root model found in getRoot');
-  return root;
-};

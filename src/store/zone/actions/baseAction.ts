@@ -3,10 +3,7 @@ import { ResourceNames } from '../resources/resourceNames';
 import { ZoneEntity } from '../zoneEntity';
 import { ActionNames } from './actionNames';
 import { computed } from 'mobx';
-import { getResources } from '../resources/resources';
-import { getPower } from '../power/power';
-import { getTech } from '../../tech/tech';
-import { getGui } from '../../gui/gui';
+import { getResources, getPower, getTech, getGui } from '../../selectors';
 
 interface ActionInput {
   resource: ResourceNames;

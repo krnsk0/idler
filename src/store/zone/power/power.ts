@@ -1,10 +1,8 @@
-import { findParent, model, ExtendedModel } from 'mobx-keystone';
-import { Zone } from '../zone';
+import { model, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { getActions } from '../actions/actions';
-import { getTech } from '../../tech/tech';
+
 import { ZoneEntity } from '../zoneEntity';
-import { getBuildings } from '../buildings/buildings';
+import { getActions, getBuildings, getTech } from '../../selectors';
 
 @model('Power')
 export class Power extends ExtendedModel(ZoneEntity, {}) {
@@ -67,11 +65,3 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
     return this.demand > 0 && this.production === 0;
   }
 }
-
-export const getPower = (child: object): Power => {
-  const zone = findParent<Zone>(child, (node) => {
-    return node instanceof Zone;
-  });
-  if (!zone) throw new Error('no parent zone model found in getZone');
-  return zone.power;
-};

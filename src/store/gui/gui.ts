@@ -1,18 +1,11 @@
-import {
-  findParent,
-  model,
-  Model,
-  modelAction,
-  tProp,
-  types,
-} from 'mobx-keystone';
+import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Root } from '../root';
-import { getGame } from '../game';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { JobNames } from '../zone/jobs/jobNames';
+import { getGame } from '../selectors';
 
 export const TechName = 'TECH' as const;
 
@@ -111,11 +104,3 @@ export class Gui extends Model({
     } else this.expandedJobRow = name;
   }
 }
-
-export const getGui = (child: object): Gui => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no parent root model found in getGui');
-  return root.gui;
-};

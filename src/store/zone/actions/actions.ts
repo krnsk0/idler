@@ -1,11 +1,10 @@
-import { findParent, model, Model, tProp, types } from 'mobx-keystone';
+import { model, Model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { ActionNames } from './actionNames';
 import { Harvest } from './harvest';
 import { Generate } from './generate';
 import { Compress } from './compress';
-import { Zone } from '../zone';
 import { Thaw } from './thaw';
 import { Excavate } from './excavate';
 
@@ -38,11 +37,3 @@ export class Actions extends Model({
     return this.asArray.filter((action) => action.unlocked);
   }
 }
-
-export const getActions = (child: object): Actions => {
-  const zone = findParent<Zone>(child, (node) => {
-    return node instanceof Zone;
-  });
-  if (!zone) throw new Error('no parent zone model found in getActions');
-  return zone.actions;
-};

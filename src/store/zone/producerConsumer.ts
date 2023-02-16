@@ -2,7 +2,7 @@ import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from './resources/resourceNames';
 import { ZoneEntity } from './zoneEntity';
 import { computed } from 'mobx';
-import { getResources } from './resources/resources';
+import { getResources } from '../selectors';
 
 interface Consumption {
   resource: ResourceNames;

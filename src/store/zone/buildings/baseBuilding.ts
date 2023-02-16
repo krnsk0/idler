@@ -3,8 +3,7 @@ import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
-import { getTech } from '../../tech/tech';
-import { getGui } from '../../gui/gui';
+import { getGui, getTech } from '../../selectors';
 
 interface PurchaseCost {
   resource: ResourceNames;

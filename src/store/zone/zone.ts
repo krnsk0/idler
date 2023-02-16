@@ -1,4 +1,4 @@
-import { findParent, idProp, model, Model, tProp, types } from 'mobx-keystone';
+import { idProp, model, Model, tProp, types } from 'mobx-keystone';
 import { Power } from './power/power';
 import { Actions } from './actions/actions';
 import { Buildings } from './buildings/buildings';
@@ -16,11 +16,3 @@ export class Zone extends Model({
   actions: tProp(types.model(Actions), () => new Actions({})),
   jobs: tProp(types.model(Jobs), () => new Jobs({})),
 }) {}
-
-export const getZone = (child: object): Zone => {
-  const zone = findParent<Zone>(child, (node) => {
-    return node instanceof Zone;
-  });
-  if (!zone) throw new Error('no parent zone model found in getZone');
-  return zone;
-};

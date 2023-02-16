@@ -1,5 +1,4 @@
 import {
-  findParent,
   model,
   ExtendedModel,
   modelAction,
@@ -11,7 +10,6 @@ import {
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../utils/enumKeys';
-import { Root } from '../root';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { JobNames } from '../zone/jobs/jobNames';
@@ -21,7 +19,7 @@ import { Farming } from './farming';
 import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
 import { BaseTech } from './baseTech';
-import { getGame } from '../game';
+import { getGame, getGui } from '../selectors';
 import { Agroforestry } from './agroforestry';
 import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
@@ -29,7 +27,7 @@ import { Unlockable } from '../unlockable';
 import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
 import { Electromagnetism } from './electromagnetism';
-import { getGui, TechName } from '../gui/gui';
+import { TechName } from '../gui/gui';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -198,11 +196,3 @@ export class Tech extends ExtendedModel(Unlockable, {
     this.selectedTechRef = tech ? techRef(tech) : undefined;
   }
 }
-
-export const getTech = (child: object): Tech => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no parent root model found in getTech');
-  return root.game.tech;
-};

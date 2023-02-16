@@ -1,5 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-import { getTech } from '../../tech/tech';
+import { getTech } from '../../selectors';
 import { ResourceNames } from '../resources/resourceNames';
 import { ActionNames } from './actionNames';
 import { BaseAction } from './baseAction';

@@ -1,10 +1,11 @@
 import { ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { Zone, getZone } from './zone';
+import { Zone } from './zone';
 import { Resources } from './resources/resources';
 import { Buildings } from './buildings/buildings';
 import { Jobs } from './jobs/jobs';
 import { Unlockable } from '../unlockable';
+import { getZone } from '../selectors';
 
 export abstract class ZoneEntity extends ExtendedModel(Unlockable, {}) {
   /**

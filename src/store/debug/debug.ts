@@ -1,5 +1,4 @@
 import {
-  findParent,
   getRoot,
   model,
   Model,
@@ -7,9 +6,7 @@ import {
   tProp,
   types,
 } from 'mobx-keystone';
-import { getGame } from '../game';
-import { Root } from '../root';
-import { getTech } from '../tech/tech';
+import { getGame, getTech } from '../selectors';
 import { TechNames } from '../tech/techNames';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
@@ -92,10 +89,3 @@ export class Debug extends Model({
     this.phaseTwo();
   }
 }
-export const getDebug = (child: object): Debug => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no parent root model found in getDebug');
-  return root.debug;
-};

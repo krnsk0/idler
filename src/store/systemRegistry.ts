@@ -1,8 +1,7 @@
-import { findParent, getRoot, Model, model, modelAction } from 'mobx-keystone';
+import { Model, model, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { getDebug } from './debug/debug';
-import { Root } from './root';
-import { Game, getGame } from './game';
+import { Game } from './game';
+import { getDebug, getGame } from './selectors';
 
 export interface Unlockable {
   runTransientUnlockCheck: () => void;
@@ -121,11 +120,3 @@ export class SystemRegistry extends Model({}) {
     }
   }
 }
-
-export const getSystemRegistry = (child: object): SystemRegistry => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no game model found in getGame');
-  return root.game.systemRegistry;
-};

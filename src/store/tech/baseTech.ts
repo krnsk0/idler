@@ -7,7 +7,7 @@ import {
 } from 'mobx-keystone';
 import { TechNames } from './techNames';
 import { computed } from 'mobx';
-import { getTech } from './tech';
+import { getTech } from '../selectors';
 import { Unlockable } from '../unlockable';
 import { JobNames } from '../zone/jobs/jobNames';
 import { ActionNames } from '../zone/actions/actionNames';

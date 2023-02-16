@@ -1,7 +1,7 @@
 import { Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { getSystemRegistry } from './systemRegistry';
 import { entranceAnimationDuration } from '../globalStyles';
+import { getSystemRegistry } from './selectors';
 
 export abstract class Unlockable extends Model({
   /**

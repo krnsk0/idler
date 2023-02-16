@@ -1,10 +1,8 @@
 import { ExtendedModel, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { JobNames } from './jobNames';
-import { getJobs } from './jobs';
+import { getJobs, getTech, getGui } from '../../selectors';
 import { ProducerConsumer } from '../producerConsumer';
-import { getTech } from '../../tech/tech';
-import { getGui } from '../../gui/gui';
 
 export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   abstract name: JobNames;

@@ -2,7 +2,7 @@ import { tProp, types, modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from './resourceNames';
-import { getGui } from '../../gui/gui';
+import { getGui } from '../../selectors';
 
 export interface ProductionConsumptionDisplay {
   producerConsumerDisplayName: string;

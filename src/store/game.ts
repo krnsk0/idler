@@ -1,5 +1,4 @@
 import {
-  findParent,
   model,
   Model,
   modelAction,
@@ -12,7 +11,6 @@ import {
 import { computed } from 'mobx';
 import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
-import { Root } from './root';
 import { SystemRegistry } from './systemRegistry';
 import { Metadata } from './metadata';
 
@@ -53,11 +51,3 @@ export class Game extends Model({
     this.selectedZoneRef = zone ? zoneRef(zone) : undefined;
   }
 }
-
-export const getGame = (child: object): Game => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no game model found in getGame');
-  return root.game;
-};

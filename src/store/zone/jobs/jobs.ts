@@ -1,20 +1,12 @@
-import {
-  ExtendedModel,
-  findParent,
-  model,
-  modelAction,
-  tProp,
-  types,
-} from 'mobx-keystone';
+import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { JobNames } from './jobNames';
 import { Arborist } from './arborist';
-import { getResources } from '../resources/resources';
 import { ResourceNames } from '../resources/resourceNames';
-import { Zone } from '../zone';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
+import { getResources } from '../../selectors';
 
 const foodConsumptionPerWorkerPerSec = 0.1;
 
@@ -124,11 +116,3 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
     }
   }
 }
-
-export const getJobs = (child: object): Jobs => {
-  const zone = findParent<Zone>(child, (node) => {
-    return node instanceof Zone;
-  });
-  if (!zone) throw new Error('no parent jobs model found in getJobs');
-  return zone.jobs;
-};
