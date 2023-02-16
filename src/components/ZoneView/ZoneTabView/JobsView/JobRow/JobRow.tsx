@@ -56,13 +56,7 @@ const JobRow = ({ job }: JobRowProps) => {
       <div css={styles.jobRowOuter} onClick={() => job.expandButton()}>
         <div css={styles.jobRowInner} ref={containerRef}>
           <button type="button" css={styles.expand}>
-            <div
-              style={{
-                transform: job.isExpanded ? 'rotate(90deg)' : 'none',
-              }}
-            >
-              {'>'}
-            </div>
+            <div>{job.isExpanded ? 'v' : '>'}</div>
           </button>
           <div css={styles.name}>{job.displayName}</div>
           <div css={styles.workers}>{job.quantity}</div>
