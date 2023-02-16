@@ -47,9 +47,9 @@ export const styles = {
     padding-left: 0.7em;
     overflow-y: scroll;
     ${mq['tablet']} {
-      width: 280px;
-      min-width: 280px;
-      max-width: 280px;
+      width: 300px;
+      min-width: 300px;
+      max-width: 300px;
     }
   `,
   zoneCenter: css`
@@ -71,9 +71,9 @@ export const styles = {
     display: none;
     ${mq['hoverableDesktop']} {
       display: flex;
-      width: 280px;
-      min-width: 280px;
-      max-width: 280px;
+      width: 300px;
+      min-width: 300px;
+      max-width: 300px;
       flex-direction: column;
       padding: 1em 1em 1em 1em;
     }

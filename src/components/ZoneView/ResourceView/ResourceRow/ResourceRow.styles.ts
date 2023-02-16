@@ -39,7 +39,7 @@ export const styles = {
   `,
   quantityContainer: css`
     min-width: 75px;
-    justify-content: space-between;
+    justify-content: flex-end;
     margin-left: 1em;
   `,
   smallScreenOnly: css`
@@ -55,17 +55,25 @@ export const styles = {
     }
   `,
 
-  quantity: css``,
-  quantityPerSecond: css`
-    color: ${colors.darkgrey};
+  quantity: css`
+    text-align: right;
     ${mq['tablet']} {
-      margin-right: 1em;
+      width: 4em;
+    }
+  `,
+  quantityPerSecond: css`
+    width: 3em;
+    color: ${colors.darkgrey};
+
+    ${mq['tablet']} {
       display: flex;
       justify-content: flex-end;
     }
   `,
   cap: css`
-    color: ${colors.darkgrey};
+    text-align: right;
+    width: 3em;
+    color: ${colors.grey};
   `,
   highlight: (duration: number) => css`
     animation: ${flash} ${duration}ms ease;

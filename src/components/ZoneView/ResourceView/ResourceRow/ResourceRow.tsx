@@ -181,13 +181,17 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
             {'> '}
           </span>
           <span css={styles.displayName}>{resource.displayName}</span>
-          {resource.estimatedRate !== null && (
-            <QuantityPerSecond
-              estimatedRate={resource.estimatedRate}
-              emotionStyles={[styles.largeScreenOnly, styles.quantityPerSecond]}
-            />
-          )}
+
           <span css={[styles.largeScreenOnly, styles.quantityContainer]}>
+            {resource.estimatedRate !== null && (
+              <QuantityPerSecond
+                estimatedRate={resource.estimatedRate}
+                emotionStyles={[
+                  styles.largeScreenOnly,
+                  styles.quantityPerSecond,
+                ]}
+              />
+            )}
             <ResourceQuantity resource={resource} />
             <ResourceCap currentCap={resource.currentCap} />
           </span>
