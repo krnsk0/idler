@@ -30,6 +30,7 @@ export const globalStyles = css`
     font-size: 1em;
     color: ${colors.black};
     padding: none;
+    -webkit-tap-highlight-color: transparent;
   }
 
   svg {
