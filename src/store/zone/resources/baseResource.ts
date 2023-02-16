@@ -104,7 +104,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
         const production = producer.consumptionPerSecond.find(
           ({ resource }) => resource === this.name,
         );
-        if (production) {
+        if (production && producer.unlocked) {
           consumptionSummary.push({
             producerConsumerDisplayName: producer.displayName,
             producerConsumerQuantity: producer.quantity,
@@ -131,7 +131,7 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
     }
     [...this.zoneBuildings.asArray].forEach((building) => {
       const storage = building.getStorageAmountByKey(this.name);
-      if (storage) {
+      if (storage && building.unlocked) {
         storageSummary.push({
           storageProviderDisplayName: building.displayName,
           storageProviderQuantity: building.quantity,
