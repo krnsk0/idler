@@ -57,7 +57,7 @@ export const styles = {
 
   quantity: css``,
   quantityPerSecond: css`
-    color: ${colors.grey};
+    color: ${colors.darkgrey};
     ${mq['tablet']} {
       margin-right: 1em;
       display: flex;
@@ -65,7 +65,7 @@ export const styles = {
     }
   `,
   cap: css`
-    color: ${colors.grey};
+    color: ${colors.darkgrey};
   `,
   highlight: (duration: number) => css`
     animation: ${flash} ${duration}ms ease;
@@ -83,7 +83,7 @@ export const styles = {
     }
   `,
   expandedResourceTooltip: css`
-    color: ${colors.grey};
+    color: ${colors.darkgrey};
     font-size: 0.8em;
     padding: 0 0.2em 0.2em;
     margin-top: 0em;
