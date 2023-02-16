@@ -54,6 +54,7 @@ export const styles = {
     background: none;
     border: none;
     width: 2em;
+    padding: none;
 
     ${mq['desktop']} {
       visibility: hidden;
