@@ -6,6 +6,11 @@ const buttonCommon = css`
   border: none;
   outline: 1px solid grey;
   margin-left: 0.2em;
+  height: 1em;
+  width 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   &:enabled {
     outline: 1px solid black;
@@ -36,6 +41,8 @@ export const styles = {
   buttons: css`
     margin-left: 0em;
     width: 4em;
+    display: flex;
+    flex-direction: row;
   `,
   inc: css`
     ${buttonCommon}
