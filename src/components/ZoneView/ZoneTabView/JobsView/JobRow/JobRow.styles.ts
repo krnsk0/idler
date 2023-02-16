@@ -6,12 +6,12 @@ const buttonCommon = css`
   border: none;
   outline: 1px solid grey;
   margin-left: 0.2em;
-  height: 1em;
-  width 1em;
+  max-height: 1em;
+  max-width 1em;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: none;
+  padding: 0em;
 
 
   &:enabled {
