@@ -11,13 +11,17 @@ interface BuildingButtonProps {
 function BuildingButton({ building }: BuildingButtonProps) {
   if (!building.unlocked) return null;
 
+  const displayName = `${building.displayName}${
+    building.isStorageConstrainted ? '°' : ''
+  }`;
+
   return (
     <ZoneEntityButton
       tooltip={<BuildingTooltip building={building} />}
       onClick={() => building.buy(1)}
       disabled={!building.affordable}
       showEntranceAnimation={building.showEntranceAnimation()}
-      buttonText={`${building.displayName} (${
+      buttonText={`${displayName} (${
         building.numberActive < building.quantity
           ? formatNumber(building.numberActive, { digits: 0 }) + '/'
           : ''

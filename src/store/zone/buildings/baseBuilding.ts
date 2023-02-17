@@ -63,6 +63,16 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   }
 
   /**
+   * Is storage constrained for any costs
+   */
+  @computed
+  get isStorageConstrainted(): boolean {
+    return this.currentCostDisplay.some(
+      ({ storageConstrained }) => storageConstrained,
+    );
+  }
+
+  /**
    * Can this entity be bought?
    */
   @computed

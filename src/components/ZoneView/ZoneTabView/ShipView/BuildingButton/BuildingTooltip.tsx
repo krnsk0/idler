@@ -35,7 +35,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
                 {resourceDisplayName}:{' '}
                 {isSatisfied ? '' : `${formatNumber(availableQuantity)} / `}
                 {formatNumber(quantity)}
-                {storageConstrained ? '*' : ''}
+                {storageConstrained ? '°' : ''}
               </div>
             );
           },
@@ -71,6 +71,12 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
             </div>
           );
         })}
+        {building.isStorageConstrainted && (
+          <>
+            <TooltipDivider />
+            <div>°cost is storage-constrained, cannot build</div>
+          </>
+        )}
       </TooltipText>
     </>
   );
