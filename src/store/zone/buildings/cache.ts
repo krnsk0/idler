@@ -13,6 +13,10 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
       resource: ResourceNames.LUMBER,
       quantity: 10,
     },
+    {
+      resource: ResourceNames.ROCK,
+      quantity: 10,
+    },
   ];
   costExponent = 1.6;
   inputs = [];
