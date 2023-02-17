@@ -40,7 +40,7 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
         resource,
-        quantity: baseCost * this.costExponent ** this.quantity,
+        quantity: Math.floor(baseCost * this.costExponent ** this.quantity),
       };
     });
   }
