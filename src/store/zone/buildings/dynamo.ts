@@ -12,7 +12,7 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
   baseCost = [
     {
       resource: ResourceNames.ALLOY,
-      quantity: 20,
+      quantity: 16,
     },
   ];
   costExponent = 1.45;
