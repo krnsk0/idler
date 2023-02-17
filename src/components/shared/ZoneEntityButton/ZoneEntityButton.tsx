@@ -23,7 +23,7 @@ interface ZoneEntityButtonProps {
   styleOverride?: SerializedStyles;
   tooltip?: React.ReactNode | EmotionJSX.Element;
   disabled?: boolean;
-  onClick?: () => void;
+  onClick: () => void;
   progress?: number;
   active?: boolean;
   reverseProgressBar?: boolean;
@@ -92,7 +92,7 @@ const ZoneEntityButton = ({
               }}
               type="button"
               disabled={disabled}
-              onClick={onClick ? onClick : () => {}}
+              onClick={onClick}
             >
               {buttonText}
             </button>
@@ -160,7 +160,7 @@ const ZoneEntityButton = ({
             data-test-id={'tooltip'}
             css={[styles.tooltipContainer, styles.invisibleOnDesktop]}
             style={{
-              color: disabled ? colors.mediumdarkgrey : colors.black,
+              color: disabled ? colors.darkgrey : colors.black,
             }}
           >
             <>
