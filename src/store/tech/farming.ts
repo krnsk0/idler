@@ -6,7 +6,7 @@ import { TechNames } from './techNames';
 @model(TechNames.FARMING)
 export class Farming extends ExtendedModel(BaseTech, {}) {
   name = TechNames.FARMING;
-  displayName = 'hydroponic farming';
+  displayName = 'cultivation';
   description = 'rudimentary applied xenobotany';
   powerCost = 15;
   transientUnlockCheck = () => true;
