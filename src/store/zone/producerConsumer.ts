@@ -60,6 +60,11 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   abstract canSomeBeTurnedOff: boolean;
 
   /**
+   * Autodisable when outputs run out?
+   */
+  abstract autoDisableOnInputDepletion: boolean;
+
+  /**
    * How many are active
    */
   @computed
@@ -179,7 +184,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   /**
    * Runs production
    *
-   * TODO: handle room for output
+   * TODO: handle case where we lack room for output
    */
   @modelAction
   runProduction(delta: number): void {
@@ -235,5 +240,19 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });
+
+    // if we depleted any inputs and we're configured to do so, disable
+    // an entity
+    if (
+      this.autoDisableOnInputDepletion &&
+      this.consumptionPerSecond.some((input) => {
+        const resourceModel = this.zoneResources[input.resource];
+        return resourceModel.quantity <= 0;
+      })
+    ) {
+      while (this.canDisableEntity) {
+        this.disableEntity();
+      }
+    }
   }
 }

@@ -22,6 +22,11 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   powerOutputPerSecond = 0;
 
   /**
+   * People cannot be autodisabled
+   */
+  autoDisableOnInputDepletion = false;
+
+  /**
    * Responsible for managing when jobs are unlocked
    */
   observableUnlockCheck = () => {
