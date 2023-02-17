@@ -1,4 +1,4 @@
-import { model, ExtendedModel, tProp, types } from 'mobx-keystone';
+import { model, ExtendedModel, tProp, types, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { Nutrients } from './nutrients';

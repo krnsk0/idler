@@ -15,7 +15,11 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.ROCK,
-      quantity: 10,
+      quantity: 15,
+    },
+    {
+      resource: ResourceNames.ALLOY,
+      quantity: 4,
     },
   ];
   costExponent = 1.6;
@@ -32,7 +36,7 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.ROCK,
-      quantity: 10,
+      quantity: 9,
     },
     {
       resource: ResourceNames.ORE,

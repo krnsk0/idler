@@ -35,35 +35,54 @@ export class Debug extends Model({
     getRoot(this).reset();
     const initialZone = getGame(this).initialZone;
     const tech = getTech(this);
-    initialZone.resources[ResourceNames.BIOMASS].cheat();
+
+    // unlock powr and tech
     initialZone.actions[ActionNames.GENERATE]._unlockTime = Date.now();
     initialZone.power._unlockTime = Date.now();
+    initialZone.resources[ResourceNames.BIOMASS].cheat();
+
+    // manual wood max
     tech[TechNames.BIOMASS_COMPRESSION].cheat();
     initialZone.resources[ResourceNames.LUMBER].cheat();
+
+    // farms max
     tech[TechNames.FARMING].cheat();
     initialZone.buildings[BuildingNames.FARM].cheat(6);
+    initialZone.resources[ResourceNames.NUTRIENTS].cheat();
   }
 
   /**
-   * Max buildings, unlock jobs
+   * Max all buildings prior to building caches
    */
   @modelAction
   phaseTwo() {
     this.phaseOne();
     const tech = getTech(this);
     const initialZone = getGame(this).initialZone;
-    // tech[TechNames.AGROFORESTRY].cheat();
-    // tech[TechNames.SHELTER].cheat();
-    // tech[TechNames.CRYONICS].cheat();
-    // initialZone.buildings[BuildingNames.HABITAT].cheat(5);
-    // initialZone.resources[ResourceNames.COLONISTS].cheat(5);
-    // for (let i = 0; i < 5; i += 1) {
-    //   initialZone.jobs[JobNames.ARBORIST].assign();
-    // }
-    //
-    // initialZone.resources[ResourceNames.NUTRIENTS].cheat();
-    // initialZone.resources[ResourceNames.BIOMASS].cheat();
-    // initialZone.resources[ResourceNames.LUMBER].cheat();
+
+    // shelter max
+    tech[TechNames.SHELTER].cheat();
+    initialZone.buildings[BuildingNames.HABITAT].cheat(2);
+
+    // excavation max
+    tech[TechNames.EXCAVATION].cheat();
+    initialZone.resources[ResourceNames.ROCK].cheat();
+    initialZone.resources[ResourceNames.ORE].cheat();
+
+    // colonists max
+    tech[TechNames.CRYONICS].cheat();
+    initialZone.resources[ResourceNames.COLONISTS].cheat(2);
+
+    // jobs max
+    tech[TechNames.AGROFORESTRY].cheat();
+    for (let i = 0; i < 2; i += 1) {
+      initialZone.jobs[JobNames.ARBORIST].assign();
+    }
+
+    // furnace max
+    tech[TechNames.METALLURGY].cheat();
+    initialZone.buildings[BuildingNames.FURNACE].cheat(2);
+    initialZone.resources[ResourceNames.ALLOY].cheat();
   }
 
   @modelAction
@@ -71,14 +90,28 @@ export class Debug extends Model({
     this.phaseTwo();
     const tech = getTech(this);
     const initialZone = getGame(this).initialZone;
-    // tech[TechNames.EXCAVATION].cheat();
-    // tech[TechNames.STORAGE].cheat();
-    // tech[TechNames.METALLURGY].cheat();
-    // initialZone.resources[ResourceNames.ROCK].cheat();
-    // initialZone.resources[ResourceNames.ORE].cheat();
-    // initialZone.buildings[BuildingNames.CACHE].cheat(3);
-    // initialZone.buildings[BuildingNames.FURNACE].cheat(2);
-    // initialZone.resources[ResourceNames.ALLOY].cheat();
+
+    // max caches, maxing storage for all other buildings
+    tech[TechNames.STORAGE].cheat();
+    initialZone.buildings[BuildingNames.CACHE].cheat(2);
+
+    // resource max
+    initialZone.resources[ResourceNames.ALLOY].cheat();
+    initialZone.resources[ResourceNames.ORE].cheat();
+    initialZone.resources[ResourceNames.ROCK].cheat();
+    initialZone.resources[ResourceNames.BIOMASS].cheat();
+    initialZone.resources[ResourceNames.LUMBER].cheat();
+
+    // max all other buildings after cache construction
+    initialZone.buildings[BuildingNames.HABITAT].cheat(2);
+    initialZone.buildings[BuildingNames.FARM].cheat(3);
+    initialZone.resources[ResourceNames.COLONISTS].cheat(3);
+    initialZone.jobs[JobNames.ARBORIST].assign();
+    initialZone.buildings[BuildingNames.FURNACE].cheat(2);
+
+    // max dynamos
+    tech[TechNames.ELECTROMAGNETISM].cheat();
+    initialZone.buildings[BuildingNames.DYNAMO].cheat(1);
   }
 
   /**

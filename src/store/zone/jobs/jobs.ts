@@ -8,7 +8,7 @@ import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
 
-const foodConsumptionPerWorkerPerSec = 0.1;
+const foodConsumptionPerWorkerPerSec = 0.15;
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {

@@ -14,7 +14,7 @@ export class Excavate extends ExtendedModel(BaseAction, {}) {
   inputs = [];
   outputs = [
     { resource: ResourceNames.ROCK, quantity: 2 },
-    { resource: ResourceNames.ORE, quantity: 1 },
+    { resource: ResourceNames.ORE, quantity: 1.5 },
   ];
   basePowerProduction = 0;
   basePowerConsumption = 1;

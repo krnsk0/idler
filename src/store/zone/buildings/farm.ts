@@ -11,7 +11,7 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   baseCost = [
     {
       resource: ResourceNames.BIOMASS,
-      quantity: 4,
+      quantity: 3,
     },
     {
       resource: ResourceNames.LUMBER,
