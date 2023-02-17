@@ -26,5 +26,6 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = false;
   powerOutputPerSecond = 0;
+  powerNeededPerSecond = 0;
   autoDisableOnInputDepletion = false;
 }

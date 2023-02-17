@@ -30,5 +30,6 @@ export class Furnace extends ExtendedModel(BaseBuilding, {}) {
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = true;
   powerOutputPerSecond = 0;
+  powerNeededPerSecond = 0;
   autoDisableOnInputDepletion = false;
 }

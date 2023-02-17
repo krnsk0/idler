@@ -53,6 +53,16 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
             );
           },
         )}
+        {!!building.powerNeededPerSecond && (
+          <div key="power-input">
+            power: +{building.powerNeededPerSecond} demand
+          </div>
+        )}
+        {!!building.powerOutputPerSecond && (
+          <div key="power-input">
+            power: +{building.powerOutputPerSecond} production
+          </div>
+        )}
         {building.displayStorage.map(({ resourceDisplayName, quantity }) => {
           return (
             <div key={resourceDisplayName}>

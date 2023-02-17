@@ -54,6 +54,11 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   abstract powerOutputPerSecond: number;
 
   /**
+   * Power requires per sec when active
+   */
+  abstract powerNeededPerSecond: number;
+
+  /**
    * Is it possible for only some of this producer to be active?
    * E.g. "4 of 5 furnaces are enabled"
    */

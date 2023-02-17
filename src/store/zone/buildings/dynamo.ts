@@ -22,5 +22,6 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = true;
   powerOutputPerSecond = 1;
+  powerNeededPerSecond = 0;
   autoDisableOnInputDepletion = true;
 }

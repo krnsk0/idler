@@ -28,5 +28,6 @@ export class Mine extends ExtendedModel(BaseBuilding, {}) {
   transientUnlockCheck = () => true;
   canSomeBeTurnedOff = true;
   powerOutputPerSecond = 0;
+  powerNeededPerSecond = 1;
   autoDisableOnInputDepletion = true;
 }

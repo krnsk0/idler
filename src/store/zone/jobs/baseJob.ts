@@ -22,6 +22,11 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   powerOutputPerSecond = 0;
 
   /**
+   * People do not need power
+   */
+  powerNeededPerSecond = 0;
+
+  /**
    * People cannot be autodisabled
    */
   autoDisableOnInputDepletion = false;
