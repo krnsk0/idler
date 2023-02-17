@@ -6,8 +6,5 @@ import { Model, model, tProp, types } from 'mobx-keystone';
  */
 @model('Metadata')
 export class Metadata extends Model({
-  saveVersion: tProp(
-    types.string,
-    () => import.meta.env.PACKAGE_VERSION,
-  ).withSetter(),
+  saveVersion: tProp(types.maybe(types.string), undefined).withSetter(),
 }) {}

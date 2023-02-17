@@ -15,6 +15,7 @@ import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
 import { migrator } from './migrator/migrator';
+import { makeNewGame } from './migrator/makeNewGame';
 
 @model('Root')
 export class Root extends Model({
@@ -38,31 +39,32 @@ export class Root extends Model({
   }
 
   @modelAction
-  loadFromString(savegame: string | null) {
-    if (!savegame) {
-      this.game.selectZone(this.game.initialZone);
-      return;
-    }
-    this.game = migrator(savegame, import.meta.env.PACKAGE_VERSION);
-  }
-
-  @modelAction
   loadFromLocalstorage() {
+    console.log('attempting to load save from localstorage...');
+    const savegame = localStorage.getItem('save');
     try {
-      const savegame = localStorage.getItem('save');
-      this.loadFromString(savegame);
-    } catch (error) {
-      console.error('error applying snapshot', error);
+      if (!savegame) return this.reset();
+      this.game = migrator(savegame, import.meta.env.PACKAGE_VERSION);
+      console.log('save loaded');
+    } catch (error: unknown) {
+      console.error('error loading from localstorage', {
+        error,
+        savegame,
+      });
+      this.reset();
     }
   }
 
   @modelFlow
   loadFromClipboard = _async(function* (this: Root) {
+    const savegame = yield navigator.clipboard.readText();
     try {
-      const savegame = yield navigator.clipboard.readText();
-      this.loadFromString(savegame);
-    } catch (error) {
-      console.error('error applying snapshot', error);
+      this.game = migrator(savegame, import.meta.env.PACKAGE_VERSION);
+    } catch (error: unknown) {
+      console.error('error loading from clipboard', {
+        error,
+        savegame,
+      });
       return false;
     }
     return true;
@@ -70,7 +72,7 @@ export class Root extends Model({
 
   @modelAction
   reset(): void {
-    this.game = fromSnapshot(Game, {});
-    this.game.selectZone(this.game.initialZone);
+    console.log('resetting game state');
+    this.game = makeNewGame(import.meta.env.PACKAGE_VERSION);
   }
 }
