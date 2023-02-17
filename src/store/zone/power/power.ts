@@ -42,9 +42,16 @@ export class Power extends ExtendedModel(ZoneEntity, {}) {
       },
       0,
     );
+    const buildingsConsumption = getBuildings(this).asArray.reduce(
+      (total, building) => {
+        return total + building.powerConsumption;
+      },
+      0,
+    );
 
     const techConsumption = getTech(this).selectedTech ? 1 : 0;
-    return actionsConsumption + techConsumption;
+
+    return actionsConsumption + techConsumption + buildingsConsumption;
   }
 
   /**
