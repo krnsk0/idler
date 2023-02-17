@@ -47,7 +47,7 @@ export class Debug extends Model({
 
     // farms max
     tech[TechNames.FARMING].cheat();
-    initialZone.buildings[BuildingNames.FARM].cheat(6);
+    initialZone.buildings[BuildingNames.FARM].cheat(5);
     initialZone.resources[ResourceNames.NUTRIENTS].cheat();
   }
 
@@ -106,10 +106,8 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.LUMBER].cheat();
 
     // max all other buildings after cache construction
-    initialZone.buildings[BuildingNames.HABITAT].cheat(2);
-    initialZone.buildings[BuildingNames.FARM].cheat(3);
-    initialZone.resources[ResourceNames.COLONISTS].cheat(3);
-    initialZone.jobs[JobNames.ARBORIST].assign();
+    initialZone.buildings[BuildingNames.HABITAT].cheat(1);
+    initialZone.buildings[BuildingNames.FARM].cheat(1);
     initialZone.buildings[BuildingNames.FURNACE].cheat(2);
 
     // max dynamos

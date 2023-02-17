@@ -11,7 +11,7 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
   baseCost = [
     {
       resource: ResourceNames.LUMBER,
-      quantity: 7,
+      quantity: 10,
     },
   ];
   costExponent = 1.5;

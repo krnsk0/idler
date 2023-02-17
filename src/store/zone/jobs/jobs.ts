@@ -8,7 +8,7 @@ import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
 
-const foodConsumptionPerWorkerPerSec = 0.15;
+const FOOD_PER_WORKER_PER_SECOND_BASE = 0.25;
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {
@@ -67,7 +67,7 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   @computed
   get foodConsumption(): number {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
-    return colonists.quantity * foodConsumptionPerWorkerPerSec;
+    return colonists.quantity * FOOD_PER_WORKER_PER_SECOND_BASE;
   }
 
   /**
