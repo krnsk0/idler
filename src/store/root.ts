@@ -14,7 +14,6 @@ import { computed } from 'mobx';
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
-import { CURRENT_SAVE_VERSION } from './metadata';
 import { migrator } from './migrator/migrator';
 
 @model('Root')
@@ -44,7 +43,7 @@ export class Root extends Model({
       this.game.selectZone(this.game.initialZone);
       return;
     }
-    this.game = migrator(savegame, CURRENT_SAVE_VERSION);
+    this.game = migrator(savegame, import.meta.env.PACKAGE_VERSION);
   }
 
   @modelAction

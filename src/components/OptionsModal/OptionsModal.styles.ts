@@ -20,4 +20,8 @@ export const styles = {
     position: relative;
     cursor: pointer;
   `,
+  version: css`
+    position: absolute;
+    bottom: 1em;
+  `,
 };
