@@ -8,6 +8,7 @@ import { Cache } from './cache';
 import { Furnace } from './furnace';
 import { ZoneEntity } from '../zoneEntity';
 import { Dynamo } from './dynamo';
+import { Mine } from './mine';
 
 @model('Buildings')
 export class Buildings extends ExtendedModel(ZoneEntity, {
@@ -16,6 +17,7 @@ export class Buildings extends ExtendedModel(ZoneEntity, {
   [BuildingNames.CACHE]: tProp(types.model(Cache), () => new Cache({})),
   [BuildingNames.FURNACE]: tProp(types.model(Furnace), () => new Furnace({})),
   [BuildingNames.DYNAMO]: tProp(types.model(Dynamo), () => new Dynamo({})),
+  [BuildingNames.MINE]: tProp(types.model(Mine), () => new Mine({})),
 }) {
   transientUnlockCheck = () => !!this.unlockedAsArray.length;
   observableUnlockCheck = () => true;

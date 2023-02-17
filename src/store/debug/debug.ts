@@ -85,6 +85,9 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.ALLOY].cheat();
   }
 
+  /**
+   * Unlock and max dynamos
+   */
   @modelAction
   phaseThree() {
     this.phaseTwo();
@@ -112,6 +115,20 @@ export class Debug extends Model({
     // max dynamos
     tech[TechNames.ELECTROMAGNETISM].cheat();
     initialZone.buildings[BuildingNames.DYNAMO].cheat(1);
+  }
+
+  /**
+   * Mining era
+   */
+  @modelAction
+  phaseFour() {
+    this.phaseThree();
+    const tech = getTech(this);
+    const initialZone = getGame(this).initialZone;
+
+    // max mining
+    tech[TechNames.SUBSURFACE_EXCAVATION].cheat();
+    // initialZone.buildings[BuildingNames.MINE].cheat(2);
   }
 
   /**

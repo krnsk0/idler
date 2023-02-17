@@ -94,6 +94,14 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
+            debug.phaseFour();
+          }}
+        >
+          4
+        </button>
+        <button
+          type="button"
+          onClick={() => {
             debug.debug();
           }}
         >

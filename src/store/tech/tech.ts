@@ -28,6 +28,7 @@ import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
 import { Electromagnetism } from './electromagnetism';
 import { TechName } from '../gui/gui';
+import { SubsurfaceExcavation } from './subsurfaceExcavation';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -57,6 +58,10 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.ELECTROMAGNETISM]: tProp(
     types.model(Electromagnetism),
     () => new Electromagnetism({}),
+  ),
+  [TechNames.SUBSURFACE_EXCAVATION]: tProp(
+    types.model(SubsurfaceExcavation),
+    () => new SubsurfaceExcavation({}),
   ),
 }) {
   transientUnlockCheck = () => {

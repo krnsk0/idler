@@ -13,7 +13,7 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
   powerCost = 25;
   transientUnlockCheck = () =>
     getGame(this).initialZone.resources[ResourceNames.ALLOY].quantity >= 5;
-  techUnlocked = [];
+  techUnlocked = [TechNames.SUBSURFACE_EXCAVATION];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
