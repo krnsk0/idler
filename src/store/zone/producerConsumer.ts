@@ -36,7 +36,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * Did this generator (if it is a generator) have enough input last tick
    * to produce power this tick? If so, this is 1. Otherwise, less than 1.
    */
-  lastTickProrate: tProp(types.number, 0),
+  powerProductionProrate: tProp(types.number, 0),
 }) {
   /**
    * Things consumed by this producerConsumer
@@ -82,7 +82,11 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get powerProduction(): number {
-    return this.powerOutputPerSecond * this.lastTickProrate * this.numberActive;
+    return (
+      this.powerOutputPerSecond *
+      this.powerProductionProrate *
+      this.numberActive
+    );
   }
 
   /**
@@ -90,7 +94,11 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get powerConsumption(): number {
-    return this.powerNeededPerSecond * this.lastTickProrate * this.numberActive;
+    return (
+      this.powerNeededPerSecond *
+      this.powerProductionProrate *
+      this.numberActive
+    );
   }
 
   /**
@@ -234,7 +242,7 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
 
     // store prorate to help with calculating power produced next tick
     // as power production intentionally lags behind by one tick
-    this.lastTickProrate = prorate;
+    this.powerProductionProrate = prorate;
 
     // calculate any prorate adjustments based on available power
     if (this.powerConsumption > 0) {
