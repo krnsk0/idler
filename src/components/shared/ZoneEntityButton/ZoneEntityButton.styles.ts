@@ -55,7 +55,7 @@ export const styles = {
 
     ${mq['hoverableDesktop']} {
       text-align: left;
-      padding-left: 1em;
+      padding-left: 0.5em;
     }
   `,
   progressBar: css`
@@ -77,7 +77,7 @@ export const styles = {
     justify-content: center;
     align-items: center;
 
-    width: 1.6em;
+    width: 1.4em;
     height: 2em;
   `,
   invisibleOnDesktop: css`

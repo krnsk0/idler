@@ -1,7 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-import { getGame } from '../selectors';
-import { JobNames } from '../zone/jobs/jobNames';
-import { ResourceNames } from '../zone/resources/resourceNames';
+import { BuildingNames } from '../zone/buildings/buildingNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -10,12 +8,11 @@ export class Agroforestry extends ExtendedModel(BaseTech, {}) {
   name = TechNames.AGROFORESTRY;
   displayName = 'agroforestry';
   description = 'sustainable cultivation of arboriform xenoflora';
-  powerCost = 20;
-  transientUnlockCheck = () =>
-    getGame(this).initialZone.resources[ResourceNames.COLONISTS].currentCap > 0;
+  powerCost = 25;
+  transientUnlockCheck = () => true;
   techUnlocked = [];
   actionsUnlocked = [];
   actionsRelocked = [];
-  jobsUnlocked = [JobNames.ARBORIST];
-  buildingsUnlocked = [];
+  jobsUnlocked = [];
+  buildingsUnlocked = [BuildingNames.TREE_FARM];
 }

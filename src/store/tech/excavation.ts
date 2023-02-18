@@ -11,7 +11,11 @@ export class Excavation extends ExtendedModel(BaseTech, {}) {
   description = "ship detects mineral deposits beneath the planet's surface";
   powerCost = 15;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.METALLURGY, TechNames.STORAGE];
+  techUnlocked = [
+    TechNames.METALLURGY,
+    TechNames.STORAGE,
+    TechNames.AGROFORESTRY,
+  ];
   actionsUnlocked = [ActionNames.EXCAVATE];
   actionsRelocked = [];
   jobsUnlocked = [];
