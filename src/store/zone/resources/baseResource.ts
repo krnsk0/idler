@@ -78,13 +78,13 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
     const productionSummary: ProductionConsumptionDisplay[] = [];
     [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
       (producer) => {
-        const production = producer.productionPerSecond.find(
+        const production = producer.proratedProductionPerSecond.find(
           ({ resource }) => resource === this.name,
         );
-        if (producer.unlocked && production && !!production.quantityPerSecond) {
+        if (producer.unlocked && production) {
           productionSummary.push({
             producerConsumerDisplayName: producer.displayName,
-            producerConsumerQuantity: producer.quantity,
+            producerConsumerQuantity: producer.numberActive,
             resourceQuantityPerSecond: production.quantityPerSecond,
           });
         }
@@ -101,13 +101,13 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
     const consumptionSummary: ProductionConsumptionDisplay[] = [];
     [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
       (producer) => {
-        const production = producer.consumptionPerSecond.find(
+        const production = producer.proratedConsumptionPerSecond.find(
           ({ resource }) => resource === this.name,
         );
         if (production && producer.unlocked) {
           consumptionSummary.push({
             producerConsumerDisplayName: producer.displayName,
-            producerConsumerQuantity: producer.quantity,
+            producerConsumerQuantity: producer.numberActive,
             resourceQuantityPerSecond: production.quantityPerSecond,
           });
         }

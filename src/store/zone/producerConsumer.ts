@@ -122,6 +122,19 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Prorated producconsumption per second (estimate, based on last turn)
+   */
+  @computed
+  get proratedConsumptionPerSecond(): Production[] {
+    return this.consumptionPerSecond.map(({ resource, quantityPerSecond }) => {
+      return {
+        resource,
+        quantityPerSecond: quantityPerSecond * this.lastTickProrate,
+      };
+    });
+  }
+
+  /**
    * Per-second production of all at full capacity including quantity
    */
   @computed
@@ -136,6 +149,19 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
         resource,
         quantityPerSecond:
           quantityPerSecond * this.numberActive * productionMultiplier,
+      };
+    });
+  }
+
+  /**
+   * Prorated production per second (estimate, based on last turn)
+   */
+  @computed
+  get proratedProductionPerSecond(): Production[] {
+    return this.productionPerSecond.map(({ resource, quantityPerSecond }) => {
+      return {
+        resource,
+        quantityPerSecond: quantityPerSecond * this.lastTickProrate,
       };
     });
   }
