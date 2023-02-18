@@ -1,0 +1,183 @@
+{
+  "systemRegistry": {
+    "$modelType": "SystemRegistry"
+  },
+  "zones": [
+    {
+      "name": "landing zone",
+      "power": {
+        "$modelType": "Power"
+      },
+      "buildings": {
+        "FARM": {
+          "quantity": 0,
+          "numberDisabled": 0,
+          "powerProducitonProrate": 1,
+          "$modelType": "FARM"
+        },
+        "HABITAT": {
+          "quantity": 0,
+          "numberDisabled": 0,
+          "powerProducitonProrate": 1,
+          "$modelType": "HABITAT"
+        },
+        "CACHE": {
+          "quantity": 0,
+          "numberDisabled": 0,
+          "powerProducitonProrate": 1,
+          "$modelType": "CACHE"
+        },
+        "FURNACE": {
+          "quantity": 0,
+          "numberDisabled": 0,
+          "powerProducitonProrate": 1,
+          "$modelType": "FURNACE"
+        },
+        "DYNAMO": {
+          "quantity": 0,
+          "numberDisabled": 0,
+          "powerProducitonProrate": 1,
+          "$modelType": "DYNAMO"
+        },
+        "$modelType": "Buildings"
+      },
+      "resources": {
+        "COLONISTS": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "COLONISTS"
+        },
+        "BIOMASS": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "BIOMASS"
+        },
+        "LUMBER": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "LUMBER"
+        },
+        "NUTRIENTS": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "NUTRIENTS"
+        },
+        "ROCK": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "ROCK"
+        },
+        "ORE": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "ORE"
+        },
+        "ALLOY": {
+          "quantity": 0,
+          "estimatedRate": null,
+          "$modelType": "ALLOY"
+        },
+        "$modelType": "Resources"
+      },
+      "actions": {
+        "HARVEST": {
+          "_unlockTime": 1676476370031,
+          "progress": 0,
+          "active": false,
+          "$modelType": "HARVEST"
+        },
+        "GENERATE": {
+          "progress": 0,
+          "active": false,
+          "$modelType": "GENERATE"
+        },
+        "COMPRESS": {
+          "progress": 0,
+          "active": false,
+          "$modelType": "COMPRESS"
+        },
+        "THAW": {
+          "progress": 0,
+          "active": false,
+          "$modelType": "THAW"
+        },
+        "EXCAVATE": {
+          "progress": 0,
+          "active": false,
+          "$modelType": "EXCAVATE"
+        },
+        "$modelType": "Actions"
+      },
+      "jobs": {
+        "ARBORIST": {
+          "quantity": 0,
+          "numberDisabled": 0,
+          "powerProducitonProrate": 1,
+          "$modelType": "ARBORIST"
+        },
+        "$modelType": "Jobs"
+      },
+      "id": "0-E2UblM3VYazM7RswNci0J",
+      "$modelType": "Zone"
+    }
+  ],
+  "tech": {
+    "BIOMASS_COMPRESSION": {
+      "power": 0,
+      "active": false,
+      "_unlockTime": 1676476370057,
+      "id": "1-E2UblM3VYazM7RswNci0J",
+      "$modelType": "BIOMASS_COMPRESSION"
+    },
+    "FARMING": {
+      "power": 0,
+      "active": false,
+      "id": "2-E2UblM3VYazM7RswNci0J",
+      "$modelType": "FARMING"
+    },
+    "SHELTER": {
+      "power": 0,
+      "active": false,
+      "id": "3-E2UblM3VYazM7RswNci0J",
+      "$modelType": "SHELTER"
+    },
+    "CRYONICS": {
+      "power": 0,
+      "active": false,
+      "id": "4-E2UblM3VYazM7RswNci0J",
+      "$modelType": "CRYONICS"
+    },
+    "AGROFORESTRY": {
+      "power": 0,
+      "active": false,
+      "id": "5-E2UblM3VYazM7RswNci0J",
+      "$modelType": "AGROFORESTRY"
+    },
+    "STORAGE": {
+      "power": 0,
+      "active": false,
+      "id": "6-E2UblM3VYazM7RswNci0J",
+      "$modelType": "STORAGE"
+    },
+    "EXCAVATION": {
+      "power": 0,
+      "active": false,
+      "id": "7-E2UblM3VYazM7RswNci0J",
+      "$modelType": "EXCAVATION"
+    },
+    "METALLURGY": {
+      "power": 0,
+      "active": false,
+      "id": "8-E2UblM3VYazM7RswNci0J",
+      "$modelType": "METALLURGY"
+    },
+    "ELECTROMAGNETISM": {
+      "power": 0,
+      "active": false,
+      "id": "9-E2UblM3VYazM7RswNci0J",
+      "$modelType": "ELECTROMAGNETISM"
+    },
+    "$modelType": "Tech"
+  },
+  "$modelType": "Game"
+}

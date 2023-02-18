@@ -44,7 +44,8 @@ export class Root extends Model({
     const savegame = localStorage.getItem('save');
     try {
       if (!savegame) return this.reset();
-      this.game = migrator(savegame, import.meta.env.PACKAGE_VERSION);
+      let gameJson = JSON.parse(savegame);
+      this.game = migrator(gameJson, import.meta.env.PACKAGE_VERSION);
       console.log('save loaded');
     } catch (error: unknown) {
       console.error('error loading from localstorage', {
@@ -59,7 +60,8 @@ export class Root extends Model({
   loadFromClipboard = _async(function* (this: Root) {
     const savegame = yield navigator.clipboard.readText();
     try {
-      this.game = migrator(savegame, import.meta.env.PACKAGE_VERSION);
+      let gameJson = JSON.parse(savegame);
+      this.game = migrator(gameJson, import.meta.env.PACKAGE_VERSION);
     } catch (error: unknown) {
       console.error('error loading from clipboard', {
         error,
