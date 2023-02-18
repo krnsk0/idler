@@ -12,7 +12,7 @@ function BuildingButton({ building }: BuildingButtonProps) {
   if (!building.unlocked) return null;
 
   const displayName = `${building.displayName}${
-    building.isStorageConstrainted ? '°' : ''
+    building.isStorageConstrainted ? 'ᶜ' : ''
   }${building.isProrated ? '*' : ''}`;
 
   return (
