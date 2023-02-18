@@ -37,6 +37,10 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * to produce power this tick? If so, this is 1. Otherwise, less than 1.
    */
   powerProductionProrate: tProp(types.number, 0),
+  /**
+   * Did we prorate last tick? What % of total capacithy?
+   */
+  lastTickProrate: tProp(types.number, 0),
 }) {
   /**
    * Things consumed by this producerConsumer
@@ -63,11 +67,6 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * E.g. "4 of 5 furnaces are enabled"
    */
   abstract canSomeBeTurnedOff: boolean;
-
-  /**
-   * Autodisable when outputs run out?
-   */
-  abstract autoDisableOnInputDepletion: boolean;
 
   /**
    * How many are active
@@ -179,6 +178,14 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Technically, "was prorated last tick?""
+   */
+  @computed
+  get isProrated(): boolean {
+    return this.lastTickProrate < 1;
+  }
+
+  /**
    * Allows disabling a producer
    */
   @modelAction
@@ -210,7 +217,6 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
 
     // prorate limits production based on available input
     // and storage space for output
-
     let prorate = 1;
 
     // here we constrain the prorate based on available inputs
@@ -249,6 +255,9 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
       prorate = Math.min(prorate, getPower(this).satisfaction);
     }
 
+    // store prorate to refer to in future tick
+    this.lastTickProrate = prorate;
+
     // perform consumption
     this.consumptionPerSecond.forEach((input) => {
       const potentialConsumption = input.quantityPerSecond * delta * prorate;
@@ -262,19 +271,5 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });
-
-    // if we depleted any inputs and we're configured to do so, disable
-    // an entity
-    if (
-      this.autoDisableOnInputDepletion &&
-      this.consumptionPerSecond.some((input) => {
-        const resourceModel = this.zoneResources[input.resource];
-        return resourceModel.quantity <= 0;
-      })
-    ) {
-      while (this.canDisableEntity) {
-        this.disableEntity();
-      }
-    }
   }
 }

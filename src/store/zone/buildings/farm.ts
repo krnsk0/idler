@@ -35,5 +35,4 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   canSomeBeTurnedOff = false;
   powerOutputPerSecond = 0;
   powerNeededPerSecond = 0;
-  autoDisableOnInputDepletion = false;
 }

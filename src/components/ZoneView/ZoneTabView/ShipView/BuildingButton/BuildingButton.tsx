@@ -13,7 +13,7 @@ function BuildingButton({ building }: BuildingButtonProps) {
 
   const displayName = `${building.displayName}${
     building.isStorageConstrainted ? '°' : ''
-  }`;
+  }${building.isProrated ? '*' : ''}`;
 
   return (
     <ZoneEntityButton

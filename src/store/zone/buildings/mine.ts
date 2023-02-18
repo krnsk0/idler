@@ -29,5 +29,4 @@ export class Mine extends ExtendedModel(BaseBuilding, {}) {
   canSomeBeTurnedOff = true;
   powerOutputPerSecond = 0;
   powerNeededPerSecond = 1;
-  autoDisableOnInputDepletion = true;
 }

@@ -71,11 +71,21 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
             </div>
           );
         })}
+        {(building.isStorageConstrainted || building.isProrated) && (
+          <TooltipDivider />
+        )}
         {building.isStorageConstrainted && (
           <>
-            <TooltipDivider />
-            <div>°cost is storage-constrained, cannot build</div>
+            <div>°cost is storage-constrained, will never be affordable</div>
+            <p></p>
           </>
+        )}
+        {building.isProrated && (
+          <div>
+            *operating at{' '}
+            {formatNumber(building.lastTickProrate * 100, { digits: 0 })}%
+            capacity; inputs not satisfied
+          </div>
         )}
       </TooltipText>
     </>

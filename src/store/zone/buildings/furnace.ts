@@ -31,5 +31,4 @@ export class Furnace extends ExtendedModel(BaseBuilding, {}) {
   canSomeBeTurnedOff = true;
   powerOutputPerSecond = 0;
   powerNeededPerSecond = 0;
-  autoDisableOnInputDepletion = false;
 }
