@@ -70,7 +70,7 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.ORE].cheat();
 
     // tree farms max
-    tech[TechNames.AGROFORESTRY].cheat();
+    tech[TechNames.FORESTRY].cheat();
     initialZone.buildings[BuildingNames.TREE_FARM].cheat(4);
 
     // colonists max

@@ -10,7 +10,7 @@ export class SubsurfaceExcavation extends ExtendedModel(BaseTech, {}) {
   description = 'delve deeper for useful mineral ores';
   powerCost = 100;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
+  techUnlocked = [TechNames.GEOLOGY];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];

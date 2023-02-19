@@ -11,7 +11,11 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
     'in the wreckage, thousands sleep in suspended animation. ship says it can wake them';
   powerCost = 20;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
+  techUnlocked = [
+    TechNames.AGRONOMY,
+    TechNames.ARBORICULTURE,
+    TechNames.GEOLOGY,
+  ];
   actionsUnlocked = [ActionNames.THAW];
   actionsRelocked = [];
   jobsUnlocked = [];

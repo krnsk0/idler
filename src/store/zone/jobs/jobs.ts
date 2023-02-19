@@ -3,6 +3,8 @@ import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { JobNames } from './jobNames';
 import { Arborist } from './arborist';
+import { Agronomist } from './agronomist';
+import { Geologist } from './geologist';
 import { ResourceNames } from '../resources/resourceNames';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
@@ -13,6 +15,11 @@ const FOOD_PER_WORKER_PER_SECOND_BASE = 0.25;
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
+  [JobNames.AGRONOMIST]: tProp(
+    types.model(Agronomist),
+    () => new Agronomist({}),
+  ),
+  [JobNames.GEOLOGIST]: tProp(types.model(Geologist), () => new Geologist({})),
 }) {
   transientUnlockCheck = () => {
     return (

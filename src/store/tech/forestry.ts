@@ -3,14 +3,14 @@ import { BuildingNames } from '../zone/buildings/buildingNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
-@model(TechNames.AGROFORESTRY)
-export class Agroforestry extends ExtendedModel(BaseTech, {}) {
-  name = TechNames.AGROFORESTRY;
-  displayName = 'agroforestry';
+@model(TechNames.FORESTRY)
+export class Forestry extends ExtendedModel(BaseTech, {}) {
+  name = TechNames.FORESTRY;
+  displayName = 'forestry';
   description = 'sustainable cultivation of arboriform xenoflora';
   powerCost = 25;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
+  techUnlocked = [TechNames.ARBORICULTURE];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
