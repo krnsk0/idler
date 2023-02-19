@@ -6,5 +6,5 @@ import { ResourceNames } from './resourceNames';
 export class Lumber extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.LUMBER;
   displayName = 'lumber';
-  initialCap = 10;
+  initialCap = 15;
 }

@@ -63,7 +63,7 @@ export class Debug extends Model({
 
     // shelter max
     tech[TechNames.SHELTER].cheat();
-    initialZone.buildings[BuildingNames.HABITAT].cheat(2);
+    initialZone.buildings[BuildingNames.HABITAT].cheat(8);
 
     // excavation max
     tech[TechNames.EXCAVATION].cheat();
@@ -83,9 +83,13 @@ export class Debug extends Model({
     tech[TechNames.CRYONICS].cheat();
     tech[TechNames.AGRONOMY].cheat();
     tech[TechNames.ARBORICULTURE].cheat();
-    initialZone.resources[ResourceNames.COLONISTS].cheat(2);
-    initialZone.jobs[JobNames.ARBORIST].assign();
-    initialZone.jobs[JobNames.AGRONOMIST].assign();
+    initialZone.resources[ResourceNames.COLONISTS].cheat(8);
+    for (let i = 0; i < 3; i += 1) {
+      initialZone.jobs[JobNames.AGRONOMIST].assign();
+    }
+    for (let i = 0; i < 5; i += 1) {
+      initialZone.jobs[JobNames.ARBORIST].assign();
+    }
   }
 
   /**
