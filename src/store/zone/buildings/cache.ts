@@ -36,7 +36,7 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.ROCK,
-      quantity: 9,
+      quantity: 10,
     },
     {
       resource: ResourceNames.ORE,
