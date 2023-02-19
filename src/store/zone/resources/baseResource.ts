@@ -1,8 +1,8 @@
 import { tProp, types, modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from './resourceNames';
 import { getGui } from '../../selectors';
+import { Countable } from '../countable';
 
 export interface ProductionConsumptionDisplay {
   producerConsumerDisplayName: string;
@@ -14,8 +14,7 @@ export interface StorageSummaryDisplay {
   storageProviderQuantity: number;
   storage: number;
 }
-export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
-  quantity: tProp(types.number, 0),
+export abstract class BaseResource extends ExtendedModel(Countable, {
   /**
    * Used to show change over time.
    * Can be null if no change has taken place this tick.

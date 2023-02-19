@@ -63,15 +63,6 @@ export class SystemRegistry extends Model({}) {
     });
 
     /**
-     * Tick all jobs.
-     */
-    this.game.zones.forEach((zone) => {
-      zone.jobs.asArray.forEach((job) => {
-        job.tick(delta);
-      });
-    });
-
-    /**
      * Tick food consumption
      */
     this.game.zones.forEach((zone) => {

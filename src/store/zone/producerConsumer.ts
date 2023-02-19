@@ -3,6 +3,7 @@ import { ResourceNames } from './resources/resourceNames';
 import { ZoneEntity } from './zoneEntity';
 import { computed } from 'mobx';
 import { getPower, getResources } from '../selectors';
+import { Countable } from './countable';
 
 interface Consumption {
   resource: ResourceNames;
@@ -23,11 +24,7 @@ export type ProductionMultipliers = {
   [key in ResourceNames]?: number;
 };
 
-export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
-  /**
-   * How many does the player own?
-   */
-  quantity: tProp(types.number, 0),
+export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   /**
    * Are any disabled?
    */

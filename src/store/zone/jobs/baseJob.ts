@@ -2,9 +2,9 @@ import { ExtendedModel, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs, getTech, getGui } from '../../selectors';
-import { ProducerConsumer } from '../producerConsumer';
+import { Countable } from '../countable';
 
-export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
+export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;
   abstract displayName: string;
   abstract description: string;
@@ -99,12 +99,5 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
     if (this.canDecrement) {
       this.quantity -= 1;
     }
-  }
-  /**
-   * Attempts to run production
-   */
-  @modelAction
-  tick(delta: number): void {
-    this.runProduction(delta);
   }
 }
