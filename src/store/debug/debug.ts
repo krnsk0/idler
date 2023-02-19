@@ -53,6 +53,7 @@ export class Debug extends Model({
 
   /**
    * Max all buildings prior to building caches
+   * Max out jobs
    */
   @modelAction
   phaseTwo() {
@@ -73,18 +74,22 @@ export class Debug extends Model({
     tech[TechNames.FORESTRY].cheat();
     initialZone.buildings[BuildingNames.TREE_FARM].cheat(4);
 
-    // colonists max
-    tech[TechNames.CRYONICS].cheat();
-    initialZone.resources[ResourceNames.COLONISTS].cheat(2);
-
     // furnace max
     tech[TechNames.METALLURGY].cheat();
     initialZone.buildings[BuildingNames.FURNACE].cheat(2);
     initialZone.resources[ResourceNames.ALLOY].cheat();
+
+    // unlock jobs, get colonists, balance
+    tech[TechNames.CRYONICS].cheat();
+    tech[TechNames.AGRONOMY].cheat();
+    tech[TechNames.ARBORICULTURE].cheat();
+    initialZone.resources[ResourceNames.COLONISTS].cheat(2);
+    initialZone.jobs[JobNames.ARBORIST].assign();
+    initialZone.jobs[JobNames.AGRONOMIST].assign();
   }
 
   /**
-   * Unlock and max dynamos
+   * Unlock storage and max out
    */
   @modelAction
   phaseThree() {
@@ -126,6 +131,11 @@ export class Debug extends Model({
     // max mining
     tech[TechNames.SUBSURFACE_EXCAVATION].cheat();
     initialZone.buildings[BuildingNames.MINE].cheat(2);
+
+    // unlock miners and max
+    tech[TechNames.GEOLOGY].cheat();
+    initialZone.resources[ResourceNames.COLONISTS].cheat();
+    initialZone.jobs[JobNames.GEOLOGIST].assign();
   }
 
   /**
