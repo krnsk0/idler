@@ -27,11 +27,15 @@ const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
       <TooltipDivider text="effects" />
       <TooltipText>
         {job.displayEffects.map(
-          ({ resourceDisplayName, quantityPerSecond }) => {
+          ({
+            resourceDisplayName,
+            buildingDisplayName,
+            percentageModifier,
+          }) => {
             return (
               <div key={resourceDisplayName}>
-                {resourceDisplayName}:{' '}
-                {formatNumber(quantityPerSecond, { showSign: true })}/sec
+                {buildingDisplayName}'s {resourceDisplayName} production:{' '}
+                {formatNumber(percentageModifier * 100, { showSign: true })}%
               </div>
             );
           },

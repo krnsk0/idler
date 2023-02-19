@@ -1,4 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { BuildingNames } from '../buildings/buildingNames';
+import { ResourceNames } from '../resources/resourceNames';
 import { BaseJob } from './baseJob';
 import { JobNames } from './jobNames';
 
@@ -10,4 +12,11 @@ export class Arborist extends ExtendedModel(BaseJob, {}) {
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;
+  productionModifiers = [
+    {
+      buildingName: BuildingNames.TREE_FARM,
+      resourceName: ResourceNames.LUMBER,
+      percentageModifier: 0.1,
+    },
+  ];
 }
