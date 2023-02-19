@@ -2,6 +2,8 @@ import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { BaseResource } from './baseResource';
 import { ResourceNames } from './resourceNames';
 
+export const FOOD_PER_WORKER_PER_SECOND_BASE = 0.2;
+
 @model(ResourceNames.COLONISTS)
 export class Colonists extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.COLONISTS;

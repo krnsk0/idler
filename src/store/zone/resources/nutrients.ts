@@ -7,7 +7,7 @@ import { override } from 'mobx';
 export class Nutrients extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.NUTRIENTS;
   displayName = 'nutrients';
-  initialCap = 5;
+  initialCap = 50;
 
   /**
    * Estimate production per second

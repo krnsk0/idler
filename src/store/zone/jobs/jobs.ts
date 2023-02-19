@@ -11,8 +11,7 @@ import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
 import { ProductionModifier } from './baseJob';
 import { BuildingNames } from '../buildings/buildingNames';
-
-const FOOD_PER_WORKER_PER_SECOND_BASE = 0.25;
+import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../resources/colonists';
 
 type TotalProductionModifier = {
   [key in ResourceNames]?: number;

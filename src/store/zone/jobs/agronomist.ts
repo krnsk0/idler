@@ -16,7 +16,7 @@ export class Agronomist extends ExtendedModel(BaseJob, {}) {
     {
       buildingName: BuildingNames.FARM,
       resourceName: ResourceNames.NUTRIENTS,
-      percentageModifier: 0.25,
+      percentageModifier: 0.2,
     },
   ];
 }

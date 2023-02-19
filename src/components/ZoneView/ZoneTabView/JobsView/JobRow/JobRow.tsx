@@ -10,6 +10,7 @@ import {
 } from '../../../../shared/Tooltip/Tooltip';
 
 import { styles } from './JobRow.styles';
+import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../../../../../store/zone/resources/colonists';
 
 interface JobRowTooltipProps {
   job: BaseJob;
@@ -40,6 +41,9 @@ const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
             );
           },
         )}
+        <div>
+          consumes {formatNumber(FOOD_PER_WORKER_PER_SECOND_BASE)} nutrients/sec
+        </div>
       </TooltipText>
     </>
   );
