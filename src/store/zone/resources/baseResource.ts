@@ -75,20 +75,18 @@ export abstract class BaseResource extends ExtendedModel(Countable, {
   @computed
   get productionSummary(): ProductionConsumptionDisplay[] {
     const productionSummary: ProductionConsumptionDisplay[] = [];
-    [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
-      (producer) => {
-        const production = producer.proratedProductionPerSecond.find(
-          ({ resource }) => resource === this.name,
-        );
-        if (producer.unlocked && production) {
-          productionSummary.push({
-            producerConsumerDisplayName: producer.displayName,
-            producerConsumerQuantity: producer.numberActive,
-            resourceQuantityPerSecond: production.quantityPerSecond,
-          });
-        }
-      },
-    );
+    this.zoneBuildings.asArray.forEach((producer) => {
+      const production = producer.proratedProductionPerSecond.find(
+        ({ resource }) => resource === this.name,
+      );
+      if (producer.unlocked && production) {
+        productionSummary.push({
+          producerConsumerDisplayName: producer.displayName,
+          producerConsumerQuantity: producer.numberActive,
+          resourceQuantityPerSecond: production.quantityPerSecond,
+        });
+      }
+    });
     return productionSummary;
   }
 
@@ -98,20 +96,18 @@ export abstract class BaseResource extends ExtendedModel(Countable, {
   @computed
   get consumptionSummary(): ProductionConsumptionDisplay[] {
     const consumptionSummary: ProductionConsumptionDisplay[] = [];
-    [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
-      (producer) => {
-        const production = producer.proratedConsumptionPerSecond.find(
-          ({ resource }) => resource === this.name,
-        );
-        if (production && producer.unlocked) {
-          consumptionSummary.push({
-            producerConsumerDisplayName: producer.displayName,
-            producerConsumerQuantity: producer.numberActive,
-            resourceQuantityPerSecond: production.quantityPerSecond,
-          });
-        }
-      },
-    );
+    this.zoneBuildings.asArray.forEach((producer) => {
+      const production = producer.proratedConsumptionPerSecond.find(
+        ({ resource }) => resource === this.name,
+      );
+      if (production && producer.unlocked) {
+        consumptionSummary.push({
+          producerConsumerDisplayName: producer.displayName,
+          producerConsumerQuantity: producer.numberActive,
+          resourceQuantityPerSecond: production.quantityPerSecond,
+        });
+      }
+    });
     return consumptionSummary;
   }
 
