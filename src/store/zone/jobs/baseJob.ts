@@ -6,13 +6,13 @@ import { Countable } from '../countable';
 import { BuildingNames } from '../buildings/buildingNames';
 import { ResourceNames } from '../resources/resourceNames';
 
-interface ProductionModifier {
+export interface ProductionModifier {
   buildingName: BuildingNames;
   resourceName: ResourceNames;
   percentageModifier: number;
 }
 
-interface ProductionModifierDisplay {
+export interface ProductionModifierDisplay {
   buildingDisplayName: string;
   resourceDisplayName: string;
   percentageModifier: number;
@@ -60,6 +60,19 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
           percentageModifier,
           resourceDisplayName: this.zoneResources[resourceName].displayName,
           buildingDisplayName: this.zoneBuildings[buildingName].displayName,
+        };
+      },
+    );
+  }
+
+  @computed
+  get totalProductionModifiers(): ProductionModifier[] {
+    return this.productionModifiers.map(
+      ({ buildingName, resourceName, percentageModifier }) => {
+        return {
+          percentageModifier: percentageModifier * this.quantity,
+          buildingName,
+          resourceName,
         };
       },
     );

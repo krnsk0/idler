@@ -14,7 +14,7 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
       quantity: 10,
     },
   ];
-  costExponent = 1.5;
+  costExponent = 1.2;
   inputs = [];
   outputs = [];
   storage = [

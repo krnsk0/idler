@@ -8,15 +8,15 @@ import { JobNames } from './jobNames';
 export class Agronomist extends ExtendedModel(BaseJob, {}) {
   name = JobNames.AGRONOMIST;
   displayName = 'agronomist';
-  description = 'increases farm output.';
+  description = 'increases nutrient output of farms';
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;
   productionModifiers = [
     {
       buildingName: BuildingNames.FARM,
-      resourceName: ResourceNames.BIOMASS,
-      percentageModifier: 0.1,
+      resourceName: ResourceNames.NUTRIENTS,
+      percentageModifier: 0.25,
     },
   ];
 }

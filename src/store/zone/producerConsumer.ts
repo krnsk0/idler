@@ -20,10 +20,6 @@ interface ProductionConsumptionDisplay {
   quantityPerSecond: number;
 }
 
-export type ProductionMultipliers = {
-  [key in ResourceNames]?: number;
-};
-
 export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   /**
    * Are any disabled?
@@ -98,14 +94,6 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   }
 
   /**
-   * Intended to be overridden by children
-   */
-  @computed
-  get productionModifiers(): ProductionMultipliers {
-    return {};
-  }
-
-  /**
    * Per-second consumption of all at full capacity including quantity
    */
   @computed
@@ -132,14 +120,32 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   }
 
   /**
+   * Modifiers of this producer
+   */
+  @computed
+  get modifiersOfThisProducer() {
+    const modifierMap: { [key in ResourceNames]?: number } = {};
+    this.zoneJobs.totalProductionModifiers
+      .filter(({ buildingName }) => buildingName === this.$modelType)
+      .forEach(({ resourceName, percentageModifier }) => {
+        if (typeof modifierMap[resourceName] === 'number') {
+          modifierMap[resourceName]! += percentageModifier;
+        } else {
+          modifierMap[resourceName] = percentageModifier;
+        }
+      });
+    return modifierMap;
+  }
+
+  /**
    * Per-second production of all at full capacity including quantity
    */
   @computed
   get productionPerSecond(): Production[] {
     return this.outputs.map(({ resource, quantityPerSecond }) => {
       let productionMultiplier = 1;
-      if (this.productionModifiers[resource] !== undefined) {
-        productionMultiplier *= this.productionModifiers[resource] as number;
+      if (this.modifiersOfThisProducer[resource] !== undefined) {
+        productionMultiplier += this.modifiersOfThisProducer[resource]!;
       }
 
       return {

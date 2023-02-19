@@ -15,7 +15,7 @@ export class Geologist extends ExtendedModel(BaseJob, {}) {
   productionModifiers = [
     {
       buildingName: BuildingNames.MINE,
-      resourceName: ResourceNames.ALLOY,
+      resourceName: ResourceNames.ORE,
       percentageModifier: 0.1,
     },
   ];
