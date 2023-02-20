@@ -7,7 +7,6 @@ import {
   isBaseModifier,
   isPercentModifier,
   ModifierTargets,
-  ModifierTypes,
 } from './modifiers';
 
 interface Consumption {
@@ -111,7 +110,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .forEach((modifier) => {
           if (
             modifier.resource === resource &&
-            modifier.modifierType === ModifierTypes.INPUT &&
+            modifier.modifierType === 'input' &&
             isBaseModifier(modifier.modifier)
           ) {
             qpsPlusBaseModifier += modifier.modifier.baseChange;
@@ -125,7 +124,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .forEach((modifier) => {
           if (
             modifier.resource === resource &&
-            modifier.modifierType === ModifierTypes.INPUT &&
+            modifier.modifierType === 'input' &&
             isPercentModifier(modifier.modifier)
           ) {
             percentageModifier += modifier.modifier.percentChange;
@@ -181,7 +180,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .forEach((modifier) => {
           if (
             modifier.resource === resource &&
-            modifier.modifierType === ModifierTypes.OUTPUT &&
+            modifier.modifierType === 'output' &&
             isBaseModifier(modifier.modifier)
           ) {
             qpsPlusBaseModifier += modifier.modifier.baseChange;
@@ -195,7 +194,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .forEach((modifier) => {
           if (
             modifier.resource === resource &&
-            modifier.modifierType === ModifierTypes.OUTPUT &&
+            modifier.modifierType === 'output' &&
             isPercentModifier(modifier.modifier)
           ) {
             percentageModifier += modifier.modifier.percentChange;

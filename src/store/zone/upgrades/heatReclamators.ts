@@ -1,6 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BuildingNames } from '../buildings/buildingNames';
-import { ModifierTypes } from '../modifiers';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseUpgrade } from './baseUpgrade';
 import { UpgradeNames } from './upgradeNames';
@@ -13,7 +12,7 @@ export class HeatReclamators extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: ModifierTypes.INPUT,
+      modifierType: 'input' as const,
       target: BuildingNames.DYNAMO,
       resource: ResourceNames.BIOMASS,
       modifier: {

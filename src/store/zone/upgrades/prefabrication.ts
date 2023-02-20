@@ -1,6 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BuildingNames } from '../buildings/buildingNames';
-import { ModifierTypes } from '../modifiers';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseUpgrade } from './baseUpgrade';
 import { UpgradeNames } from './upgradeNames';
@@ -14,7 +13,7 @@ export class Prefabrication extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: ModifierTypes.COST,
+      modifierType: 'cost_scaling' as const,
       target: BuildingNames.HABITAT,
       resource: ResourceNames.LUMBER,
       modifier: {

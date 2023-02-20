@@ -7,19 +7,13 @@ import { getBuildings, getJobs, getResources, getUpgrades } from '../selectors';
 import { formatNumber } from '../../utils/formatNumber';
 import { UpgradeNames } from './upgrades/upgradeNames';
 
-export enum ModifierTypes {
-  INPUT = 'INPUT',
-  OUTPUT = 'OUTPUT',
-  STORAGE = 'STORAGE',
-  COST = 'COST',
-}
+type ModifierTypes = 'input' | 'output' | 'cost_scaling';
 
 export function getDisplayableModifierType(modifierType: ModifierTypes) {
   const mapping: { [key in ModifierTypes]: string } = {
-    [ModifierTypes.INPUT]: 'consumption',
-    [ModifierTypes.OUTPUT]: 'production',
-    [ModifierTypes.STORAGE]: 'storage',
-    [ModifierTypes.COST]: 'cost',
+    input: 'consumption',
+    output: 'production',
+    cost_scaling: 'cost scaling',
   };
   return mapping[modifierType];
 }
