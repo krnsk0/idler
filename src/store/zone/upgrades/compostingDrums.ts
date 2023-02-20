@@ -4,11 +4,12 @@ import { ResourceNames } from '../resources/resourceNames';
 import { BaseUpgrade } from './baseUpgrade';
 import { UpgradeNames } from './upgradeNames';
 
-@model(UpgradeNames.COMPOSTING_CENTER)
-export class CompostingCenter extends ExtendedModel(BaseUpgrade, {}) {
-  name = UpgradeNames.COMPOSTING_CENTER;
+@model(UpgradeNames.COMPOSTING_DRUMS)
+export class CompostingDrums extends ExtendedModel(BaseUpgrade, {}) {
+  name = UpgradeNames.COMPOSTING_DRUMS;
   displayName = 'composting drums';
-  description = 'equip farms with tools to convert waste matter to fertilizer';
+  description =
+    'equip farms with containers useful for decomposing organic waste matter to fertilizer';
   transientUnlockCheck = () => true;
   productionModifiers = [
     {
