@@ -25,9 +25,9 @@ const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
       <TooltipText italic={true} align={'center'}>
         {job.description}
       </TooltipText>
-      <TooltipDivider text="effects" />
+      <TooltipDivider text="base effect" />
       <TooltipText>
-        {job.displayEffects.map(
+        {job.displayBaseEffects.map(
           ({
             resourceDisplayName,
             buildingDisplayName,

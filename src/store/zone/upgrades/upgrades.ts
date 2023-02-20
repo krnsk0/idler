@@ -6,7 +6,7 @@ import { UpgradeNames } from './upgradeNames';
 import { CompostingDrums } from './compostingDrums';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
-import { ProductionModifier } from '../sharedTypes';
+import { ProductionModifier, ProductionModifierDisplay } from '../sharedTypes';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
@@ -58,13 +58,29 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * All job modifiers
+   * All upgrade modifiers
    */
   @computed
   get totalProductionModifiers(): ProductionModifier[] {
     const modifiers: ProductionModifier[] = [];
     this.asArray.forEach(({ totalProductionModifiers }) => {
       totalProductionModifiers.forEach((modifier) => {
+        if (modifier.percentageModifier > 0) {
+          modifiers.push(modifier);
+        }
+      });
+    });
+    return modifiers;
+  }
+
+  /**
+   * All upgrade modifiers, for display
+   */
+  @computed
+  get totalProductionModifiersDisplay(): ProductionModifierDisplay[] {
+    const modifiers: ProductionModifierDisplay[] = [];
+    this.asArray.forEach(({ totalProductionModifiersDisplay }) => {
+      totalProductionModifiersDisplay.forEach((modifier) => {
         if (modifier.percentageModifier > 0) {
           modifiers.push(modifier);
         }

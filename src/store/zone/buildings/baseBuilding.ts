@@ -1,10 +1,13 @@
 import { modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
-import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
 import { getGui, getTech } from '../../selectors';
-import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
+import {
+  ProductionModifierDisplay,
+  PurchaseCost,
+  PurchaseCostDisplay,
+} from '../sharedTypes';
 
 export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract name: BuildingNames;
@@ -76,6 +79,16 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   @computed
   get isExpanded(): boolean {
     return getGui(this).expandedShipColonyButton === this.name;
+  }
+
+  /**
+   * Modifier display
+   */
+  get totalProductionModifiersDisplay(): ProductionModifierDisplay[] {
+    return [
+      ...this.zoneJobs.totalProductionModifiersDisplay,
+      ...this.zoneUpgrades.totalProductionModifiersDisplay,
+    ].filter(({ building }) => building === this.name);
   }
 
   /**

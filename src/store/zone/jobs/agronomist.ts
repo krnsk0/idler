@@ -7,7 +7,7 @@ import { JobNames } from './jobNames';
 @model(JobNames.AGRONOMIST)
 export class Agronomist extends ExtendedModel(BaseJob, {}) {
   name = JobNames.AGRONOMIST;
-  displayName = 'agronomist';
+  displayName = 'agronomists';
   description = 'increases nutrient output of farms';
   inputs = [];
   outputs = [];

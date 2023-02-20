@@ -72,19 +72,24 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   @computed
   get displayEffects(): ProductionModifierDisplay[] {
     return this.productionModifiers.map(
-      ({
-        building: buildingName,
-        resource: resourceName,
-        percentageModifier,
-      }) => {
+      ({ building, resource, percentageModifier }) => {
         return {
           percentageModifier,
-          resourceDisplayName: this.zoneResources[resourceName].displayName,
-          buildingDisplayName: this.zoneBuildings[buildingName].displayName,
-          modifierSourceDisplayName: this.name,
+          resourceDisplayName: this.zoneResources[resource].displayName,
+          buildingDisplayName: this.zoneBuildings[building].displayName,
+          modifierSourceDisplayName: this.displayName,
+          building,
         };
       },
     );
+  }
+
+  /**
+   * Effects of this upgrade for display purposes
+   */
+  @computed
+  get totalProductionModifiersDisplay(): ProductionModifierDisplay[] {
+    return this.purchased ? this.displayEffects : [];
   }
 
   /**

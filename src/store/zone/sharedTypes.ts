@@ -14,6 +14,7 @@ export interface ProductionModifier {
 }
 
 export interface ProductionModifierDisplay {
+  building: BuildingNames;
   buildingDisplayName: string;
   resourceDisplayName: string;
   percentageModifier: number;

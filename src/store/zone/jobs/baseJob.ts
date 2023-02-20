@@ -40,18 +40,30 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   };
 
   @computed
-  get displayEffects(): ProductionModifierDisplay[] {
+  get displayBaseEffects(): ProductionModifierDisplay[] {
     return this.productionModifiers.map(
-      ({
-        building: buildingName,
-        resource: resourceName,
-        percentageModifier,
-      }) => {
+      ({ building, resource, percentageModifier }) => {
         return {
           percentageModifier,
-          resourceDisplayName: this.zoneResources[resourceName].displayName,
-          buildingDisplayName: this.zoneBuildings[buildingName].displayName,
-          modifierSourceDisplayName: this.name,
+          resourceDisplayName: this.zoneResources[resource].displayName,
+          buildingDisplayName: this.zoneBuildings[building].displayName,
+          modifierSourceDisplayName: this.displayName,
+          building,
+        };
+      },
+    );
+  }
+
+  @computed
+  get displayTotalEffects(): ProductionModifierDisplay[] {
+    return this.productionModifiers.map(
+      ({ building, resource, percentageModifier }) => {
+        return {
+          percentageModifier: percentageModifier * this.quantity,
+          resourceDisplayName: this.zoneResources[resource].displayName,
+          buildingDisplayName: this.zoneBuildings[building].displayName,
+          modifierSourceDisplayName: this.displayName,
+          building,
         };
       },
     );
