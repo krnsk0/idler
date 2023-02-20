@@ -3,10 +3,7 @@ import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs, getTech, getGui } from '../../selectors';
 import { Countable } from '../countable';
-import {
-  ProductionModifier,
-  ProductionModifierDisplay,
-} from '../modifierTypes';
+import { ProductionModifier, ProductionModifierDisplay } from '../sharedTypes';
 
 export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;

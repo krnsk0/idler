@@ -2,26 +2,13 @@ import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { UpgradeNames } from './upgradeNames';
 import { getTech, getGui } from '../../selectors';
-import { BuildingNames } from '../buildings/buildingNames';
-import { ResourceNames } from '../resources/resourceNames';
 import { ZoneEntity } from '../zoneEntity';
 import {
   ProductionModifier,
   ProductionModifierDisplay,
-} from '../modifierTypes';
-
-interface PurchaseCost {
-  resource: ResourceNames;
-  quantity: number;
-}
-
-interface PurchaseCostDisplay {
-  resourceDisplayName: string;
-  isSatisfied: boolean;
-  availableQuantity: number;
-  storageConstrained: boolean;
-  quantity: number;
-}
+  PurchaseCost,
+  PurchaseCostDisplay,
+} from '../sharedTypes';
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   /**

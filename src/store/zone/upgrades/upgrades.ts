@@ -6,7 +6,7 @@ import { UpgradeNames } from './upgradeNames';
 import { CompostingDrums } from './compostingDrums';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
-import { ProductionModifier } from '../modifierTypes';
+import { ProductionModifier } from '../sharedTypes';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {

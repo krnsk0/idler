@@ -19,3 +19,16 @@ export interface ProductionModifierDisplay {
   percentageModifier: number;
   modifierSourceDisplayName: string;
 }
+
+export interface PurchaseCost {
+  resource: ResourceNames;
+  quantity: number;
+}
+
+export interface PurchaseCostDisplay {
+  resourceDisplayName: string;
+  isSatisfied: boolean;
+  availableQuantity: number;
+  storageConstrained: boolean;
+  quantity: number;
+}

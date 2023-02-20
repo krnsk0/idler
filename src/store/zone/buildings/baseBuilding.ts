@@ -4,19 +4,7 @@ import { StorageProvider } from '../storageProvider';
 import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
 import { getGui, getTech } from '../../selectors';
-
-interface PurchaseCost {
-  resource: ResourceNames;
-  quantity: number;
-}
-
-interface PurchaseCostDisplay {
-  resourceDisplayName: string;
-  isSatisfied: boolean;
-  availableQuantity: number;
-  storageConstrained: boolean;
-  quantity: number;
-}
+import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 
 export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract name: BuildingNames;
