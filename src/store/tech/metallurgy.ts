@@ -2,6 +2,7 @@ import { model, ExtendedModel } from 'mobx-keystone';
 import { getGame } from '../selectors';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -18,5 +19,5 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.FURNACE];
-  upgradesUnlocked = [];
+  upgradesUnlocked = [UpgradeNames.CHAINSAWS];
 }

@@ -6,12 +6,17 @@ import { UpgradeNames } from './upgradeNames';
 import { CompostingDrums } from './compostingDrums';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
+import { Chainsaws } from './chainsaws';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
   [UpgradeNames.COMPOSTING_DRUMS]: tProp(
     types.model(CompostingDrums),
     () => new CompostingDrums({}),
+  ),
+  [UpgradeNames.CHAINSAWS]: tProp(
+    types.model(Chainsaws),
+    () => new Chainsaws({}),
   ),
 }) {
   transientUnlockCheck = () => {
