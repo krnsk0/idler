@@ -5,7 +5,10 @@ import { getModifiers, getPower, getResources } from '../selectors';
 import { Countable } from './countable';
 import {
   isBaseModifier,
-  isPercentModifier,
+  isInputBaseModifier,
+  isInputPercentModifier,
+  isOutputBaseModifier,
+  isOutputPercentModifier,
   ModifierTargets,
 } from './modifiers';
 
@@ -98,7 +101,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   }
 
   /**
-   * Per-second consumption of individuals
+   * Per-second consumption of individual producerConsumer
    */
   @computed
   get individualConsumptionPerSecond(): Production[] {
@@ -108,12 +111,8 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
       getModifiers(this)
         .appliedModifiersByTarget(this.$modelType as ModifierTargets)
         .forEach((modifier) => {
-          if (
-            modifier.resource === resource &&
-            modifier.modifierType === 'input' &&
-            isBaseModifier(modifier.modifier)
-          ) {
-            qpsPlusBaseModifier += modifier.modifier.baseChange;
+          if (isInputBaseModifier(modifier) && modifier.resource === resource) {
+            qpsPlusBaseModifier += modifier.baseChange;
           }
         });
 
@@ -123,11 +122,10 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .appliedModifiersByTarget(this.$modelType as ModifierTargets)
         .forEach((modifier) => {
           if (
-            modifier.resource === resource &&
-            modifier.modifierType === 'input' &&
-            isPercentModifier(modifier.modifier)
+            isInputPercentModifier(modifier) &&
+            modifier.resource === resource
           ) {
-            percentageModifier += modifier.modifier.percentChange;
+            percentageModifier += modifier.percentChange;
           }
         });
 
@@ -179,11 +177,10 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .appliedModifiersByTarget(this.$modelType as ModifierTargets)
         .forEach((modifier) => {
           if (
-            modifier.resource === resource &&
-            modifier.modifierType === 'output' &&
-            isBaseModifier(modifier.modifier)
+            isOutputBaseModifier(modifier) &&
+            modifier.resource === resource
           ) {
-            qpsPlusBaseModifier += modifier.modifier.baseChange;
+            qpsPlusBaseModifier += modifier.baseChange;
           }
         });
 
@@ -193,11 +190,10 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .appliedModifiersByTarget(this.$modelType as ModifierTargets)
         .forEach((modifier) => {
           if (
-            modifier.resource === resource &&
-            modifier.modifierType === 'output' &&
-            isPercentModifier(modifier.modifier)
+            isOutputPercentModifier(modifier) &&
+            modifier.resource === resource
           ) {
-            percentageModifier += modifier.modifier.percentChange;
+            percentageModifier += modifier.percentChange;
           }
         });
 

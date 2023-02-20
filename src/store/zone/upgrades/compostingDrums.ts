@@ -13,12 +13,10 @@ export class CompostingDrums extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'output' as const,
+      type: 'output_base' as const,
       target: BuildingNames.FARM,
       resource: ResourceNames.BIOMASS,
-      modifier: {
-        baseChange: 0.05,
-      },
+      baseChange: 0.05,
     },
   ];
   cost = [

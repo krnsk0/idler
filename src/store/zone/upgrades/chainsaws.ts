@@ -12,12 +12,10 @@ export class Chainsaws extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'output' as const,
+      type: 'output_percent' as const,
       target: BuildingNames.TREE_FARM,
       resource: ResourceNames.LUMBER,
-      modifier: {
-        percentChange: 0.1,
-      },
+      percentChange: 0.1,
     },
   ];
   cost = [{ resource: ResourceNames.ALLOY, quantity: 10 }];

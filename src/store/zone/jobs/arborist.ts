@@ -14,12 +14,10 @@ export class Arborist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'output' as const,
+      type: 'output_percent' as const,
       target: BuildingNames.TREE_FARM,
       resource: ResourceNames.LUMBER,
-      modifier: {
-        percentChange: 0.1,
-      },
+      percentChange: 0.1,
     },
   ];
 }

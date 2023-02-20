@@ -12,12 +12,10 @@ export class HeatReclamators extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'input' as const,
+      type: 'input_base' as const,
       target: BuildingNames.DYNAMO,
       resource: ResourceNames.BIOMASS,
-      modifier: {
-        baseChange: -0.25,
-      },
+      baseChange: -0.25,
     },
   ];
   cost = [

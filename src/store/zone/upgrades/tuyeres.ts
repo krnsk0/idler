@@ -13,12 +13,10 @@ export class Tuyeres extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'input' as const,
+      type: 'input_percent' as const,
       target: BuildingNames.FURNACE,
       resource: ResourceNames.BIOMASS,
-      modifier: {
-        percentChange: -0.2,
-      },
+      percentChange: -0.2,
     },
   ];
   cost = [

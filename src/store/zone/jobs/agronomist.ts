@@ -14,12 +14,10 @@ export class Agronomist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'output' as const,
+      type: 'output_percent' as const,
       target: BuildingNames.FARM,
       resource: ResourceNames.FOOD,
-      modifier: {
-        percentChange: 0.2,
-      },
+      percentChange: 0.2,
     },
   ];
 }

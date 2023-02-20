@@ -14,12 +14,10 @@ export class Geologist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'output' as const,
+      type: 'output_percent' as const,
       target: BuildingNames.MINE,
       resource: ResourceNames.ORE,
-      modifier: {
-        percentChange: 0.1,
-      },
+      percentChange: 0.1,
     },
   ];
 }

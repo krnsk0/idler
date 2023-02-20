@@ -8,17 +8,14 @@ import { UpgradeNames } from './upgradeNames';
 export class Prefabrication extends ExtendedModel(BaseUpgrade, {}) {
   name = UpgradeNames.PREFABRICATION;
   displayName = 'prefabrication';
-  description =
-    'a new method of habitat construction promises to reduces costs';
+  description = 'a new method of habitat construction promises to reduce costs';
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: 'cost_scaling' as const,
+      type: 'cost_scaling' as const,
       target: BuildingNames.HABITAT,
       resource: ResourceNames.LUMBER,
-      modifier: {
-        baseChange: -2,
-      },
+      scaleFactorPercentModifier: -0.25,
     },
   ];
   cost = [{ resource: ResourceNames.LUMBER, quantity: 20 }];
