@@ -33,6 +33,7 @@ import { TechName } from '../gui/gui';
 import { SubsurfaceExcavation } from './subsurfaceExcavation';
 import { Arboriculture } from './arboriculture';
 import { UpgradeNames } from '../zone/upgrades/upgradeNames';
+import { ZoneUpgrades } from './zoneUpgrades';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -68,6 +69,10 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.SUBSURFACE_EXCAVATION]: tProp(
     types.model(SubsurfaceExcavation),
     () => new SubsurfaceExcavation({}),
+  ),
+  [TechNames.ZONE_UPGRADES]: tProp(
+    types.model(ZoneUpgrades),
+    () => new ZoneUpgrades({}),
   ),
   [TechNames.GEOLOGY]: tProp(types.model(Geology), () => new Geology({})),
 }) {

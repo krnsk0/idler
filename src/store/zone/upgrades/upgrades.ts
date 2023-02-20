@@ -5,6 +5,8 @@ import { ZoneEntity } from '../zoneEntity';
 import { UpgradeNames } from './upgradeNames';
 import { RecyclingTanks } from './recyclingTanks';
 import { ProductionModifier } from './baseUpgrade';
+import { getTech } from '../../selectors';
+import { TechNames } from '../../tech/techNames';
 
 @model('Jobs')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
@@ -14,7 +16,10 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
   ),
 }) {
   transientUnlockCheck = () => {
-    return !!this.unlockedAsArray.length;
+    return (
+      !!this.unlockedAsArray.length &&
+      getTech(this)[TechNames.ZONE_UPGRADES].researched
+    );
   };
   observableUnlockCheck = () => true;
 

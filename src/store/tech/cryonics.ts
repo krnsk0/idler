@@ -15,6 +15,7 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
     TechNames.AGRONOMY,
     TechNames.ARBORICULTURE,
     TechNames.GEOLOGY,
+    TechNames.ZONE_UPGRADES,
   ];
   actionsUnlocked = [ActionNames.THAW];
   actionsRelocked = [];
