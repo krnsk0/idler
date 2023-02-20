@@ -5,25 +5,24 @@ import { ResourceNames } from '../resources/resourceNames';
 import { BaseUpgrade } from './baseUpgrade';
 import { UpgradeNames } from './upgradeNames';
 
-@model(UpgradeNames.TUYERES)
-export class Tuyeres extends ExtendedModel(BaseUpgrade, {}) {
-  name = UpgradeNames.TUYERES;
-  displayName = 'tuyeres';
-  description =
-    'injecting combustible gas into the furnace helps us raise temperatures';
+@model(UpgradeNames.HEAT_RECLAMATORS)
+export class HeatReclamators extends ExtendedModel(BaseUpgrade, {}) {
+  name = UpgradeNames.HEAT_RECLAMATORS;
+  displayName = 'heat reclamators';
+  description = '';
   transientUnlockCheck = () => true;
   modifiers = [
     {
       modifierType: ModifierTypes.INPUT,
-      target: BuildingNames.FURNACE,
+      target: BuildingNames.DYNAMO,
       resource: ResourceNames.BIOMASS,
       modifier: {
-        percentChange: -0.2,
+        baseChange: -0.25,
       },
     },
   ];
   cost = [
-    { resource: ResourceNames.ALLOY, quantity: 10 },
-    { resource: ResourceNames.ROCK, quantity: 25 },
+    { resource: ResourceNames.ALLOY, quantity: 5 },
+    { resource: ResourceNames.LUMBER, quantity: 25 },
   ];
 }

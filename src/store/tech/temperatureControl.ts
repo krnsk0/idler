@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -6,7 +7,7 @@ import { TechNames } from './techNames';
 export class TemperatureControl extends ExtendedModel(BaseTech, {}) {
   name = TechNames.TEMPERATURE_CONTROL;
   displayName = 'temperature control';
-  description = 'techniques and tools for optimizing furnace productivity';
+  description = 'techniques and tools for controlling endothermic reactions';
   powerCost = 50;
   transientUnlockCheck = () => true;
   techUnlocked = [];
@@ -14,5 +15,5 @@ export class TemperatureControl extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
-  upgradesUnlocked = [];
+  upgradesUnlocked = [UpgradeNames.TUYERES, UpgradeNames.HEAT_RECLAMATORS];
 }

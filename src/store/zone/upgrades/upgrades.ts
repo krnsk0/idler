@@ -8,6 +8,7 @@ import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
 import { Chainsaws } from './chainsaws';
 import { Tuyeres } from './tuyeres';
+import { HeatReclamators } from './heatReclamators';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
@@ -20,6 +21,10 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
     () => new Chainsaws({}),
   ),
   [UpgradeNames.TUYERES]: tProp(types.model(Tuyeres), () => new Tuyeres({})),
+  [UpgradeNames.HEAT_RECLAMATORS]: tProp(
+    types.model(HeatReclamators),
+    () => new HeatReclamators({}),
+  ),
 }) {
   transientUnlockCheck = () => {
     return (
