@@ -20,8 +20,8 @@ interface PurchaseCostDisplay {
 }
 
 export interface ProductionModifier {
-  buildingName: BuildingNames;
-  resourceName: ResourceNames;
+  building: BuildingNames;
+  resource: ResourceNames;
   percentageModifier: number;
 }
 
@@ -93,7 +93,11 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   @computed
   get displayEffects(): ProductionModifierDisplay[] {
     return this.productionModifiers.map(
-      ({ buildingName, resourceName, percentageModifier }) => {
+      ({
+        building: buildingName,
+        resource: resourceName,
+        percentageModifier,
+      }) => {
         return {
           percentageModifier,
           resourceDisplayName: this.zoneResources[resourceName].displayName,

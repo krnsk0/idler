@@ -125,13 +125,16 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   @computed
   get modifiersOfThisProducer() {
     const modifierMap: { [key in ResourceNames]?: number } = {};
-    this.zoneJobs.totalProductionModifiers
-      .filter(({ buildingName }) => buildingName === this.$modelType)
-      .forEach(({ resourceName, percentageModifier }) => {
-        if (typeof modifierMap[resourceName] === 'number') {
-          modifierMap[resourceName]! += percentageModifier;
+    [
+      ...this.zoneJobs.totalProductionModifiers,
+      ...this.zoneUpgrades.totalProductionModifiers,
+    ]
+      .filter(({ building }) => building === this.$modelType)
+      .forEach(({ resource, percentageModifier }) => {
+        if (typeof modifierMap[resource] === 'number') {
+          modifierMap[resource]! += percentageModifier;
         } else {
-          modifierMap[resourceName] = percentageModifier;
+          modifierMap[resource] = percentageModifier;
         }
       });
     return modifierMap;

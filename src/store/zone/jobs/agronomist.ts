@@ -14,8 +14,8 @@ export class Agronomist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   productionModifiers = [
     {
-      buildingName: BuildingNames.FARM,
-      resourceName: ResourceNames.NUTRIENTS,
+      building: BuildingNames.FARM,
+      resource: ResourceNames.NUTRIENTS,
       percentageModifier: 0.2,
     },
   ];

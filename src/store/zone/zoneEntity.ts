@@ -6,6 +6,7 @@ import { Buildings } from './buildings/buildings';
 import { Jobs } from './jobs/jobs';
 import { Unlockable } from '../unlockable';
 import { getZone } from '../selectors';
+import { Upgrades } from './upgrades/upgrades';
 
 export abstract class ZoneEntity extends ExtendedModel(Unlockable, {}) {
   /**
@@ -37,5 +38,13 @@ export abstract class ZoneEntity extends ExtendedModel(Unlockable, {}) {
   @computed
   get zoneJobs(): Jobs {
     return getZone(this).jobs;
+  }
+
+  /**
+   * The upgrades associated with the entity
+   */
+  @computed
+  get zoneUpgrades(): Upgrades {
+    return getZone(this).upgrades;
   }
 }
