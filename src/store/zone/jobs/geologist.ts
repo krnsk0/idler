@@ -15,7 +15,7 @@ export class Geologist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: ModifierTypes.PRODUCTION,
+      modifierType: ModifierTypes.OUTPUT,
       target: BuildingNames.MINE,
       resource: ResourceNames.ORE,
       modifier: {

@@ -8,14 +8,16 @@ import { formatNumber } from '../../utils/formatNumber';
 import { UpgradeNames } from './upgrades/upgradeNames';
 
 export enum ModifierTypes {
-  PRODUCTION = 'PRODUCTION',
+  INPUT = 'INPUT',
+  OUTPUT = 'OUTPUT',
   STORAGE = 'STORAGE',
   COST = 'COST',
 }
 
 export function getDisplayableModifierType(modifierType: ModifierTypes) {
   const mapping: { [key in ModifierTypes]: string } = {
-    [ModifierTypes.PRODUCTION]: 'production',
+    [ModifierTypes.INPUT]: 'consumption',
+    [ModifierTypes.OUTPUT]: 'production',
     [ModifierTypes.STORAGE]: 'storage',
     [ModifierTypes.COST]: 'cost',
   };

@@ -15,7 +15,7 @@ export class Agronomist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: ModifierTypes.PRODUCTION,
+      modifierType: ModifierTypes.OUTPUT,
       target: BuildingNames.FARM,
       resource: ResourceNames.FOOD,
       modifier: {

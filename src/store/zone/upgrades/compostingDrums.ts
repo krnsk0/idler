@@ -14,11 +14,11 @@ export class CompostingDrums extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: ModifierTypes.PRODUCTION,
+      modifierType: ModifierTypes.OUTPUT,
       target: BuildingNames.FARM,
       resource: ResourceNames.BIOMASS,
       modifier: {
-        baseChange: 0.1,
+        baseChange: 0.05,
       },
     },
   ];

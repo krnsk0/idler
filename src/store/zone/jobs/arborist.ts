@@ -15,7 +15,7 @@ export class Arborist extends ExtendedModel(BaseJob, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      modifierType: ModifierTypes.PRODUCTION,
+      modifierType: ModifierTypes.OUTPUT,
       target: BuildingNames.TREE_FARM,
       resource: ResourceNames.LUMBER,
       modifier: {
