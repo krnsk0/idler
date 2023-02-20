@@ -18,4 +18,5 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.FURNACE];
+  upgradesUnlocked = [];
 }

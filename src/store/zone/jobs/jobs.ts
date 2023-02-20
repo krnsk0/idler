@@ -10,16 +10,7 @@ import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
 import { ProductionModifier } from './baseJob';
-import { BuildingNames } from '../buildings/buildingNames';
 import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../resources/colonists';
-
-type TotalProductionModifier = {
-  [key in ResourceNames]?: number;
-};
-
-export type TotalProducitonModifiersByBuilding = {
-  [key in BuildingNames]?: TotalProductionModifier;
-};
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {

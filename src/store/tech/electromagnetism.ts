@@ -18,4 +18,5 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.DYNAMO];
+  upgradesUnlocked = [];
 }

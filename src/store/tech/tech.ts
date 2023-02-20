@@ -32,6 +32,7 @@ import { Electromagnetism } from './electromagnetism';
 import { TechName } from '../gui/gui';
 import { SubsurfaceExcavation } from './subsurfaceExcavation';
 import { Arboriculture } from './arboriculture';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -166,6 +167,18 @@ export class Tech extends ExtendedModel(Unlockable, {
       jobs.push(...tech.jobsUnlocked);
     }
     return jobs;
+  }
+
+  /**
+   * What upgrades are unlocked by tech?
+   */
+  @computed
+  get unlockedUpgrades(): UpgradeNames[] {
+    const upgrades: UpgradeNames[] = [];
+    for (const tech of this.researchedAsArray) {
+      upgrades.push(...tech.upgradesUnlocked);
+    }
+    return upgrades;
   }
 
   /**

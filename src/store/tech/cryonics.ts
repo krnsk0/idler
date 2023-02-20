@@ -20,4 +20,5 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
+  upgradesUnlocked = [];
 }

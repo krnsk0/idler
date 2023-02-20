@@ -12,6 +12,7 @@ import { Unlockable } from '../unlockable';
 import { JobNames } from '../zone/jobs/jobNames';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 export abstract class BaseTech extends ExtendedModel(Unlockable, {
   id: idProp,
   power: tProp(types.number, 0),
@@ -63,6 +64,11 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
    * What buildings are unlocked by this tech
    */
   abstract buildingsUnlocked: BuildingNames[];
+
+  /**
+   * What upgrades are unlocked by this tech
+   */
+  abstract upgradesUnlocked: UpgradeNames[];
 
   /**
    * Responsible for managing when tech is unlocked

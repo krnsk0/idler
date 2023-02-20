@@ -15,4 +15,5 @@ export class SubsurfaceExcavation extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.MINE];
+  upgradesUnlocked = [];
 }

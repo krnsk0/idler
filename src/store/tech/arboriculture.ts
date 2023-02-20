@@ -16,4 +16,5 @@ export class Arboriculture extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [JobNames.ARBORIST];
   buildingsUnlocked = [];
+  upgradesUnlocked = [];
 }

@@ -15,4 +15,5 @@ export class Storage extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.CACHE];
+  upgradesUnlocked = [];
 }

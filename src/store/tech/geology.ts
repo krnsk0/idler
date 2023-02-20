@@ -16,4 +16,5 @@ export class Geology extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [JobNames.GEOLOGIST];
   buildingsUnlocked = [];
+  upgradesUnlocked = [];
 }

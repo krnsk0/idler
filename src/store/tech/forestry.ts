@@ -15,4 +15,5 @@ export class Forestry extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.TREE_FARM];
+  upgradesUnlocked = [];
 }

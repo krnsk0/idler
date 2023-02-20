@@ -16,4 +16,5 @@ export class Agronomy extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [JobNames.AGRONOMIST];
   buildingsUnlocked = [];
+  upgradesUnlocked = [];
 }

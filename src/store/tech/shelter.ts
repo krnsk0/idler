@@ -15,4 +15,5 @@ export class Shelter extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.HABITAT];
+  upgradesUnlocked = [];
 }

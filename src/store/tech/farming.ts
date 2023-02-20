@@ -15,4 +15,5 @@ export class Farming extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.FARM];
+  upgradesUnlocked = [];
 }
