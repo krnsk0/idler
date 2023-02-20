@@ -1,4 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -15,5 +16,5 @@ export class ZoneUpgrades extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
-  upgradesUnlocked = [];
+  upgradesUnlocked = [UpgradeNames.COMPOSTING_DRUMS];
 }

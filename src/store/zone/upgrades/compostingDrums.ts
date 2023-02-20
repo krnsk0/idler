@@ -18,4 +18,8 @@ export class CompostingDrums extends ExtendedModel(BaseUpgrade, {}) {
       percentageModifier: 0.5,
     },
   ];
+  cost = [
+    { resource: ResourceNames.LUMBER, quantity: 15 },
+    { resource: ResourceNames.ROCK, quantity: 15 },
+  ];
 }
