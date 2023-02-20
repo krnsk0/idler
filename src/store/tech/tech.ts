@@ -35,6 +35,7 @@ import { Arboriculture } from './arboriculture';
 import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { ZoneUpgrades } from './zoneUpgrades';
 import { TemperatureControl } from './temperatureControl';
+import { Construction } from './construction';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -79,6 +80,10 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.TEMPERATURE_CONTROL]: tProp(
     types.model(TemperatureControl),
     () => new TemperatureControl({}),
+  ),
+  [TechNames.CONSTRUCTION]: tProp(
+    types.model(Construction),
+    () => new Construction({}),
   ),
 }) {
   transientUnlockCheck = () => {
