@@ -92,7 +92,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
           <div>
             * operating at{' '}
             {formatNumber(building.lastTickProrate * 100, { digits: 0 })}%
-            capacity; inputs not satisfied
+            capacity; inputs not satisfied or no storage available
           </div>
         )}
       </TooltipText>

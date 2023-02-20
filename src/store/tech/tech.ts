@@ -34,6 +34,7 @@ import { SubsurfaceExcavation } from './subsurfaceExcavation';
 import { Arboriculture } from './arboriculture';
 import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { ZoneUpgrades } from './zoneUpgrades';
+import { TemperatureControl } from './temperatureControl';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -75,6 +76,10 @@ export class Tech extends ExtendedModel(Unlockable, {
     () => new ZoneUpgrades({}),
   ),
   [TechNames.GEOLOGY]: tProp(types.model(Geology), () => new Geology({})),
+  [TechNames.TEMPERATURE_CONTROL]: tProp(
+    types.model(TemperatureControl),
+    () => new TemperatureControl({}),
+  ),
 }) {
   transientUnlockCheck = () => {
     return (

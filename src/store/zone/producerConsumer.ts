@@ -7,6 +7,7 @@ import {
   isBaseModifier,
   isPercentModifier,
   ModifierTargets,
+  ModifierTypes,
 } from './modifiers';
 
 interface Consumption {
@@ -102,11 +103,38 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
    */
   @computed
   get individualConsumptionPerSecond(): Production[] {
-    // TODO: input modification takes place here
     return this.inputs.map(({ resource, quantityPerSecond }) => {
+      // compute base including modifiers
+      let qpsPlusBaseModifier = quantityPerSecond;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            modifier.resource === resource &&
+            modifier.modifierType === ModifierTypes.INPUT &&
+            isBaseModifier(modifier.modifier)
+          ) {
+            qpsPlusBaseModifier += modifier.modifier.baseChange;
+          }
+        });
+
+      // compute percentage modifier
+      let percentageModifier = 0;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            modifier.resource === resource &&
+            modifier.modifierType === ModifierTypes.INPUT &&
+            isPercentModifier(modifier.modifier)
+          ) {
+            percentageModifier += modifier.modifier.percentChange;
+          }
+        });
+
       return {
         resource,
-        quantityPerSecond,
+        quantityPerSecond: qpsPlusBaseModifier * (1 + percentageModifier),
       };
     });
   }
@@ -153,6 +181,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .forEach((modifier) => {
           if (
             modifier.resource === resource &&
+            modifier.modifierType === ModifierTypes.OUTPUT &&
             isBaseModifier(modifier.modifier)
           ) {
             qpsPlusBaseModifier += modifier.modifier.baseChange;
@@ -166,6 +195,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
         .forEach((modifier) => {
           if (
             modifier.resource === resource &&
+            modifier.modifierType === ModifierTypes.OUTPUT &&
             isPercentModifier(modifier.modifier)
           ) {
             percentageModifier += modifier.modifier.percentChange;
