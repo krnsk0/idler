@@ -3,16 +3,16 @@ import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { ZoneEntity } from '../zoneEntity';
 import { UpgradeNames } from './upgradeNames';
-import { RecyclingTanks } from './recyclingTanks';
+import { CompostingCenter } from './compostingCenter';
 import { ProductionModifier } from './baseUpgrade';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
-  [UpgradeNames.RECYCLING_TANKS]: tProp(
-    types.model(RecyclingTanks),
-    () => new RecyclingTanks({}),
+  [UpgradeNames.COMPOSTING_CENTER]: tProp(
+    types.model(CompostingCenter),
+    () => new CompostingCenter({}),
   ),
 }) {
   transientUnlockCheck = () => {
