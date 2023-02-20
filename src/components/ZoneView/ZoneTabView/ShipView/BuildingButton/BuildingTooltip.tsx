@@ -71,28 +71,14 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
             </div>
           );
         })}
-        {/* {building.totalProductionModifiersDisplay.length > 0 && (
+        {building.tooltipModifierDescriptors.length > 0 && (
           <>
             <TooltipDivider text={'modifiers'} />
-            {building.totalProductionModifiersDisplay.map(
-              ({
-                modifierSourceDisplayName,
-                resourceDisplayName,
-                percentageModifier,
-              }) => {
-                return (
-                  <div key={modifierSourceDisplayName + resourceDisplayName}>
-                    {formatNumber(percentageModifier * 100, {
-                      showSign: true,
-                      digits: 0,
-                    })}
-                    % {resourceDisplayName} from {modifierSourceDisplayName}
-                  </div>
-                );
-              },
-            )}
+            {building.tooltipModifierDescriptors.map((descriptor) => {
+              return <div key={descriptor}>{descriptor}</div>;
+            })}
           </>
-        )} */}
+        )}
         {(building.isStorageConstrainted || building.isProrated) && (
           <TooltipDivider />
         )}

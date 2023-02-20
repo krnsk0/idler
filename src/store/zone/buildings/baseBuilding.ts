@@ -2,7 +2,7 @@ import { modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
 import { BuildingNames } from './buildingNames';
-import { getGui, getTech } from '../../selectors';
+import { getGui, getModifiers, getTech } from '../../selectors';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 
 export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
@@ -75,6 +75,14 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   @computed
   get isExpanded(): boolean {
     return getGui(this).expandedShipColonyButton === this.name;
+  }
+
+  /**
+   * Displayable modifier tooltip
+   */
+  @computed
+  get tooltipModifierDescriptors(): string[] {
+    return getModifiers(this).targetTooltipDescriptors(this.name);
   }
 
   /**

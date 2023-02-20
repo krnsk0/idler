@@ -3,7 +3,7 @@ import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs, getTech, getGui, getModifiers } from '../../selectors';
 import { Countable } from '../countable';
-import { TargetedModifier } from '../modifiers';
+import { TargetedModifier, TargetedModifierWithSource } from '../modifiers';
 
 export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;
@@ -59,7 +59,7 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
    * What is the modification provided when we consider quantity of workers?
    */
   @computed
-  get appliedModifiers(): TargetedModifier[] {
+  get appliedModifiers(): TargetedModifierWithSource[] {
     return this.modifiers.map((targetedModifier) => {
       const adjustedModifier = { ...targetedModifier.modifier };
 
@@ -74,6 +74,7 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
       return {
         ...targetedModifier,
         modifier: adjustedModifier,
+        source: this.name,
       };
     });
   }

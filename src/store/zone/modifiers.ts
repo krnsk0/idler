@@ -5,6 +5,7 @@ import { JobNames } from './jobs/jobNames';
 import { ResourceNames } from './resources/resourceNames';
 import { getBuildings, getJobs, getResources, getUpgrades } from '../selectors';
 import { formatNumber } from '../../utils/formatNumber';
+import { UpgradeNames } from './upgrades/upgradeNames';
 
 export enum ModifierTypes {
   PRODUCTION = 'PRODUCTION',
@@ -21,7 +22,9 @@ export function getDisplayableModifierType(modifierType: ModifierTypes) {
   return mapping[modifierType];
 }
 
-export type ModifierTargets = BuildingNames | JobNames;
+export type ModifierTargets = BuildingNames;
+
+export type ModifierSources = JobNames | UpgradeNames;
 
 export interface BaseModifier {
   baseChange: number;
@@ -38,14 +41,18 @@ export interface TargetedModifier {
   modifier: BaseModifier | PercentModifier;
 }
 
+export type TargetedModifierWithSource = TargetedModifier & {
+  source: ModifierSources;
+};
+
 @model('Modifiers')
 export class Modifiers extends Model({}) {
   /**
    * A list of all modifiers, globally
    */
   @computed
-  get allAppliedModifiers(): TargetedModifier[] {
-    const modifiers: TargetedModifier[] = [];
+  get allAppliedModifiers(): TargetedModifierWithSource[] {
+    const modifiers: TargetedModifierWithSource[] = [];
     [...getUpgrades(this).asArray, ...getJobs(this).asArray].forEach(
       (entity) => {
         entity.appliedModifiers.forEach((appliedModifier) =>
@@ -59,9 +66,11 @@ export class Modifiers extends Model({}) {
   /**
    * All applied modifiers, queryable by target
    */
-  allAppliedModifiersByTarget(target: ModifierTargets): TargetedModifier[] {
+  allAppliedModifiersByTarget(
+    target: ModifierTargets,
+  ): TargetedModifierWithSource[] {
     return this.allAppliedModifiers.filter((modifier) => {
-      modifier.target === target;
+      return modifier.target === target;
     });
   }
 
@@ -72,12 +81,25 @@ export class Modifiers extends Model({}) {
     let targetName = '';
     if (target in BuildingNames) {
       targetName = getBuildings(this)[target as BuildingNames].displayName;
-    } else if (target in JobNames) {
-      targetName = getJobs(this)[target as JobNames].displayName;
     } else {
       throw new Error('cannot find target name');
     }
     return targetName;
+  }
+
+  /**
+   * Helper to get display name of a modifier source
+   */
+  getSourceDisplayName(target: ModifierSources): string {
+    let sourceName = '';
+    if (target in JobNames) {
+      sourceName = getJobs(this)[target as JobNames].displayName;
+    } else if (target in UpgradeNames) {
+      sourceName = getUpgrades(this)[target as UpgradeNames].displayName;
+    } else {
+      throw new Error('cannot find source name');
+    }
+    return sourceName;
   }
 
   /**
@@ -100,5 +122,28 @@ export class Modifiers extends Model({}) {
         )}%`;
       } else throw new Error('should not get here');
     });
+  }
+  /**
+   * Target tooltip descriptors
+   */
+  targetTooltipDescriptors(target: ModifierTargets): string[] {
+    return this.allAppliedModifiersByTarget(target).map(
+      ({ resource, modifier, modifierType, source }) => {
+        const resourceDisplayName = getResources(this)[resource].displayName;
+        const displayableModifierType =
+          getDisplayableModifierType(modifierType);
+        const sourceDisplayName = this.getSourceDisplayName(source);
+
+        if ('baseChange' in modifier) {
+          return `${formatNumber(modifier.baseChange, {
+            showSign: true,
+          })} base ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`;
+        } else if ('percentChange' in modifier) {
+          return `${formatNumber(modifier.percentChange, {
+            showSign: true,
+          })}% ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`;
+        } else throw new Error('should not get here');
+      },
+    );
   }
 }

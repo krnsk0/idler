@@ -4,7 +4,7 @@ import { UpgradeNames } from './upgradeNames';
 import { getTech, getGui, getModifiers } from '../../selectors';
 import { ZoneEntity } from '../zoneEntity';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
-import { TargetedModifier } from '../modifiers';
+import { TargetedModifier, TargetedModifierWithSource } from '../modifiers';
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   /**
@@ -30,8 +30,15 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
    * has been purchased
    */
   @computed
-  get appliedModifiers(): TargetedModifier[] {
-    return this.purchased ? this.modifiers : [];
+  get appliedModifiers(): TargetedModifierWithSource[] {
+    return this.purchased
+      ? this.modifiers.map((modifier) => {
+          return {
+            ...modifier,
+            source: this.name,
+          };
+        })
+      : [];
   }
 
   /**
