@@ -83,7 +83,7 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
    */
   @computed
   get tooltipDescriptors(): string[] {
-    return getModifiers(this).tooltipDescriptors(this.modifiers);
+    return getModifiers(this).sourceTooltipDescriptors(this.modifiers);
   }
 
   /**

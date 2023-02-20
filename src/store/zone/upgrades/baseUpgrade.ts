@@ -56,7 +56,7 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get tooltipDescriptors(): string[] {
-    return getModifiers(this).tooltipDescriptors(this.modifiers);
+    return getModifiers(this).sourceTooltipDescriptors(this.modifiers);
   }
 
   /**

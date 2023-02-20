@@ -81,9 +81,9 @@ export class Modifiers extends Model({}) {
   }
 
   /**
-   * Displayable modifier descriptors
+   * Displayable modifier descriptors for modifier sources
    */
-  tooltipDescriptors(modifiers: TargetedModifier[]): string[] {
+  sourceTooltipDescriptors(modifiers: TargetedModifier[]): string[] {
     return modifiers.map(({ target, resource, modifier, modifierType }) => {
       const targetDisplayName = this.getTargetDisplayName(target);
       const resourceDisplayName = getResources(this)[resource].displayName;
