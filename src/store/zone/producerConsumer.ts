@@ -1,6 +1,5 @@
 import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from './resources/resourceNames';
-import { ZoneEntity } from './zoneEntity';
 import { computed } from 'mobx';
 import { getPower, getResources } from '../selectors';
 import { Countable } from './countable';
