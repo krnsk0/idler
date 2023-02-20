@@ -16,6 +16,7 @@ interface ZoneViewProps {
 enum ZoneTabNames {
   ACTIONS = 'ACTIONS',
   JOBS = 'JOBS',
+  UPGRADES = 'UPGRADES',
 }
 
 const TabButton = ({
@@ -82,6 +83,17 @@ function ZoneView({ zone }: ZoneViewProps) {
                     selectedTab={selectedTab}
                     setSelectedTab={setSelectedTab}
                   />
+                  {zone.upgrades.unlocked && (
+                    <>
+                      <div css={styles.separator} />
+                      <TabButton
+                        text="improvements"
+                        tabName={ZoneTabNames.UPGRADES}
+                        selectedTab={selectedTab}
+                        setSelectedTab={setSelectedTab}
+                      />
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -91,6 +103,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                   return <ShipColonyView zone={zone} />;
                 case ZoneTabNames.JOBS:
                   return <JobsView zone={zone} />;
+                case ZoneTabNames.UPGRADES:
+                  return null; // TODO
                 default:
                   throw new Error('should not reach this case');
               }

@@ -8,7 +8,7 @@ import { ProductionModifier } from './baseUpgrade';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
 
-@model('Jobs')
+@model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
   [UpgradeNames.RECYCLING_TANKS]: tProp(
     types.model(RecyclingTanks),

@@ -77,7 +77,7 @@ export const styles = {
     justify-content: center;
     align-items: center;
 
-    width: 1.4em;
+    width: 1.6em;
     height: 2em;
   `,
   invisibleOnDesktop: css`

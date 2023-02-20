@@ -8,7 +8,7 @@ export class ZoneUpgrades extends ExtendedModel(BaseTech, {}) {
   displayName = 'outpost improvements';
   description =
     'ship proposes a means to make lasting improvements to the settlement';
-  powerCost = 500;
+  powerCost = 200;
   transientUnlockCheck = () => true;
   techUnlocked = [];
   actionsUnlocked = [];

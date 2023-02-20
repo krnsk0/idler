@@ -148,6 +148,9 @@ export class Debug extends Model({
 
     // unlock miners
     tech[TechNames.GEOLOGY].cheat();
+
+    // unlock upgrades
+    tech[TechNames.ZONE_UPGRADES].cheat();
   }
 
   /**
