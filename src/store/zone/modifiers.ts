@@ -4,12 +4,21 @@ import { BuildingNames } from './buildings/buildingNames';
 import { JobNames } from './jobs/jobNames';
 import { ResourceNames } from './resources/resourceNames';
 import { UpgradeNames } from './upgrades/upgradeNames';
-import { getJobs, getUpgrades } from '../selectors';
+import { getBuildings, getJobs, getUpgrades } from '../selectors';
 
 export enum ModifierTypes {
   PRODUCTION = 'PRODUCTION',
   STORAGE = 'STORAGE',
   COST = 'COST',
+}
+
+export function getDisplayableModifierType(modifierType: ModifierTypes) {
+  const mapping: { [key in ModifierTypes]: string } = {
+    [ModifierTypes.PRODUCTION]: 'production',
+    [ModifierTypes.STORAGE]: 'storage',
+    [ModifierTypes.COST]: 'cost',
+  };
+  return mapping[modifierType];
 }
 
 export type ModifierTargets = BuildingNames | JobNames;
@@ -33,10 +42,12 @@ export interface TargetedModifier {
 
 @model('Modifiers')
 export class Modifiers extends Model({}) {
+  /**
+   * A list of all modifiers, globally
+   */
   @computed
   get allAppliedModifiers(): TargetedModifier[] {
     const modifiers: TargetedModifier[] = [];
-
     [...getUpgrades(this).asArray, ...getJobs(this).asArray].forEach(
       (entity) => {
         entity.appliedModifiers.forEach((appliedModifier) =>
@@ -45,5 +56,29 @@ export class Modifiers extends Model({}) {
       },
     );
     return modifiers;
+  }
+
+  /**
+   * All applied modifiers, queryable by target
+   */
+  allAppliedModifiersByTarget(target: ModifierTargets): TargetedModifier[] {
+    return this.allAppliedModifiers.filter((modifier) => {
+      modifier.target === target;
+    });
+  }
+
+  /**
+   * Helper to get display name of a modifier target
+   */
+  getTargetDisplayName(target: ModifierTargets): string {
+    let targetName = '';
+    if (target in BuildingNames) {
+      targetName = getBuildings(this)[target as BuildingNames].displayName;
+    } else if (target in JobNames) {
+      targetName = getJobs(this)[target as JobNames].displayName;
+    } else {
+      throw new Error('cannot find target name');
+    }
+    return targetName;
   }
 }

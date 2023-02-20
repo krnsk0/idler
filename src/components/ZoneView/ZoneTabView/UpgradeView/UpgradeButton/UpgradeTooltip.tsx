@@ -47,20 +47,9 @@ const UpgradeTooltip = ({ upgrade }: BaseUpgradeProps) => {
       )}
       <TooltipDivider text={'effects'} />
       <TooltipText>
-        {/* {upgrade.displayEffects.map(
-          ({
-            resourceDisplayName,
-            buildingDisplayName,
-            percentageModifier,
-          }) => {
-            return (
-              <div key={resourceDisplayName + buildingDisplayName}>
-                {buildingDisplayName}'s {resourceDisplayName} production:{' '}
-                {formatNumber(percentageModifier * 100, { showSign: true })}%
-              </div>
-            );
-          },
-        )} */}
+        {upgrade.tooltipDescriptors.map((descriptor) => {
+          return <div key={descriptor}>{descriptor}</div>;
+        })}
 
         {upgrade.isStorageConstrainted && (
           <>
