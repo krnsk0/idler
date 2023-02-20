@@ -1,20 +1,10 @@
 import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { UpgradeNames } from './upgradeNames';
-import {
-  getTech,
-  getGui,
-  getBuildings,
-  getJobs,
-  getModifiers,
-  getResources,
-} from '../../selectors';
+import { getTech, getGui, getModifiers } from '../../selectors';
 import { ZoneEntity } from '../zoneEntity';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
-import { getDisplayableModifierType, TargetedModifier } from '../modifiers';
-import { BuildingNames } from '../buildings/buildingNames';
-import { JobNames } from '../jobs/jobNames';
-import { formatNumber } from '../../../utils/formatNumber';
+import { TargetedModifier } from '../modifiers';
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   /**
@@ -66,26 +56,7 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get tooltipDescriptors(): string[] {
-    return this.modifiers.map(
-      ({ target, resource, modifier, modifierType }) => {
-        const targetDisplayName =
-          getModifiers(this).getTargetDisplayName(target);
-        const resourceDisplayName = getResources(this)[resource].displayName;
-        const displayableModifierType =
-          getDisplayableModifierType(modifierType);
-        if ('baseChange' in modifier) {
-          return `${targetDisplayName}'s base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
-            modifier.baseChange,
-            { showSign: true },
-          )}`;
-        } else if ('percentChange' in modifier) {
-          return `${targetDisplayName}'s base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
-            modifier.percentChange,
-            { showSign: true },
-          )}%`;
-        } else throw new Error('should not get here');
-      },
-    );
+    return getModifiers(this).tooltipDescriptors(this.modifiers);
   }
 
   /**

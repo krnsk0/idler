@@ -9,7 +9,7 @@ import { JobNames } from './jobNames';
 export class Agronomist extends ExtendedModel(BaseJob, {}) {
   name = JobNames.AGRONOMIST;
   displayName = 'agronomists';
-  description = 'increases nutrient output of farms';
+  description = 'increases food output of farms';
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;
@@ -17,7 +17,7 @@ export class Agronomist extends ExtendedModel(BaseJob, {}) {
     {
       modifierType: ModifierTypes.PRODUCTION,
       target: BuildingNames.FARM,
-      resource: ResourceNames.NUTRIENTS,
+      resource: ResourceNames.FOOD,
       modifier: {
         percentChange: 0.2,
       },

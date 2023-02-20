@@ -98,17 +98,17 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
-    const nutrients = getResources(this)[ResourceNames.NUTRIENTS];
+    const food = getResources(this)[ResourceNames.FOOD];
     const chanceOfEachWorkerDyingPerSecond = 0.15; // percent
 
     const amountToEat = this.foodConsumption * delta;
 
-    nutrients.decrease(amountToEat);
+    food.decrease(amountToEat);
 
     /**
      * Important to check for *less* than zero
      */
-    if (nutrients.quantity < 0 && colonists.quantity > 0) {
+    if (food.quantity < 0 && colonists.quantity > 0) {
       const chanceOfAWorkerDyingThisTick =
         delta * chanceOfEachWorkerDyingPerSecond;
 

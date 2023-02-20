@@ -1,7 +1,7 @@
 import { model, ExtendedModel, tProp, types, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
-import { Nutrients } from './nutrients';
+import { Food } from './food';
 import { Biomass } from './biomass';
 import { Lumber } from './lumber';
 import { Colonists } from './colonists';
@@ -19,10 +19,7 @@ export class Resources extends ExtendedModel(ZoneEntity, {
   ),
   [ResourceNames.BIOMASS]: tProp(types.model(Biomass), () => new Biomass({})),
   [ResourceNames.LUMBER]: tProp(types.model(Lumber), () => new Lumber({})),
-  [ResourceNames.NUTRIENTS]: tProp(
-    types.model(Nutrients),
-    () => new Nutrients({}),
-  ),
+  [ResourceNames.FOOD]: tProp(types.model(Food), () => new Food({})),
   [ResourceNames.ROCK]: tProp(types.model(Rock), () => new Rock({})),
   [ResourceNames.ORE]: tProp(types.model(Ore), () => new Ore({})),
   [ResourceNames.ALLOY]: tProp(types.model(Alloy), () => new Alloy({})),

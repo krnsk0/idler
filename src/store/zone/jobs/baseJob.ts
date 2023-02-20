@@ -1,7 +1,7 @@
 import { ExtendedModel, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { JobNames } from './jobNames';
-import { getJobs, getTech, getGui } from '../../selectors';
+import { getJobs, getTech, getGui, getModifiers } from '../../selectors';
 import { Countable } from '../countable';
 import { TargetedModifier } from '../modifiers';
 
@@ -76,6 +76,14 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
         modifier: adjustedModifier,
       };
     });
+  }
+
+  /**
+   * Displayable modifier descriptors
+   */
+  @computed
+  get tooltipDescriptors(): string[] {
+    return getModifiers(this).tooltipDescriptors(this.modifiers);
   }
 
   /**

@@ -48,7 +48,7 @@ export class Debug extends Model({
     // farms max
     tech[TechNames.FARMING].cheat();
     initialZone.buildings[BuildingNames.FARM].cheat(5);
-    initialZone.resources[ResourceNames.NUTRIENTS].cheat();
+    initialZone.resources[ResourceNames.FOOD].cheat();
   }
 
   /**

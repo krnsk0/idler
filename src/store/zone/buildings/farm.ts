@@ -22,7 +22,7 @@ export class Farm extends ExtendedModel(BaseBuilding, {}) {
   inputs = [];
   outputs = [
     {
-      resource: ResourceNames.NUTRIENTS,
+      resource: ResourceNames.FOOD,
       quantityPerSecond: 0.2,
     },
     {

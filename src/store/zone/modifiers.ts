@@ -3,8 +3,8 @@ import { computed } from 'mobx';
 import { BuildingNames } from './buildings/buildingNames';
 import { JobNames } from './jobs/jobNames';
 import { ResourceNames } from './resources/resourceNames';
-import { UpgradeNames } from './upgrades/upgradeNames';
-import { getBuildings, getJobs, getUpgrades } from '../selectors';
+import { getBuildings, getJobs, getResources, getUpgrades } from '../selectors';
+import { formatNumber } from '../../utils/formatNumber';
 
 export enum ModifierTypes {
   PRODUCTION = 'PRODUCTION',
@@ -22,8 +22,6 @@ export function getDisplayableModifierType(modifierType: ModifierTypes) {
 }
 
 export type ModifierTargets = BuildingNames | JobNames;
-
-// export type ModifierSources = JobNames | UpgradeNames;
 
 export interface BaseModifier {
   baseChange: number;
@@ -80,5 +78,27 @@ export class Modifiers extends Model({}) {
       throw new Error('cannot find target name');
     }
     return targetName;
+  }
+
+  /**
+   * Displayable modifier descriptors
+   */
+  tooltipDescriptors(modifiers: TargetedModifier[]): string[] {
+    return modifiers.map(({ target, resource, modifier, modifierType }) => {
+      const targetDisplayName = this.getTargetDisplayName(target);
+      const resourceDisplayName = getResources(this)[resource].displayName;
+      const displayableModifierType = getDisplayableModifierType(modifierType);
+      if ('baseChange' in modifier) {
+        return `${targetDisplayName}'s base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
+          modifier.baseChange,
+          { showSign: true },
+        )}`;
+      } else if ('percentChange' in modifier) {
+        return `${targetDisplayName}'s ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
+          modifier.percentChange,
+          { showSign: true },
+        )}%`;
+      } else throw new Error('should not get here');
+    });
   }
 }

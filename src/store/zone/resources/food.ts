@@ -3,10 +3,10 @@ import { BaseResource, ProductionConsumptionDisplay } from './baseResource';
 import { ResourceNames } from './resourceNames';
 import { override } from 'mobx';
 
-@model(ResourceNames.NUTRIENTS)
-export class Nutrients extends ExtendedModel(BaseResource, {}) {
-  name = ResourceNames.NUTRIENTS;
-  displayName = 'nutrients';
+@model(ResourceNames.FOOD)
+export class Food extends ExtendedModel(BaseResource, {}) {
+  name = ResourceNames.FOOD;
+  displayName = 'food';
   initialCap = 50;
 
   /**

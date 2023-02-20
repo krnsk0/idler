@@ -1,53 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
-import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
-import {
-  DesktopTooltipTitle,
-  TooltipDivider,
-  TooltipPortalRenderer,
-  TooltipText,
-} from '../../../../shared/Tooltip/Tooltip';
+import { TooltipPortalRenderer } from '../../../../shared/Tooltip/Tooltip';
 
 import { styles } from './JobRow.styles';
-import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../../../../../store/zone/resources/colonists';
-
-interface JobRowTooltipProps {
-  job: BaseJob;
-}
-
-const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
-  return (
-    <>
-      <DesktopTooltipTitle showDivider={true}>
-        {job.displayName}
-      </DesktopTooltipTitle>
-      <TooltipText italic={true} align={'center'}>
-        {job.description}
-      </TooltipText>
-      <TooltipDivider text="base effects" />
-      <TooltipText>
-        {/* {job.displayBaseEffects.map(
-          ({
-            resourceDisplayName,
-            buildingDisplayName,
-            percentageModifier,
-          }) => {
-            return (
-              <div key={resourceDisplayName + buildingDisplayName}>
-                {buildingDisplayName}'s {resourceDisplayName} production:{' '}
-                {formatNumber(percentageModifier * 100, { showSign: true })}%
-              </div>
-            );
-          },
-        )} */}
-        <div>
-          consumes {formatNumber(FOOD_PER_WORKER_PER_SECOND_BASE)} nutrients/sec
-        </div>
-      </TooltipText>
-    </>
-  );
-});
+import { JobRowTooltip } from './JobRowTooltip';
 
 interface JobRowProps {
   job: BaseJob;
