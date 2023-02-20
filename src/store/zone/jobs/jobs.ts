@@ -9,8 +9,8 @@ import { ResourceNames } from '../resources/resourceNames';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
-import { ProductionModifier } from './baseJob';
 import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../resources/colonists';
+import { ProductionModifier } from '../modifierTypes';
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {

@@ -4,9 +4,9 @@ import { enumKeys } from '../../../utils/enumKeys';
 import { ZoneEntity } from '../zoneEntity';
 import { UpgradeNames } from './upgradeNames';
 import { CompostingDrums } from './compostingDrums';
-import { ProductionModifier } from './baseUpgrade';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
+import { ProductionModifier } from '../modifierTypes';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
