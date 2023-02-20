@@ -113,7 +113,7 @@ export class Debug extends Model({
     initialZone.resources[ResourceNames.LUMBER].cheat();
 
     // max all other buildings after cache construction
-    initialZone.buildings[BuildingNames.HABITAT].cheat(1);
+    initialZone.buildings[BuildingNames.HABITAT].cheat(5);
     initialZone.buildings[BuildingNames.FARM].cheat(1);
     initialZone.buildings[BuildingNames.FURNACE].cheat(2);
     initialZone.buildings[BuildingNames.TREE_FARM].cheat(2);
@@ -121,6 +121,15 @@ export class Debug extends Model({
     // max dynamos
     tech[TechNames.ELECTROMAGNETISM].cheat();
     initialZone.buildings[BuildingNames.DYNAMO].cheat(1);
+
+    // max jobs
+    initialZone.resources[ResourceNames.COLONISTS].cheat(13);
+    for (let i = 0; i < 3; i += 1) {
+      initialZone.jobs[JobNames.AGRONOMIST].assign();
+    }
+    for (let i = 0; i < 2; i += 1) {
+      initialZone.jobs[JobNames.ARBORIST].assign();
+    }
   }
 
   /**
