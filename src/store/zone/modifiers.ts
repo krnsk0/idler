@@ -34,6 +34,18 @@ export interface PercentModifier {
   percentChange: number;
 }
 
+export function isBaseModifier(
+  modifier: BaseModifier | PercentModifier,
+): modifier is BaseModifier {
+  return 'baseChange' in modifier;
+}
+
+export function isPercentModifier(
+  modifier: BaseModifier | PercentModifier,
+): modifier is PercentModifier {
+  return 'percentChange' in modifier;
+}
+
 export interface TargetedModifier {
   modifierType: ModifierTypes;
   target: ModifierTargets;
@@ -66,7 +78,7 @@ export class Modifiers extends Model({}) {
   /**
    * All applied modifiers, queryable by target
    */
-  allAppliedModifiersByTarget(
+  appliedModifiersByTarget(
     target: ModifierTargets,
   ): TargetedModifierWithSource[] {
     return this.allAppliedModifiers.filter((modifier) => {
@@ -127,7 +139,7 @@ export class Modifiers extends Model({}) {
    * Target tooltip descriptors
    */
   targetTooltipDescriptors(target: ModifierTargets): string[] {
-    return this.allAppliedModifiersByTarget(target).map(
+    return this.appliedModifiersByTarget(target).map(
       ({ resource, modifier, modifierType, source }) => {
         const resourceDisplayName = getResources(this)[resource].displayName;
         const displayableModifierType =

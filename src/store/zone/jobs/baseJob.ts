@@ -3,7 +3,12 @@ import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs, getTech, getGui, getModifiers } from '../../selectors';
 import { Countable } from '../countable';
-import { TargetedModifier, TargetedModifierWithSource } from '../modifiers';
+import {
+  isBaseModifier,
+  isPercentModifier,
+  TargetedModifier,
+  TargetedModifierWithSource,
+} from '../modifiers';
 
 export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;
@@ -63,10 +68,10 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
     return this.modifiers.map((targetedModifier) => {
       const adjustedModifier = { ...targetedModifier.modifier };
 
-      if ('baseChange' in adjustedModifier) {
+      if (isBaseModifier(adjustedModifier)) {
         adjustedModifier.baseChange =
           adjustedModifier.baseChange * this.quantity;
-      } else if ('percentChange' in adjustedModifier) {
+      } else if (isPercentModifier(adjustedModifier)) {
         adjustedModifier.percentChange =
           adjustedModifier.percentChange * this.quantity;
       }

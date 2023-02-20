@@ -1,8 +1,13 @@
 import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from './resources/resourceNames';
 import { computed } from 'mobx';
-import { getPower, getResources } from '../selectors';
+import { getModifiers, getPower, getResources } from '../selectors';
 import { Countable } from './countable';
+import {
+  isBaseModifier,
+  isPercentModifier,
+  ModifierTargets,
+} from './modifiers';
 
 interface Consumption {
   resource: ResourceNames;
@@ -93,10 +98,24 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   }
 
   /**
+   * Per-second consumption of individuals
+   */
+  @computed
+  get individualConsumptionPerSecond(): Production[] {
+    // TODO: input modification takes place here
+    return this.inputs.map(({ resource, quantityPerSecond }) => {
+      return {
+        resource,
+        quantityPerSecond,
+      };
+    });
+  }
+
+  /**
    * Per-second consumption of all at full capacity including quantity
    */
   @computed
-  get consumptionPerSecond(): Production[] {
+  get aggregateConsumptionPerSecond(): Production[] {
     return this.inputs.map(({ resource, quantityPerSecond }) => {
       return {
         resource,
@@ -110,10 +129,52 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
    */
   @computed
   get proratedConsumptionPerSecond(): Production[] {
-    return this.consumptionPerSecond.map(({ resource, quantityPerSecond }) => {
+    return this.aggregateConsumptionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.lastTickProrate,
+        };
+      },
+    );
+  }
+
+  /**
+   * Per-second production of resources without adjusting for number of
+   * active producers, incorporating modifiers
+   */
+  @computed
+  get individualProductionPerSecond(): Production[] {
+    return this.outputs.map(({ resource, quantityPerSecond }) => {
+      // compute base including modifiers
+      let qpsPlusBaseModifier = quantityPerSecond;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            modifier.resource === resource &&
+            isBaseModifier(modifier.modifier)
+          ) {
+            qpsPlusBaseModifier += modifier.modifier.baseChange;
+          }
+        });
+
+      // compute percentage modifier
+      let percentageModifier = 0;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            modifier.resource === resource &&
+            isPercentModifier(modifier.modifier)
+          ) {
+            percentageModifier += modifier.modifier.percentChange;
+          }
+        });
+
       return {
         resource,
-        quantityPerSecond: quantityPerSecond * this.lastTickProrate,
+        quantityPerSecond: qpsPlusBaseModifier * (1 + percentageModifier),
       };
     });
   }
@@ -122,19 +183,15 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
    * Per-second production of all at full capacity including quantity
    */
   @computed
-  get productionPerSecond(): Production[] {
-    return this.outputs.map(({ resource, quantityPerSecond }) => {
-      let productionMultiplier = 1;
-      // if (this.modifiersOfThisProducer[resource] !== undefined) {
-      //   productionMultiplier += this.modifiersOfThisProducer[resource]!;
-      // }
-
-      return {
-        resource,
-        quantityPerSecond:
-          quantityPerSecond * this.numberActive * productionMultiplier,
-      };
-    });
+  get aggregateProductionPerSecond(): Production[] {
+    return this.individualProductionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.numberActive,
+        };
+      },
+    );
   }
 
   /**
@@ -142,12 +199,14 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
    */
   @computed
   get proratedProductionPerSecond(): Production[] {
-    return this.productionPerSecond.map(({ resource, quantityPerSecond }) => {
-      return {
-        resource,
-        quantityPerSecond: quantityPerSecond * this.lastTickProrate,
-      };
-    });
+    return this.aggregateProductionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.lastTickProrate,
+        };
+      },
+    );
   }
 
   /**
@@ -156,18 +215,22 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   @computed
   get displayEffects(): ProductionConsumptionDisplay[] {
     return [
-      ...this.inputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          quantityPerSecond: -quantityPerSecond,
-        };
-      }),
-      ...this.outputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          quantityPerSecond,
-        };
-      }),
+      ...this.individualConsumptionPerSecond.map(
+        ({ resource, quantityPerSecond }) => {
+          return {
+            resourceDisplayName: this.zoneResources[resource].displayName,
+            quantityPerSecond: -quantityPerSecond,
+          };
+        },
+      ),
+      ...this.individualProductionPerSecond.map(
+        ({ resource, quantityPerSecond }) => {
+          return {
+            resourceDisplayName: this.zoneResources[resource].displayName,
+            quantityPerSecond,
+          };
+        },
+      ),
     ];
   }
 
@@ -230,7 +293,7 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
     let prorate = 1;
 
     // here we constrain the prorate based on available inputs
-    this.consumptionPerSecond.forEach((input) => {
+    this.aggregateConsumptionPerSecond.forEach((input) => {
       const resourceName = input.resource;
       const potentialConsumption = input.quantityPerSecond * delta;
       if (potentialConsumption === 0) return;
@@ -243,8 +306,8 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
     // we do this only if there's something to consume; e.g. we always
     // "overproduce" if there's no consumers. in future this behavior could be
     // configurable per producer or even per resource.
-    if (this.consumptionPerSecond.length) {
-      this.productionPerSecond.forEach((product) => {
+    if (this.aggregateConsumptionPerSecond.length) {
+      this.aggregateProductionPerSecond.forEach((product) => {
         const resourceName = product.resource;
         const potentialProduction = product.quantityPerSecond * delta;
         if (potentialProduction === 0) return;
@@ -269,14 +332,14 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
     this.lastTickProrate = prorate;
 
     // perform consumption
-    this.consumptionPerSecond.forEach((input) => {
+    this.aggregateConsumptionPerSecond.forEach((input) => {
       const potentialConsumption = input.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[input.resource];
       resourceModel.decrease(potentialConsumption);
     });
 
     // perform production
-    this.productionPerSecond.forEach((product) => {
+    this.aggregateProductionPerSecond.forEach((product) => {
       const potentialProduction = product.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
