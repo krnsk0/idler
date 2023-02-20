@@ -3,20 +3,10 @@ import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs, getTech, getGui } from '../../selectors';
 import { Countable } from '../countable';
-import { BuildingNames } from '../buildings/buildingNames';
-import { ResourceNames } from '../resources/resourceNames';
-
-export interface ProductionModifier {
-  building: BuildingNames;
-  resource: ResourceNames;
-  percentageModifier: number;
-}
-
-export interface ProductionModifierDisplay {
-  buildingDisplayName: string;
-  resourceDisplayName: string;
-  percentageModifier: number;
-}
+import {
+  ProductionModifier,
+  ProductionModifierDisplay,
+} from '../modifierTypes';
 
 export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;
@@ -64,6 +54,7 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
           percentageModifier,
           resourceDisplayName: this.zoneResources[resourceName].displayName,
           buildingDisplayName: this.zoneBuildings[buildingName].displayName,
+          modifierSourceDisplayName: this.name,
         };
       },
     );

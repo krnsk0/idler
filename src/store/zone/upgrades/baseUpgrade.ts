@@ -5,6 +5,10 @@ import { getTech, getGui } from '../../selectors';
 import { BuildingNames } from '../buildings/buildingNames';
 import { ResourceNames } from '../resources/resourceNames';
 import { ZoneEntity } from '../zoneEntity';
+import {
+  ProductionModifier,
+  ProductionModifierDisplay,
+} from '../modifierTypes';
 
 interface PurchaseCost {
   resource: ResourceNames;
@@ -17,18 +21,6 @@ interface PurchaseCostDisplay {
   availableQuantity: number;
   storageConstrained: boolean;
   quantity: number;
-}
-
-export interface ProductionModifier {
-  building: BuildingNames;
-  resource: ResourceNames;
-  percentageModifier: number;
-}
-
-export interface ProductionModifierDisplay {
-  buildingDisplayName: string;
-  resourceDisplayName: string;
-  percentageModifier: number;
 }
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
@@ -102,6 +94,7 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
           percentageModifier,
           resourceDisplayName: this.zoneResources[resourceName].displayName,
           buildingDisplayName: this.zoneBuildings[buildingName].displayName,
+          modifierSourceDisplayName: this.name,
         };
       },
     );

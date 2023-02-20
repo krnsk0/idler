@@ -14,6 +14,7 @@ graph TD;
   A[ZoneEntity] --> M[Buildings]
   A[ZoneEntity] --> N[Power]
   A[ZoneEntity] --> Y[Countable]
+  A[ZoneEntity] --> F[BaseUpgrade]
   Y[Countable] --> B[ProducerConsumer]
   Y[Countable] --> H[BaseResource]
   Y[Countable] --> I[BaseJob]
