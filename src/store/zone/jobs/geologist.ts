@@ -1,5 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BuildingNames } from '../buildings/buildingNames';
+import { ModifierTypes } from '../modifiers';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseJob } from './baseJob';
 import { JobNames } from './jobNames';
@@ -12,11 +13,14 @@ export class Geologist extends ExtendedModel(BaseJob, {}) {
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;
-  productionModifiers = [
+  modifiers = [
     {
-      building: BuildingNames.MINE,
+      modifierType: ModifierTypes.PRODUCTION,
+      target: BuildingNames.MINE,
       resource: ResourceNames.ORE,
-      percentageModifier: 0.1,
+      modifier: {
+        percentChange: 0.1,
+      },
     },
   ];
 }

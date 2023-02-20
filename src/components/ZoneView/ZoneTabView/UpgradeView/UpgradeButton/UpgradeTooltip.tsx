@@ -47,7 +47,7 @@ const UpgradeTooltip = ({ upgrade }: BaseUpgradeProps) => {
       )}
       <TooltipDivider text={'effects'} />
       <TooltipText>
-        {upgrade.displayEffects.map(
+        {/* {upgrade.displayEffects.map(
           ({
             resourceDisplayName,
             buildingDisplayName,
@@ -60,7 +60,7 @@ const UpgradeTooltip = ({ upgrade }: BaseUpgradeProps) => {
               </div>
             );
           },
-        )}
+        )} */}
 
         {upgrade.isStorageConstrainted && (
           <>

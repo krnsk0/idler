@@ -41,7 +41,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
           },
         )}
       </TooltipText>
-      <TooltipDivider text={'base effect'} />
+      <TooltipDivider text={'base effects'} />
       <TooltipText>
         {building.displayEffects.map(
           ({ resourceDisplayName, quantityPerSecond }) => {
@@ -71,7 +71,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
             </div>
           );
         })}
-        {building.totalProductionModifiersDisplay.length > 0 && (
+        {/* {building.totalProductionModifiersDisplay.length > 0 && (
           <>
             <TooltipDivider text={'modifiers'} />
             {building.totalProductionModifiersDisplay.map(
@@ -92,7 +92,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
               },
             )}
           </>
-        )}
+        )} */}
         {(building.isStorageConstrainted || building.isProrated) && (
           <TooltipDivider />
         )}

@@ -3,12 +3,8 @@ import { computed } from 'mobx';
 import { UpgradeNames } from './upgradeNames';
 import { getTech, getGui } from '../../selectors';
 import { ZoneEntity } from '../zoneEntity';
-import {
-  ProductionModifier,
-  ProductionModifierDisplay,
-  PurchaseCost,
-  PurchaseCostDisplay,
-} from '../sharedTypes';
+import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
+import { TargetedModifier } from '../modifiers';
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   /**
@@ -20,7 +16,7 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   abstract displayName: string;
   abstract description: string;
   abstract cost: PurchaseCost[];
-  abstract productionModifiers: ProductionModifier[];
+  abstract modifiers: TargetedModifier[];
 
   /**
    * Responsible for managing when jobs are unlocked
@@ -28,6 +24,15 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   observableUnlockCheck = () => {
     return getTech(this).unlockedUpgrades.includes(this.name);
   };
+
+  /**
+   * What is the modification provided when we consider whether the upgrade
+   * has been purchased
+   */
+  @computed
+  get appliedModifiers(): TargetedModifier[] {
+    return this.purchased ? this.modifiers : [];
+  }
 
   /**
    * Current cost with displayable names
@@ -64,40 +69,6 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
     return this.cost.every(({ resource, quantity }) => {
       return this.zoneResources[resource].quantity >= quantity;
     });
-  }
-
-  /**
-   * Effects of this upgrade for display purposes
-   */
-  @computed
-  get displayEffects(): ProductionModifierDisplay[] {
-    return this.productionModifiers.map(
-      ({ building, resource, percentageModifier }) => {
-        return {
-          percentageModifier,
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          buildingDisplayName: this.zoneBuildings[building].displayName,
-          modifierSourceDisplayName: this.displayName,
-          building,
-        };
-      },
-    );
-  }
-
-  /**
-   * Effects of this upgrade for display purposes
-   */
-  @computed
-  get totalProductionModifiersDisplay(): ProductionModifierDisplay[] {
-    return this.purchased ? this.displayEffects : [];
-  }
-
-  /**
-   * The active production modifiers, when purchased
-   */
-  @computed
-  get totalProductionModifiers(): ProductionModifier[] {
-    return this.purchased ? this.productionModifiers : [];
   }
 
   /**

@@ -6,6 +6,7 @@ import { Resources } from './resources/resources';
 import { makeZoneName } from './zoneName';
 import { Jobs } from './jobs/jobs';
 import { Upgrades } from './upgrades/upgrades';
+import { Modifiers } from './modifiers';
 
 @model('Zone')
 export class Zone extends Model({
@@ -17,4 +18,5 @@ export class Zone extends Model({
   actions: tProp(types.model(Actions), () => new Actions({})),
   jobs: tProp(types.model(Jobs), () => new Jobs({})),
   upgrades: tProp(types.model(Upgrades), () => new Upgrades({})),
+  modifiers: tProp(types.model(Modifiers), () => new Modifiers({})),
 }) {}

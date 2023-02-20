@@ -1,5 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BuildingNames } from '../buildings/buildingNames';
+import { ModifierTypes } from '../modifiers';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseUpgrade } from './baseUpgrade';
 import { UpgradeNames } from './upgradeNames';
@@ -11,11 +12,14 @@ export class CompostingDrums extends ExtendedModel(BaseUpgrade, {}) {
   description =
     'equip farms with containers useful for decomposing organic waste matter to fertilizer';
   transientUnlockCheck = () => true;
-  productionModifiers = [
+  modifiers = [
     {
-      building: BuildingNames.FARM,
+      modifierType: ModifierTypes.PRODUCTION,
+      target: BuildingNames.FARM,
       resource: ResourceNames.BIOMASS,
-      percentageModifier: 0.1,
+      modifier: {
+        baseChange: 0.1,
+      },
     },
   ];
   cost = [

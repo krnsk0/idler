@@ -10,7 +10,6 @@ import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
 import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../resources/colonists';
-import { ProductionModifier, ProductionModifierDisplay } from '../sharedTypes';
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {
@@ -75,38 +74,6 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   get foodConsumption(): number {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
     return colonists.quantity * FOOD_PER_WORKER_PER_SECOND_BASE;
-  }
-
-  /**
-   * All job modifiers
-   */
-  @computed
-  get totalProductionModifiers(): ProductionModifier[] {
-    const modifiers: ProductionModifier[] = [];
-    this.asArray.forEach(({ totalProductionModifiers }) => {
-      totalProductionModifiers.forEach((modifier) => {
-        if (modifier.percentageModifier > 0) {
-          modifiers.push(modifier);
-        }
-      });
-    });
-    return modifiers;
-  }
-
-  /**
-   * All job modifiers, for display
-   */
-  @computed
-  get totalProductionModifiersDisplay(): ProductionModifierDisplay[] {
-    const modifiers: ProductionModifierDisplay[] = [];
-    this.asArray.forEach(({ displayTotalEffects }) => {
-      displayTotalEffects.forEach((modifier) => {
-        if (modifier.percentageModifier > 0) {
-          modifiers.push(modifier);
-        }
-      });
-    });
-    return modifiers;
   }
 
   /**

@@ -120,36 +120,15 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   }
 
   /**
-   * Modifiers of this producer
-   */
-  @computed
-  get modifiersOfThisProducer() {
-    const modifierMap: { [key in ResourceNames]?: number } = {};
-    [
-      ...this.zoneJobs.totalProductionModifiers,
-      ...this.zoneUpgrades.totalProductionModifiers,
-    ]
-      .filter(({ building }) => building === this.$modelType)
-      .forEach(({ resource, percentageModifier }) => {
-        if (typeof modifierMap[resource] === 'number') {
-          modifierMap[resource]! += percentageModifier;
-        } else {
-          modifierMap[resource] = percentageModifier;
-        }
-      });
-    return modifierMap;
-  }
-
-  /**
    * Per-second production of all at full capacity including quantity
    */
   @computed
   get productionPerSecond(): Production[] {
     return this.outputs.map(({ resource, quantityPerSecond }) => {
       let productionMultiplier = 1;
-      if (this.modifiersOfThisProducer[resource] !== undefined) {
-        productionMultiplier += this.modifiersOfThisProducer[resource]!;
-      }
+      // if (this.modifiersOfThisProducer[resource] !== undefined) {
+      //   productionMultiplier += this.modifiersOfThisProducer[resource]!;
+      // }
 
       return {
         resource,

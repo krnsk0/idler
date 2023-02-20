@@ -3,7 +3,7 @@ import { computed } from 'mobx';
 import { JobNames } from './jobNames';
 import { getJobs, getTech, getGui } from '../../selectors';
 import { Countable } from '../countable';
-import { ProductionModifier, ProductionModifierDisplay } from '../sharedTypes';
+import { TargetedModifier } from '../modifiers';
 
 export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;
@@ -30,7 +30,7 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   /**
    * Production modifiers
    */
-  abstract productionModifiers: ProductionModifier[];
+  abstract modifiers: TargetedModifier[];
 
   /**
    * Responsible for managing when jobs are unlocked
@@ -38,49 +38,6 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   observableUnlockCheck = () => {
     return getTech(this).unlockedJobs.includes(this.name);
   };
-
-  @computed
-  get displayBaseEffects(): ProductionModifierDisplay[] {
-    return this.productionModifiers.map(
-      ({ building, resource, percentageModifier }) => {
-        return {
-          percentageModifier,
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          buildingDisplayName: this.zoneBuildings[building].displayName,
-          modifierSourceDisplayName: this.displayName,
-          building,
-        };
-      },
-    );
-  }
-
-  @computed
-  get displayTotalEffects(): ProductionModifierDisplay[] {
-    return this.productionModifiers.map(
-      ({ building, resource, percentageModifier }) => {
-        return {
-          percentageModifier: percentageModifier * this.quantity,
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          buildingDisplayName: this.zoneBuildings[building].displayName,
-          modifierSourceDisplayName: this.displayName,
-          building,
-        };
-      },
-    );
-  }
-
-  @computed
-  get totalProductionModifiers(): ProductionModifier[] {
-    return this.productionModifiers.map(
-      ({ building, resource, percentageModifier }) => {
-        return {
-          percentageModifier: percentageModifier * this.quantity,
-          building,
-          resource,
-        };
-      },
-    );
-  }
 
   /**
    * Assign a free worker if possible
@@ -96,6 +53,29 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   @modelAction
   unassign(): void {
     this.quantity -= 1;
+  }
+
+  /**
+   * What is the modification provided when we consider quantity of workers?
+   */
+  @computed
+  get appliedModifiers(): TargetedModifier[] {
+    return this.modifiers.map((targetedModifier) => {
+      const adjustedModifier = { ...targetedModifier.modifier };
+
+      if ('baseChange' in adjustedModifier) {
+        adjustedModifier.baseChange =
+          adjustedModifier.baseChange * this.quantity;
+      } else if ('percentChange' in adjustedModifier) {
+        adjustedModifier.percentChange =
+          adjustedModifier.percentChange * this.quantity;
+      }
+
+      return {
+        ...targetedModifier,
+        modifier: adjustedModifier,
+      };
+    });
   }
 
   /**

@@ -1,5 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BuildingNames } from '../buildings/buildingNames';
+import { ModifierTypes } from '../modifiers';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseJob } from './baseJob';
 import { JobNames } from './jobNames';
@@ -12,11 +13,14 @@ export class Agronomist extends ExtendedModel(BaseJob, {}) {
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;
-  productionModifiers = [
+  modifiers = [
     {
-      building: BuildingNames.FARM,
+      modifierType: ModifierTypes.PRODUCTION,
+      target: BuildingNames.FARM,
       resource: ResourceNames.NUTRIENTS,
-      percentageModifier: 0.2,
+      modifier: {
+        percentChange: 0.2,
+      },
     },
   ];
 }

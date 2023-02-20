@@ -25,9 +25,9 @@ const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
       <TooltipText italic={true} align={'center'}>
         {job.description}
       </TooltipText>
-      <TooltipDivider text="base effect" />
+      <TooltipDivider text="base effects" />
       <TooltipText>
-        {job.displayBaseEffects.map(
+        {/* {job.displayBaseEffects.map(
           ({
             resourceDisplayName,
             buildingDisplayName,
@@ -40,7 +40,7 @@ const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
               </div>
             );
           },
-        )}
+        )} */}
         <div>
           consumes {formatNumber(FOOD_PER_WORKER_PER_SECOND_BASE)} nutrients/sec
         </div>
