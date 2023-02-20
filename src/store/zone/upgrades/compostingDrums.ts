@@ -15,7 +15,7 @@ export class CompostingDrums extends ExtendedModel(BaseUpgrade, {}) {
     {
       buildingName: BuildingNames.FARM,
       resourceName: ResourceNames.BIOMASS,
-      percentageModifier: 0.5,
+      percentageModifier: 0.1,
     },
   ];
   cost = [
