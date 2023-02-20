@@ -42,6 +42,22 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Iterable list of only available upgrades
+   */
+  @computed
+  get availableAsArray() {
+    return this.unlockedAsArray.filter((upgrade) => !upgrade.purchased);
+  }
+
+  /**
+   * Iterable list of only purchased upgrades
+   */
+  @computed
+  get purchasedAsArray() {
+    return this.unlockedAsArray.filter((upgrade) => upgrade.purchased);
+  }
+
+  /**
    * All job modifiers
    */
   @computed

@@ -34,7 +34,7 @@ const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
             percentageModifier,
           }) => {
             return (
-              <div key={resourceDisplayName}>
+              <div key={resourceDisplayName + buildingDisplayName}>
                 {buildingDisplayName}'s {resourceDisplayName} production:{' '}
                 {formatNumber(percentageModifier * 100, { showSign: true })}%
               </div>

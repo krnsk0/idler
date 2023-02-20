@@ -8,6 +8,7 @@ import JobsView from './ZoneTabView/JobsView/JobsView';
 import { useMediaQuery } from '../shared/useMediaQuery';
 import { useStore } from '../../store/Provider';
 import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
+import UpgradeView from './ZoneTabView/UpgradeView/UpgradeView';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -104,7 +105,7 @@ function ZoneView({ zone }: ZoneViewProps) {
                 case ZoneTabNames.JOBS:
                   return <JobsView zone={zone} />;
                 case ZoneTabNames.UPGRADES:
-                  return null; // TODO
+                  return <UpgradeView zone={zone} />;
                 default:
                   throw new Error('should not reach this case');
               }
