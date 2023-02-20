@@ -5,6 +5,7 @@ import { getTech, getGui, getModifiers } from '../../selectors';
 import { ZoneEntity } from '../zoneEntity';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 import { TargetedModifier, TargetedModifierWithSource } from '../modifiers';
+import { BaseTech } from '../../tech/baseTech';
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
   /**
@@ -22,7 +23,15 @@ export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {
    * Responsible for managing when jobs are unlocked
    */
   observableUnlockCheck = () => {
-    return getTech(this).unlockedUpgrades.includes(this.name);
+    const techThatUnlocksThisUpgrade: BaseTech[] = [];
+    getTech(this).asArray.forEach((tech) => {
+      tech.upgradesUnlocked.forEach((upgrade) => {
+        if (upgrade === this.name) {
+          techThatUnlocksThisUpgrade.push(tech);
+        }
+      });
+    });
+    return techThatUnlocksThisUpgrade.every((tech) => tech.researched);
   };
 
   /**

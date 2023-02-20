@@ -53,6 +53,8 @@ function ZoneView({ zone }: ZoneViewProps) {
 
   const isResourcePaneOpen = isDesktop || gui.isResourcePaneOpen;
 
+  const isTabRowUnlocked = zone.jobs.unlocked || zone.upgrades.unlocked;
+
   return (
     <>
       <div css={styles.zoneOuter}>
@@ -65,7 +67,7 @@ function ZoneView({ zone }: ZoneViewProps) {
           )}
           <div css={styles.zoneCenter} id="zone-right">
             <div css={styles.tabRow}>
-              {zone.jobs.unlocked && (
+              {isTabRowUnlocked && (
                 <>
                   <TabButton
                     text="outpost"

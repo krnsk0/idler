@@ -10,7 +10,7 @@ export class Storage extends ExtendedModel(BaseTech, {}) {
   description = 'facilities for long-term warehousing';
   powerCost = 30;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.ZONE_UPGRADES];
+  techUnlocked = [];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
