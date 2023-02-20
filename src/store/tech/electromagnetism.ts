@@ -10,7 +10,7 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
   name = TechNames.ELECTROMAGNETISM;
   displayName = 'electromagnetism';
   description = 'allow the construction of additional generators';
-  powerCost = 25;
+  powerCost = 50;
   transientUnlockCheck = () =>
     getGame(this).initialZone.resources[ResourceNames.ALLOY].quantity >= 5;
   techUnlocked = [];

@@ -120,7 +120,8 @@ export class Debug extends Model({
 
     // max dynamos
     tech[TechNames.ELECTROMAGNETISM].cheat();
-    initialZone.buildings[BuildingNames.DYNAMO].cheat(1);
+    initialZone.buildings[BuildingNames.DYNAMO].cheat(2);
+    initialZone.buildings[BuildingNames.DYNAMO].disableEntity();
 
     // max jobs
     initialZone.resources[ResourceNames.COLONISTS].cheat(13);
@@ -145,10 +146,8 @@ export class Debug extends Model({
     tech[TechNames.SUBSURFACE_EXCAVATION].cheat();
     initialZone.buildings[BuildingNames.MINE].cheat(2);
 
-    // unlock miners and max
+    // unlock miners
     tech[TechNames.GEOLOGY].cheat();
-    initialZone.resources[ResourceNames.COLONISTS].cheat();
-    initialZone.jobs[JobNames.GEOLOGIST].assign();
   }
 
   /**
