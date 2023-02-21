@@ -15,7 +15,7 @@ export class Prefabrication extends ExtendedModel(BaseUpgrade, {}) {
       type: 'cost_scaling' as const,
       target: BuildingNames.HABITAT,
       resource: ResourceNames.LUMBER,
-      scaleFactorPercentModifier: -0.25,
+      scaleFactorPercentModifier: -0.3,
     },
   ];
   cost = [{ resource: ResourceNames.LUMBER, quantity: 20 }];
