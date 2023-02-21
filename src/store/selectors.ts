@@ -9,7 +9,7 @@ import { Tech } from './tech/tech';
 import { Actions } from './zone/actions/actions';
 import { Buildings } from './zone/buildings/buildings';
 import { Jobs } from './zone/jobs/jobs';
-import { Modifiers } from './zone/modifiers';
+import { Modifiers } from './zone/modifiers/modifiers';
 import { Power } from './zone/power/power';
 import { Resources } from './zone/resources/resources';
 import { Upgrades } from './zone/upgrades/upgrades';

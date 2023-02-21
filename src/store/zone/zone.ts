@@ -6,7 +6,7 @@ import { Resources } from './resources/resources';
 import { makeZoneName } from './zoneName';
 import { Jobs } from './jobs/jobs';
 import { Upgrades } from './upgrades/upgrades';
-import { Modifiers } from './modifiers';
+import { Modifiers } from './modifiers/modifiers';
 
 @model('Zone')
 export class Zone extends Model({

@@ -4,7 +4,10 @@ import { UpgradeNames } from './upgradeNames';
 import { getTech, getGui, getModifiers } from '../../selectors';
 import { ZoneEntity } from '../zoneEntity';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
-import { TargetedModifier, TargetedModifierWithSource } from '../modifiers';
+import {
+  TargetedModifier,
+  TargetedModifierWithSource,
+} from '../modifiers/modifierTypes';
 import { BaseTech } from '../../tech/baseTech';
 
 export abstract class BaseUpgrade extends ExtendedModel(ZoneEntity, {

@@ -4,13 +4,12 @@ import { computed } from 'mobx';
 import { getModifiers, getPower, getResources } from '../selectors';
 import { Countable } from './countable';
 import {
-  isBaseModifier,
   isInputBaseModifier,
   isInputPercentModifier,
   isOutputBaseModifier,
   isOutputPercentModifier,
   ModifierTargets,
-} from './modifiers';
+} from './modifiers/modifierTypes';
 
 interface Consumption {
   resource: ResourceNames;
