@@ -19,6 +19,7 @@ import {
   isBaseModifier,
   isPercentModifier,
   isCostScalingModifier,
+  isStorageAllPercentModifier,
 } from './modifierTypes';
 
 @model('Modifiers')
@@ -89,7 +90,7 @@ export class Modifiers extends Model({}) {
       if (isBaseModifier(modifier)) {
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
-        return `${targetDisplayName}'s base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
+        return `${targetDisplayName} base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
           modifier.baseChange,
           { showSign: true },
         )}`;
@@ -97,13 +98,18 @@ export class Modifiers extends Model({}) {
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
 
-        return `${targetDisplayName}'s ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
-          modifier.percentChange,
+        return `${targetDisplayName} ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
+          modifier.percentChange * 100,
           { showSign: true },
         )}%`;
       } else if (isCostScalingModifier(modifier)) {
-        return `${targetDisplayName}'s ${displayableModifierType}: ${formatNumber(
-          modifier.scaleFactorPercentModifier,
+        return `${targetDisplayName} ${displayableModifierType}: ${formatNumber(
+          modifier.scaleFactorPercentModifier * 100,
+          { showSign: true },
+        )}%`;
+      } else if (isStorageAllPercentModifier(modifier)) {
+        return `${targetDisplayName} ${displayableModifierType}: ${formatNumber(
+          modifier.allStoragePercentChange * 100,
           { showSign: true },
         )}%`;
       } else throw new Error('should not get here');
@@ -125,13 +131,17 @@ export class Modifiers extends Model({}) {
       } else if (isPercentModifier(modifier)) {
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
-
-        return `${formatNumber(modifier.percentChange, {
+        return `${formatNumber(modifier.percentChange * 100, {
           showSign: true,
         })}% ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`;
       } else if (isCostScalingModifier(modifier)) {
-        return `${displayableModifierType}:${formatNumber(
-          modifier.scaleFactorPercentModifier,
+        return `${displayableModifierType}: ${formatNumber(
+          modifier.scaleFactorPercentModifier * 100,
+          { showSign: true },
+        )}% (${sourceDisplayName})`;
+      } else if (isStorageAllPercentModifier(modifier)) {
+        return `${displayableModifierType}: ${formatNumber(
+          modifier.allStoragePercentChange * 100,
           { showSign: true },
         )}% (${sourceDisplayName})`;
       } else throw new Error('should not get here');
