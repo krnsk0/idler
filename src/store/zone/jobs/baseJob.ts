@@ -6,6 +6,8 @@ import { Countable } from '../countable';
 import {
   TargetedModifier,
   TargetedModifierWithSource,
+  isBaseModifier,
+  isPercentModifier,
 } from '../modifiers/modifierTypes';
 
 export abstract class BaseJob extends ExtendedModel(Countable, {}) {
@@ -66,19 +68,18 @@ export abstract class BaseJob extends ExtendedModel(Countable, {}) {
     return this.modifiers.map((targetedModifier) => {
       const adjustedModifier = { ...targetedModifier };
 
-      if ('baseChange' in adjustedModifier) {
+      if (isBaseModifier(adjustedModifier)) {
         adjustedModifier.baseChange =
           adjustedModifier.baseChange * this.quantity;
       }
 
-      if ('percentChange' in adjustedModifier) {
+      if (isPercentModifier(adjustedModifier)) {
         adjustedModifier.percentChange =
           adjustedModifier.percentChange * this.quantity;
       }
 
       return {
-        ...targetedModifier,
-        modifier: adjustedModifier,
+        ...adjustedModifier,
         source: this.name,
       };
     });
