@@ -9,8 +9,7 @@ type ModifierTypes =
   | 'output_base'
   | 'output_percent'
   | 'cost_scaling'
-  | 'storage_base'
-  | 'storage_percent';
+  | 'storage_all_percent';
 
 export function getDisplayableModifierType(type: ModifierTypes) {
   const mapping: { [key in ModifierTypes]: string } = {
@@ -19,8 +18,7 @@ export function getDisplayableModifierType(type: ModifierTypes) {
     output_base: 'production',
     output_percent: 'production',
     cost_scaling: 'cost scaling',
-    storage_base: 'storage',
-    storage_percent: 'storage',
+    storage_all_percent: 'storage',
   };
   return mapping[type];
 }
@@ -92,46 +90,29 @@ export function isCostScalingModifier(
   return modifier.type === 'cost_scaling';
 }
 
-interface StorageBaseModifier {
-  type: 'storage_base';
+interface StorageAllPercentModifier {
+  type: 'storage_all_percent';
   target: ModifierTargets;
-  resource: ResourceNames;
-  baseChange: number;
+  allStoragePercentChange: number;
 }
 
-export function isStorageBaseModifier(
+export function isStorageAllPercentModifier(
   modifier: TargetedModifier,
-): modifier is StorageBaseModifier {
-  return modifier.type === 'storage_base';
+): modifier is StorageAllPercentModifier {
+  return modifier.type === 'storage_all_percent';
 }
 
-interface StoragePercentModifier {
-  type: 'storage_percent';
-  target: ModifierTargets;
-  resource: ResourceNames;
-  percentChange: number;
-}
+export type BaseProductionModifier = InputBaseModifier | OutputBaseModifier;
 
-export function isStoragePercentModifier(
-  modifier: TargetedModifier,
-): modifier is StoragePercentModifier {
-  return modifier.type === 'storage_percent';
-}
-
-export type BaseModifier =
-  | InputBaseModifier
-  | OutputBaseModifier
-  | StorageBaseModifier;
-
-export type PercentModifier =
+export type PercentProductionModifier =
   | InputPercentModifier
-  | OutputPercentModifier
-  | StoragePercentModifier;
+  | OutputPercentModifier;
 
 export type TargetedModifier =
-  | BaseModifier
-  | PercentModifier
-  | CostScalingModifier;
+  | BaseProductionModifier
+  | PercentProductionModifier
+  | CostScalingModifier
+  | StorageAllPercentModifier;
 
 export type TargetedModifierWithSource = TargetedModifier & {
   source: ModifierSources;
@@ -139,12 +120,12 @@ export type TargetedModifierWithSource = TargetedModifier & {
 
 export function isBaseModifier(
   modifier: TargetedModifier,
-): modifier is BaseModifier {
+): modifier is BaseProductionModifier {
   return isOutputBaseModifier(modifier) || isInputBaseModifier(modifier);
 }
 
 export function isPercentModifier(
   modifier: TargetedModifier,
-): modifier is PercentModifier {
+): modifier is PercentProductionModifier {
   return isOutputPercentModifier(modifier) || isInputPercentModifier(modifier);
 }

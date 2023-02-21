@@ -13,10 +13,9 @@ export class Crates extends ExtendedModel(BaseUpgrade, {}) {
   transientUnlockCheck = () => true;
   modifiers = [
     {
-      type: 'storage_base' as const,
+      type: 'storage_all_percent' as const,
       target: BuildingNames.CACHE,
-      resource: ResourceNames.LUMBER,
-      baseChange: 5,
+      allStoragePercentChange: 0.5,
     },
   ];
   cost = [{ resource: ResourceNames.LUMBER, quantity: 25 }];
