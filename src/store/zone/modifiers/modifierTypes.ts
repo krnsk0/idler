@@ -8,7 +8,9 @@ type ModifierTypes =
   | 'input_percent'
   | 'output_base'
   | 'output_percent'
-  | 'cost_scaling';
+  | 'cost_scaling'
+  | 'storage_base'
+  | 'storage_percent';
 
 export function getDisplayableModifierType(type: ModifierTypes) {
   const mapping: { [key in ModifierTypes]: string } = {
@@ -17,6 +19,8 @@ export function getDisplayableModifierType(type: ModifierTypes) {
     output_base: 'production',
     output_percent: 'production',
     cost_scaling: 'cost scaling',
+    storage_base: 'storage',
+    storage_percent: 'storage',
   };
   return mapping[type];
 }
@@ -88,9 +92,41 @@ export function isCostScalingModifier(
   return modifier.type === 'cost_scaling';
 }
 
-export type BaseModifier = InputBaseModifier | OutputBaseModifier;
+interface StorageBaseModifier {
+  type: 'storage_base';
+  target: ModifierTargets;
+  resource: ResourceNames;
+  baseChange: number;
+}
 
-export type PercentModifier = InputPercentModifier | OutputPercentModifier;
+export function isStorageBaseModifier(
+  modifier: TargetedModifier,
+): modifier is StorageBaseModifier {
+  return modifier.type === 'storage_base';
+}
+
+interface StoragePercentModifier {
+  type: 'storage_percent';
+  target: ModifierTargets;
+  resource: ResourceNames;
+  percentChange: number;
+}
+
+export function isStoragePercentModifier(
+  modifier: TargetedModifier,
+): modifier is StoragePercentModifier {
+  return modifier.type === 'storage_percent';
+}
+
+export type BaseModifier =
+  | InputBaseModifier
+  | OutputBaseModifier
+  | StorageBaseModifier;
+
+export type PercentModifier =
+  | InputPercentModifier
+  | OutputPercentModifier
+  | StoragePercentModifier;
 
 export type TargetedModifier =
   | BaseModifier
