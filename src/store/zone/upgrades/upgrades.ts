@@ -10,6 +10,7 @@ import { Chainsaws } from './chainsaws';
 import { Tuyeres } from './tuyeres';
 import { HeatReclamators } from './heatReclamators';
 import { Prefabrication } from './prefabrication';
+import { Crates } from './crates';
 
 @model('Upgrades')
 export class Upgrades extends ExtendedModel(ZoneEntity, {
@@ -30,6 +31,7 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
     types.model(Prefabrication),
     () => new Prefabrication({}),
   ),
+  [UpgradeNames.CRATES]: tProp(types.model(Crates), () => new Crates({})),
 }) {
   transientUnlockCheck = () => {
     return (
