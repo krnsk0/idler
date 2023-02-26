@@ -7,7 +7,7 @@ import { BuildingNames } from './buildingNames';
 export class Habitat extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.HABITAT;
   displayName = 'habitat';
-  description = 'protection from the elements for one colonist';
+  description = 'protection from the elements';
   baseCost = [
     {
       resource: ResourceNames.LUMBER,
