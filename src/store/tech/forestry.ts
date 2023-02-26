@@ -10,7 +10,7 @@ export class Forestry extends ExtendedModel(BaseTech, {}) {
   description = 'sustainable cultivation of arboriform xenoflora';
   powerCost = 25;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.ARBORICULTURE];
+  techUnlocked = [TechNames.SHELTER, TechNames.EXCAVATION];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];

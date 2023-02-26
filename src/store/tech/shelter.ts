@@ -11,7 +11,7 @@ export class Shelter extends ExtendedModel(BaseTech, {}) {
   description = 'primitive protection from the elements';
   powerCost = 15;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.CRYONICS];
+  techUnlocked = [TechNames.CRYONICS, TechNames.STORAGE];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
