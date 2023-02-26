@@ -17,7 +17,7 @@ export class Gleaner extends ExtendedModel(BaseJob, {}) {
       type: 'output_base' as const,
       target: BuildingNames.FARM,
       resource: ResourceNames.BIOMASS,
-      baseChange: 0.02,
+      baseChange: 0.01,
     },
   ];
 }
