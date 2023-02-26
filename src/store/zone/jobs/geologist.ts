@@ -8,7 +8,7 @@ import { JobNames } from './jobNames';
 export class Geologist extends ExtendedModel(BaseJob, {}) {
   name = JobNames.GEOLOGIST;
   displayName = 'geologists';
-  description = 'increases ore output of mines';
+  description = 'increase ore output of mines';
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;

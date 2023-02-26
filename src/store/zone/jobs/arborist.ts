@@ -8,7 +8,7 @@ import { JobNames } from './jobNames';
 export class Arborist extends ExtendedModel(BaseJob, {}) {
   name = JobNames.ARBORIST;
   displayName = 'arborists';
-  description = 'increases tree farm output; speaks for the trees';
+  description = 'increase tree farm output. speaks for the trees.';
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;

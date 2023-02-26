@@ -7,7 +7,8 @@ import { TechNames } from './techNames';
 export class NeuralReprogramming extends ExtendedModel(BaseTech, {}) {
   name = TechNames.NEURAL_REPROGRAMMING;
   displayName = 'neural reprogramming';
-  description = 'teach colonists new skills via direct interface with ship';
+  description =
+    'teach colonists new skills via direct interface with ship. only hurts a little bit, ship promises';
   powerCost = 50;
   transientUnlockCheck = () => true;
   techUnlocked = [

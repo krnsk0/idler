@@ -8,7 +8,7 @@ import { JobNames } from './jobNames';
 export class Gleaner extends ExtendedModel(BaseJob, {}) {
   name = JobNames.GLEANER;
   displayName = 'gleaners';
-  description = 'collects unharvested waste biomass';
+  description = 'collect unharvested waste biomass';
   inputs = [];
   outputs = [];
   transientUnlockCheck = () => true;
