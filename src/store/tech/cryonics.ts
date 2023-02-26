@@ -1,5 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { ActionNames } from '../zone/actions/actionNames';
+import { JobNames } from '../zone/jobs/jobNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -18,7 +19,7 @@ export class Cryonics extends ExtendedModel(BaseTech, {}) {
   ];
   actionsUnlocked = [ActionNames.THAW];
   actionsRelocked = [];
-  jobsUnlocked = [];
+  jobsUnlocked = [JobNames.GLEANER];
   buildingsUnlocked = [];
   upgradesUnlocked = [];
 }

@@ -2,6 +2,7 @@ import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { JobNames } from './jobNames';
+import { Gleaner } from './gleaner';
 import { Arborist } from './arborist';
 import { Agronomist } from './agronomist';
 import { Geologist } from './geologist';
@@ -13,6 +14,7 @@ import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../resources/colonists';
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {
+  [JobNames.GLEANER]: tProp(types.model(Gleaner), () => new Gleaner({})),
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
   [JobNames.AGRONOMIST]: tProp(
     types.model(Agronomist),
