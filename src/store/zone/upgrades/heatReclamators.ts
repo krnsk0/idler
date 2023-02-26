@@ -7,8 +7,8 @@ import { UpgradeNames } from './upgradeNames';
 @model(UpgradeNames.HEAT_RECLAMATORS)
 export class HeatReclamators extends ExtendedModel(BaseUpgrade, {}) {
   name = UpgradeNames.HEAT_RECLAMATORS;
-  displayName = 'increase fuel efficiency of dynamos';
-  description = '';
+  displayName = 'heat reclamators';
+  description = 'increase fuel efficiency of dynamos';
   transientUnlockCheck = () => true;
   modifiers = [
     {

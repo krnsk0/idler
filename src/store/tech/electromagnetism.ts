@@ -1,7 +1,5 @@
 import { model, ExtendedModel } from 'mobx-keystone';
-import { getGame } from '../selectors';
 import { BuildingNames } from '../zone/buildings/buildingNames';
-import { ResourceNames } from '../zone/resources/resourceNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -11,8 +9,7 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
   displayName = 'electromagnetism';
   description = 'allow the construction of additional generators';
   powerCost = 50;
-  transientUnlockCheck = () =>
-    getGame(this).initialZone.resources[ResourceNames.ALLOY].quantity >= 5;
+  transientUnlockCheck = () => true;
   techUnlocked = [TechNames.ZONE_UPGRADES];
   actionsUnlocked = [];
   actionsRelocked = [];

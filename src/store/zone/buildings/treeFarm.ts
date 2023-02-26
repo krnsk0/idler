@@ -14,7 +14,7 @@ export class TreeFarm extends ExtendedModel(BaseBuilding, {}) {
       quantity: 5,
     },
     {
-      resource: ResourceNames.ROCK,
+      resource: ResourceNames.LUMBER,
       quantity: 4,
     },
   ];
@@ -23,7 +23,7 @@ export class TreeFarm extends ExtendedModel(BaseBuilding, {}) {
   outputs = [
     {
       resource: ResourceNames.LUMBER,
-      quantityPerSecond: 0.1,
+      quantityPerSecond: 0.05,
     },
   ];
   storage = [];

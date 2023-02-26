@@ -11,6 +11,11 @@ export class Colonists extends ExtendedModel(BaseResource, {}) {
   initialCap = 0;
 
   /**
+   * Override
+   */
+  transientUnlockCheck = () => this.quantity > 0 || this.currentCap > 0;
+
+  /**
    * Decreases quantity. Optionally can turn off tracking for average rate
    */
   @modelAction
