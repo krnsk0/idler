@@ -83,68 +83,94 @@ export class Modifiers extends Model({}) {
    * Displayable modifier descriptors for modifier sources
    */
   sourceTooltipDescriptors(modifiers: TargetedModifier[]): string[] {
-    return modifiers.map((modifier) => {
+    const tooltipDescriptors: string[] = [];
+
+    modifiers.forEach((modifier) => {
       const displayableModifierType = getDisplayableModifierType(modifier.type);
       const targetDisplayName = this.getTargetDisplayName(modifier.target);
 
       if (isBaseModifier(modifier)) {
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
-        return `${targetDisplayName} base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
-          modifier.baseChange,
-          { showSign: true },
-        )}`;
+        tooltipDescriptors.push(
+          `${targetDisplayName} base ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
+            modifier.baseChange,
+            { showSign: true },
+          )}`,
+        );
       } else if (isPercentModifier(modifier)) {
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
-
-        return `${targetDisplayName} ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
-          modifier.percentChange * 100,
-          { showSign: true },
-        )}%`;
+        tooltipDescriptors.push(
+          `${targetDisplayName} ${resourceDisplayName} ${displayableModifierType}: ${formatNumber(
+            modifier.percentChange * 100,
+            { showSign: true },
+          )}%`,
+        );
       } else if (isCostScalingModifier(modifier)) {
-        return `${targetDisplayName} ${displayableModifierType}: ${formatNumber(
-          modifier.scaleFactorPercentModifier * 100,
-          { showSign: true },
-        )}%`;
+        tooltipDescriptors.push(
+          `${targetDisplayName} ${displayableModifierType}: ${formatNumber(
+            modifier.scaleFactorPercentModifier * 100,
+            { showSign: true },
+          )}%`,
+        );
       } else if (isStorageAllPercentModifier(modifier)) {
-        return `${targetDisplayName} ${displayableModifierType}: ${formatNumber(
-          modifier.allStoragePercentChange * 100,
-          { showSign: true },
-        )}%`;
+        tooltipDescriptors.push(
+          `${targetDisplayName} ${displayableModifierType}: ${formatNumber(
+            modifier.allStoragePercentChange * 100,
+            { showSign: true },
+          )}%`,
+        );
       } else throw new Error('should not get here');
     });
+
+    return tooltipDescriptors;
   }
   /**
    * Target tooltip descriptors
    */
   targetTooltipDescriptors(target: ModifierTargets): string[] {
-    return this.appliedModifiersByTarget(target).map((modifier) => {
+    const tooltipDescriptors: string[] = [];
+    this.appliedModifiersByTarget(target).forEach((modifier) => {
       const displayableModifierType = getDisplayableModifierType(modifier.type);
       const sourceDisplayName = this.getSourceDisplayName(modifier.source);
       if (isBaseModifier(modifier)) {
+        if (modifier.baseChange === 0) return;
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
-        return `${formatNumber(modifier.baseChange, {
-          showSign: true,
-        })} base ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`;
+        tooltipDescriptors.push(
+          `${formatNumber(modifier.baseChange, {
+            showSign: true,
+          })} base ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`,
+        );
       } else if (isPercentModifier(modifier)) {
+        if (modifier.percentChange === 0) return;
         const resourceDisplayName =
           getResources(this)[modifier.resource].displayName;
-        return `${formatNumber(modifier.percentChange * 100, {
-          showSign: true,
-        })}% ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`;
+        tooltipDescriptors.push(
+          `${formatNumber(modifier.percentChange * 100, {
+            showSign: true,
+          })}% ${resourceDisplayName} ${displayableModifierType} (${sourceDisplayName})`,
+        );
       } else if (isCostScalingModifier(modifier)) {
-        return `${displayableModifierType}: ${formatNumber(
-          modifier.scaleFactorPercentModifier * 100,
-          { showSign: true },
-        )}% (${sourceDisplayName})`;
+        if (modifier.scaleFactorPercentModifier === 0) return;
+        tooltipDescriptors.push(
+          `${displayableModifierType}: ${formatNumber(
+            modifier.scaleFactorPercentModifier * 100,
+            { showSign: true },
+          )}% (${sourceDisplayName})`,
+        );
       } else if (isStorageAllPercentModifier(modifier)) {
-        return `${displayableModifierType}: ${formatNumber(
-          modifier.allStoragePercentChange * 100,
-          { showSign: true },
-        )}% (${sourceDisplayName})`;
+        if (modifier.allStoragePercentChange === 0) return;
+        tooltipDescriptors.push(
+          `${displayableModifierType}: ${formatNumber(
+            modifier.allStoragePercentChange * 100,
+            { showSign: true },
+          )}% (${sourceDisplayName})`,
+        );
       } else throw new Error('should not get here');
     });
+
+    return tooltipDescriptors;
   }
 }
