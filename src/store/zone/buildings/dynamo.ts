@@ -1,4 +1,4 @@
-import { model, ExtendedModel } from 'mobx-keystone';
+import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { ResourceNames } from '../resources/resourceNames';
 import { BaseBuilding } from './baseBuilding';
 import { BuildingNames } from './buildingNames';
@@ -23,4 +23,13 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
   canSomeBeTurnedOff = true;
   powerOutputPerSecond = 1;
   powerNeededPerSecond = 0;
+
+  /**
+   * This is an override!
+   */
+  @modelAction
+  buy(quantity: number): void {
+    this.zonePerimeter.setFirstDynamoConstructionTime();
+    super.buy(quantity);
+  }
 }

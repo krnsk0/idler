@@ -9,6 +9,7 @@ import { useMediaQuery } from '../shared/useMediaQuery';
 import { useStore } from '../../store/Provider';
 import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
 import UpgradeView from './ZoneTabView/UpgradeView/UpgradeView';
+import PerimeterView from './ZoneTabView/PerimeterView/PerimeterView';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -18,6 +19,7 @@ enum ZoneTabNames {
   ACTIONS = 'ACTIONS',
   JOBS = 'JOBS',
   UPGRADES = 'UPGRADES',
+  PERIMETER = 'PERIMETER',
 }
 
 const TabButton = ({
@@ -53,7 +55,8 @@ function ZoneView({ zone }: ZoneViewProps) {
 
   const isResourcePaneOpen = isDesktop || gui.isResourcePaneOpen;
 
-  const isTabRowUnlocked = zone.jobs.unlocked || zone.upgrades.unlocked;
+  const isTabRowUnlocked =
+    zone.jobs.unlocked || zone.upgrades.unlocked || zone.perimeter.unlocked;
 
   return (
     <>
@@ -97,6 +100,17 @@ function ZoneView({ zone }: ZoneViewProps) {
                       />
                     </>
                   )}
+                  {zone.perimeter.unlocked && (
+                    <>
+                      <div css={styles.separator} />
+                      <TabButton
+                        text="perimeter"
+                        tabName={ZoneTabNames.PERIMETER}
+                        selectedTab={selectedTab}
+                        setSelectedTab={setSelectedTab}
+                      />
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -108,6 +122,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                   return <JobsView zone={zone} />;
                 case ZoneTabNames.UPGRADES:
                   return <UpgradeView zone={zone} />;
+                case ZoneTabNames.PERIMETER:
+                  return <PerimeterView zone={zone} />;
                 default:
                   throw new Error('should not reach this case');
               }

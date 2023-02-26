@@ -4,18 +4,15 @@ import { Divider } from '../../../shared/Divider/Divider';
 import UpgradeButton from './UpgradeButton/UpgradeButton';
 import { styles } from './UpgradeView.styles';
 import { ZoneEntityButtonSpacer } from '../../../shared/ZoneEntityButton/ZoneEntityButton';
-import { useStore } from '../../../../store/Provider';
 
 interface UpgradeViewProps {
   zone: Zone;
 }
 
 function UpgradeView({ zone }: UpgradeViewProps) {
-  const root = useStore();
-
   return (
     <>
-      <div css={styles.upgradeOuter} id="ship-view-outer">
+      <div css={styles.upgradeOuter} id="upgrade-view-outer">
         <Divider
           text={'available'}
           shown={true}
