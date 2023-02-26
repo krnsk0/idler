@@ -158,8 +158,9 @@ export class Debug extends Model({
    */
   @modelAction
   debug() {
-    getRoot(this).reset();
-    const initialZone = getGame(this).initialZone;
+    this.phaseTwo();
     const tech = getTech(this);
+
+    tech[TechNames.ELECTROMAGNETISM].cheat();
   }
 }

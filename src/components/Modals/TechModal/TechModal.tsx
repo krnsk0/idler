@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import Modal from 'react-modal';
-import { useStore } from '../../store/Provider';
-import { formatNumber } from '../../utils/formatNumber';
+import { useStore } from '../../../store/Provider';
+import { formatNumber } from '../../../utils/formatNumber';
 import { styles } from './TechModal.styles';
 
 const customStyles = {

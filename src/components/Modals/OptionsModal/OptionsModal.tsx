@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import Modal from 'react-modal';
-import { useStore } from '../../store/Provider';
+import { useStore } from '../../../store/Provider';
 import { styles } from './OptionsModal.styles';
 
 const customStyles = {

@@ -34,7 +34,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get isWarningModalOpen(): boolean {
-    return this.unlocked && !!this.hasWarningModalBeenClosed;
+    return this.unlocked && this.hasWarningModalBeenClosed === false;
   }
 
   /**
