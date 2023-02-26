@@ -1,32 +1,36 @@
-import { ExtendedModel, Model, model, tProp, types } from 'mobx-keystone';
-import { BuildingNames } from '../buildings/buildingNames';
+import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { ZoneEntity } from '../zoneEntity';
 
-const TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION = 10000;
+const TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION = 5;
 
 @model('Perimeter')
 export class Perimeter extends ExtendedModel(ZoneEntity, {
   /**
    * Perimeter unlocks 10s after first dynamo is constructed
    */
-  firstDynamoConstructionTime: tProp(types.maybe(types.number), undefined),
+  timeToUnlock: tProp(types.maybe(types.number), undefined),
 }) {
   transientUnlockCheck = () => {
-    return (
-      this.firstDynamoConstructionTime !== undefined &&
-      Date.now() >
-        this.firstDynamoConstructionTime +
-          TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION
-    );
+    return this.timeToUnlock !== undefined && this.timeToUnlock <= 0;
   };
-  observableUnlockCheck = () => this.firstDynamoConstructionTime !== undefined;
+  observableUnlockCheck = () => this.timeToUnlock !== undefined;
 
   /**
    * Used in mechanism to unlock the perimeter for the first time
    */
-  setFirstDynamoConstructionTime(): void {
-    if (this.firstDynamoConstructionTime === undefined) {
-      this.firstDynamoConstructionTime = Date.now();
+  startUnlockCountdown(): void {
+    if (this.timeToUnlock === undefined) {
+      this.timeToUnlock = TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION;
+    }
+  }
+
+  /**
+   * The tick action for this model
+   */
+  @modelAction
+  tick(delta: number) {
+    if (this.timeToUnlock !== undefined) {
+      this.timeToUnlock = Math.max(0, this.timeToUnlock - delta);
     }
   }
 }

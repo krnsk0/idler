@@ -29,7 +29,7 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
    */
   @modelAction
   buy(quantity: number): void {
-    this.zonePerimeter.setFirstDynamoConstructionTime();
+    this.zonePerimeter.startUnlockCountdown();
     super.buy(quantity);
   }
 }

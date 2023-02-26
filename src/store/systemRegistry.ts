@@ -79,6 +79,13 @@ export class SystemRegistry extends Model({}) {
     });
 
     /**
+     * Tick perimeter
+     */
+    this.game.zones.forEach((zone) => {
+      zone.perimeter.tick(delta);
+    });
+
+    /**
      * Unlock checks happen after everything else to ensure that unlock
      * conditions are met before doing the check
      */
