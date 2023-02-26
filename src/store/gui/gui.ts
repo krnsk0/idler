@@ -1,6 +1,5 @@
 import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { Root } from '../root';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
@@ -20,7 +19,7 @@ type ShipColonyExpandables =
 export class Gui extends Model({
   optionsModal: tProp(types.boolean, false),
   techModal: tProp(types.boolean, false),
-  // UI should not subscript to this,
+  // UI should not subscribe to this,
   // use the derivation instead
   _resourcePaneOpen: tProp(types.boolean, true),
   expandedShipColonyButton: tProp(

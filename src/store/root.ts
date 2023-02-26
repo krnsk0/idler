@@ -76,5 +76,6 @@ export class Root extends Model({
   reset(): void {
     console.log('resetting game state');
     this.game = makeNewGame(import.meta.env.PACKAGE_VERSION);
+    this.gui = new Gui({});
   }
 }
