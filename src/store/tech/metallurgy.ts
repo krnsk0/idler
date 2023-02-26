@@ -11,7 +11,7 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   description = 'might the ore yield a useful alloy?';
   powerCost = 25;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.ELECTROMAGNETISM, TechNames.SUBSURFACE_EXCAVATION];
+  techUnlocked = [TechNames.ELECTROMAGNETISM];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];

@@ -10,7 +10,7 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
   description = 'allow the construction of additional generators';
   powerCost = 50;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.ZONE_UPGRADES];
+  techUnlocked = [TechNames.ZONE_UPGRADES, TechNames.SUBSURFACE_EXCAVATION];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
