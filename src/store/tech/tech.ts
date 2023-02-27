@@ -26,7 +26,6 @@ import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
 import { Excavation } from './excavation';
-import { NeuralReprogramming } from './neuralReprogramming';
 import { Metallurgy } from './metallurgy';
 import { Geology } from './geology';
 import { Electromagnetism } from './electromagnetism';
@@ -51,10 +50,6 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.AGRONOMY]: tProp(types.model(Agronomy), () => new Agronomy({})),
   [TechNames.SHELTER]: tProp(types.model(Shelter), () => new Shelter({})),
   [TechNames.CRYONICS]: tProp(types.model(Cryonics), () => new Cryonics({})),
-  [TechNames.NEURAL_REPROGRAMMING]: tProp(
-    types.model(NeuralReprogramming),
-    () => new NeuralReprogramming({}),
-  ),
   [TechNames.FORESTRY]: tProp(types.model(Forestry), () => new Forestry({})),
   [TechNames.ARBORICULTURE]: tProp(
     types.model(Arboriculture),
