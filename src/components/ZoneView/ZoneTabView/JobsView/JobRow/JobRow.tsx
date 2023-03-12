@@ -1,45 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
-import { formatNumber } from '../../../../../utils/formatNumber';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
-import {
-  DesktopTooltipTitle,
-  TooltipDivider,
-  TooltipPortalRenderer,
-  TooltipText,
-} from '../../../../shared/Tooltip/Tooltip';
+import { TooltipPortalRenderer } from '../../../../shared/Tooltip/Tooltip';
 
 import { styles } from './JobRow.styles';
-
-interface JobRowTooltipProps {
-  job: BaseJob;
-}
-
-const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
-  return (
-    <>
-      <DesktopTooltipTitle showDivider={true}>
-        {job.displayName}
-      </DesktopTooltipTitle>
-      <TooltipText italic={true} align={'center'}>
-        {job.description}
-      </TooltipText>
-      <TooltipDivider text="effects" />
-      <TooltipText>
-        {job.displayEffects.map(
-          ({ resourceDisplayName, quantityPerSecond }) => {
-            return (
-              <div key={resourceDisplayName}>
-                {resourceDisplayName}:{' '}
-                {formatNumber(quantityPerSecond, { showSign: true })}/sec
-              </div>
-            );
-          },
-        )}
-      </TooltipText>
-    </>
-  );
-});
+import { JobRowTooltip } from './JobRowTooltip';
 
 interface JobRowProps {
   job: BaseJob;

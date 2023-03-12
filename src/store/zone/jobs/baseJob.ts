@@ -1,10 +1,16 @@
 import { ExtendedModel, modelAction } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { JobNames } from './jobNames';
-import { getJobs, getTech, getGui } from '../../selectors';
-import { ProducerConsumer } from '../producerConsumer';
+import { getJobs, getTech, getGui, getModifiers } from '../../selectors';
+import { Countable } from '../countable';
+import {
+  TargetedModifier,
+  TargetedModifierWithSource,
+  isBaseModifier,
+  isPercentModifier,
+} from '../modifiers/modifierTypes';
 
-export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
+export abstract class BaseJob extends ExtendedModel(Countable, {}) {
   abstract name: JobNames;
   abstract displayName: string;
   abstract description: string;
@@ -27,9 +33,9 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   powerNeededPerSecond = 0;
 
   /**
-   * People cannot be autodisabled
+   * Production modifiers
    */
-  autoDisableOnInputDepletion = false;
+  abstract modifiers: TargetedModifier[];
 
   /**
    * Responsible for managing when jobs are unlocked
@@ -52,6 +58,39 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
   @modelAction
   unassign(): void {
     this.quantity -= 1;
+  }
+
+  /**
+   * What is the modification provided when we consider quantity of workers?
+   */
+  @computed
+  get appliedModifiers(): TargetedModifierWithSource[] {
+    return this.modifiers.map((targetedModifier) => {
+      const adjustedModifier = { ...targetedModifier };
+
+      if (isBaseModifier(adjustedModifier)) {
+        adjustedModifier.baseChange =
+          adjustedModifier.baseChange * this.quantity;
+      }
+
+      if (isPercentModifier(adjustedModifier)) {
+        adjustedModifier.percentChange =
+          adjustedModifier.percentChange * this.quantity;
+      }
+
+      return {
+        ...adjustedModifier,
+        source: this.name,
+      };
+    });
+  }
+
+  /**
+   * Displayable modifier descriptors
+   */
+  @computed
+  get tooltipDescriptors(): string[] {
+    return getModifiers(this).sourceTooltipDescriptors(this.modifiers);
   }
 
   /**
@@ -104,12 +143,5 @@ export abstract class BaseJob extends ExtendedModel(ProducerConsumer, {}) {
     if (this.canDecrement) {
       this.quantity -= 1;
     }
-  }
-  /**
-   * Attempts to run production
-   */
-  @modelAction
-  tick(delta: number): void {
-    this.runProduction(delta);
   }
 }

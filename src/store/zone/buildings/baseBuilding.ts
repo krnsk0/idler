@@ -1,22 +1,13 @@
 import { modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { StorageProvider } from '../storageProvider';
-import { ResourceNames } from '../resources/resourceNames';
 import { BuildingNames } from './buildingNames';
-import { getGui, getTech } from '../../selectors';
-
-interface PurchaseCost {
-  resource: ResourceNames;
-  quantity: number;
-}
-
-interface PurchaseCostDisplay {
-  resourceDisplayName: string;
-  isSatisfied: boolean;
-  availableQuantity: number;
-  storageConstrained: boolean;
-  quantity: number;
-}
+import { getGui, getModifiers, getTech } from '../../selectors';
+import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
+import {
+  isCostScalingModifier,
+  ModifierTargets,
+} from '../modifiers/modifierTypes';
 
 export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   abstract name: BuildingNames;
@@ -33,6 +24,23 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   };
 
   /**
+   * Base cost adjusted by modifiers
+   */
+  @computed
+  get modifiedCostExponent(): number {
+    let costExponentModifier = 1;
+    getModifiers(this)
+      .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+      .forEach((modifier) => {
+        if (isCostScalingModifier(modifier)) {
+          costExponentModifier += modifier.scaleFactorPercentModifier;
+        }
+      });
+
+    return (this.costExponent - 1) * costExponentModifier + 1;
+  }
+
+  /**
    * Resource cost adjusted according to exponentiation
    */
   @computed
@@ -40,7 +48,9 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
     return this.baseCost.map(({ resource, quantity: baseCost }) => {
       return {
         resource,
-        quantity: Math.floor(baseCost * this.costExponent ** this.quantity),
+        quantity: Math.floor(
+          baseCost * this.modifiedCostExponent ** this.quantity,
+        ),
       };
     });
   }
@@ -88,6 +98,14 @@ export abstract class BaseBuilding extends ExtendedModel(StorageProvider, {}) {
   @computed
   get isExpanded(): boolean {
     return getGui(this).expandedShipColonyButton === this.name;
+  }
+
+  /**
+   * Displayable modifier tooltip
+   */
+  @computed
+  get tooltipModifierDescriptors(): string[] {
+    return getModifiers(this).targetTooltipDescriptors(this.name);
   }
 
   /**

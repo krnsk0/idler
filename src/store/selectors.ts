@@ -9,25 +9,16 @@ import { Tech } from './tech/tech';
 import { Actions } from './zone/actions/actions';
 import { Buildings } from './zone/buildings/buildings';
 import { Jobs } from './zone/jobs/jobs';
+import { Modifiers } from './zone/modifiers/modifiers';
+import { Perimeter } from './zone/perimeter/perimeter';
 import { Power } from './zone/power/power';
 import { Resources } from './zone/resources/resources';
+import { Upgrades } from './zone/upgrades/upgrades';
 import { Zone } from './zone/zone';
 
-export const getSystemRegistry = (child: object): SystemRegistry => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no game model found in getGame');
-  return root.game.systemRegistry;
-};
-
-export const getGame = (child: object): Game => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no game model found in getGame');
-  return root.game;
-};
+/**
+ * Root selectors
+ */
 
 export const getDebug = (child: object): Debug => {
   const root = findParent<Root>(child, (node) => {
@@ -35,14 +26,6 @@ export const getDebug = (child: object): Debug => {
   });
   if (!root) throw new Error('no parent root model found in getDebug');
   return root.debug;
-};
-
-export const getTech = (child: object): Tech => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
-  });
-  if (!root) throw new Error('no parent root model found in getTech');
-  return root.game.tech;
 };
 
 export const getGui = (child: object): Gui => {
@@ -53,6 +36,44 @@ export const getGui = (child: object): Gui => {
   return root.gui;
 };
 
+/**
+ * Game selectors
+ */
+
+export const getGame = (child: object): Game => {
+  const root = findParent<Root>(child, (node) => {
+    return node instanceof Root;
+  });
+  if (!root) throw new Error('no game model found in getGame');
+  return root.game;
+};
+export const getSystemRegistry = (child: object): SystemRegistry => {
+  const root = findParent<Root>(child, (node) => {
+    return node instanceof Root;
+  });
+  if (!root) throw new Error('no game model found in getGame');
+  return root.game.systemRegistry;
+};
+
+export const getTech = (child: object): Tech => {
+  const root = findParent<Root>(child, (node) => {
+    return node instanceof Root;
+  });
+  if (!root) throw new Error('no parent root model found in getTech');
+  return root.game.tech;
+};
+
+export const getMetadata = (child: object): Metadata => {
+  const root = findParent<Root>(child, (node) => {
+    return node instanceof Root;
+  });
+  if (!root) throw new Error('no game model found in getMetadata');
+  return root.game.metadata;
+};
+
+/**
+ * Zone selectors
+ */
 export const getZone = (child: object): Zone => {
   const zone = findParent<Zone>(child, (node) => {
     return node instanceof Zone;
@@ -101,10 +122,26 @@ export const getResources = (child: object): Resources => {
   return zone.resources;
 };
 
-export const getMetadata = (child: object): Metadata => {
-  const root = findParent<Root>(child, (node) => {
-    return node instanceof Root;
+export const getUpgrades = (child: object): Upgrades => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
   });
-  if (!root) throw new Error('no game model found in getGame');
-  return root.game.metadata;
+  if (!zone) throw new Error('no parent zone model found in getUpgrades');
+  return zone.upgrades;
+};
+
+export const getModifiers = (child: object): Modifiers => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
+  });
+  if (!zone) throw new Error('no parent zone model found in getModifiers');
+  return zone.modifiers;
+};
+
+export const getPerimeter = (child: object): Perimeter => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
+  });
+  if (!zone) throw new Error('no parent zone model found in getPerimeter');
+  return zone.perimeter;
 };

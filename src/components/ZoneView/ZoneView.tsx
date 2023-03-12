@@ -8,6 +8,8 @@ import JobsView from './ZoneTabView/JobsView/JobsView';
 import { useMediaQuery } from '../shared/useMediaQuery';
 import { useStore } from '../../store/Provider';
 import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
+import UpgradeView from './ZoneTabView/UpgradeView/UpgradeView';
+import PerimeterView from './ZoneTabView/PerimeterView/PerimeterView';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -16,6 +18,8 @@ interface ZoneViewProps {
 enum ZoneTabNames {
   ACTIONS = 'ACTIONS',
   JOBS = 'JOBS',
+  UPGRADES = 'UPGRADES',
+  PERIMETER = 'PERIMETER',
 }
 
 const TabButton = ({
@@ -51,6 +55,9 @@ function ZoneView({ zone }: ZoneViewProps) {
 
   const isResourcePaneOpen = isDesktop || gui.isResourcePaneOpen;
 
+  const isTabRowUnlocked =
+    zone.jobs.unlocked || zone.upgrades.unlocked || zone.perimeter.unlocked;
+
   return (
     <>
       <div css={styles.zoneOuter}>
@@ -63,7 +70,7 @@ function ZoneView({ zone }: ZoneViewProps) {
           )}
           <div css={styles.zoneCenter} id="zone-right">
             <div css={styles.tabRow}>
-              {zone.jobs.unlocked && (
+              {isTabRowUnlocked && (
                 <>
                   <TabButton
                     text="outpost"
@@ -82,6 +89,28 @@ function ZoneView({ zone }: ZoneViewProps) {
                     selectedTab={selectedTab}
                     setSelectedTab={setSelectedTab}
                   />
+                  {zone.upgrades.unlocked && (
+                    <>
+                      <div css={styles.separator} />
+                      <TabButton
+                        text="improvements"
+                        tabName={ZoneTabNames.UPGRADES}
+                        selectedTab={selectedTab}
+                        setSelectedTab={setSelectedTab}
+                      />
+                    </>
+                  )}
+                  {zone.perimeter.unlocked && (
+                    <>
+                      <div css={styles.separator} />
+                      <TabButton
+                        text="perimeter"
+                        tabName={ZoneTabNames.PERIMETER}
+                        selectedTab={selectedTab}
+                        setSelectedTab={setSelectedTab}
+                      />
+                    </>
+                  )}
                 </>
               )}
             </div>
@@ -91,6 +120,10 @@ function ZoneView({ zone }: ZoneViewProps) {
                   return <ShipColonyView zone={zone} />;
                 case ZoneTabNames.JOBS:
                   return <JobsView zone={zone} />;
+                case ZoneTabNames.UPGRADES:
+                  return <UpgradeView zone={zone} />;
+                case ZoneTabNames.PERIMETER:
+                  return <PerimeterView zone={zone} />;
                 default:
                   throw new Error('should not reach this case');
               }

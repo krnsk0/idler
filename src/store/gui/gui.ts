@@ -1,11 +1,11 @@
 import { model, Model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { Root } from '../root';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { JobNames } from '../zone/jobs/jobNames';
 import { getGame } from '../selectors';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 
 export const TechName = 'TECH' as const;
 
@@ -19,7 +19,7 @@ type ShipColonyExpandables =
 export class Gui extends Model({
   optionsModal: tProp(types.boolean, false),
   techModal: tProp(types.boolean, false),
-  // UI should not subscript to this,
+  // UI should not subscribe to this,
   // use the derivation instead
   _resourcePaneOpen: tProp(types.boolean, true),
   expandedShipColonyButton: tProp(
@@ -34,6 +34,7 @@ export class Gui extends Model({
   ),
   expandedResourceRow: tProp(types.maybe(types.enum(ResourceNames)), undefined),
   expandedJobRow: tProp(types.maybe(types.enum(JobNames)), undefined),
+  expandedUpgradeRow: tProp(types.maybe(types.enum(UpgradeNames)), undefined),
 }) {
   @modelAction
   openTechModal(): void {
@@ -102,5 +103,12 @@ export class Gui extends Model({
     if (name === this.expandedJobRow) {
       this.expandedJobRow = undefined;
     } else this.expandedJobRow = name;
+  }
+
+  @modelAction
+  setExpandedUpgradeRow(name: UpgradeNames | undefined) {
+    if (name === this.expandedUpgradeRow) {
+      this.expandedUpgradeRow = undefined;
+    } else this.expandedUpgradeRow = name;
   }
 }

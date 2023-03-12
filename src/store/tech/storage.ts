@@ -8,11 +8,12 @@ export class Storage extends ExtendedModel(BaseTech, {}) {
   name = TechNames.STORAGE;
   displayName = 'matter storage';
   description = 'facilities for long-term warehousing';
-  powerCost = 20;
+  powerCost = 30;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
+  techUnlocked = [TechNames.CONSTRUCTION];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.CACHE];
+  upgradesUnlocked = [];
 }

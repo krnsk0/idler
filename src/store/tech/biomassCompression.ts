@@ -16,4 +16,5 @@ export class BiomassCompression extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
+  upgradesUnlocked = [];
 }

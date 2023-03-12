@@ -1,8 +1,15 @@
 import { ExtendedModel, modelAction, tProp, types } from 'mobx-keystone';
 import { ResourceNames } from './resources/resourceNames';
-import { ZoneEntity } from './zoneEntity';
 import { computed } from 'mobx';
-import { getPower, getResources } from '../selectors';
+import { getModifiers, getPower, getResources } from '../selectors';
+import { Countable } from './countable';
+import {
+  isInputBaseModifier,
+  isInputPercentModifier,
+  isOutputBaseModifier,
+  isOutputPercentModifier,
+  ModifierTargets,
+} from './modifiers/modifierTypes';
 
 interface Consumption {
   resource: ResourceNames;
@@ -19,15 +26,7 @@ interface ProductionConsumptionDisplay {
   quantityPerSecond: number;
 }
 
-export type ProductionMultipliers = {
-  [key in ResourceNames]?: number;
-};
-
-export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
-  /**
-   * How many does the player own?
-   */
-  quantity: tProp(types.number, 0),
+export abstract class ProducerConsumer extends ExtendedModel(Countable, {
   /**
    * Are any disabled?
    */
@@ -37,6 +36,10 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * to produce power this tick? If so, this is 1. Otherwise, less than 1.
    */
   powerProductionProrate: tProp(types.number, 0),
+  /**
+   * Did we prorate last tick? What % of total capacithy?
+   */
+  lastTickProrate: tProp(types.number, 0),
 }) {
   /**
    * Things consumed by this producerConsumer
@@ -63,11 +66,6 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
    * E.g. "4 of 5 furnaces are enabled"
    */
   abstract canSomeBeTurnedOff: boolean;
-
-  /**
-   * Autodisable when outputs run out?
-   */
-  abstract autoDisableOnInputDepletion: boolean;
 
   /**
    * How many are active
@@ -102,18 +100,46 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Intended to be overridden by children
+   * Per-second consumption of individual producerConsumer
    */
   @computed
-  get productionModifiers(): ProductionMultipliers {
-    return {};
+  get individualConsumptionPerSecond(): Production[] {
+    return this.inputs.map(({ resource, quantityPerSecond }) => {
+      // compute base including modifiers
+      let qpsPlusBaseModifier = quantityPerSecond;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (isInputBaseModifier(modifier) && modifier.resource === resource) {
+            qpsPlusBaseModifier += modifier.baseChange;
+          }
+        });
+
+      // compute percentage modifier
+      let percentageModifier = 0;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            isInputPercentModifier(modifier) &&
+            modifier.resource === resource
+          ) {
+            percentageModifier += modifier.percentChange;
+          }
+        });
+
+      return {
+        resource,
+        quantityPerSecond: qpsPlusBaseModifier * (1 + percentageModifier),
+      };
+    });
   }
 
   /**
    * Per-second consumption of all at full capacity including quantity
    */
   @computed
-  get consumptionPerSecond(): Production[] {
+  get aggregateConsumptionPerSecond(): Production[] {
     return this.inputs.map(({ resource, quantityPerSecond }) => {
       return {
         resource,
@@ -123,22 +149,88 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Per-second production of all at full capacity including quantity
+   * Prorated producconsumption per second (estimate, based on last turn)
    */
   @computed
-  get productionPerSecond(): Production[] {
+  get proratedConsumptionPerSecond(): Production[] {
+    return this.aggregateConsumptionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.lastTickProrate,
+        };
+      },
+    );
+  }
+
+  /**
+   * Per-second production of resources without adjusting for number of
+   * active producers, incorporating modifiers
+   */
+  @computed
+  get individualProductionPerSecond(): Production[] {
     return this.outputs.map(({ resource, quantityPerSecond }) => {
-      let productionMultiplier = 1;
-      if (this.productionModifiers[resource] !== undefined) {
-        productionMultiplier *= this.productionModifiers[resource] as number;
-      }
+      // compute base including modifiers
+      let qpsPlusBaseModifier = quantityPerSecond;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            isOutputBaseModifier(modifier) &&
+            modifier.resource === resource
+          ) {
+            qpsPlusBaseModifier += modifier.baseChange;
+          }
+        });
+
+      // compute percentage modifier
+      let percentageModifier = 0;
+      getModifiers(this)
+        .appliedModifiersByTarget(this.$modelType as ModifierTargets)
+        .forEach((modifier) => {
+          if (
+            isOutputPercentModifier(modifier) &&
+            modifier.resource === resource
+          ) {
+            percentageModifier += modifier.percentChange;
+          }
+        });
 
       return {
         resource,
-        quantityPerSecond:
-          quantityPerSecond * this.numberActive * productionMultiplier,
+        quantityPerSecond: qpsPlusBaseModifier * (1 + percentageModifier),
       };
     });
+  }
+
+  /**
+   * Per-second production of all at full capacity including quantity
+   */
+  @computed
+  get aggregateProductionPerSecond(): Production[] {
+    return this.individualProductionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.numberActive,
+        };
+      },
+    );
+  }
+
+  /**
+   * Prorated production per second (estimate, based on last turn)
+   */
+  @computed
+  get proratedProductionPerSecond(): Production[] {
+    return this.aggregateProductionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.lastTickProrate,
+        };
+      },
+    );
   }
 
   /**
@@ -147,18 +239,22 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   @computed
   get displayEffects(): ProductionConsumptionDisplay[] {
     return [
-      ...this.inputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          quantityPerSecond: -quantityPerSecond,
-        };
-      }),
-      ...this.outputs.map(({ resource, quantityPerSecond }) => {
-        return {
-          resourceDisplayName: this.zoneResources[resource].displayName,
-          quantityPerSecond,
-        };
-      }),
+      ...this.individualConsumptionPerSecond.map(
+        ({ resource, quantityPerSecond }) => {
+          return {
+            resourceDisplayName: this.zoneResources[resource].displayName,
+            quantityPerSecond: -quantityPerSecond,
+          };
+        },
+      ),
+      ...this.individualProductionPerSecond.map(
+        ({ resource, quantityPerSecond }) => {
+          return {
+            resourceDisplayName: this.zoneResources[resource].displayName,
+            quantityPerSecond,
+          };
+        },
+      ),
     ];
   }
 
@@ -176,6 +272,14 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
   @computed
   get canDisableEntity(): boolean {
     return this.numberDisabled < this.quantity;
+  }
+
+  /**
+   * Technically, "was prorated last tick?""
+   */
+  @computed
+  get isProrated(): boolean {
+    return this.lastTickProrate < 1;
   }
 
   /**
@@ -210,11 +314,10 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
 
     // prorate limits production based on available input
     // and storage space for output
-
     let prorate = 1;
 
     // here we constrain the prorate based on available inputs
-    this.consumptionPerSecond.forEach((input) => {
+    this.aggregateConsumptionPerSecond.forEach((input) => {
       const resourceName = input.resource;
       const potentialConsumption = input.quantityPerSecond * delta;
       if (potentialConsumption === 0) return;
@@ -227,8 +330,8 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
     // we do this only if there's something to consume; e.g. we always
     // "overproduce" if there's no consumers. in future this behavior could be
     // configurable per producer or even per resource.
-    if (this.consumptionPerSecond.length) {
-      this.productionPerSecond.forEach((product) => {
+    if (this.aggregateConsumptionPerSecond.length) {
+      this.aggregateProductionPerSecond.forEach((product) => {
         const resourceName = product.resource;
         const potentialProduction = product.quantityPerSecond * delta;
         if (potentialProduction === 0) return;
@@ -249,32 +352,21 @@ export abstract class ProducerConsumer extends ExtendedModel(ZoneEntity, {
       prorate = Math.min(prorate, getPower(this).satisfaction);
     }
 
+    // store prorate to refer to in future tick
+    this.lastTickProrate = prorate;
+
     // perform consumption
-    this.consumptionPerSecond.forEach((input) => {
+    this.aggregateConsumptionPerSecond.forEach((input) => {
       const potentialConsumption = input.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[input.resource];
       resourceModel.decrease(potentialConsumption);
     });
 
     // perform production
-    this.productionPerSecond.forEach((product) => {
+    this.aggregateProductionPerSecond.forEach((product) => {
       const potentialProduction = product.quantityPerSecond * delta * prorate;
       const resourceModel = this.zoneResources[product.resource];
       resourceModel.increase(potentialProduction);
     });
-
-    // if we depleted any inputs and we're configured to do so, disable
-    // an entity
-    if (
-      this.autoDisableOnInputDepletion &&
-      this.consumptionPerSecond.some((input) => {
-        const resourceModel = this.zoneResources[input.resource];
-        return resourceModel.quantity <= 0;
-      })
-    ) {
-      while (this.canDisableEntity) {
-        this.disableEntity();
-      }
-    }
   }
 }

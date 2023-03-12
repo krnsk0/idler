@@ -7,14 +7,14 @@ import { BuildingNames } from './buildingNames';
 export class Habitat extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.HABITAT;
   displayName = 'habitat';
-  description = 'protection from the elements for one colonist';
+  description = 'protection from the elements';
   baseCost = [
     {
       resource: ResourceNames.LUMBER,
-      quantity: 7,
+      quantity: 6,
     },
   ];
-  costExponent = 1.5;
+  costExponent = 1.2;
   inputs = [];
   outputs = [];
   storage = [
@@ -27,5 +27,4 @@ export class Habitat extends ExtendedModel(BaseBuilding, {}) {
   canSomeBeTurnedOff = false;
   powerOutputPerSecond = 0;
   powerNeededPerSecond = 0;
-  autoDisableOnInputDepletion = false;
 }

@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { colors } from '../../globalStyles';
+import { colors } from '../../../globalStyles';
 
 export const styles = {
   optionsContainer: css`
@@ -19,5 +19,9 @@ export const styles = {
     background: none;
     position: relative;
     cursor: pointer;
+  `,
+  version: css`
+    position: absolute;
+    bottom: 1em;
   `,
 };

@@ -35,7 +35,6 @@ const DebugView = () => {
           onClick={() => {
             root.reset();
             localStorage.removeItem('save');
-            console.log('reset complete');
           }}
         >
           reset

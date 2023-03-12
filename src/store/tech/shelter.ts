@@ -1,5 +1,6 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BuildingNames } from '../zone/buildings/buildingNames';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
 
@@ -10,9 +11,10 @@ export class Shelter extends ExtendedModel(BaseTech, {}) {
   description = 'primitive protection from the elements';
   powerCost = 15;
   transientUnlockCheck = () => true;
-  techUnlocked = [TechNames.CRYONICS];
+  techUnlocked = [TechNames.CRYONICS, TechNames.STORAGE];
   actionsUnlocked = [];
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.HABITAT];
+  upgradesUnlocked = [UpgradeNames.PREFABRICATION];
 }

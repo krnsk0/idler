@@ -2,11 +2,18 @@ import { model, ExtendedModel, modelAction } from 'mobx-keystone';
 import { BaseResource } from './baseResource';
 import { ResourceNames } from './resourceNames';
 
+export const FOOD_PER_WORKER_PER_SECOND_BASE = 0.2;
+
 @model(ResourceNames.COLONISTS)
 export class Colonists extends ExtendedModel(BaseResource, {}) {
   name = ResourceNames.COLONISTS;
   displayName = 'colonists';
   initialCap = 0;
+
+  /**
+   * Override
+   */
+  transientUnlockCheck = () => this.quantity > 0 || this.currentCap > 0;
 
   /**
    * Decreases quantity. Optionally can turn off tracking for average rate

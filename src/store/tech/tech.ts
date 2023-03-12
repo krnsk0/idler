@@ -16,19 +16,26 @@ import { JobNames } from '../zone/jobs/jobNames';
 import { TechNames } from './techNames';
 import { BiomassCompression } from './biomassCompression';
 import { Farming } from './farming';
+import { Agronomy } from './agronomy';
 import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
 import { BaseTech } from './baseTech';
 import { getGame, getGui } from '../selectors';
-import { Agroforestry } from './agroforestry';
+import { Forestry } from './forestry';
 import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
 import { Excavation } from './excavation';
 import { Metallurgy } from './metallurgy';
+import { Geology } from './geology';
 import { Electromagnetism } from './electromagnetism';
 import { TechName } from '../gui/gui';
 import { SubsurfaceExcavation } from './subsurfaceExcavation';
+import { Arboriculture } from './arboriculture';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
+import { ZoneUpgrades } from './zoneUpgrades';
+import { TemperatureControl } from './temperatureControl';
+import { Construction } from './construction';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -40,11 +47,13 @@ export class Tech extends ExtendedModel(Unlockable, {
     () => new BiomassCompression({}),
   ),
   [TechNames.FARMING]: tProp(types.model(Farming), () => new Farming({})),
+  [TechNames.AGRONOMY]: tProp(types.model(Agronomy), () => new Agronomy({})),
   [TechNames.SHELTER]: tProp(types.model(Shelter), () => new Shelter({})),
   [TechNames.CRYONICS]: tProp(types.model(Cryonics), () => new Cryonics({})),
-  [TechNames.AGROFORESTRY]: tProp(
-    types.model(Agroforestry),
-    () => new Agroforestry({}),
+  [TechNames.FORESTRY]: tProp(types.model(Forestry), () => new Forestry({})),
+  [TechNames.ARBORICULTURE]: tProp(
+    types.model(Arboriculture),
+    () => new Arboriculture({}),
   ),
   [TechNames.STORAGE]: tProp(types.model(Storage), () => new Storage({})),
   [TechNames.EXCAVATION]: tProp(
@@ -62,6 +71,19 @@ export class Tech extends ExtendedModel(Unlockable, {
   [TechNames.SUBSURFACE_EXCAVATION]: tProp(
     types.model(SubsurfaceExcavation),
     () => new SubsurfaceExcavation({}),
+  ),
+  [TechNames.ZONE_UPGRADES]: tProp(
+    types.model(ZoneUpgrades),
+    () => new ZoneUpgrades({}),
+  ),
+  [TechNames.GEOLOGY]: tProp(types.model(Geology), () => new Geology({})),
+  [TechNames.TEMPERATURE_CONTROL]: tProp(
+    types.model(TemperatureControl),
+    () => new TemperatureControl({}),
+  ),
+  [TechNames.CONSTRUCTION]: tProp(
+    types.model(Construction),
+    () => new Construction({}),
   ),
 }) {
   transientUnlockCheck = () => {
@@ -160,6 +182,18 @@ export class Tech extends ExtendedModel(Unlockable, {
       jobs.push(...tech.jobsUnlocked);
     }
     return jobs;
+  }
+
+  /**
+   * What upgrades are unlocked by tech?
+   */
+  @computed
+  get unlockedUpgrades(): UpgradeNames[] {
+    const upgrades: UpgradeNames[] = [];
+    for (const tech of this.researchedAsArray) {
+      upgrades.push(...tech.upgradesUnlocked);
+    }
+    return upgrades;
   }
 
   /**

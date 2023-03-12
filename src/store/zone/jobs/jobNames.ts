@@ -1,3 +1,6 @@
 export enum JobNames {
+  GLEANER = 'GLEANER',
+  AGRONOMIST = 'AGRONOMIST',
   ARBORIST = 'ARBORIST',
+  GEOLOGIST = 'GEOLOGIST',
 }

@@ -16,4 +16,5 @@ export class Excavation extends ExtendedModel(BaseTech, {}) {
   actionsRelocked = [];
   jobsUnlocked = [];
   buildingsUnlocked = [];
+  upgradesUnlocked = [];
 }

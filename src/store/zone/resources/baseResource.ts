@@ -1,8 +1,8 @@
 import { tProp, types, modelAction, ExtendedModel } from 'mobx-keystone';
 import { computed } from 'mobx';
-import { ZoneEntity } from '../zoneEntity';
 import { ResourceNames } from './resourceNames';
 import { getGui } from '../../selectors';
+import { Countable } from '../countable';
 
 export interface ProductionConsumptionDisplay {
   producerConsumerDisplayName: string;
@@ -14,8 +14,7 @@ export interface StorageSummaryDisplay {
   storageProviderQuantity: number;
   storage: number;
 }
-export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
-  quantity: tProp(types.number, 0),
+export abstract class BaseResource extends ExtendedModel(Countable, {
   /**
    * Used to show change over time.
    * Can be null if no change has taken place this tick.
@@ -76,20 +75,18 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @computed
   get productionSummary(): ProductionConsumptionDisplay[] {
     const productionSummary: ProductionConsumptionDisplay[] = [];
-    [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
-      (producer) => {
-        const production = producer.productionPerSecond.find(
-          ({ resource }) => resource === this.name,
-        );
-        if (producer.unlocked && production && !!production.quantityPerSecond) {
-          productionSummary.push({
-            producerConsumerDisplayName: producer.displayName,
-            producerConsumerQuantity: producer.quantity,
-            resourceQuantityPerSecond: production.quantityPerSecond,
-          });
-        }
-      },
-    );
+    this.zoneBuildings.asArray.forEach((producer) => {
+      const production = producer.proratedProductionPerSecond.find(
+        ({ resource }) => resource === this.name,
+      );
+      if (producer.unlocked && production) {
+        productionSummary.push({
+          producerConsumerDisplayName: producer.displayName,
+          producerConsumerQuantity: producer.numberActive,
+          resourceQuantityPerSecond: production.quantityPerSecond,
+        });
+      }
+    });
     return productionSummary;
   }
 
@@ -99,20 +96,18 @@ export abstract class BaseResource extends ExtendedModel(ZoneEntity, {
   @computed
   get consumptionSummary(): ProductionConsumptionDisplay[] {
     const consumptionSummary: ProductionConsumptionDisplay[] = [];
-    [...this.zoneJobs.asArray, ...this.zoneBuildings.asArray].forEach(
-      (producer) => {
-        const production = producer.consumptionPerSecond.find(
-          ({ resource }) => resource === this.name,
-        );
-        if (production && producer.unlocked) {
-          consumptionSummary.push({
-            producerConsumerDisplayName: producer.displayName,
-            producerConsumerQuantity: producer.quantity,
-            resourceQuantityPerSecond: production.quantityPerSecond,
-          });
-        }
-      },
-    );
+    this.zoneBuildings.asArray.forEach((producer) => {
+      const production = producer.proratedConsumptionPerSecond.find(
+        ({ resource }) => resource === this.name,
+      );
+      if (production && producer.unlocked) {
+        consumptionSummary.push({
+          producerConsumerDisplayName: producer.displayName,
+          producerConsumerQuantity: producer.numberActive,
+          resourceQuantityPerSecond: production.quantityPerSecond,
+        });
+      }
+    });
     return consumptionSummary;
   }
 

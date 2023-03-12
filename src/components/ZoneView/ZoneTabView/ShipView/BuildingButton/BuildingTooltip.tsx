@@ -35,13 +35,13 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
                 {resourceDisplayName}:{' '}
                 {isSatisfied ? '' : `${formatNumber(availableQuantity)} / `}
                 {formatNumber(quantity)}
-                {storageConstrained ? '°' : ''}
+                {storageConstrained ? 'ᶜ' : ''}
               </div>
             );
           },
         )}
       </TooltipText>
-      <TooltipDivider text={'effects'} />
+      <TooltipDivider text={'base effects'} />
       <TooltipText>
         {building.displayEffects.map(
           ({ resourceDisplayName, quantityPerSecond }) => {
@@ -66,16 +66,34 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
         {building.displayStorage.map(({ resourceDisplayName, quantity }) => {
           return (
             <div key={resourceDisplayName}>
-              {formatNumber(quantity, { showSign: true })} {resourceDisplayName}{' '}
-              capacity
+              {formatNumber(quantity, { showSign: true })} capacity:{' '}
+              {resourceDisplayName}
             </div>
           );
         })}
+        {building.tooltipModifierDescriptors.length > 0 && (
+          <>
+            <TooltipDivider text={'modifiers'} />
+            {building.tooltipModifierDescriptors.map((descriptor) => {
+              return <div key={descriptor}>{descriptor}</div>;
+            })}
+          </>
+        )}
+        {(building.isStorageConstrainted || building.isProrated) && (
+          <TooltipDivider />
+        )}
         {building.isStorageConstrainted && (
           <>
-            <TooltipDivider />
-            <div>°cost is storage-constrained, cannot build</div>
+            <div>ᶜ cost is storage-constrained; will never be affordable</div>
+            <p></p>
           </>
+        )}
+        {building.isProrated && (
+          <div>
+            * operating at{' '}
+            {formatNumber(building.lastTickProrate * 100, { digits: 0 })}%
+            capacity; inputs not satisfied or no storage available
+          </div>
         )}
       </TooltipText>
     </>

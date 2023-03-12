@@ -71,32 +71,6 @@ const ResourceRowTooltip = ({ resource }: ResourceRowTooltipProps) => {
   return (
     <>
       <DesktopTooltipTitle>{resource.displayName}</DesktopTooltipTitle>
-      {!!resource.consumptionSummary.length && (
-        <>
-          <TooltipDivider text="consumption" smallMargin={true} />
-          <TooltipText>
-            {resource.consumptionSummary.map((entry) => {
-              return (
-                <div
-                  key={entry.producerConsumerDisplayName}
-                  css={styles.tooltipRow}
-                >
-                  <span css={styles.tooltipLeftText}>
-                    {entry.producerConsumerQuantity}x{' '}
-                    {entry.producerConsumerDisplayName}
-                  </span>
-                  <span css={styles.tooltipRightText}>
-                    {formatNumber(-entry.resourceQuantityPerSecond, {
-                      showSign: true,
-                    })}
-                    /s
-                  </span>
-                </div>
-              );
-            })}
-          </TooltipText>
-        </>
-      )}
       {!!resource.productionSummary.length && (
         <>
           <TooltipDivider text="production" smallMargin={true} />
@@ -123,6 +97,33 @@ const ResourceRowTooltip = ({ resource }: ResourceRowTooltipProps) => {
           </TooltipText>
         </>
       )}
+      {!!resource.consumptionSummary.length && (
+        <>
+          <TooltipDivider text="consumption" smallMargin={true} />
+          <TooltipText>
+            {resource.consumptionSummary.map((entry) => {
+              return (
+                <div
+                  key={entry.producerConsumerDisplayName}
+                  css={styles.tooltipRow}
+                >
+                  <span css={styles.tooltipLeftText}>
+                    {entry.producerConsumerQuantity}x{' '}
+                    {entry.producerConsumerDisplayName}
+                  </span>
+                  <span css={styles.tooltipRightText}>
+                    {formatNumber(-entry.resourceQuantityPerSecond, {
+                      showSign: true,
+                    })}
+                    /s
+                  </span>
+                </div>
+              );
+            })}
+          </TooltipText>
+        </>
+      )}
+
       {!!resource.storageSummary.length && (
         <>
           <TooltipDivider text="storage" smallMargin={true} />

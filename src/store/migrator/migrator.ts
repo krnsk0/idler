@@ -1,22 +1,10 @@
-import { fromSnapshot } from 'mobx-keystone';
 import { Game } from '../game';
+import { fromSnapshot } from 'mobx-keystone';
+import { ensureFirstZoneIsSelected } from './ensureFirstZoneIsSelectes';
+import { migrateToCurrentVersion } from './migrateToCurrentVersion';
 
-export function migrator(savegame: string, currentSaveVersion: string): Game {
-  const gameJson = JSON.parse(savegame);
-
-  // TODO - migration happens here
-
-  // Once we get here, we've finished migrating
-  const deserializedGame = fromSnapshot(Game, gameJson);
-
-  // Prevents a bug in which the initial zone is not selected
-  // after loading; root cause unknown
-  if (
-    !deserializedGame.selectedZoneRef &&
-    deserializedGame.zones.length === 1
-  ) {
-    deserializedGame.selectZone(deserializedGame.zones[0]);
-  }
-
-  return deserializedGame;
+export function migrator(gameJson: any, currentSaveVersion: string): Game {
+  return ensureFirstZoneIsSelected(
+    fromSnapshot(Game, migrateToCurrentVersion(gameJson, currentSaveVersion)),
+  );
 }

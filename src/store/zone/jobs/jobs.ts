@@ -2,17 +2,25 @@ import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { JobNames } from './jobNames';
+import { Gleaner } from './gleaner';
 import { Arborist } from './arborist';
+import { Agronomist } from './agronomist';
+import { Geologist } from './geologist';
 import { ResourceNames } from '../resources/resourceNames';
 import { pickRandomArrayElm } from '../../../utils/pickRandomArrayElm';
 import { ZoneEntity } from '../zoneEntity';
 import { getResources } from '../../selectors';
-
-const foodConsumptionPerWorkerPerSec = 0.15;
+import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../resources/colonists';
 
 @model('Jobs')
 export class Jobs extends ExtendedModel(ZoneEntity, {
+  [JobNames.GLEANER]: tProp(types.model(Gleaner), () => new Gleaner({})),
   [JobNames.ARBORIST]: tProp(types.model(Arborist), () => new Arborist({})),
+  [JobNames.AGRONOMIST]: tProp(
+    types.model(Agronomist),
+    () => new Agronomist({}),
+  ),
+  [JobNames.GEOLOGIST]: tProp(types.model(Geologist), () => new Geologist({})),
 }) {
   transientUnlockCheck = () => {
     return (
@@ -67,7 +75,7 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   @computed
   get foodConsumption(): number {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
-    return colonists.quantity * foodConsumptionPerWorkerPerSec;
+    return colonists.quantity * FOOD_PER_WORKER_PER_SECOND_BASE;
   }
 
   /**
@@ -92,17 +100,17 @@ export class Jobs extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number): void {
     const colonists = getResources(this)[ResourceNames.COLONISTS];
-    const nutrients = getResources(this)[ResourceNames.NUTRIENTS];
+    const food = getResources(this)[ResourceNames.FOOD];
     const chanceOfEachWorkerDyingPerSecond = 0.15; // percent
 
     const amountToEat = this.foodConsumption * delta;
 
-    nutrients.decrease(amountToEat);
+    food.decrease(amountToEat);
 
     /**
      * Important to check for *less* than zero
      */
-    if (nutrients.quantity < 0 && colonists.quantity > 0) {
+    if (food.quantity < 0 && colonists.quantity > 0) {
       const chanceOfAWorkerDyingThisTick =
         delta * chanceOfEachWorkerDyingPerSecond;
 

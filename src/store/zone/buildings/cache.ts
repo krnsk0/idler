@@ -7,7 +7,7 @@ import { BuildingNames } from './buildingNames';
 export class Cache extends ExtendedModel(BaseBuilding, {}) {
   name = BuildingNames.CACHE;
   displayName = 'cache';
-  description = 'a bulwark against our ruin';
+  description = 'a structure for stockpiling resources';
   baseCost = [
     {
       resource: ResourceNames.LUMBER,
@@ -36,7 +36,7 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.ROCK,
-      quantity: 9,
+      quantity: 10,
     },
     {
       resource: ResourceNames.ORE,
@@ -51,5 +51,4 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
   canSomeBeTurnedOff = false;
   powerOutputPerSecond = 0;
   powerNeededPerSecond = 0;
-  autoDisableOnInputDepletion = false;
 }
