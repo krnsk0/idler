@@ -18,9 +18,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   transientUnlockCheck = () => {
     return this.timeToUnlock !== undefined && this.timeToUnlock <= 0;
   };
-  // TODO
-  observableUnlockCheck = () => false;
-  // observableUnlockCheck = () => this.timeToUnlock !== undefined;
+  observableUnlockCheck = () => this.timeToUnlock !== undefined;
 
   /**
    * Used in mechanism to unlock the perimeter for the first time
@@ -36,9 +34,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get isWarningModalOpen(): boolean {
-    // TODO
-    return false;
-    // return this.unlocked && this.hasWarningModalBeenClosed === false;
+    return this.unlocked && this.hasWarningModalBeenClosed === false;
   }
 
   /**
