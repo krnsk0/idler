@@ -77,7 +77,7 @@ const OptionsModal = () => {
           </button>
         )}
       </div>
-      <div css={styles.version}>v{import.meta.env.PACKAGE_VERSION}</div>
+      <div css={styles.version}>v{APP_VERSION}</div>
     </Modal>
   );
 };

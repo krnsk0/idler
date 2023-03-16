@@ -45,7 +45,7 @@ export class Root extends Model({
     try {
       if (!savegame) return this.reset();
       let gameJson = JSON.parse(savegame);
-      this.game = migrator(gameJson, import.meta.env.PACKAGE_VERSION);
+      this.game = migrator(gameJson, APP_VERSION);
       console.log('save loaded');
     } catch (error: unknown) {
       console.error('error loading from localstorage', {
@@ -61,7 +61,7 @@ export class Root extends Model({
     const savegame = yield navigator.clipboard.readText();
     try {
       let gameJson = JSON.parse(savegame);
-      this.game = migrator(gameJson, import.meta.env.PACKAGE_VERSION);
+      this.game = migrator(gameJson, APP_VERSION);
     } catch (error: unknown) {
       console.error('error loading from clipboard', {
         error,
@@ -75,7 +75,7 @@ export class Root extends Model({
   @modelAction
   reset(): void {
     console.log('resetting game state');
-    this.game = makeNewGame(import.meta.env.PACKAGE_VERSION);
+    this.game = makeNewGame(APP_VERSION);
     this.gui = new Gui({});
   }
 }
