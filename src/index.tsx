@@ -8,7 +8,7 @@ import App from './components/App';
 
 if (import.meta.env.PROD) {
   LogRocket.init('z0jb7c/idler-demo', {
-    release: import.meta.env.PACKAGE_VERSION,
+    release: APP_VERSION,
   });
 }
 
