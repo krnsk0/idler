@@ -2,6 +2,8 @@ import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
 
+console.log('*** VERSIOJN', process.env.npm_package_version);
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
