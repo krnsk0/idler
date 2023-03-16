@@ -1,8 +1,9 @@
 import { defineConfig } from 'vitest/config';
 import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
+import { version } from './package.json';
 
-console.log('*** VERSIOJN', process.env.npm_package_version);
+console.log('*** BUILDING VERSION ***', version);
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -14,7 +15,7 @@ export default defineConfig({
     define: {
       // see https://github.com/evanw/esbuild/issues/2328
       this: 'window',
-      APP_VERSION: JSON.stringify(process.env.npm_package_version),
+      APP_VERSION: JSON.stringify(version),
     },
   },
   server: {
