@@ -15,7 +15,7 @@ export class HeatReclamators extends ExtendedModel(BaseUpgrade, {}) {
       type: 'input_base' as const,
       target: BuildingNames.DYNAMO,
       resource: ResourceNames.BIOMASS,
-      baseChange: -0.25,
+      baseChange: -0.1,
     },
   ];
   cost = [
