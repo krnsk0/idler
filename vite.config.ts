@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import checker from 'vite-plugin-checker';
 import { version } from './package.json';
 
-console.log('*** BUILDING VERSION ***', version);
+console.log(`*** BUILDING VERSION ${version} ***`);
 
 // https://vitejs.dev/config/
 export default defineConfig({
