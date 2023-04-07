@@ -2,6 +2,7 @@ import { SerializedStyles } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { BaseResource } from '../../../../store/zone/resources/baseResource';
+import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../../../../store/zone/resources/colonists';
 import { formatNumber } from '../../../../utils/formatNumber';
 import {
   DesktopTooltipTitle,
@@ -120,6 +121,16 @@ const ResourceRowTooltip = ({ resource }: ResourceRowTooltipProps) => {
                 </div>
               );
             })}
+          </TooltipText>
+        </>
+      )}
+
+      {resource.$modelType === 'COLONISTS' && (
+        <>
+          <TooltipDivider text="consumption" smallMargin={true} />
+          <TooltipText>
+            {formatNumber(FOOD_PER_WORKER_PER_SECOND_BASE)} food/sec per
+            colonist
           </TooltipText>
         </>
       )}

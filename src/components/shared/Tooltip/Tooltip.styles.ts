@@ -36,7 +36,7 @@ export const styles = {
     width: 100%;
     text-align: ${!align ? 'left' : align};
     font-style: ${!italic ? 'inherit' : 'italic'};
-    margin-bottom: ${largeBottomMargin ? '1.5em' : 'none'};
+    margin-bottom: ${largeBottomMargin ? '1.5em' : '1em'};
   `,
   tooltipTitle: css`
     width: 100%;

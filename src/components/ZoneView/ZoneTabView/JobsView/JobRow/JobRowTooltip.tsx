@@ -1,7 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { BaseJob } from '../../../../../store/zone/jobs/baseJob';
-import { FOOD_PER_WORKER_PER_SECOND_BASE } from '../../../../../store/zone/resources/colonists';
-import { formatNumber } from '../../../../../utils/formatNumber';
+
 import {
   DesktopTooltipTitle,
   TooltipDivider,
@@ -26,9 +25,6 @@ export const JobRowTooltip = observer(({ job }: JobRowTooltipProps) => {
         {job.tooltipDescriptors.map((descriptor) => {
           return <div key={descriptor}>{descriptor}</div>;
         })}
-        <div>
-          consumes {formatNumber(FOOD_PER_WORKER_PER_SECOND_BASE)} food/sec
-        </div>
       </TooltipText>
     </>
   );
