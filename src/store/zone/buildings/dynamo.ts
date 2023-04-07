@@ -12,10 +12,10 @@ export class Dynamo extends ExtendedModel(BaseBuilding, {}) {
   baseCost = [
     {
       resource: ResourceNames.ALLOY,
-      quantity: 8,
+      quantity: 6,
     },
   ];
-  costExponent = 1.45;
+  costExponent = 1.5;
   inputs = [{ resource: ResourceNames.BIOMASS, quantityPerSecond: 1 }];
   outputs = [];
   storage = [];

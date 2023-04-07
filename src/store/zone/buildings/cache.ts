@@ -15,7 +15,7 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.ROCK,
-      quantity: 15,
+      quantity: 8,
     },
     {
       resource: ResourceNames.ALLOY,
@@ -36,7 +36,7 @@ export class Cache extends ExtendedModel(BaseBuilding, {}) {
     },
     {
       resource: ResourceNames.ROCK,
-      quantity: 10,
+      quantity: 5,
     },
     {
       resource: ResourceNames.ORE,
