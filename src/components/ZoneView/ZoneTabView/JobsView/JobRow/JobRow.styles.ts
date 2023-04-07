@@ -33,6 +33,7 @@ export const styles = {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-top: 0.1em;
   `,
   name: css`
     width: 6em;
