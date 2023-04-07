@@ -2,6 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
 import { useStore } from '../../../store/Provider';
 import { StyledModal } from '../../shared/StyledModal/StyledModal';
+import { Changelog } from './Changelog';
 import { styles } from './OptionsModal.styles';
 
 const OptionsModal = () => {
@@ -9,6 +10,7 @@ const OptionsModal = () => {
   const [resetConfirm, setResetConfirm] = useState(false);
   const [exported, setExported] = useState(false);
   const [importFailed, setImportFailed] = useState(false);
+  const [showChangelog, setShowChangelog] = useState(false);
 
   const exportHandler = () => {
     if (exported) return;
@@ -32,14 +34,13 @@ const OptionsModal = () => {
     }
   };
 
-  return (
-    <StyledModal
-      isOpen={root.gui.optionsModal}
-      onRequestClose={() => root.gui.closeOptionsModal()}
-      extraStyles={{ alignItems: 'center' as const }}
-    >
+  const content = (
+    <>
       <h2>options</h2>
       <div css={styles.optionsContainer}>
+        <button css={styles.button} onClick={() => setShowChangelog(true)}>
+          {'changelog'}
+        </button>
         <button css={styles.button} onClick={exportHandler}>
           {exported ? 'copied to clipboard!' : 'export save to clipboard'}
         </button>
@@ -66,7 +67,29 @@ const OptionsModal = () => {
           </button>
         )}
       </div>
-      <div css={styles.version}>v{APP_VERSION}</div>
+      <div css={styles.version}>
+        <button
+          css={styles.button}
+          onClick={() => root.gui.closeOptionsModal()}
+        >
+          {'close'}
+        </button>
+        v{APP_VERSION}
+      </div>
+    </>
+  );
+
+  return (
+    <StyledModal
+      isOpen={root.gui.optionsModal}
+      onRequestClose={() => root.gui.closeOptionsModal()}
+      extraStyles={{ alignItems: 'center' as const }}
+    >
+      {!showChangelog ? (
+        content
+      ) : (
+        <Changelog closeChangelog={() => setShowChangelog(false)} />
+      )}
     </StyledModal>
   );
 };

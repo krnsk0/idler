@@ -22,6 +22,19 @@ export const styles = {
   `,
   version: css`
     position: absolute;
-    bottom: 1em;
+    bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  `,
+  release: css`
+    width: 90%;
+  `,
+  changelogContainer: css`
+    height: 60%;
+    width: 90%;
+    padding: 0em 1em 0em 1em;
+    overflow-y: scroll;
   `,
 };
