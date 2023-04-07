@@ -140,16 +140,18 @@ export abstract class ProducerConsumer extends ExtendedModel(Countable, {
    */
   @computed
   get aggregateConsumptionPerSecond(): Production[] {
-    return this.inputs.map(({ resource, quantityPerSecond }) => {
-      return {
-        resource,
-        quantityPerSecond: this.numberActive * quantityPerSecond,
-      };
-    });
+    return this.individualConsumptionPerSecond.map(
+      ({ resource, quantityPerSecond }) => {
+        return {
+          resource,
+          quantityPerSecond: quantityPerSecond * this.numberActive,
+        };
+      },
+    );
   }
 
   /**
-   * Prorated producconsumption per second (estimate, based on last turn)
+   * Prorated consumption per second (estimate, based on last turn)
    */
   @computed
   get proratedConsumptionPerSecond(): Production[] {
