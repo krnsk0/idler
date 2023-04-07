@@ -32,10 +32,18 @@ export const styles = {
     flex-direction: row;
     overflow-x: scroll;
     align-items: center;
+
+    ${mq['desktop']} {
+      justify-content: center;
+    }
   `,
   paddingTile: css`
     display: inline-block;
     padding-left: calc(50vw - 134px);
+
+    ${mq['desktop']} {
+      padding-left: 0px;
+    }
   `,
   techTile: css`
     width: 175px;

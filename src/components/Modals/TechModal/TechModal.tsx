@@ -2,9 +2,10 @@ import { observer } from 'mobx-react-lite';
 import Modal from 'react-modal';
 import { useStore } from '../../../store/Provider';
 import { formatNumber } from '../../../utils/formatNumber';
+import { useMediaQuery } from '../../shared/useMediaQuery';
 import { styles } from './TechModal.styles';
 
-const customStyles = {
+const mobileModalOuter = {
   content: {
     border: '1px solid black',
     borderRadius: 0,
@@ -15,13 +16,27 @@ const customStyles = {
   },
 };
 
+const desktopModalOuter = {
+  content: {
+    border: '1px solid black',
+    borderRadius: 0,
+    overflow: 'hidden' as const,
+    margin: '2em 20vw' as const,
+    padding: '0em' as const,
+    display: 'flex' as const,
+    flexDirection: 'column' as const,
+  },
+};
+
 const TechModal = () => {
   const root = useStore();
+  const { isDesktop } = useMediaQuery();
+
   return (
     <Modal
       isOpen={root.gui.techModal}
       onRequestClose={() => root.gui.closeTechModal()}
-      style={customStyles}
+      style={isDesktop ? desktopModalOuter : mobileModalOuter}
     >
       <div css={styles.modalHeader}>
         <h2>databanks</h2>
