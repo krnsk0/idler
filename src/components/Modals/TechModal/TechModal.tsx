@@ -1,42 +1,16 @@
 import { observer } from 'mobx-react-lite';
-import Modal from 'react-modal';
 import { useStore } from '../../../store/Provider';
 import { formatNumber } from '../../../utils/formatNumber';
-import { useMediaQuery } from '../../shared/useMediaQuery';
+import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { styles } from './TechModal.styles';
-
-const mobileModalOuter = {
-  content: {
-    border: '1px solid black',
-    borderRadius: 0,
-    overflow: 'hidden' as const,
-    padding: '0em' as const,
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
-  },
-};
-
-const desktopModalOuter = {
-  content: {
-    border: '1px solid black',
-    borderRadius: 0,
-    overflow: 'hidden' as const,
-    margin: '2em 20vw' as const,
-    padding: '0em' as const,
-    display: 'flex' as const,
-    flexDirection: 'column' as const,
-  },
-};
 
 const TechModal = () => {
   const root = useStore();
-  const { isDesktop } = useMediaQuery();
 
   return (
-    <Modal
+    <StyledModal
       isOpen={root.gui.techModal}
       onRequestClose={() => root.gui.closeTechModal()}
-      style={isDesktop ? desktopModalOuter : mobileModalOuter}
     >
       <div css={styles.modalHeader}>
         <h2>databanks</h2>
@@ -79,7 +53,7 @@ const TechModal = () => {
         )}
         {!root.game.tech.noTechAvailable && <div css={styles.paddingTile} />}
       </div>
-    </Modal>
+    </StyledModal>
   );
 };
 

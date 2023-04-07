@@ -1,19 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
-import Modal from 'react-modal';
 import { useStore } from '../../../store/Provider';
+import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { styles } from './OptionsModal.styles';
-
-const customStyles = {
-  content: {
-    border: '1px solid black',
-    borderRadius: 0,
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center' as const,
-    flexWrap: 'wrap' as const,
-  },
-};
 
 const OptionsModal = () => {
   const root = useStore();
@@ -44,10 +33,10 @@ const OptionsModal = () => {
   };
 
   return (
-    <Modal
+    <StyledModal
       isOpen={root.gui.optionsModal}
       onRequestClose={() => root.gui.closeOptionsModal()}
-      style={customStyles}
+      extraStyles={{ alignItems: 'center' as const }}
     >
       <h2>options</h2>
       <div css={styles.optionsContainer}>
@@ -78,7 +67,7 @@ const OptionsModal = () => {
         )}
       </div>
       <div css={styles.version}>v{APP_VERSION}</div>
-    </Modal>
+    </StyledModal>
   );
 };
 
