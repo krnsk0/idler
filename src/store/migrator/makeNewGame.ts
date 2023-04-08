@@ -1,6 +1,6 @@
 import { ColorThemes, Game } from '../game';
 import { fromSnapshot } from 'mobx-keystone';
-import { ensureFirstZoneIsSelected } from './ensureFirstZoneIsSelectes';
+import { ensureFirstZoneIsSelected } from './ensureFirstZoneIsSelected';
 
 interface MakeNewGameProps {
   currentSaveVersion: string;
