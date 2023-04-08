@@ -12,6 +12,7 @@ export const changelogContent: ChangelogEntry[] = [
       'options modal and tech modal restyled on desktop',
       'colonist food consumption shown in colonist tooltip',
       'reduce initial cost for cache and dynamo',
+      'fix: rounding error in storage cap calculation',
     ],
   },
   {
