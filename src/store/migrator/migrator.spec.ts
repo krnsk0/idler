@@ -1,8 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import {
-  migrateToCurrentVersion,
-  NoSaveVersionFoundError,
-} from './migrateToCurrentVersion';
+import { migrateToCurrentVersion, NoSaveVersionFoundError } from './migrator';
 
 describe('the migrateToCurrentVersion function', () => {
   it('should throw when passed a save with no version string', async () => {

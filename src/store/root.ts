@@ -5,7 +5,6 @@ import {
   tProp,
   types,
   getSnapshot,
-  fromSnapshot,
   modelFlow,
   _async,
 } from 'mobx-keystone';
