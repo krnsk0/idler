@@ -11,7 +11,7 @@ if (
   // disable logrocket when in a browser requesting chinese
   navigator.language.indexOf('zh') !== 0
 ) {
-  LogRocket.init('z0jb7c/idler-demo', {
+  LogRocket.init('z0jb7c/idler-demo-2', {
     release: APP_VERSION,
   });
 }
