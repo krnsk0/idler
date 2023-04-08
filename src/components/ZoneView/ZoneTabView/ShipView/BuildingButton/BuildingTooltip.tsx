@@ -66,7 +66,7 @@ const BuildingTooltip = ({ building }: BuildingTooltipProps) => {
         {building.displayStorage.map(({ resourceDisplayName, quantity }) => {
           return (
             <div key={resourceDisplayName}>
-              {formatNumber(quantity, { showSign: true })} capacity:{' '}
+              {formatNumber(quantity, { showSign: true, digits: 0 })} capacity:{' '}
               {resourceDisplayName}
             </div>
           );

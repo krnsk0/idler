@@ -18,6 +18,7 @@ export const formatNumber = (
     digits = 0;
   }
 
+  // note this does Math.round() internally
   return new Intl.NumberFormat('en-US', {
     minimumFractionDigits: digits,
     maximumFractionDigits: digits,

@@ -40,7 +40,8 @@ export abstract class StorageProvider extends ExtendedModel(
         });
       return {
         resource,
-        quantity: quantity * storageModifier,
+        // storage always rounds up to nearest integer
+        quantity: Math.round(quantity * storageModifier),
       };
     });
   }
