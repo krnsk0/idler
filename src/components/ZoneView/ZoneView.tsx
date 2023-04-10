@@ -74,7 +74,7 @@ function ZoneView({ zone }: ZoneViewProps) {
                   }`}
                   tabName={ZoneTabNames.JOBS}
                   selectedTab={gui.selectedTab}
-                  setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
+                  setSelectedTab={() => gui.selectTab(ZoneTabNames.JOBS)}
                 />
                 {zone.upgrades.unlocked && (
                   <>
@@ -83,7 +83,9 @@ function ZoneView({ zone }: ZoneViewProps) {
                       text="improvements"
                       tabName={ZoneTabNames.UPGRADES}
                       selectedTab={gui.selectedTab}
-                      setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
+                      setSelectedTab={() =>
+                        gui.selectTab(ZoneTabNames.UPGRADES)
+                      }
                     />
                   </>
                 )}
@@ -94,7 +96,9 @@ function ZoneView({ zone }: ZoneViewProps) {
                       text="perimeter"
                       tabName={ZoneTabNames.PERIMETER}
                       selectedTab={gui.selectedTab}
-                      setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
+                      setSelectedTab={() =>
+                        gui.selectTab(ZoneTabNames.PERIMETER)
+                      }
                     />
                   </>
                 )}
