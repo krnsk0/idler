@@ -1,26 +1,19 @@
 import { observer } from 'mobx-react-lite';
-import Modal from 'react-modal';
 import { useStore } from '../../../store/Provider';
+import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { styles } from './PerimeterWarningModal.styles';
-
-const customStyles = {
-  content: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center' as const,
-    flexWrap: 'wrap' as const,
-  },
-};
 
 const PerimeterWarningModal = () => {
   const root = useStore();
   const perimeter = root.game.zones[0]!.perimeter;
 
   return (
-    <Modal
+    <StyledModal
       isOpen={perimeter.isWarningModalOpen}
       onRequestClose={() => perimeter.closeWarningModal()}
-      style={customStyles}
+      extraStyles={{
+        alignItems: 'center',
+      }}
     >
       <h2>ship detects approaching lifeforms</h2>
       <div css={styles.container}>
@@ -35,7 +28,7 @@ const PerimeterWarningModal = () => {
           acknowledge
         </button>
       </div>
-    </Modal>
+    </StyledModal>
   );
 };
 

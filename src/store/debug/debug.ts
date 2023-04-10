@@ -131,6 +131,9 @@ export class Debug extends Model({
     for (let i = 0; i < 2; i += 1) {
       initialZone.jobs[JobNames.ARBORIST].assign();
     }
+
+    // unlock perimeter
+    initialZone.perimeter.cheat();
   }
 
   /**
