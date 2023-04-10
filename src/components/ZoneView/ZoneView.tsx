@@ -69,51 +69,47 @@ function ZoneView({ zone }: ZoneViewProps) {
             <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
           )}
           <div css={styles.zoneCenter} id="zone-right">
-            <div css={styles.tabRow}>
-              {isTabRowUnlocked && (
-                <>
-                  <TabButton
-                    text="outpost"
-                    tabName={ZoneTabNames.ACTIONS}
-                    selectedTab={selectedTab}
-                    setSelectedTab={setSelectedTab}
-                  />
-                  <div css={styles.separator} />
-                  <TabButton
-                    text={`jobs${
-                      zone.jobs.unassigned > 0
-                        ? ` (${zone.jobs.unassigned})`
-                        : ''
-                    }`}
-                    tabName={ZoneTabNames.JOBS}
-                    selectedTab={selectedTab}
-                    setSelectedTab={setSelectedTab}
-                  />
-                  {zone.upgrades.unlocked && (
-                    <>
-                      <div css={styles.separator} />
-                      <TabButton
-                        text="improvements"
-                        tabName={ZoneTabNames.UPGRADES}
-                        selectedTab={selectedTab}
-                        setSelectedTab={setSelectedTab}
-                      />
-                    </>
-                  )}
-                  {zone.perimeter.unlocked && (
-                    <>
-                      <div css={styles.separator} />
-                      <TabButton
-                        text="perimeter"
-                        tabName={ZoneTabNames.PERIMETER}
-                        selectedTab={selectedTab}
-                        setSelectedTab={setSelectedTab}
-                      />
-                    </>
-                  )}
-                </>
-              )}
-            </div>
+            {isTabRowUnlocked && (
+              <div css={styles.tabRow}>
+                <TabButton
+                  text="outpost"
+                  tabName={ZoneTabNames.ACTIONS}
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                />
+                <span css={styles.separator} />
+                <TabButton
+                  text={`jobs${
+                    zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
+                  }`}
+                  tabName={ZoneTabNames.JOBS}
+                  selectedTab={selectedTab}
+                  setSelectedTab={setSelectedTab}
+                />
+                {zone.upgrades.unlocked && (
+                  <>
+                    <span css={styles.separator} />
+                    <TabButton
+                      text="improvements"
+                      tabName={ZoneTabNames.UPGRADES}
+                      selectedTab={selectedTab}
+                      setSelectedTab={setSelectedTab}
+                    />
+                  </>
+                )}
+                {zone.perimeter.unlocked && (
+                  <>
+                    <span css={styles.separator} />
+                    <TabButton
+                      text="perimeter"
+                      tabName={ZoneTabNames.PERIMETER}
+                      selectedTab={selectedTab}
+                      setSelectedTab={setSelectedTab}
+                    />
+                  </>
+                )}
+              </div>
+            )}
             {(() => {
               switch (selectedTab) {
                 case ZoneTabNames.ACTIONS:

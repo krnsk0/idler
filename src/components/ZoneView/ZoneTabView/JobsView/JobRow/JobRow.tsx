@@ -27,6 +27,7 @@ const JobRow = ({ job }: JobRowProps) => {
                 display: 'flex' as const,
                 justifyContent: 'center' as const,
                 alignItems: 'cetner' as const,
+                marginLeft: '.6em' as const,
               }}
             >
               {'>'}
