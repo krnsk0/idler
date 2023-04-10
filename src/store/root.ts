@@ -12,7 +12,7 @@ import {
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
-import { Gui } from './gui/gui';
+import { Gui, ZoneTabNames } from './gui/gui';
 import { Game } from './game';
 import { migrateToCurrentVersion } from './migrator/migrator';
 import { makeNewGame } from './migrator/makeNewGame';
@@ -88,5 +88,6 @@ export class Root extends Model({
       colorTheme: oldTheme,
     });
     this.gui = new Gui({});
+    this.gui.selectTab(ZoneTabNames.ACTIONS);
   }
 }

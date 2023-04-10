@@ -10,16 +10,10 @@ import { useStore } from '../../store/Provider';
 import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
 import UpgradeView from './ZoneTabView/UpgradeView/UpgradeView';
 import PerimeterView from './ZoneTabView/PerimeterView/PerimeterView';
+import { ZoneTabNames } from '../../store/gui/gui';
 
 interface ZoneViewProps {
   zone: Zone;
-}
-
-enum ZoneTabNames {
-  ACTIONS = 'ACTIONS',
-  JOBS = 'JOBS',
-  UPGRADES = 'UPGRADES',
-  PERIMETER = 'PERIMETER',
 }
 
 const TabButton = ({
@@ -47,10 +41,6 @@ const TabButton = ({
 function ZoneView({ zone }: ZoneViewProps) {
   const { gui } = useStore();
 
-  const [selectedTab, setSelectedTab] = useState<ZoneTabNames>(
-    ZoneTabNames.ACTIONS,
-  );
-
   const { isDesktop, isMobile } = useMediaQuery();
 
   const isResourcePaneOpen = isDesktop || gui.isResourcePaneOpen;
@@ -74,8 +64,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                 <TabButton
                   text="outpost"
                   tabName={ZoneTabNames.ACTIONS}
-                  selectedTab={selectedTab}
-                  setSelectedTab={setSelectedTab}
+                  selectedTab={gui.selectedTab}
+                  setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
                 />
                 <span css={styles.separator} />
                 <TabButton
@@ -83,8 +73,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                     zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
                   }`}
                   tabName={ZoneTabNames.JOBS}
-                  selectedTab={selectedTab}
-                  setSelectedTab={setSelectedTab}
+                  selectedTab={gui.selectedTab}
+                  setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
                 />
                 {zone.upgrades.unlocked && (
                   <>
@@ -92,8 +82,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                     <TabButton
                       text="improvements"
                       tabName={ZoneTabNames.UPGRADES}
-                      selectedTab={selectedTab}
-                      setSelectedTab={setSelectedTab}
+                      selectedTab={gui.selectedTab}
+                      setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
                     />
                   </>
                 )}
@@ -103,15 +93,15 @@ function ZoneView({ zone }: ZoneViewProps) {
                     <TabButton
                       text="perimeter"
                       tabName={ZoneTabNames.PERIMETER}
-                      selectedTab={selectedTab}
-                      setSelectedTab={setSelectedTab}
+                      selectedTab={gui.selectedTab}
+                      setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
                     />
                   </>
                 )}
               </div>
             )}
             {(() => {
-              switch (selectedTab) {
+              switch (gui.selectedTab) {
                 case ZoneTabNames.ACTIONS:
                   return <ShipColonyView zone={zone} />;
                 case ZoneTabNames.JOBS:

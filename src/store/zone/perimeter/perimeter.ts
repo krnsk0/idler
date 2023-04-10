@@ -1,6 +1,8 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { ZoneEntity } from '../zoneEntity';
 import { computed } from 'mobx';
+import { getGui } from '../../selectors';
+import { ZoneTabNames } from '../../gui/gui';
 
 const TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION = 5;
 
@@ -43,6 +45,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   @modelAction
   closeWarningModal(): void {
     this.hasWarningModalBeenClosed = true;
+    getGui(this).selectTab(ZoneTabNames.PERIMETER);
   }
 
   /**
@@ -53,5 +56,14 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
     if (this.timeToUnlock !== undefined) {
       this.timeToUnlock = Math.max(0, this.timeToUnlock - delta);
     }
+  }
+
+  /**
+   * Cheats unlocking the perimeter
+   */
+  @modelAction
+  cheat(): void {
+    this.timeToUnlock = 0;
+    this.closeWarningModal();
   }
 }
