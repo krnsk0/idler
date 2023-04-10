@@ -13,6 +13,8 @@ export const changelogContent: ChangelogEntry[] = [
       'colonist food consumption shown in colonist tooltip',
       'reduce initial cost for cache and dynamo',
       'fix: rounding error in storage cap calculation',
+      'fix: tab bar scrolls on mobile',
+      'fix: jobs tab does not overlap resources on very narrow screens',
     ],
   },
   {
