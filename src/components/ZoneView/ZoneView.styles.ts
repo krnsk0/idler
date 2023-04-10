@@ -46,6 +46,12 @@ export const styles = {
     max-width: 140px;
     padding-left: 0.7em;
     overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+
     ${mq['tablet']} {
       width: 300px;
       min-width: 300px;
@@ -62,6 +68,11 @@ export const styles = {
     justify-content: start;
     align-items: center;
     overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
 
     ${mq['desktop']} {
       margin-left: 1em;
@@ -95,12 +106,24 @@ export const styles = {
     color: ${colors.black};
   `,
   tabRow: css`
+    font-size: 1em;
+    overflow-y: auto;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    margin-bottom: 1.5em;
-    width: 100%;
+    flex-shrink: 0;
+    height: 1em;
+    width: 87%;
+    margin-bottom: 1em;
+    ::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+
+    ${mq['tablet']} {
+      justify-content: center;
+      box-sizing: border-box;
+      width: 100%;
+    }
   `,
   tabButton: (selected: boolean) => css`
     border: none;
