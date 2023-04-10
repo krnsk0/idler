@@ -32,9 +32,10 @@ export const styles = {
     width: 90%;
   `,
   changelogContainer: css`
-    height: 60%;
+    height: 60vh;
     width: 90%;
     padding: 0em 1em 0em 1em;
     overflow-y: scroll;
+    border: 1px solid red;
   `,
 };
