@@ -14,7 +14,9 @@ function UpgradeView({ zone }: PerimeterViewProps) {
   return (
     <>
       <div css={styles.perimeterContainer} id="perimeter-view-outer">
-        perimeter
+        <div css={styles.entityBox}>
+          <div css={styles.entityRow}>phase worm</div>
+        </div>
       </div>
     </>
   );
