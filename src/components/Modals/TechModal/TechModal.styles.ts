@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { colors, mq } from '../../../globalStyles';
+import { css, Theme } from '@emotion/react';
+import { mq } from '../../../globalStyles';
 
 export const styles = {
   modalHeader: css`
@@ -45,13 +45,13 @@ export const styles = {
       padding-left: 0px;
     }
   `,
-  techTile: css`
+  techTile: (theme: Theme) => css`
     width: 175px;
     min-width: 175px;
     height: 200px;
     min-height: 200px;
     margin: 0.5em;
-    border: 1px solid ${colors.primary};
+    border: 1px solid ${theme.colors.primary};
     display: flex;
     padding: 0.5em 0.2em 0.5em 0.2em;
     flex-direction: column;
@@ -60,7 +60,7 @@ export const styles = {
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 0 0 0.6px ${colors.primary};
+      box-shadow: 0 0 0 0.6px ${theme.colors.primary};
     }
   `,
   techTitle: css`

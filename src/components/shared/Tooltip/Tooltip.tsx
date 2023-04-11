@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
@@ -87,9 +88,10 @@ interface TooltipDividerProps {
 
 export const TooltipDivider = observer(
   ({ text, smallMargin }: TooltipDividerProps) => {
+    const theme = useTheme();
     return (
       <>
-        <div css={styles.tooltipDivider(!!text && !smallMargin)}>
+        <div css={styles.tooltipDivider(theme, !!text && !smallMargin)}>
           {text && (
             <div css={styles.tooltipDividerTextContainer}>
               {<span css={styles.tooltipDividerText}>{text}</span>}

@@ -1,8 +1,7 @@
-import { SerializedStyles } from '@emotion/react';
+import { SerializedStyles, useTheme } from '@emotion/react';
 import { EmotionJSX } from '@emotion/react/types/jsx-namespace';
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
-import { colors } from '../../../globalStyles';
 import { useStore } from '../../../store/Provider';
 import { TooltipDivider, TooltipPortalRenderer } from '../Tooltip/Tooltip';
 import { styles } from './ZoneEntityButton.styles';
@@ -66,7 +65,7 @@ const ZoneEntityButton = ({
   const showEnablementButtons = enableEntity && disableEntity;
 
   const { gui } = useStore();
-
+  const theme = useTheme();
   return (
     <>
       <TooltipPortalRenderer containerRef={containerRef}>
@@ -78,7 +77,9 @@ const ZoneEntityButton = ({
           showEntranceAnimation && styles.animateEntrance,
           styleOverride,
         ]}
-        style={{ borderColor: !disabled ? colors.primary : colors.disabled }}
+        style={{
+          borderColor: !disabled ? theme.colors.primary : theme.colors.disabled,
+        }}
         ref={containerRef}
         data-test-id={`button-outer`}
       >
@@ -107,7 +108,9 @@ const ZoneEntityButton = ({
                     styles.visibleOnDesktop,
                   ]}
                   style={{
-                    color: disabled ? colors.disabled : colors.primary,
+                    color: disabled
+                      ? theme.colors.disabled
+                      : theme.colors.primary,
                     cursor: canDisableEntity ? 'pointer' : 'inherit',
                   }}
                   onClick={disableEntity}
@@ -121,7 +124,9 @@ const ZoneEntityButton = ({
                     styles.visibleOnDesktop,
                   ]}
                   style={{
-                    color: disabled ? colors.disabled : colors.primary,
+                    color: disabled
+                      ? theme.colors.disabled
+                      : theme.colors.primary,
                     cursor: canEnableEntity ? 'pointer' : 'inherit',
                   }}
                   onClick={enableEntity}
@@ -138,7 +143,9 @@ const ZoneEntityButton = ({
                   styles.invisibleOnDesktop,
                 ]}
                 style={{
-                  color: disabled ? colors.disabled : colors.primary,
+                  color: disabled
+                    ? theme.colors.disabled
+                    : theme.colors.primary,
                   cursor: 'pointer',
                 }}
                 onClick={expandButton}
@@ -160,7 +167,7 @@ const ZoneEntityButton = ({
             data-test-id={'tooltip'}
             css={[styles.tooltipContainer, styles.invisibleOnDesktop]}
             style={{
-              color: disabled ? colors.secondary : colors.primary,
+              color: disabled ? theme.colors.secondary : theme.colors.primary,
             }}
           >
             <>
@@ -174,8 +181,8 @@ const ZoneEntityButton = ({
                       style={{
                         cursor: canDisableEntity ? 'pointer' : 'inherit',
                         color: canDisableEntity
-                          ? colors.primary
-                          : colors.disabled,
+                          ? theme.colors.primary
+                          : theme.colors.disabled,
                       }}
                       onClick={disableEntity}
                       type="button"
@@ -188,8 +195,8 @@ const ZoneEntityButton = ({
                       style={{
                         cursor: canEnableEntity ? 'pointer' : 'inherit',
                         color: canEnableEntity
-                          ? colors.primary
-                          : colors.disabled,
+                          ? theme.colors.primary
+                          : theme.colors.disabled,
                       }}
                       onClick={enableEntity}
                       type="button"

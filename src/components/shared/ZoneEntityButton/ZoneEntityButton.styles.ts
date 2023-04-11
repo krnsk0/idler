@@ -1,6 +1,5 @@
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 import {
-  colors,
   entranceAnimation,
   entranceAnimationDuration,
   mq,
@@ -36,7 +35,7 @@ export const styles = {
   buttonTopRow: css`
     display: flex;
   `,
-  button: css`
+  button: (theme: Theme) => css`
     border: none;
     height: 2em;
     width: 100%;
@@ -45,7 +44,7 @@ export const styles = {
     word-break: break-word;
     word-wrap: break-word;
     &:disabled {
-      color: ${colors.disabled};
+      color: ${theme.colors.disabled};
     }
 
     font-size: 0.95em;
@@ -58,11 +57,11 @@ export const styles = {
       padding-left: 0.5em;
     }
   `,
-  progressBar: css`
+  progressBar: (theme: Theme) => css`
     position: absolute;
     height: 2em;
     width: 100%;
-    background-color: ${colors.progressBar};
+    background-color: ${theme.colors.progressBar};
   `,
   smallButton: (expanded: boolean | undefined) => css`
     border: none;

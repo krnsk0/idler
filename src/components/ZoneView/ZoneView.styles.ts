@@ -1,9 +1,9 @@
-import { css } from '@emotion/react';
-import { colors, mq } from '../../globalStyles';
+import { css, Theme } from '@emotion/react';
+import { mq } from '../../globalStyles';
 
 export const styles = {
-  zoneOuter: css`
-    background-color: ${colors.background};
+  zoneOuter: (theme: Theme) => css`
+    background-color: ${theme.colors.background};
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -58,9 +58,9 @@ export const styles = {
       max-width: 300px;
     }
   `,
-  zoneCenter: css`
+  zoneCenter: (theme: Theme) => css`
     flex-grow: 3;
-    background-color: ${colors.background};
+    background-color: ${theme.colors.background};
     min-width: 200px;
     max-width: 425px;
     display: flex;
@@ -89,9 +89,9 @@ export const styles = {
       padding: 1em 1em 1em 1em;
     }
   `,
-  resourceButton: css`
-    background: ${colors.background};
-    border: 1px solid ${colors.primary};
+  resourceButton: (theme: Theme) => css`
+    background: ${theme.colors.background};
+    border: 1px solid ${theme.colors.primary};
     width: 2.5em;
     height: 2.5em;
     position: fixed;
@@ -101,9 +101,9 @@ export const styles = {
     justify-content: center;
     align-items: center;
   `,
-  caret: css`
+  caret: (theme: Theme) => css`
     font-size: 1.4em;
-    color: ${colors.primary};
+    color: ${theme.colors.primary};
   `,
   tabRow: css`
     font-size: 1em;

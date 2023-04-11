@@ -1,14 +1,5 @@
 import { css, keyframes, Theme } from '@emotion/react';
 
-// TODO remove
-export const colors = {
-  background: 'white',
-  primary: 'black',
-  secondary: '#808080',
-  disabled: '#919191',
-  progressBar: '#D1D1D1',
-};
-
 export const theme: Theme = {
   colors: {
     background: 'white',

@@ -1,5 +1,5 @@
 import { css, keyframes } from '@emotion/react';
-import { colors, mq } from '../../../globalStyles';
+import { mq } from '../../../globalStyles';
 
 export const styles = {
   powerRow: css`

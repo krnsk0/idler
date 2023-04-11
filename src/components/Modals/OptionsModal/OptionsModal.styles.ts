@@ -1,5 +1,4 @@
-import { css } from '@emotion/react';
-import { colors } from '../../../globalStyles';
+import { css, Theme } from '@emotion/react';
 
 export const styles = {
   optionsContainer: css`
@@ -10,12 +9,12 @@ export const styles = {
     align-items: center;
     flex-wrap: wrap;
   `,
-  button: css`
+  button: (theme: Theme) => css`
     margin: 0.5em;
     width: 150px;
     height: 3em;
     position: relative;
-    border: 1px solid ${colors.primary};
+    border: 1px solid ${theme.colors.primary};
     background: none;
     position: relative;
     cursor: pointer;

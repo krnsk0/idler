@@ -1,19 +1,18 @@
-import { css } from '@emotion/react';
+import { css, Theme } from '@emotion/react';
 import {
-  colors,
   entranceAnimation,
   entranceAnimationDuration,
   mq,
 } from '../../../globalStyles';
 
 export const styles = {
-  tooltipDivider: (largeMargin: boolean) => css`
+  tooltipDivider: (theme: Theme, largeMargin: boolean) => css`
     border-top: 1px solid;
     width: 100%;
     margin-top: ${largeMargin ? '1.4em' : '0.8em'};
     padding-top: 0.8em;
     position: relative;
-    color: ${colors.secondary};
+    color: ${theme.colors.secondary};
   `,
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
@@ -24,8 +23,8 @@ export const styles = {
     text-align: center;
     width: 100%;
   `,
-  tooltipDividerText: css`
-    background-color: ${colors.background};
+  tooltipDividerText: (theme: Theme) => css`
+    background-color: ${theme.colors.background};
     padding: 0em 0.4em 0em 0.4em;
   `,
   tooltipText: (
@@ -48,12 +47,12 @@ export const styles = {
       display: inherit;
     }
   `,
-  desktopTooltipDivider: css`
+  desktopTooltipDivider: (theme: Theme) => css`
     border-top: 1px solid;
     width: 100%;
     padding-top: 0.8em;
     position: relative;
-    color: ${colors.disabled};
+    color: ${theme.colors.disabled};
 
     display: none;
     ${mq['hoverableDesktop']} {

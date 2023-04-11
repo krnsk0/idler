@@ -1,5 +1,4 @@
-import { css } from '@emotion/react';
-import { colors } from '../../../globalStyles';
+import { css, Theme } from '@emotion/react';
 
 export const styles = {
   container: css`
@@ -16,11 +15,11 @@ export const styles = {
     text-align: center;
     font-size: 1.2em;
   `,
-  button: css`
+  button: (theme: Theme) => css`
     margin: 0.5em;
     width: 150px;
     height: 3em;
-    border: 1px solid ${colors.primary};
+    border: 1px solid ${theme.colors.primary};
     background: none;
     position: absolute;
     cursor: pointer;

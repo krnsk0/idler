@@ -1,19 +1,17 @@
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes, Theme } from '@emotion/react';
 import {
-  colors,
   entranceAnimation,
   entranceAnimationDuration,
   mq,
 } from '../../../../globalStyles';
 
-const flash = keyframes`
+const flash = (theme: Theme) => keyframes`
   0% {
-
-    background-color: ${colors.secondary} ;
+    background-color: ${theme.colors.secondary} ;
   }
   100%{
 
-    background-color: ${colors.background};
+    background-color: ${theme.colors.background};
   }
 `;
 
@@ -60,22 +58,22 @@ export const styles = {
       width: 4em;
     }
   `,
-  quantityPerSecond: css`
+  quantityPerSecond: (theme: Theme) => css`
     width: 3em;
-    color: ${colors.secondary};
+    color: ${theme.colors.secondary};
 
     ${mq['tablet']} {
       display: flex;
       justify-content: flex-end;
     }
   `,
-  cap: css`
+  cap: (theme: Theme) => css`
     text-align: right;
     width: 3em;
-    color: ${colors.secondary};
+    color: ${theme.colors.secondary};
   `,
-  highlight: (duration: number) => css`
-    animation: ${flash} ${duration}ms ease;
+  highlight: (theme: Theme, duration: number) => css`
+    animation: ${flash(theme)} ${duration}ms ease;
   `,
   tooltipRow: css`
     display: flex;
@@ -89,8 +87,8 @@ export const styles = {
       display: none;
     }
   `,
-  expandedResourceTooltip: css`
-    color: ${colors.secondary};
+  expandedResourceTooltip: (theme: Theme) => css`
+    color: ${theme.colors.secondary};
     font-size: 0.8em;
     padding: 0 0.2em 0.2em;
     margin-top: 0em;

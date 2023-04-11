@@ -1,5 +1,5 @@
-import { css } from '@emotion/react';
-import { colors, mq } from '../../../../../globalStyles';
+import { css, Theme } from '@emotion/react';
+import { mq } from '../../../../../globalStyles';
 
 const buttonCommon = css`
   background: none;
@@ -68,9 +68,9 @@ export const styles = {
       display: none;
     }
   `,
-  expandedJobTooltip: css`
+  expandedJobTooltip: (theme: Theme) => css`
     width: 15em;
-    color: ${colors.secondary};
+    color: ${theme.colors.secondary};
     font-size: 0.8em;
     padding: 0 1em 1em;
     margin-top: 0.5em;

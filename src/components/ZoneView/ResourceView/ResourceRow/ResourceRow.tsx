@@ -1,4 +1,4 @@
-import { SerializedStyles } from '@emotion/react';
+import { SerializedStyles, useTheme } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
 import { useRef } from 'react';
 import { BaseResource } from '../../../../store/zone/resources/baseResource';
@@ -49,13 +49,15 @@ const ResourceQuantity = observer(
     resource: BaseResource;
     emotionStyles?: SerializedStyles | SerializedStyles[];
   }) => {
+    const theme = useTheme();
+
     return (
       <span
         css={[
           emotionStyles,
           styles.quantity,
           resource.showHighlight &&
-            styles.highlight(resource.highlightAnimationDuration),
+            styles.highlight(theme, resource.highlightAnimationDuration),
         ]}
       >
         {formatNumber(resource.quantity)}
@@ -168,6 +170,7 @@ const ResourceRowTooltip = ({ resource }: ResourceRowTooltipProps) => {
 
 const ResourceRow = ({ resource }: ResourceRowProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const theme = useTheme();
 
   return (
     <>
@@ -203,7 +206,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
                 estimatedRate={resource.estimatedRate}
                 emotionStyles={[
                   styles.largeScreenOnly,
-                  styles.quantityPerSecond,
+                  styles.quantityPerSecond(theme),
                 ]}
               />
             )}
@@ -219,7 +222,7 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
           {resource.estimatedRate !== null ? (
             <QuantityPerSecond
               estimatedRate={resource.estimatedRate}
-              emotionStyles={[styles.quantityPerSecond]}
+              emotionStyles={[styles.quantityPerSecond(theme)]}
             />
           ) : (
             <div />
