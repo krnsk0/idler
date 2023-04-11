@@ -13,7 +13,17 @@ export const Changelog = ({ closeChangelog }: ChangelogProps) => {
         {changelogContent.map((release) => {
           return (
             <div key={release.version} css={styles.release}>
-              <h3>{release.version}</h3>
+              <h3>
+                {release.version} (
+                {release.date
+                  .toLocaleDateString('en-us', {
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                  })
+                  .replaceAll('/', '-')}
+                )
+              </h3>
               <ul>
                 {release.changes.map((change) => (
                   <li key={change}>{change}</li>

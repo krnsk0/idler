@@ -1,11 +1,13 @@
 export interface ChangelogEntry {
   version: string;
+  date: Date;
   changes: string[];
 }
 
 export const changelogContent: ChangelogEntry[] = [
   {
     version: '0.0.3',
+    date: new Date('2023-04-09'),
     changes: [
       'add changelogs to options menu',
       'fix: consumption modifiers apply to already-constructed buildings',
@@ -19,6 +21,7 @@ export const changelogContent: ChangelogEntry[] = [
   },
   {
     version: '0.0.2',
+    date: new Date('2023-03-17'),
     changes: [
       'early game rebalance',
       'jobs can modify production',
