@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { Theme, css } from '@emotion/react';
 import {
   entranceAnimation,
   entranceAnimationDuration,
@@ -7,8 +7,8 @@ import {
 const titleOffset = '10px';
 
 export const styles = {
-  container: css`
-    border: 1px solid black;
+  container: (theme: Theme) => css`
+    border: 1px solid ${theme.colors.primary};
     padding: 0.6em 0.4em 0.5em 0.4em;
     position: relative;
     top: ${titleOffset};
@@ -25,7 +25,7 @@ export const styles = {
     display: flex;
     justify-content: space-between;
   `,
-  text: css`
-    background: white;
+  text: (theme: Theme) => css`
+    background: ${theme.colors.background};
   `,
 };

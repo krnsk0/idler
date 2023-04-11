@@ -16,6 +16,8 @@ export const styles = {
       height: 1.5em;
       display: inline-block;
       width: auto;
+      background-color: none;
+      color: black;
     }
   `,
   debugRow: css`

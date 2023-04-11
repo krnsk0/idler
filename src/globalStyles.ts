@@ -12,11 +12,11 @@ export const lightTheme: Theme = {
 
 export const darkTheme: Theme = {
   colors: {
-    background: '#121212',
-    primary: 'white',
-    secondary: '#808080',
+    background: '#323232',
+    primary: '#EFEFEF',
+    secondary: '#A0A0A0',
     disabled: '#919191',
-    progressBar: '#D1D1D1',
+    progressBar: '#818181',
   },
 };
 
@@ -47,6 +47,17 @@ export const globalStyles = (theme: Theme) => css`
   svg {
     width: 100%;
     height: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  div,
+  span {
+    color: ${theme.colors.primary};
   }
 `;
 

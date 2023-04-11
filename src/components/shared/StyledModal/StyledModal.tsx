@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
 
 import { useMediaQuery } from '../../shared/useMediaQuery';
+import { useTheme } from '@emotion/react';
 
 const baseContentStyles = {
   border: '1px solid black',
@@ -17,7 +18,6 @@ const mobileModalOuter = {
 
 const desktopModalOuter = {
   ...baseContentStyles,
-
   margin: '2em 20vw' as const,
 };
 
@@ -36,14 +36,29 @@ export const StyledModal = ({
 }: StyledModalProps) => {
   const { isDesktop } = useMediaQuery();
 
+  const theme = useTheme();
+
   return (
     <Modal
       isOpen={isOpen}
       onRequestClose={onRequestClose}
       style={{
+        overlay: {
+          backgroundColor: 'none',
+        },
         content: isDesktop
-          ? { ...desktopModalOuter, ...extraStyles }
-          : { ...mobileModalOuter, ...extraStyles },
+          ? {
+              ...desktopModalOuter,
+              backgroundColor: theme.colors.background,
+              borderColor: theme.colors.primary,
+              ...extraStyles,
+            }
+          : {
+              ...mobileModalOuter,
+              backgroundColor: theme.colors.background,
+              borderColor: theme.colors.primary,
+              ...extraStyles,
+            },
       }}
     >
       {children}

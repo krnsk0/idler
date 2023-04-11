@@ -3,9 +3,11 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useStore } from '../../store/Provider';
 import { styles } from './DebugView.styles';
+import { ColorThemes } from '../../store/game';
 
 const DebugView = () => {
   const root = useStore();
+  const game = root.game;
   const debug = root.debug;
   const urlParams = new URLSearchParams(window.location.search);
   const debugParam = urlParams.get('debug') === 'true';
@@ -38,6 +40,20 @@ const DebugView = () => {
           }}
         >
           reset
+        </button>
+
+        <button
+          onClick={() =>
+            root.game.setColorTheme(
+              root.game.colorTheme === ColorThemes.LIGHT
+                ? ColorThemes.DARK
+                : ColorThemes.LIGHT,
+            )
+          }
+        >
+          {root.game.colorTheme === ColorThemes.LIGHT
+            ? 'dark mode'
+            : 'light mode'}
         </button>
 
         <button type="button" onClick={() => debug.toggleHyperMode()}>

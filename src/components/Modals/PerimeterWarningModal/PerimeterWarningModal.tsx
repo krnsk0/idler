@@ -5,8 +5,6 @@ import { styles } from './PerimeterWarningModal.styles';
 
 const customStyles = {
   content: {
-    border: '1px solid black',
-    borderRadius: 0,
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'center' as const,

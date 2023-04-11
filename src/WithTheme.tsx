@@ -12,7 +12,6 @@ export const WithTheme = observer(({ children }: WithThemeProps) => {
   const {
     game: { colorTheme },
   } = useStore();
-  console.log('colorTheme: ', colorTheme);
 
   let selctedTheme = lightTheme;
   if (colorTheme === ColorThemes.DARK) {
