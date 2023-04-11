@@ -18,6 +18,11 @@ const initialZoneName = 'landing zone';
 
 const zoneRef = rootRef<Zone>('zone_ref', {});
 
+export enum ColorThemes {
+  LIGHT = 'LIGHT',
+  DARK = 'DARK',
+}
+
 @model('Game')
 export class Game extends Model({
   systemRegistry: tProp(
@@ -30,6 +35,7 @@ export class Game extends Model({
   tech: tProp(types.model(Tech), () => new Tech({})),
   selectedZoneRef: prop<Ref<Zone> | undefined>(),
   metadata: tProp(types.model(Metadata), () => new Metadata({})),
+  colorTheme: tProp(types.enum(ColorThemes), ColorThemes.LIGHT).withSetter(),
 }) {
   @computed
   get selectedZone(): Zone | undefined {

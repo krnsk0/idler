@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
 import { darkTheme, lightTheme } from './globalStyles';
-import { ColorThemes } from './store/gui/gui';
+import { ColorThemes } from './store/game';
 import { useStore } from './store/Provider';
 
 interface WithThemeProps {
@@ -10,8 +10,9 @@ interface WithThemeProps {
 
 export const WithTheme = observer(({ children }: WithThemeProps) => {
   const {
-    gui: { colorTheme },
+    game: { colorTheme },
   } = useStore();
+  console.log('colorTheme: ', colorTheme);
 
   let selctedTheme = lightTheme;
   if (colorTheme === ColorThemes.DARK) {

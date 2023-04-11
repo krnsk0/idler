@@ -15,11 +15,6 @@ type ShipColonyExpandables =
   | typeof TechName
   | undefined;
 
-export enum ColorThemes {
-  LIGHT = 'LIGHT',
-  DARK = 'DARK',
-}
-
 @model('Gui')
 export class Gui extends Model({
   optionsModal: tProp(types.boolean, false),
@@ -40,7 +35,6 @@ export class Gui extends Model({
   expandedResourceRow: tProp(types.maybe(types.enum(ResourceNames)), undefined),
   expandedJobRow: tProp(types.maybe(types.enum(JobNames)), undefined),
   expandedUpgradeRow: tProp(types.maybe(types.enum(UpgradeNames)), undefined),
-  colorTheme: tProp(types.enum(ColorThemes), ColorThemes.LIGHT).withSetter(),
 }) {
   @modelAction
   openTechModal(): void {

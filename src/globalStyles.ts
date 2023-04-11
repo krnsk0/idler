@@ -12,8 +12,8 @@ export const lightTheme: Theme = {
 
 export const darkTheme: Theme = {
   colors: {
-    background: 'red',
-    primary: 'black',
+    background: '#121212',
+    primary: 'white',
     secondary: '#808080',
     disabled: '#919191',
     progressBar: '#D1D1D1',
