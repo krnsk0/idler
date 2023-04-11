@@ -31,7 +31,7 @@ export const styles = {
     width: 90%;
   `,
   changelogContainer: css`
-    height: 75%;
+    height: 70%;
     width: 90%;
     padding: 0em 1em 0em 1em;
     overflow-y: scroll;
