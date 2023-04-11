@@ -91,7 +91,7 @@ export const styles = {
     color: ${theme.colors.secondary};
     font-size: 0.8em;
     padding: 0 0.2em 0.2em;
-    margin-top: 0em;
+    margin-top: 2em;
     margin-bottom: 0.4em;
   `,
   tooltipLeftText: css``,

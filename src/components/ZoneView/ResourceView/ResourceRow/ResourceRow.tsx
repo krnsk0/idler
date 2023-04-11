@@ -192,7 +192,8 @@ const ResourceRow = ({ resource }: ResourceRowProps) => {
               css={styles.invisibleOnDesktop}
               style={{
                 transform: resource.isExpanded ? 'rotate(90deg)' : 'none',
-                marginRight: '0.2em',
+                marginRight: '0.3em',
+                display: 'inline-block',
               }}
             >
               {'>'}

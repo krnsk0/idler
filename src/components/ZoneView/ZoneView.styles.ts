@@ -10,21 +10,18 @@ export const styles = {
   `,
   zoneHeader: css`
     flex: 0 1 auto;
-
-    padding: 1em;
-    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin: 1em 0 1em 0;
+    padding: 0 0 0 1em;
 
     h2 {
       margin: 0;
     }
 
-    text-align: left;
-    margin: 0;
     ${mq['tablet']} {
-      text-align: center;
-    }
-    ${mq['desktop']} {
-      margin: 1em 0 1em 0;
+      justify-content: center;
+      padding: 0 0 0 0;
     }
   `,
   zoneColumns: css`

@@ -52,7 +52,7 @@ export const styles = {
     width: 100%;
     padding-top: 0.8em;
     position: relative;
-    color: ${theme.colors.disabled};
+    color: ${theme.colors.secondary};
 
     display: none;
     ${mq['hoverableDesktop']} {
