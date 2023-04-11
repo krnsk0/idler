@@ -11,6 +11,7 @@ import {
   TooltipText,
 } from '../../../shared/Tooltip/Tooltip';
 import { styles } from './ResourceRow.styles';
+import { ResourceNames } from '../../../../store/zone/resources/resourceNames';
 
 interface ResourceRowProps {
   resource: BaseResource;
@@ -60,7 +61,9 @@ const ResourceQuantity = observer(
             styles.highlight(theme, resource.highlightAnimationDuration),
         ]}
       >
-        {formatNumber(resource.quantity)}
+        {formatNumber(resource.quantity, {
+          digits: resource.$modelType === ResourceNames.COLONISTS ? 0 : 2,
+        })}
       </span>
     );
   },
@@ -127,7 +130,7 @@ const ResourceRowTooltip = ({ resource }: ResourceRowTooltipProps) => {
         </>
       )}
 
-      {resource.$modelType === 'COLONISTS' && (
+      {resource.$modelType === ResourceNames.COLONISTS && (
         <>
           <TooltipDivider text="consumption" smallMargin={true} />
           <TooltipText>
