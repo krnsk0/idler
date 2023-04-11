@@ -1,7 +1,3 @@
-import { fromSnapshot } from 'mobx-keystone';
-import { Game } from '../game';
-import { ensureFirstZoneIsSelected } from './ensureFirstZoneIsSelected';
-
 export class ExceededMigrationLoopError extends Error {
   constructor(message?: any) {
     super(message);
@@ -46,6 +42,10 @@ const migrationMap: Record<string, (gameJson: any) => any> = {
     setSaveVersion(gameJson, '0.0.3');
     return gameJson;
   },
+  '0.0.3': (gameJson) => {
+    setSaveVersion(gameJson, '0.0.4');
+    return gameJson;
+  },
 };
 
 /**
@@ -80,10 +80,4 @@ export function migrateToCurrentVersion(
   }
   console.log(`migration complete`);
   return gameJson;
-}
-
-export function migrator(gameJson: any, currentSaveVersion: string): Game {
-  return ensureFirstZoneIsSelected(
-    fromSnapshot(Game, migrateToCurrentVersion(gameJson, currentSaveVersion)),
-  );
 }

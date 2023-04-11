@@ -7,14 +7,22 @@ import {
   getSnapshot,
   modelFlow,
   _async,
+  fromSnapshot,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
-import { migrator } from './migrator/migrator';
+import { migrateToCurrentVersion } from './migrator/migrator';
 import { makeNewGame } from './migrator/makeNewGame';
+import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
+
+export function migrator(gameJson: any, currentSaveVersion: string): Game {
+  return ensureFirstZoneIsSelected(
+    fromSnapshot(Game, migrateToCurrentVersion(gameJson, currentSaveVersion)),
+  );
+}
 
 @model('Root')
 export class Root extends Model({
