@@ -7,15 +7,16 @@ import {
   getSnapshot,
   modelFlow,
   _async,
+  fromSnapshot,
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
-import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
+import { migrateToCurrentVersion } from './migrator/migrator';
 import { makeNewGame } from './migrator/makeNewGame';
-import { migrateToCurrentVersion } from './migrator/migrateToCurrentVersion';
+import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
 
 export function migrator(gameJson: any, currentSaveVersion: string): Game {
   return ensureFirstZoneIsSelected(
