@@ -42,6 +42,10 @@ const migrationMap: Record<string, (gameJson: any) => any> = {
     setSaveVersion(gameJson, '0.0.3');
     return gameJson;
   },
+  '0.0.3': (gameJson) => {
+    setSaveVersion(gameJson, '0.0.4');
+    return gameJson;
+  },
 };
 
 /**

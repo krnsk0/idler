@@ -1,0 +1,336 @@
+{
+  "systemRegistry": { "$modelType": "SystemRegistry" },
+  "zones": [
+    {
+      "name": "landing zone",
+      "power": { "_unlockTime": 1679081542811, "$modelType": "Power" },
+      "buildings": {
+        "FARM": {
+          "numberDisabled": 0,
+          "powerProductionProrate": 1,
+          "lastTickProrate": 1,
+          "quantity": 7,
+          "_unlockTime": 1679081606948,
+          "$modelType": "FARM"
+        },
+        "HABITAT": {
+          "numberDisabled": 0,
+          "powerProductionProrate": 1,
+          "lastTickProrate": 1,
+          "quantity": 18,
+          "_unlockTime": 1679082459597,
+          "$modelType": "HABITAT"
+        },
+        "CACHE": {
+          "numberDisabled": 0,
+          "powerProductionProrate": 1,
+          "lastTickProrate": 1,
+          "quantity": 3,
+          "_unlockTime": 1679082762200,
+          "$modelType": "CACHE"
+        },
+        "TREE_FARM": {
+          "numberDisabled": 0,
+          "powerProductionProrate": 1,
+          "lastTickProrate": 1,
+          "quantity": 7,
+          "_unlockTime": 1679081876886,
+          "$modelType": "TREE_FARM"
+        },
+        "FURNACE": {
+          "numberDisabled": 1,
+          "powerProductionProrate": 0,
+          "lastTickProrate": 0,
+          "quantity": 3,
+          "_unlockTime": 1679082827399,
+          "$modelType": "FURNACE"
+        },
+        "DYNAMO": {
+          "numberDisabled": 0,
+          "powerProductionProrate": 1,
+          "lastTickProrate": 1,
+          "quantity": 2,
+          "_unlockTime": 1679084515287,
+          "$modelType": "DYNAMO"
+        },
+        "MINE": {
+          "numberDisabled": 0,
+          "powerProductionProrate": 1,
+          "lastTickProrate": 1,
+          "quantity": 2,
+          "_unlockTime": 1679085178743,
+          "$modelType": "MINE"
+        },
+        "_unlockTime": 1679081606964,
+        "$modelType": "Buildings"
+      },
+      "resources": {
+        "COLONISTS": {
+          "estimatedRate": null,
+          "quantity": 18,
+          "_unlockTime": 1679082487444,
+          "$modelType": "COLONISTS"
+        },
+        "BIOMASS": {
+          "estimatedRate": 0.17000000000000004,
+          "quantity": 48.62748744000117,
+          "_unlockTime": 1679081510460,
+          "$modelType": "BIOMASS"
+        },
+        "LUMBER": {
+          "estimatedRate": 0.455,
+          "quantity": 49.489206649999865,
+          "_unlockTime": 1679081585337,
+          "$modelType": "LUMBER"
+        },
+        "FOOD": {
+          "estimatedRate": 0.6000000000000011,
+          "quantity": 50,
+          "_unlockTime": 1679081616288,
+          "$modelType": "FOOD"
+        },
+        "ROCK": {
+          "estimatedRate": 0.6,
+          "quantity": 60,
+          "_unlockTime": 1679082677166,
+          "$modelType": "ROCK"
+        },
+        "ORE": {
+          "estimatedRate": 0.4,
+          "quantity": 30.5,
+          "_unlockTime": 1679082677166,
+          "$modelType": "ORE"
+        },
+        "ALLOY": {
+          "estimatedRate": null,
+          "quantity": 30.5,
+          "_unlockTime": 1679082922033,
+          "$modelType": "ALLOY"
+        },
+        "_unlockTime": 1679081510460,
+        "$modelType": "Resources"
+      },
+      "actions": {
+        "HARVEST": {
+          "_unlockTime": 1679081506172,
+          "progress": 0,
+          "active": false,
+          "$modelType": "HARVEST"
+        },
+        "GENERATE": {
+          "progress": 0,
+          "active": false,
+          "_unlockTime": 1679081525405,
+          "$modelType": "GENERATE"
+        },
+        "COMPRESS": {
+          "progress": 0,
+          "active": false,
+          "_unlockTime": 1679081562925,
+          "$modelType": "COMPRESS"
+        },
+        "THAW": {
+          "progress": 0,
+          "active": false,
+          "_unlockTime": 1679082719226,
+          "$modelType": "THAW"
+        },
+        "EXCAVATE": {
+          "progress": 0,
+          "active": false,
+          "_unlockTime": 1679082664982,
+          "$modelType": "EXCAVATE"
+        },
+        "$modelType": "Actions"
+      },
+      "jobs": {
+        "GLEANER": {
+          "quantity": 6,
+          "_unlockTime": 1679082719226,
+          "$modelType": "GLEANER"
+        },
+        "ARBORIST": {
+          "quantity": 2,
+          "_unlockTime": 1679084735233,
+          "$modelType": "ARBORIST"
+        },
+        "AGRONOMIST": {
+          "quantity": 10,
+          "_unlockTime": 1679083272705,
+          "$modelType": "AGRONOMIST"
+        },
+        "GEOLOGIST": {
+          "quantity": 0,
+          "_unlockTime": 1679089300024,
+          "$modelType": "GEOLOGIST"
+        },
+        "_unlockTime": 1679082883498,
+        "$modelType": "Jobs"
+      },
+      "perimeter": {
+        "timeToUnlock": 0,
+        "hasWarningModalBeenClosed": false,
+        "$modelType": "Perimeter"
+      },
+      "upgrades": {
+        "COMPOSTING_DRUMS": {
+          "purchased": true,
+          "_unlockTime": 1679087572591,
+          "$modelType": "COMPOSTING_DRUMS"
+        },
+        "CHAINSAWS": {
+          "purchased": true,
+          "_unlockTime": 1679084735233,
+          "$modelType": "CHAINSAWS"
+        },
+        "TUYERES": {
+          "purchased": true,
+          "_unlockTime": 1679089401763,
+          "$modelType": "TUYERES"
+        },
+        "HEAT_RECLAMATORS": {
+          "purchased": true,
+          "_unlockTime": 1679089401763,
+          "$modelType": "HEAT_RECLAMATORS"
+        },
+        "PREFABRICATION": {
+          "purchased": true,
+          "_unlockTime": 1679087686814,
+          "$modelType": "PREFABRICATION"
+        },
+        "CRATES": {
+          "purchased": true,
+          "_unlockTime": 1679081506196,
+          "$modelType": "CRATES"
+        },
+        "_unlockTime": 1679087572591,
+        "$modelType": "Upgrades"
+      },
+      "modifiers": { "$modelType": "Modifiers" },
+      "id": "h-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "Zone"
+    }
+  ],
+  "tech": {
+    "BIOMASS_COMPRESSION": {
+      "power": 10,
+      "active": false,
+      "_unlockTime": 1679081506198,
+      "id": "i-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "BIOMASS_COMPRESSION"
+    },
+    "FARMING": {
+      "power": 12,
+      "active": false,
+      "_unlockTime": 1679081562925,
+      "id": "j-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "FARMING"
+    },
+    "AGRONOMY": {
+      "power": 30,
+      "active": false,
+      "_unlockTime": 1679082719227,
+      "id": "k-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "AGRONOMY"
+    },
+    "SHELTER": {
+      "power": 15,
+      "active": false,
+      "_unlockTime": 1679081876886,
+      "id": "l-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "SHELTER"
+    },
+    "CRYONICS": {
+      "power": 20,
+      "active": false,
+      "_unlockTime": 1679082459597,
+      "id": "m-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "CRYONICS"
+    },
+    "FORESTRY": {
+      "power": 25,
+      "active": false,
+      "_unlockTime": 1679081606949,
+      "id": "n-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "FORESTRY"
+    },
+    "ARBORICULTURE": {
+      "power": 30,
+      "active": false,
+      "_unlockTime": 1679082719227,
+      "id": "o-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "ARBORICULTURE"
+    },
+    "STORAGE": {
+      "power": 30,
+      "active": false,
+      "_unlockTime": 1679082664983,
+      "id": "p-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "STORAGE"
+    },
+    "EXCAVATION": {
+      "power": 15,
+      "active": false,
+      "_unlockTime": 1679081876886,
+      "id": "q-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "EXCAVATION"
+    },
+    "METALLURGY": {
+      "power": 25,
+      "active": false,
+      "_unlockTime": 1679082664983,
+      "id": "r-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "METALLURGY"
+    },
+    "ELECTROMAGNETISM": {
+      "power": 50,
+      "active": false,
+      "_unlockTime": 1679082827399,
+      "id": "s-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "ELECTROMAGNETISM"
+    },
+    "SUBSURFACE_EXCAVATION": {
+      "power": 100,
+      "active": false,
+      "_unlockTime": 1679084515287,
+      "id": "t-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "SUBSURFACE_EXCAVATION"
+    },
+    "ZONE_UPGRADES": {
+      "power": 250,
+      "active": false,
+      "_unlockTime": 1679085178743,
+      "id": "u-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "ZONE_UPGRADES"
+    },
+    "GEOLOGY": {
+      "power": 30,
+      "active": false,
+      "_unlockTime": 1679085178743,
+      "id": "v-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "GEOLOGY"
+    },
+    "TEMPERATURE_CONTROL": {
+      "power": 50,
+      "active": false,
+      "_unlockTime": 1679087572591,
+      "id": "w-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "TEMPERATURE_CONTROL"
+    },
+    "CONSTRUCTION": {
+      "power": 80,
+      "active": false,
+      "_unlockTime": 1679087572591,
+      "id": "x-6EH96zeFDHoue6bwMcCCe",
+      "$modelType": "CONSTRUCTION"
+    },
+    "_unlockTime": 1679081519544,
+    "$modelType": "Tech"
+  },
+  "metadata": { "saveVersion": "0.0.2", "$modelType": "Metadata" },
+  "selectedZoneRef": {
+    "id": "h-6EH96zeFDHoue6bwMcCCe",
+    "$modelType": "zone_ref"
+  },
+  "$modelType": "Game"
+}
