@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
-import { theme } from './globalStyles';
+import { observer } from 'mobx-react-lite';
+import { darkTheme, lightTheme } from './globalStyles';
 import { ColorThemes } from './store/gui/gui';
 import { useStore } from './store/Provider';
 
@@ -7,17 +8,17 @@ interface WithThemeProps {
   children: React.ReactNode;
 }
 
-export const WithTheme = ({ children }: WithThemeProps) => {
+export const WithTheme = observer(({ children }: WithThemeProps) => {
   const {
     gui: { colorTheme },
   } = useStore();
 
-  let selctedTheme = theme;
+  let selctedTheme = lightTheme;
   if (colorTheme === ColorThemes.DARK) {
-    selctedTheme = theme;
+    selctedTheme = darkTheme;
   } else if (colorTheme === ColorThemes.LIGHT) {
-    selctedTheme = theme;
+    selctedTheme = lightTheme;
   }
 
   return <ThemeProvider theme={selctedTheme}>{children}</ThemeProvider>;
-};
+});

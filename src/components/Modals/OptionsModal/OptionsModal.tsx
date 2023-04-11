@@ -1,5 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
+import { ColorThemes } from '../../../store/gui/gui';
 import { useStore } from '../../../store/Provider';
 import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { Changelog } from './Changelog';
@@ -41,10 +42,23 @@ const OptionsModal = () => {
         <button css={styles.button} onClick={() => setShowChangelog(true)}>
           {'changelog'}
         </button>
+        <button
+          css={styles.button}
+          onClick={() =>
+            root.gui.setColorTheme(
+              root.gui.colorTheme === ColorThemes.LIGHT
+                ? ColorThemes.DARK
+                : ColorThemes.LIGHT,
+            )
+          }
+        >
+          {root.gui.colorTheme === ColorThemes.LIGHT
+            ? 'dark mode'
+            : 'light mode'}
+        </button>
         <button css={styles.button} onClick={exportHandler}>
           {exported ? 'copied to clipboard!' : 'export save to clipboard'}
         </button>
-
         <button css={styles.button} onClick={importHandler}>
           {importFailed ? 'import failed' : 'import save from clipboard'}
         </button>
