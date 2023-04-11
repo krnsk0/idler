@@ -20,7 +20,7 @@ export const styles = {
     margin: 0.5em;
     width: 150px;
     height: 3em;
-    border: 1px solid ${colors.black};
+    border: 1px solid ${colors.primary};
     background: none;
     position: absolute;
     cursor: pointer;

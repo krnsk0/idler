@@ -3,7 +3,7 @@ import { colors, mq } from '../../globalStyles';
 
 export const styles = {
   zoneOuter: css`
-    background-color: ${colors.white};
+    background-color: ${colors.background};
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -60,7 +60,7 @@ export const styles = {
   `,
   zoneCenter: css`
     flex-grow: 3;
-    background-color: ${colors.white};
+    background-color: ${colors.background};
     min-width: 200px;
     max-width: 425px;
     display: flex;
@@ -90,8 +90,8 @@ export const styles = {
     }
   `,
   resourceButton: css`
-    background: ${colors.white};
-    border: 1px solid ${colors.black};
+    background: ${colors.background};
+    border: 1px solid ${colors.primary};
     width: 2.5em;
     height: 2.5em;
     position: fixed;
@@ -103,7 +103,7 @@ export const styles = {
   `,
   caret: css`
     font-size: 1.4em;
-    color: ${colors.black};
+    color: ${colors.primary};
   `,
   tabRow: css`
     font-size: 1em;

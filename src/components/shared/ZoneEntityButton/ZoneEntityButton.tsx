@@ -78,7 +78,7 @@ const ZoneEntityButton = ({
           showEntranceAnimation && styles.animateEntrance,
           styleOverride,
         ]}
-        style={{ borderColor: !disabled ? colors.black : colors.grey }}
+        style={{ borderColor: !disabled ? colors.primary : colors.disabled }}
         ref={containerRef}
         data-test-id={`button-outer`}
       >
@@ -107,7 +107,7 @@ const ZoneEntityButton = ({
                     styles.visibleOnDesktop,
                   ]}
                   style={{
-                    color: disabled ? colors.mediumdarkgrey : colors.black,
+                    color: disabled ? colors.disabled : colors.primary,
                     cursor: canDisableEntity ? 'pointer' : 'inherit',
                   }}
                   onClick={disableEntity}
@@ -121,7 +121,7 @@ const ZoneEntityButton = ({
                     styles.visibleOnDesktop,
                   ]}
                   style={{
-                    color: disabled ? colors.mediumdarkgrey : colors.black,
+                    color: disabled ? colors.disabled : colors.primary,
                     cursor: canEnableEntity ? 'pointer' : 'inherit',
                   }}
                   onClick={enableEntity}
@@ -138,7 +138,7 @@ const ZoneEntityButton = ({
                   styles.invisibleOnDesktop,
                 ]}
                 style={{
-                  color: disabled ? colors.mediumdarkgrey : colors.black,
+                  color: disabled ? colors.disabled : colors.primary,
                   cursor: 'pointer',
                 }}
                 onClick={expandButton}
@@ -160,7 +160,7 @@ const ZoneEntityButton = ({
             data-test-id={'tooltip'}
             css={[styles.tooltipContainer, styles.invisibleOnDesktop]}
             style={{
-              color: disabled ? colors.darkgrey : colors.black,
+              color: disabled ? colors.secondary : colors.primary,
             }}
           >
             <>
@@ -174,8 +174,8 @@ const ZoneEntityButton = ({
                       style={{
                         cursor: canDisableEntity ? 'pointer' : 'inherit',
                         color: canDisableEntity
-                          ? colors.black
-                          : colors.mediumdarkgrey,
+                          ? colors.primary
+                          : colors.disabled,
                       }}
                       onClick={disableEntity}
                       type="button"
@@ -188,8 +188,8 @@ const ZoneEntityButton = ({
                       style={{
                         cursor: canEnableEntity ? 'pointer' : 'inherit',
                         color: canEnableEntity
-                          ? colors.black
-                          : colors.mediumdarkgrey,
+                          ? colors.primary
+                          : colors.disabled,
                       }}
                       onClick={enableEntity}
                       type="button"

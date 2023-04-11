@@ -8,7 +8,7 @@ import {
 
 export const styles = {
   divider: css`
-    border-top: 1px solid ${colors.black};
+    border-top: 1px solid ${colors.primary};
     width: 90%;
     position: relative;
     margin-bottom: 1em;
@@ -27,8 +27,8 @@ export const styles = {
     width: 100%;
   `,
   dividerText: css`
-    color: ${colors.black};
-    background-color: ${colors.white};
+    color: ${colors.primary};
+    background-color: ${colors.background};
     padding: 0em 0.4em 0em 0.4em;
   `,
 };

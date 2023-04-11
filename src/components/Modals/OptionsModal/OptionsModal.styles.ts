@@ -15,7 +15,7 @@ export const styles = {
     width: 150px;
     height: 3em;
     position: relative;
-    border: 1px solid ${colors.black};
+    border: 1px solid ${colors.primary};
     background: none;
     position: relative;
     cursor: pointer;

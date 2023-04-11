@@ -9,11 +9,11 @@ import {
 const flash = keyframes`
   0% {
 
-    background-color: ${colors.darkgrey} ;
+    background-color: ${colors.secondary} ;
   }
   100%{
 
-    background-color: ${colors.white};
+    background-color: ${colors.background};
   }
 `;
 
@@ -62,7 +62,7 @@ export const styles = {
   `,
   quantityPerSecond: css`
     width: 3em;
-    color: ${colors.darkgrey};
+    color: ${colors.secondary};
 
     ${mq['tablet']} {
       display: flex;
@@ -72,7 +72,7 @@ export const styles = {
   cap: css`
     text-align: right;
     width: 3em;
-    color: ${colors.grey};
+    color: ${colors.secondary};
   `,
   highlight: (duration: number) => css`
     animation: ${flash} ${duration}ms ease;
@@ -90,7 +90,7 @@ export const styles = {
     }
   `,
   expandedResourceTooltip: css`
-    color: ${colors.darkgrey};
+    color: ${colors.secondary};
     font-size: 0.8em;
     padding: 0 0.2em 0.2em;
     margin-top: 0em;

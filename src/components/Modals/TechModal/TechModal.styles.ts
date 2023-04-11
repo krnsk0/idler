@@ -51,7 +51,7 @@ export const styles = {
     height: 200px;
     min-height: 200px;
     margin: 0.5em;
-    border: 1px solid ${colors.black};
+    border: 1px solid ${colors.primary};
     display: flex;
     padding: 0.5em 0.2em 0.5em 0.2em;
     flex-direction: column;
@@ -60,7 +60,7 @@ export const styles = {
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 0 0 0.6px ${colors.black};
+      box-shadow: 0 0 0 0.6px ${colors.primary};
     }
   `,
   techTitle: css`

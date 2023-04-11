@@ -70,7 +70,7 @@ export const styles = {
   `,
   expandedJobTooltip: css`
     width: 15em;
-    color: ${colors.grey};
+    color: ${colors.secondary};
     font-size: 0.8em;
     padding: 0 1em 1em;
     margin-top: 0.5em;

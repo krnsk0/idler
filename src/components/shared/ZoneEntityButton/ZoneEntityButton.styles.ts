@@ -45,7 +45,7 @@ export const styles = {
     word-break: break-word;
     word-wrap: break-word;
     &:disabled {
-      color: ${colors.mediumdarkgrey};
+      color: ${colors.disabled};
     }
 
     font-size: 0.95em;
@@ -62,7 +62,7 @@ export const styles = {
     position: absolute;
     height: 2em;
     width: 100%;
-    background-color: ${colors.mediumgrey};
+    background-color: ${colors.progressBar};
   `,
   smallButton: (expanded: boolean | undefined) => css`
     border: none;

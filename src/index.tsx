@@ -1,10 +1,11 @@
 import { Global } from '@emotion/react';
 import { createRoot } from 'react-dom/client';
-import { globalStyles } from './globalStyles';
+import { globalStyles, theme } from './globalStyles';
 import { StoreProvider } from './store/Provider';
 import Modal from 'react-modal';
 import LogRocket from 'logrocket';
 import App from './components/App';
+import { ThemeProvider } from '@emotion/react';
 
 if (
   import.meta.env.PROD &&
@@ -21,7 +22,9 @@ const app = document.getElementById('root')!;
 const root = createRoot(app);
 root.render(
   <StoreProvider>
-    <Global styles={globalStyles} />
-    <App />
+    <ThemeProvider theme={theme}>
+      <Global styles={globalStyles} />
+      <App />
+    </ThemeProvider>
   </StoreProvider>,
 );

@@ -13,7 +13,7 @@ export const styles = {
     margin-top: ${largeMargin ? '1.4em' : '0.8em'};
     padding-top: 0.8em;
     position: relative;
-    color: ${colors.mediumdarkgrey};
+    color: ${colors.secondary};
   `,
   animateEntrance: css`
     animation: ${entranceAnimation} ${entranceAnimationDuration}ms ease;
@@ -25,7 +25,7 @@ export const styles = {
     width: 100%;
   `,
   tooltipDividerText: css`
-    background-color: ${colors.white};
+    background-color: ${colors.background};
     padding: 0em 0.4em 0em 0.4em;
   `,
   tooltipText: (
@@ -53,7 +53,7 @@ export const styles = {
     width: 100%;
     padding-top: 0.8em;
     position: relative;
-    color: ${colors.mediumdarkgrey};
+    color: ${colors.disabled};
 
     display: none;
     ${mq['hoverableDesktop']} {

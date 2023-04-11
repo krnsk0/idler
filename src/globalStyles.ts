@@ -1,16 +1,25 @@
-import { css, keyframes } from '@emotion/react';
+import { css, keyframes, Theme } from '@emotion/react';
 
+// TODO remove
 export const colors = {
-  lightgrey: '#F1F1F1',
-  mediumgrey: '#D1D1D1',
-  mediumdarkgrey: '#919191',
-  darkgrey: '#383838',
-  grey: 'grey',
-  white: 'white',
-  black: 'black',
+  background: 'white',
+  primary: 'black',
+  secondary: '#808080',
+  disabled: '#919191',
+  progressBar: '#D1D1D1',
 };
 
-export const globalStyles = css`
+export const theme: Theme = {
+  colors: {
+    background: 'white',
+    primary: 'black',
+    secondary: '#808080',
+    lightSecondary: '#919191',
+    progressBar: '#D1D1D1',
+  },
+};
+
+export const globalStyles = (theme: Theme) => css`
   html,
   body {
     overflow: hidden;
@@ -29,7 +38,7 @@ export const globalStyles = css`
   button {
     font-family: 'Lekton', sans-serif;
     font-size: 1em;
-    color: ${colors.black};
+    color: ${theme.colors.primary};
     padding: none;
     -webkit-tap-highlight-color: transparent;
   }
