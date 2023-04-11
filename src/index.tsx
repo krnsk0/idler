@@ -8,8 +8,7 @@ import App from './components/App';
 
 if (
   import.meta.env.PROD &&
-  // disable logrocket when in a browser requesting chinese
-  navigator.language.indexOf('zh') !== 0
+  window.location.origin === 'https://idler-demo.vercel.app'
 ) {
   LogRocket.init('z0jb7c/idler-demo-2', {
     release: APP_VERSION,
