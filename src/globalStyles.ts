@@ -14,7 +14,7 @@ export const theme: Theme = {
     background: 'white',
     primary: 'black',
     secondary: '#808080',
-    lightSecondary: '#919191',
+    disabled: '#919191',
     progressBar: '#D1D1D1',
   },
 };

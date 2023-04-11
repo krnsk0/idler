@@ -6,7 +6,7 @@ declare module '@emotion/react' {
       background: string;
       primary: string;
       secondary: string;
-      lightSecondary: string;
+      disabled: string;
       progressBar: string;
     };
   }
