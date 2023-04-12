@@ -1,10 +1,10 @@
 import { css, Theme } from '@emotion/react';
 import { mq } from '../../../../../globalStyles';
 
-const buttonCommon = css`
+const buttonCommon = (theme: Theme) => css`
   background: none;
   border: none;
-  outline: 1px solid grey;
+  outline: 1px solid ${theme.colors.disabled};
   margin-left: 0.2em;
   max-height: 1em;
   max-width 1em;
@@ -15,11 +15,11 @@ const buttonCommon = css`
 
 
   &:enabled {
-    outline: 1px solid black;
+    outline: 1px solid ${theme.colors.primary};
   }
 
   &:hover:enabled {
-    outline: 1.5px solid black;
+    outline: 1.5px solid ${theme.colors.primary};
   }
 `;
 
@@ -47,11 +47,11 @@ export const styles = {
     display: flex;
     flex-direction: row;
   `,
-  inc: css`
-    ${buttonCommon}
+  inc: (theme: Theme) => css`
+    ${buttonCommon(theme)}
   `,
-  dec: css`
-    ${buttonCommon}
+  dec: (theme: Theme) => css`
+    ${buttonCommon(theme)}
   `,
   expand: css`
     background: none;

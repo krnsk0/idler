@@ -11,6 +11,7 @@ export const changelogContent: ChangelogEntry[] = [
     changes: [
       'simplify color scheme / set up theming',
       'add dark mode to options menu',
+      'add css reset to better support more browser/platform combinations',
     ],
   },
   {
