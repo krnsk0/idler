@@ -14,7 +14,7 @@ import { computed } from 'mobx';
 import { Debug } from './debug/debug';
 import { Gui, ZoneTabNames } from './gui/gui';
 import { Game } from './game';
-import { migrateToCurrentVersion } from './migrator/migrator';
+import { migrateToCurrentVersion } from './migrator/migrateToCurrentVersion';
 import { makeNewGame } from './migrator/makeNewGame';
 import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
 
