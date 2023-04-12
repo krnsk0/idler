@@ -14,8 +14,8 @@ import { computed } from 'mobx';
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
-import { makeNewGame } from './migrator/makeNewGame';
 import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
+import { makeNewGame } from './migrator/makeNewGame';
 import { migrateToCurrentVersion } from './migrator/migrateToCurrentVersion';
 
 export function migrator(gameJson: any, currentSaveVersion: string): Game {
