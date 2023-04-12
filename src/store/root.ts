@@ -14,8 +14,15 @@ import { computed } from 'mobx';
 import { Debug } from './debug/debug';
 import { Gui } from './gui/gui';
 import { Game } from './game';
-import { migrator } from './migrator/migrator';
 import { makeNewGame } from './migrator/makeNewGame';
+import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
+import { migrateToCurrentVersion } from './migrator/migrateToCurrentVersion';
+
+export function migrator(gameJson: any, currentSaveVersion: string): Game {
+  return ensureFirstZoneIsSelected(
+    fromSnapshot(Game, migrateToCurrentVersion(gameJson, currentSaveVersion)),
+  );
+}
 
 @model('Root')
 export class Root extends Model({
