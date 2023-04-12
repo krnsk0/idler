@@ -24,11 +24,12 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
 
   /**
    * Used in mechanism to unlock the perimeter for the first time
+   * TODO: enable
    */
   startUnlockCountdown(): void {
-    if (this.timeToUnlock === undefined) {
-      this.timeToUnlock = TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION;
-    }
+    // if (this.timeToUnlock === undefined) {
+    //   this.timeToUnlock = TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION;
+    // }
   }
 
   /**
