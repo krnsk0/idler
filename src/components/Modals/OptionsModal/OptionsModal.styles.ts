@@ -10,9 +10,9 @@ export const styles = {
     flex-wrap: wrap;
   `,
   button: (theme: Theme) => css`
-    margin: 0.5em;
+    margin: 0.3em;
     width: 150px;
-    height: 3em;
+    height: 2.2em;
     position: relative;
     border: 1px solid ${theme.colors.primary};
     background: none;

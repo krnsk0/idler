@@ -104,7 +104,8 @@ export const styles = {
   `,
   tabRow: css`
     font-size: 1em;
-    overflow-y: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
     display: flex;
     flex-shrink: 0;
     height: 1em;
