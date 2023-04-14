@@ -136,10 +136,10 @@ export const styles = {
     font-size: 1em;
     cursor: ${selected ? 'auto' : 'pointer'};
   `,
-  separator: css`
+  separator: (theme: Theme) => css`
     margin-left: 0.5em;
     padding-left: 0.5em;
-    border-left: 1px solid black;
+    border-left: 1px solid ${theme.colors.primary};
     height: 1em;
   `,
 };
