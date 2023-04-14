@@ -81,14 +81,14 @@ const OptionsModal = () => {
           </button>
         )}
       </div>
-      <div css={styles.version}>
+      <div css={styles.bottomContainer}>
         <button
           css={styles.button}
           onClick={() => root.gui.closeOptionsModal()}
         >
           {'close'}
         </button>
-        v{APP_VERSION}
+        <div css={styles.version}>v{APP_VERSION}</div>
       </div>
     </>
   );
