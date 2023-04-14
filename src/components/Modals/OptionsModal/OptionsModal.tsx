@@ -57,10 +57,10 @@ const OptionsModal = () => {
             : 'light mode'}
         </button>
         <button css={styles.button} onClick={exportHandler}>
-          {exported ? 'copied to clipboard!' : 'export save to clipboard'}
+          {exported ? 'copied!' : 'clipboard export'}
         </button>
         <button css={styles.button} onClick={importHandler}>
-          {importFailed ? 'import failed' : 'import save from clipboard'}
+          {importFailed ? 'import failed' : 'clipboard import'}
         </button>
         <button
           css={styles.button}
