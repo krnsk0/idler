@@ -3,6 +3,7 @@ import { ZoneEntity } from '../zoneEntity';
 import { computed } from 'mobx';
 import { getGui } from '../../selectors';
 import { ZoneTabNames } from '../../gui/gui';
+import { observer } from 'mobx-react-lite';
 
 const TIME_TO_UNLOCK_AFTER_FIRST_DYNAMO_CONSTRUCTION = 5;
 
@@ -20,7 +21,9 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   transientUnlockCheck = () => {
     return this.timeToUnlock !== undefined && this.timeToUnlock <= 0;
   };
-  observableUnlockCheck = () => this.timeToUnlock !== undefined;
+  // TODO - enable
+  // observableUnlockCheck = () => this.timeToUnlock !== undefined;
+  observableUnlockCheck = () => false;
 
   /**
    * Used in mechanism to unlock the perimeter for the first time
@@ -34,10 +37,12 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
 
   /**
    * Opens the warning modal when perimeter first unlocks
+   * TODO: enable
    */
   @computed
   get isWarningModalOpen(): boolean {
-    return this.unlocked && this.hasWarningModalBeenClosed === false;
+    // return this.unlocked && this.hasWarningModalBeenClosed === false;
+    return false;
   }
 
   /**
