@@ -19,6 +19,7 @@ import { Farming } from './farming';
 import { Agronomy } from './agronomy';
 import { Shelter } from './shelter';
 import { Cryonics } from './cryonics';
+import { Radar } from './radar';
 import { BaseTech } from './baseTech';
 import { getGame, getGui } from '../selectors';
 import { Forestry } from './forestry';
@@ -85,6 +86,7 @@ export class Tech extends ExtendedModel(Unlockable, {
     types.model(Construction),
     () => new Construction({}),
   ),
+  [TechNames.RADAR]: tProp(types.model(Radar), () => new Radar({})),
 }) {
   transientUnlockCheck = () => {
     return (

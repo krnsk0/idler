@@ -1,8 +1,9 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { ZoneEntity } from '../zoneEntity';
 import { computed } from 'mobx';
-import { getGui } from '../../selectors';
+import { getGui, getTech } from '../../selectors';
 import { ZoneTabNames } from '../../gui/gui';
+import { TechNames } from '../../tech/techNames';
 
 @model('Perimeter')
 export class Perimeter extends ExtendedModel(ZoneEntity, {
@@ -12,8 +13,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   hasWarningModalBeenClosed: tProp(types.boolean, false),
 }) {
   transientUnlockCheck = () => true;
-  // TODO
-  observableUnlockCheck = () => true;
+  observableUnlockCheck = () => getTech(this)[TechNames.RADAR].researched;
 
   /**
    * Opens the warning modal when perimeter first unlocks
@@ -29,7 +29,6 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   @modelAction
   closeWarningModal(): void {
     this.hasWarningModalBeenClosed = true;
-    getGui(this).selectTab(ZoneTabNames.PERIMETER);
   }
 
   /**
