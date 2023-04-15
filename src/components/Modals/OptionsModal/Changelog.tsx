@@ -34,7 +34,7 @@ export const Changelog = ({ closeChangelog }: ChangelogProps) => {
         })}
       </div>
 
-      <div css={styles.version}>
+      <div css={styles.bottomContainer}>
         <button css={styles.button} onClick={() => closeChangelog()}>
           {'close'}
         </button>
