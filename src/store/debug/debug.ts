@@ -132,8 +132,7 @@ export class Debug extends Model({
       initialZone.jobs[JobNames.ARBORIST].assign();
     }
 
-    // unlock perimeter
-    initialZone.perimeter.cheat();
+    initialZone.perimeter.closeWarningModal();
   }
 
   /**

@@ -15,12 +15,13 @@ const PerimeterWarningModal = () => {
         alignItems: 'center',
       }}
     >
-      <h2>ship detects approaching lifeforms</h2>
+      <h2 css={styles.title}>ship detects approaching lifeforms</h2>
       <div css={styles.container}>
         <div css={styles.text}>
-          ship suggests defensive countermeasures. perimeter defense
-          technologies unlocked.
+          ship proposes constructing defensive countermeasures.
         </div>
+        <div css={styles.text}>perimeter defense technologies unlocked.</div>
+        <div css={styles.text}>perimeter tab unlocked.</div>
         <button
           css={styles.button}
           onClick={() => perimeter.closeWarningModal()}

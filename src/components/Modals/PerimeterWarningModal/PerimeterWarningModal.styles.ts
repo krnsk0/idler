@@ -9,8 +9,12 @@ export const styles = {
     align-items: center;
     flex-wrap: wrap;
   `,
+  title: css`
+    width: 90%;
+    text-align: center;
+  `,
   text: css`
-    margin: 3em;
+    margin: 0.5em;
     width: 80%;
     text-align: center;
     font-size: 1.2em;
