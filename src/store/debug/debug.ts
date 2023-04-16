@@ -131,8 +131,6 @@ export class Debug extends Model({
     for (let i = 0; i < 2; i += 1) {
       initialZone.jobs[JobNames.ARBORIST].assign();
     }
-
-    initialZone.perimeter.closeWarningModal();
   }
 
   /**
@@ -151,8 +149,15 @@ export class Debug extends Model({
     // unlock miners
     tech[TechNames.GEOLOGY].cheat();
 
-    // unlock upgrades
+    // unlock and max upgrades
     tech[TechNames.ZONE_UPGRADES].cheat();
+    tech[TechNames.TEMPERATURE_CONTROL].cheat();
+    tech[TechNames.CONSTRUCTION].cheat();
+    initialZone.upgrades.cheat();
+
+    // perimeter
+    tech[TechNames.RADAR].cheat();
+    initialZone.perimeter.closeWarningModal();
   }
 
   /**

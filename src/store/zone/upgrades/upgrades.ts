@@ -1,4 +1,4 @@
-import { ExtendedModel, model, tProp, types } from 'mobx-keystone';
+import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { enumKeys } from '../../../utils/enumKeys';
 import { ZoneEntity } from '../zoneEntity';
@@ -73,5 +73,15 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
   @computed
   get purchasedAsArray() {
     return this.unlockedAsArray.filter((upgrade) => upgrade.purchased);
+  }
+
+  /**
+   * Buys all
+   */
+  @modelAction
+  cheat() {
+    this.unlockedAsArray.forEach((upgrade) => {
+      upgrade.cheat();
+    });
   }
 }

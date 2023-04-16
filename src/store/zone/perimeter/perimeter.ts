@@ -2,7 +2,6 @@ import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { ZoneEntity } from '../zoneEntity';
 import { computed } from 'mobx';
 import { getGui, getTech } from '../../selectors';
-import { ZoneTabNames } from '../../gui/gui';
 import { TechNames } from '../../tech/techNames';
 
 @model('Perimeter')

@@ -14,7 +14,9 @@ setGlobalConfig({
 const root = new Root({});
 registerRootStore(root);
 
-(window as any).root = root;
+if (!import.meta.env.PROD) {
+  (window as any).root = root;
+}
 
 const StoreContext = React.createContext<Root>(root);
 
