@@ -2,14 +2,14 @@ import { observer } from 'mobx-react-lite';
 import { formatNumber } from '../../../utils/formatNumber';
 import BorderContainer from '../../shared/BorderContainer/BorderContainer';
 import { Zone } from '../../../store/zone/zone';
-import { styles } from './ResourceView.styles';
+import { styles } from './ZoneLeftPane.styles';
 import ResourceRow from './ResourceRow/ResourceRow';
 
 interface ResourceViewProps {
   zone: Zone;
 }
 
-const ResourceView = ({ zone }: ResourceViewProps) => {
+const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
   const satisfaction = zone.power.satisfaction;
   const satisfactionPercentage = formatNumber(satisfaction * 100, {
     digits: 0,
@@ -17,6 +17,18 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
 
   return (
     <div css={styles.paneContainer}>
+      {zone.perimeter.unlocked && (
+        <BorderContainer
+          title="radar"
+          styleOverride={styles.radarContainer}
+          showEntranceAnimation={zone.perimeter.showEntranceAnimation()}
+        >
+          <div css={styles.radarRow}>
+            <span>next wave</span>
+            <span>{`5:59`}</span>
+          </div>
+        </BorderContainer>
+      )}
       {zone.power.unlocked && (
         <BorderContainer
           title="power"
@@ -68,4 +80,4 @@ const ResourceView = ({ zone }: ResourceViewProps) => {
   );
 };
 
-export default observer(ResourceView);
+export default observer(ZoneLeftPane);

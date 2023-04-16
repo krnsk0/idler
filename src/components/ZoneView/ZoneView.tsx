@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { Zone } from '../../store/zone/zone';
 import { styles } from './ZoneView.styles';
-import ResourceView from './ResourceView/ResourceView';
+import ZoneLeftPane from './ZoneLeftPane/ZoneLeftPane';
 import { useState } from 'react';
 import ShipColonyView from './ZoneTabView/ShipView/ShipColonyView';
 import JobsView from './ZoneTabView/JobsView/JobsView';
@@ -56,7 +56,7 @@ function ZoneView({ zone }: ZoneViewProps) {
         </div>
         <div css={styles.zoneColumns}>
           {isResourcePaneOpen && (
-            <div css={styles.zoneLeft}>{<ResourceView zone={zone} />}</div>
+            <div css={styles.zoneLeft}>{<ZoneLeftPane zone={zone} />}</div>
           )}
           <div css={styles.zoneCenter} id="zone-right">
             {isTabRowUnlocked && (

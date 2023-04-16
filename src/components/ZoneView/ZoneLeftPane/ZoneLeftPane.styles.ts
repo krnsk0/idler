@@ -2,17 +2,35 @@ import { css, keyframes } from '@emotion/react';
 import { mq } from '../../../globalStyles';
 
 export const styles = {
+  paneContainer: css`
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+  `,
   powerRow: css`
     margin: 0.1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
   `,
-  paneContainer: css`
+  radarRow: css`
+    margin: 0.1em;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  `,
+
+  powerContainer: css`
     display: flex;
     flex-direction: column;
+    margin-bottom: 1em;
+
+    font-size: 0.95em;
+    ${mq['tablet']} {
+      font-size: 1em;
+    }
   `,
-  powerContainer: css`
+  radarContainer: css`
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
