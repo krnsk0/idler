@@ -36,6 +36,8 @@ export class SystemRegistry extends Model({}) {
    * This is the actual tick executor and the order in which things are called
    * here matters a great deal for the simulation; e.g. if we do a food check
    * before production we might kill workers unnecessarily
+   *
+   * delta is in seconds
    */
   @modelAction
   private doTick(delta: number): void {
@@ -82,6 +84,7 @@ export class SystemRegistry extends Model({}) {
      * Tick perimeter
      */
     this.game.zones.forEach((zone) => {
+      zone.radar.tick(delta);
       zone.perimeter.tick(delta);
     });
 

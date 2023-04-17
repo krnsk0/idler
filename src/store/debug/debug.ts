@@ -157,7 +157,7 @@ export class Debug extends Model({
 
     // perimeter
     tech[TechNames.RADAR].cheat();
-    initialZone.perimeter.closeWarningModal();
+    initialZone.radar.closeWarningModal();
   }
 
   /**

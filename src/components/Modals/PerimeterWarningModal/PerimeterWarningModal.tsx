@@ -5,12 +5,12 @@ import { styles } from './PerimeterWarningModal.styles';
 
 const PerimeterWarningModal = () => {
   const root = useStore();
-  const perimeter = root.game.zones[0]!.perimeter;
+  const radar = root.game.zones[0]!.radar;
 
   return (
     <StyledModal
-      isOpen={perimeter.isWarningModalOpen}
-      onRequestClose={() => perimeter.closeWarningModal()}
+      isOpen={radar.isWarningModalOpen}
+      onRequestClose={() => radar.closeWarningModal()}
       extraStyles={{
         alignItems: 'center',
       }}
@@ -22,10 +22,7 @@ const PerimeterWarningModal = () => {
         </div>
         <div css={styles.text}>perimeter defense technologies unlocked.</div>
         <div css={styles.text}>perimeter tab unlocked.</div>
-        <button
-          css={styles.button}
-          onClick={() => perimeter.closeWarningModal()}
-        >
+        <button css={styles.button} onClick={() => radar.closeWarningModal()}>
           acknowledge
         </button>
       </div>

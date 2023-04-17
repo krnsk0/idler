@@ -8,6 +8,7 @@ import { Jobs } from './jobs/jobs';
 import { Upgrades } from './upgrades/upgrades';
 import { Modifiers } from './modifiers/modifiers';
 import { Perimeter } from './perimeter/perimeter';
+import { Radar } from './radar/radar';
 
 @model('Zone')
 export class Zone extends Model({
@@ -18,6 +19,7 @@ export class Zone extends Model({
   resources: tProp(types.model(Resources), () => new Resources({})),
   actions: tProp(types.model(Actions), () => new Actions({})),
   jobs: tProp(types.model(Jobs), () => new Jobs({})),
+  radar: tProp(types.model(Radar), () => new Radar({})),
   perimeter: tProp(types.model(Perimeter), () => new Perimeter({})),
   upgrades: tProp(types.model(Upgrades), () => new Upgrades({})),
   modifiers: tProp(types.model(Modifiers), () => new Modifiers({})),

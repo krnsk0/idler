@@ -17,16 +17,20 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
 
   return (
     <div css={styles.paneContainer}>
-      {zone.perimeter.unlocked && (
+      {zone.radar.unlocked && (
         <BorderContainer
           title="radar"
           styleOverride={styles.radarContainer}
-          showEntranceAnimation={zone.perimeter.showEntranceAnimation()}
+          showEntranceAnimation={zone.radar.showEntranceAnimation()}
         >
-          <div css={styles.radarRow}>
-            <span>next wave</span>
-            <span>{`5:59`}</span>
-          </div>
+          {zone.radar.isScanning && (
+            <div css={styles.radarRow}>
+              <span>scanning...</span>
+              <span>
+                {formatNumber(zone.radar.scanTimeLeft!, { digits: 2 })}
+              </span>
+            </div>
+          )}
         </BorderContainer>
       )}
       {zone.power.unlocked && (

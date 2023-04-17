@@ -15,6 +15,7 @@ import { Power } from './zone/power/power';
 import { Resources } from './zone/resources/resources';
 import { Upgrades } from './zone/upgrades/upgrades';
 import { Zone } from './zone/zone';
+import { Radar } from './zone/radar/radar';
 
 /**
  * Root selectors
@@ -144,4 +145,12 @@ export const getPerimeter = (child: object): Perimeter => {
   });
   if (!zone) throw new Error('no parent zone model found in getPerimeter');
   return zone.perimeter;
+};
+
+export const getRadar = (child: object): Radar => {
+  const zone = findParent<Zone>(child, (node) => {
+    return node instanceof Zone;
+  });
+  if (!zone) throw new Error('no parent zone model found in getRadar');
+  return zone.radar;
 };
