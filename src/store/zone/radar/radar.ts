@@ -4,7 +4,7 @@ import { computed } from 'mobx';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
 
-const SCAN_TIME = 1000;
+const SCAN_TIME = 10;
 
 @model('Radar')
 export class Radar extends ExtendedModel(ZoneEntity, {

@@ -1,12 +1,12 @@
 /**
  * Takes a time in seconds and returns a string in the Hh:Mm:Ss format
  */
-function formatTime(time: number): string {
+export function formatTime(time: number): string {
   if (time === 0) return '';
 
   const hours = Math.floor(time / 3600);
   const minutes = Math.floor((time % 3600) / 60);
-  const seconds = time % 60;
+  const seconds = Math.floor(time % 60);
 
   const parts = [];
 

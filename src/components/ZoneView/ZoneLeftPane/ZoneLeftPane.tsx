@@ -4,6 +4,7 @@ import BorderContainer from '../../shared/BorderContainer/BorderContainer';
 import { Zone } from '../../../store/zone/zone';
 import { styles } from './ZoneLeftPane.styles';
 import ResourceRow from './ResourceRow/ResourceRow';
+import { formatTime } from '../../../utils/formatTime';
 
 interface ResourceViewProps {
   zone: Zone;
@@ -26,9 +27,7 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
           {zone.radar.isScanning && (
             <div css={styles.radarRow}>
               <span>scanning...</span>
-              <span>
-                {formatNumber(zone.radar.scanTimeLeft!, { digits: 2 })}
-              </span>
+              <span>{formatTime(zone.radar.scanTimeLeft ?? 0)}</span>
             </div>
           )}
         </BorderContainer>
