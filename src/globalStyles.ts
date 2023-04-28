@@ -15,7 +15,7 @@ export const darkTheme: Theme = {
     background: '#323232',
     primary: '#EFEFEF',
     secondary: '#A0A0A0',
-    disabled: '#919191',
+    disabled: '#717171',
     progressBar: '#818181',
   },
 };

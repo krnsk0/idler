@@ -4,20 +4,26 @@ import { computed } from 'mobx';
 import { getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
 
-const SCAN_TIME = 10;
+enum RadarState {
+  DISABLED = 'DISABLED',
+  SCANNING = 'SCANNING',
+  COUNTING_DOWN = 'COUNTING_DOWN',
+}
 
-const ARRIVAL_TIME = 10;
+const SCAN_TIME = 9.999;
+
+const ARRIVAL_TIME = 9.999;
 
 @model('Radar')
 export class Radar extends ExtendedModel(ZoneEntity, {
   /**
-   * Scanning time left, or null if not scanning
+   * State of radar
    */
-  scanTimeLeft: tProp(types.maybeNull(types.number), SCAN_TIME),
+  state: tProp(types.enum(RadarState), RadarState.DISABLED),
   /**
-   * Time left until the next arrival
+   * Time left
    */
-  countdownTimeLeft: tProp(types.number, ARRIVAL_TIME),
+  timeLeft: tProp(types.number, 0),
   /**
    * Has the user closed the perimeter warning modal?
    */
@@ -27,19 +33,19 @@ export class Radar extends ExtendedModel(ZoneEntity, {
   observableUnlockCheck = () => getTech(this)[TechNames.RADAR].researched;
 
   /**
-   * Is the radar currently scanning?
+   * Are we scanning?
    */
   @computed
   get isScanning(): boolean {
-    return this.scanTimeLeft !== null && this.scanTimeLeft > 0;
+    return this.state === RadarState.SCANNING;
   }
 
   /**
-   * Is the radar currently counting down to a wave?
+   * Are we counting down?
    */
   @computed
   get isCountingDown(): boolean {
-    return this.countdownTimeLeft !== null && this.countdownTimeLeft > 0;
+    return this.state === RadarState.COUNTING_DOWN;
   }
 
   /**
@@ -65,6 +71,24 @@ export class Radar extends ExtendedModel(ZoneEntity, {
   tick(delta: number) {
     if (!this.unlocked) return;
 
-    // TODO
+    // enable for first time
+    if (this.state === RadarState.DISABLED) {
+      this.state = RadarState.SCANNING;
+      this.timeLeft = SCAN_TIME;
+    }
+    // decrement
+    this.timeLeft -= delta;
+
+    // finish scan
+    if (this.state === RadarState.SCANNING && this.timeLeft <= 0) {
+      this.state = RadarState.COUNTING_DOWN;
+      this.timeLeft = ARRIVAL_TIME;
+    }
+
+    // finish countdown
+    if (this.state === RadarState.COUNTING_DOWN && this.timeLeft <= 0) {
+      this.state = RadarState.SCANNING;
+      this.timeLeft = SCAN_TIME;
+    }
   }
 }

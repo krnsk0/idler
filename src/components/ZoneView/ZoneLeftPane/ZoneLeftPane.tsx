@@ -5,6 +5,7 @@ import { Zone } from '../../../store/zone/zone';
 import { styles } from './ZoneLeftPane.styles';
 import ResourceRow from './ResourceRow/ResourceRow';
 import { formatTime } from '../../../utils/formatTime';
+import { spinner } from '../../../utils/spinner';
 
 interface ResourceViewProps {
   zone: Zone;
@@ -27,7 +28,13 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
           {zone.radar.isScanning && (
             <div css={styles.radarRow}>
               <span>scanning...</span>
-              <span>{formatTime(zone.radar.scanTimeLeft ?? 0)}</span>
+              <span>{spinner(zone.radar.timeLeft)}</span>
+            </div>
+          )}
+          {zone.radar.isCountingDown && (
+            <div css={styles.radarRow}>
+              <span>next wave</span>
+              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
             </div>
           )}
         </BorderContainer>
