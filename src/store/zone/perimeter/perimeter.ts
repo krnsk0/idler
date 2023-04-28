@@ -5,7 +5,7 @@ import { getRadar } from '../../selectors';
 @model('Perimeter')
 export class Perimeter extends ExtendedModel(ZoneEntity, {}) {
   transientUnlockCheck = () => true;
-  observableUnlockCheck = () => getRadar(this).hasWarningModalBeenClosed;
+  observableUnlockCheck = () => getRadar(this).unlocked;
 
   /**
    * The tick action for this model

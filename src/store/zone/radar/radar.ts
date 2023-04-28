@@ -6,6 +6,7 @@ import { TechNames } from '../../tech/techNames';
 
 enum RadarState {
   DISABLED = 'DISABLED',
+  WARNING_MODAL_OPEN = 'WARNING_MODAL_OPEN',
   SCANNING = 'SCANNING',
   COUNTING_DOWN = 'COUNTING_DOWN',
 }
@@ -13,6 +14,8 @@ enum RadarState {
 const SCAN_TIME = 9.999;
 
 const ARRIVAL_TIME = 9.999;
+
+const WARNING_MODAL_TIME = 9.999;
 
 @model('Radar')
 export class Radar extends ExtendedModel(ZoneEntity, {
@@ -24,13 +27,19 @@ export class Radar extends ExtendedModel(ZoneEntity, {
    * Time left
    */
   timeLeft: tProp(types.number, 0),
-  /**
-   * Has the user closed the perimeter warning modal?
-   */
-  hasWarningModalBeenClosed: tProp(types.boolean, false),
 }) {
   transientUnlockCheck = () => true;
-  observableUnlockCheck = () => getTech(this)[TechNames.RADAR].researched;
+  observableUnlockCheck = () =>
+    this.state !== RadarState.DISABLED &&
+    this.state !== RadarState.WARNING_MODAL_OPEN;
+
+  /**
+   * Is warning modal open?
+   */
+  @computed
+  get warningModalOpen(): boolean {
+    return this.state === RadarState.WARNING_MODAL_OPEN;
+  }
 
   /**
    * Are we scanning?
@@ -49,19 +58,12 @@ export class Radar extends ExtendedModel(ZoneEntity, {
   }
 
   /**
-   * Opens the warning modal when perimeter first unlocks
-   */
-  @computed
-  get isWarningModalOpen(): boolean {
-    return this.unlocked && this.hasWarningModalBeenClosed === false;
-  }
-
-  /**
    * Closes the warning modal once and for all
    */
   @modelAction
   closeWarningModal(): void {
-    this.hasWarningModalBeenClosed = true;
+    this.state = RadarState.SCANNING;
+    this.timeLeft = SCAN_TIME;
   }
 
   /**
@@ -69,15 +71,22 @@ export class Radar extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   tick(delta: number) {
-    if (!this.unlocked) return;
+    if (!getTech(this)[TechNames.RADAR].researched) return;
 
-    // enable for first time
+    // open modal for first time
     if (this.state === RadarState.DISABLED) {
-      this.state = RadarState.SCANNING;
-      this.timeLeft = SCAN_TIME;
+      this.state = RadarState.WARNING_MODAL_OPEN;
+      this.timeLeft = WARNING_MODAL_TIME;
+      return;
     }
+
     // decrement
     this.timeLeft -= delta;
+
+    // close modal
+    if (this.state === RadarState.WARNING_MODAL_OPEN && this.timeLeft <= 0) {
+      this.closeWarningModal();
+    }
 
     // finish scan
     if (this.state === RadarState.SCANNING && this.timeLeft <= 0) {

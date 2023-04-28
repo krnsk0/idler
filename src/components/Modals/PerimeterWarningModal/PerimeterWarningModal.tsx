@@ -2,6 +2,8 @@ import { observer } from 'mobx-react-lite';
 import { useStore } from '../../../store/Provider';
 import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { styles } from './PerimeterWarningModal.styles';
+import { formatNumber } from '../../../utils/formatNumber';
+import { formatTime } from '../../../utils/formatTime';
 
 const PerimeterWarningModal = () => {
   const root = useStore();
@@ -9,7 +11,7 @@ const PerimeterWarningModal = () => {
 
   return (
     <StyledModal
-      isOpen={radar.isWarningModalOpen}
+      isOpen={radar.warningModalOpen}
       onRequestClose={() => radar.closeWarningModal()}
       extraStyles={{
         alignItems: 'center',
@@ -23,7 +25,7 @@ const PerimeterWarningModal = () => {
         <div css={styles.text}>perimeter defense technologies unlocked.</div>
         <div css={styles.text}>perimeter tab unlocked.</div>
         <button css={styles.button} onClick={() => radar.closeWarningModal()}>
-          acknowledge
+          acknowledge ({formatTime(radar.timeLeft ?? 0)})
         </button>
       </div>
     </StyledModal>
