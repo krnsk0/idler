@@ -11,10 +11,13 @@ enum RadarState {
   COUNTING_DOWN = 'COUNTING_DOWN',
 }
 
-const SCAN_TIME = 9.999;
+// seconds
+const SCAN_TIME = 59.999;
 
-const ARRIVAL_TIME = 9.999;
+// seconds
+const ARRIVAL_TIME = 119.999;
 
+// seconds
 const WARNING_MODAL_TIME = 9.999;
 
 @model('Radar')
