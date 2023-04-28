@@ -41,6 +41,7 @@ export class Gui extends Model({
   expandedResourceRow: tProp(types.maybe(types.enum(ResourceNames)), undefined),
   expandedJobRow: tProp(types.maybe(types.enum(JobNames)), undefined),
   expandedUpgradeRow: tProp(types.maybe(types.enum(UpgradeNames)), undefined),
+  expandedEnemyId: tProp(types.string, ''),
   selectedTab: tProp(types.enum(ZoneTabNames), ZoneTabNames.ACTIONS),
 }) {
   @modelAction
@@ -117,6 +118,13 @@ export class Gui extends Model({
     if (name === this.expandedUpgradeRow) {
       this.expandedUpgradeRow = undefined;
     } else this.expandedUpgradeRow = name;
+  }
+
+  @modelAction
+  setExpandedEnemyId(id: string) {
+    if (id === this.expandedEnemyId) {
+      this.expandedEnemyId = '';
+    } else this.expandedEnemyId = id;
   }
 
   @modelAction

@@ -15,7 +15,7 @@ export const styles = {
     display: flex;
     justify-content: space-between;
   `,
-  entityBox: (theme: Theme) => css`
+  enemyBox: (theme: Theme) => css`
     border: 1px solid ${theme.colors.primary};
     width: 90%;
     height: 10em;

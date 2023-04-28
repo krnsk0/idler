@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Zone } from '../../../../store/zone/zone';
 import { styles } from './PerimeterView.styles';
-import { EntityRow } from './EntityRow';
+import { EnemyRow } from './EnemyRow';
 import { formatTime } from '../../../../utils/formatTime';
 import { spinner } from '../../../../utils/spinner';
 
@@ -30,9 +30,10 @@ function PerimeterView({ zone }: PerimeterViewProps) {
         )}
       </div>
       <div css={styles.perimeterContainer} id="perimeter-view-outer">
-        <div css={styles.entityBox}>
-          <EntityRow />
-          <EntityRow />
+        <div css={styles.enemyBox}>
+          {perimeter.enemies.map((enemy) => {
+            return <EnemyRow key={enemy.id} enemy={enemy} />;
+          })}
         </div>
       </div>
     </>

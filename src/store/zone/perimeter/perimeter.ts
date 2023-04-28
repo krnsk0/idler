@@ -1,9 +1,16 @@
-import { ExtendedModel, model, modelAction } from 'mobx-keystone';
+import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { ZoneEntity } from '../zoneEntity';
 import { getRadar } from '../../selectors';
+import { PhaseWorm } from './phaseWorm';
 
 @model('Perimeter')
-export class Perimeter extends ExtendedModel(ZoneEntity, {}) {
+export class Perimeter extends ExtendedModel(ZoneEntity, {
+  // TODO this will be union of all enemy types
+  enemies: tProp(types.array(types.model(PhaseWorm)), () => [
+    new PhaseWorm({}),
+    new PhaseWorm({}),
+  ]),
+}) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;
 
