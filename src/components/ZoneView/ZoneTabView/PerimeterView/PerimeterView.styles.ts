@@ -9,6 +9,12 @@ export const styles = {
     justify-content: center;
     width: 100%;
   `,
+  countdown: css`
+    width: 90%;
+    max-width: 200px;
+    display: flex;
+    justify-content: space-between;
+  `,
   entityBox: (theme: Theme) => css`
     border: 1px solid ${theme.colors.primary};
     width: 90%;
