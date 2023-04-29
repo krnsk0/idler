@@ -8,6 +8,9 @@ interface EnemyRowProps {
 }
 
 function EnemyRow({ enemy }: EnemyRowProps) {
+  const health = enemy.remainingHitPointsPercent * 100;
+  console.log('health: ', health);
+
   return (
     <div
       css={styles.enemyRow}
@@ -15,6 +18,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
         enemy.expandEnemy();
       }}
     >
+      <div css={styles.progressBar} style={{ width: health + '%' }} />
       <div
         css={styles.caret}
         style={{ transform: enemy.isExpanded ? 'rotate(90deg)' : 'none' }}

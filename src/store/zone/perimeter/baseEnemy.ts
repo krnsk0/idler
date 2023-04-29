@@ -24,6 +24,14 @@ export abstract class BaseEnemy extends Model({
   }
 
   /**
+   * What % of health is left?
+   */
+  @computed
+  get remainingHitPointsPercent() {
+    return this.remainingHitPoints / this.baseHitPoints;
+  }
+
+  /**
    * Is the enemy row expanded?
    */
   get isExpanded(): boolean {

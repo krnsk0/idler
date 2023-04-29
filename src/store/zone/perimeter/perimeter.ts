@@ -7,9 +7,9 @@ import { PhaseWorm } from './phaseWorm';
 export class Perimeter extends ExtendedModel(ZoneEntity, {
   // TODO this will be union of all enemy types
   enemies: tProp(types.array(types.model(PhaseWorm)), () => [
+    new PhaseWorm({ damageTaken: 5 }),
     new PhaseWorm({}),
-    new PhaseWorm({}),
-    new PhaseWorm({}),
+    new PhaseWorm({ damageTaken: 5 }),
     new PhaseWorm({}),
     new PhaseWorm({}),
     new PhaseWorm({}),
