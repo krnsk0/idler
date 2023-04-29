@@ -3,7 +3,8 @@ import { ZoneEntity } from '../zoneEntity';
 import { getRadar } from '../../selectors';
 import { PhaseWorm } from './phaseWorm';
 import { PhaseMantis } from './phaseMantis';
-import { waveBuilder } from './waveBuilder';
+import { waveBuilder } from './utils/waveBuilder';
+import { statModifierFactory } from './utils/statModifierFactory';
 import { EnemyNames } from './enemyNames';
 
 function exhaustiveGuard(value: never): never {
@@ -35,10 +36,10 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
     waveDescription.forEach((enemyName: EnemyNames) => {
       switch (enemyName) {
         case EnemyNames.PHASE_WORM:
-          this.enemies.push(new PhaseWorm({}));
+          this.enemies.push(new PhaseWorm(statModifierFactory()));
           break;
         case EnemyNames.PHASE_MANTIS:
-          this.enemies.push(new PhaseMantis({}));
+          this.enemies.push(new PhaseMantis(statModifierFactory()));
           break;
         default:
           // if this highlights it means we are missing a value in the

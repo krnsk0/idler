@@ -10,10 +10,10 @@ export abstract class BaseEnemy extends Model({
 
   // modifiers to base stats
   hpModifier: tProp(types.number, 1),
+  movementSpeedModifier: tProp(types.number, 1),
   attackDamageModifier: tProp(types.number, 1),
   attackRangeModifier: tProp(types.number, 1),
   attackCooldownModifier: tProp(types.number, 1),
-  movementSpeedModifier: tProp(types.number, 1),
 }) {
   // splash
   abstract name: EnemyNames;

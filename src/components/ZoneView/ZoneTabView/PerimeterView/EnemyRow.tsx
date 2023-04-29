@@ -28,7 +28,7 @@ function EnemyRowTooltip({ enemy }: EnemyRowProps) {
 
       <TooltipText>
         vigor: {formatNumber(enemy.remainingHitPoints)} /{' '}
-        {formatNumber(enemy.baseHitPoints)}
+        {formatNumber(enemy.maxHitPoints)}
       </TooltipText>
       <TooltipText>
         attack power: {formatNumber(enemy.attackDamage)}

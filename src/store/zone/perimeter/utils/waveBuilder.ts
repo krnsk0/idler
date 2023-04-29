@@ -1,4 +1,4 @@
-import { EnemyNames } from './enemyNames';
+import { EnemyNames } from '../enemyNames';
 
 interface ThreatProfile {
   threat: number;
