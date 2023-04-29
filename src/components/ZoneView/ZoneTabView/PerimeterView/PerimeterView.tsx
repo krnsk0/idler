@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 
 import { Zone } from '../../../../store/zone/zone';
 import { styles } from './PerimeterView.styles';
-import { EnemyRow } from './EnemyRow';
+import EnemyRow from './EnemyRow';
 import { formatTime } from '../../../../utils/formatTime';
 import { spinner } from '../../../../utils/spinner';
 
