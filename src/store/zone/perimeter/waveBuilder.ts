@@ -1,7 +1,4 @@
-import { BaseEnemy } from './baseEnemy';
 import { EnemyNames } from './enemyNames';
-import { PhaseMantis } from './phaseMantis';
-import { PhaseWorm } from './phaseWorm';
 
 interface ThreatProfile {
   threat: number;
@@ -9,7 +6,7 @@ interface ThreatProfile {
 }
 
 const enemiesByThreatLevel: Array<ThreatProfile> = [
-  { threat: 3, modelName: EnemyNames.PHASE_MANTIS },
+  { threat: 5, modelName: EnemyNames.PHASE_MANTIS },
   { threat: 1, modelName: EnemyNames.PHASE_WORM },
 ].sort((a, b) => b.threat - a.threat);
 
@@ -25,8 +22,8 @@ function getStrongestEnemyUnderThreatLevel(
  * filling out with lower threat-level enemies.
  */
 
-export function waveBuilder(threatLevel: number) {
-  const enemies = [];
+export function waveBuilder(threatLevel: number): EnemyNames[] {
+  const enemies: EnemyNames[] = [];
   while (threatLevel > 0) {
     const threatProfile = getStrongestEnemyUnderThreatLevel(threatLevel);
     if (threatProfile) {

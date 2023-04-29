@@ -61,7 +61,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
           {'>'}
         </div>
         <div css={styles.enemyRowRight}>
-          <div>phase worm</div>
+          <div>{enemy.displayName}</div>
           <div>{formatTime(enemy.cooldown)}</div>
         </div>
       </div>
