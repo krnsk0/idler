@@ -7,7 +7,9 @@ export class PhaseWorm extends ExtendedModel(BaseEnemy, {}) {
   name = EnemyNames.PHASE_WORM;
   displayName = 'phase worm';
   baseHitPoints = 10;
-  description = 'seemingly intangible vermiform organism';
-  cooldownDuration = 10;
-  damage = 1;
+  description =
+    'hostile vermiform organism. can induce destabilizing resonance in structures and equipment.';
+  attackCooldown = 10;
+  attackDamage = 1;
+  attackRange = 5;
 }

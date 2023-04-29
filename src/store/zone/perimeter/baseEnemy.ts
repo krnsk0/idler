@@ -6,14 +6,15 @@ import { getGui } from '../../selectors';
 export abstract class BaseEnemy extends Model({
   id: idProp,
   damageTaken: tProp(types.number, 0),
-  cooldownElapsed: tProp(types.number, 0),
+  attackCooldownElapsed: tProp(types.number, 0),
 }) {
   abstract name: EnemyNames;
   abstract displayName: string;
   abstract description: string;
   abstract baseHitPoints: number;
-  abstract cooldownDuration: number;
-  abstract damage: number;
+  abstract attackCooldown: number;
+  abstract attackDamage: number;
+  abstract attackRange: number;
 
   /**
    * How much HP is left?
@@ -42,7 +43,7 @@ export abstract class BaseEnemy extends Model({
    * Get cooldown remaining
    */
   get cooldown() {
-    return this.cooldownDuration - this.cooldownElapsed;
+    return this.attackCooldown - this.attackCooldownElapsed;
   }
 
   /**
