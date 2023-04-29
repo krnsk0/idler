@@ -1,7 +1,7 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { ZoneEntity } from '../zoneEntity';
 import { computed } from 'mobx';
-import { getTech } from '../../selectors';
+import { getPerimeter, getTech } from '../../selectors';
 import { TechNames } from '../../tech/techNames';
 
 enum RadarState {
@@ -22,14 +22,9 @@ const WARNING_MODAL_TIME = 9.999;
 
 @model('Radar')
 export class Radar extends ExtendedModel(ZoneEntity, {
-  /**
-   * State of radar
-   */
   state: tProp(types.enum(RadarState), RadarState.DISABLED),
-  /**
-   * Time left
-   */
   timeLeft: tProp(types.number, 0),
+  currentWave: tProp(types.number, 1),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () =>
@@ -101,6 +96,8 @@ export class Radar extends ExtendedModel(ZoneEntity, {
     if (this.state === RadarState.COUNTING_DOWN && this.timeLeft <= 0) {
       this.state = RadarState.SCANNING;
       this.timeLeft = SCAN_TIME;
+      this.currentWave += 1;
+      getPerimeter(this).startWave(this.currentWave);
     }
   }
 }

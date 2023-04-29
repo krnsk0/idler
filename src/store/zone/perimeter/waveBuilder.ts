@@ -1,0 +1,59 @@
+import { BaseEnemy } from './baseEnemy';
+import { EnemyNames } from './enemyNames';
+import { PhaseMantis } from './phaseMantis';
+import { PhaseWorm } from './phaseWorm';
+
+interface ThreatProfile {
+  threat: number;
+  modelName: EnemyNames;
+}
+
+const enemiesByThreatLevel: Array<ThreatProfile> = [
+  { threat: 3, modelName: EnemyNames.PHASE_MANTIS },
+  { threat: 1, modelName: EnemyNames.PHASE_WORM },
+].sort((a, b) => b.threat - a.threat);
+
+function getStrongestEnemyUnderThreatLevel(
+  threatLevel: number,
+): ThreatProfile | undefined {
+  return enemiesByThreatLevel.find(({ threat }) => threat <= threatLevel);
+}
+
+/**
+ * Given a threat level, builds a wave of enemies based on their threat level,
+ * populating the wave with the highest-threat-level enemies first and then
+ * filling out with lower threat-level enemies.
+ */
+
+export function waveBuilder(threatLevel: number) {
+  const enemies = [];
+  while (threatLevel > 0) {
+    const threatProfile = getStrongestEnemyUnderThreatLevel(threatLevel);
+    if (threatProfile) {
+      enemies.push(threatProfile.modelName);
+      threatLevel -= threatProfile.threat;
+    }
+  }
+  return enemies;
+}
+
+if (import.meta.vitest) {
+  const { it, expect } = import.meta.vitest;
+
+  it('builds waves', () => {
+    expect(waveBuilder(1)).toStrictEqual([EnemyNames.PHASE_WORM]);
+    expect(waveBuilder(2)).toStrictEqual([
+      EnemyNames.PHASE_WORM,
+      EnemyNames.PHASE_WORM,
+    ]);
+    expect(waveBuilder(5)).toStrictEqual([
+      EnemyNames.PHASE_MANTIS,
+      EnemyNames.PHASE_WORM,
+      EnemyNames.PHASE_WORM,
+    ]);
+    expect(waveBuilder(6)).toStrictEqual([
+      EnemyNames.PHASE_MANTIS,
+      EnemyNames.PHASE_MANTIS,
+    ]);
+  });
+}
