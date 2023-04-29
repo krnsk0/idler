@@ -9,15 +9,21 @@ export const styles = {
     justify-content: center;
     width: 100%;
   `,
-  countdown: css`
+
+  enemyBoxHeader: css`
     width: 90%;
-    max-width: 200px;
     display: flex;
     justify-content: space-between;
   `,
   enemyBox: (theme: Theme) => css`
     border: 1px solid ${theme.colors.primary};
     width: 90%;
-    height: 10em;
+    height: 10.5em;
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
   `,
 };

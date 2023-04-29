@@ -9,6 +9,12 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   enemies: tProp(types.array(types.model(PhaseWorm)), () => [
     new PhaseWorm({}),
     new PhaseWorm({}),
+    new PhaseWorm({}),
+    new PhaseWorm({}),
+    new PhaseWorm({}),
+    new PhaseWorm({}),
+    new PhaseWorm({}),
+    new PhaseWorm({}),
   ]),
 }) {
   transientUnlockCheck = () => true;
