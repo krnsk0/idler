@@ -43,14 +43,10 @@ if (import.meta.vitest) {
       EnemyNames.PHASE_WORM,
       EnemyNames.PHASE_WORM,
     ]);
-    expect(waveBuilder(5)).toStrictEqual([
-      EnemyNames.PHASE_MANTIS,
-      EnemyNames.PHASE_WORM,
-      EnemyNames.PHASE_WORM,
-    ]);
+    expect(waveBuilder(5)).toStrictEqual([EnemyNames.PHASE_MANTIS]);
     expect(waveBuilder(6)).toStrictEqual([
       EnemyNames.PHASE_MANTIS,
-      EnemyNames.PHASE_MANTIS,
+      EnemyNames.PHASE_WORM,
     ]);
   });
 }
