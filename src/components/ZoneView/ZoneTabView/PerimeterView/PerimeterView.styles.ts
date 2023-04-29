@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+import { mq } from '../../../../globalStyles';
 
 export const styles = {
   perimeterContainer: css`

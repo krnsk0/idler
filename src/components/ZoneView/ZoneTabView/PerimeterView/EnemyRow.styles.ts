@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+import { mq } from '../../../../globalStyles';
 
 export const styles = {
   enemyBox: (theme: Theme) => css`
@@ -11,9 +12,13 @@ export const styles = {
     border-bottom: 1px solid ${theme.colors.primary};
     display: flex;
     align-items: center;
+    padding-left: 0.5em;
   `,
   caret: css`
-    margin-left: 0.5em;
     margin-right: 0.5em;
+    display: inherit;
+    ${mq['desktop']} {
+      display: none;
+    }
   `,
 };
