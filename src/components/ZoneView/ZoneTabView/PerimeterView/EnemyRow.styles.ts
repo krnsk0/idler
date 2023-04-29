@@ -14,6 +14,13 @@ export const styles = {
     align-items: center;
     padding-left: 0.5em;
   `,
+  enemyRowRight: css`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding-right: 0.5em;
+  `,
   caret: css`
     margin-right: 0.5em;
     display: inherit;

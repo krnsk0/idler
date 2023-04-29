@@ -8,4 +8,6 @@ export class PhaseWorm extends ExtendedModel(BaseEnemy, {}) {
   displayName = 'phase worm';
   baseHitPoints = 10;
   description = 'seemingly intangible vermiform organism';
+  cooldownDuration = 10;
+  damage = 1;
 }
