@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react-lite';
 import { BaseEnemy } from '../../../../store/zone/perimeter/baseEnemy';
 import { styles } from './EnemyRow.styles';
 
@@ -5,7 +6,7 @@ interface EnemyRowProps {
   enemy: BaseEnemy;
 }
 
-export function EnemyRow({ enemy }: EnemyRowProps) {
+function EnemyRow({ enemy }: EnemyRowProps) {
   return (
     <div
       css={styles.enemyRow}
@@ -23,3 +24,5 @@ export function EnemyRow({ enemy }: EnemyRowProps) {
     </div>
   );
 }
+
+export default observer(EnemyRow);
