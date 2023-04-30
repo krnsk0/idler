@@ -36,7 +36,7 @@ const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
           {formatNumber(enemy.maxHitPoints)}
         </div>
         <div>distance: {formatNumber(enemy.distanceFromPerimeter)} meters</div>
-        <div>speed: {formatNumber(enemy.movementSpeed)} meters/sec</div>
+        <div>speed: {formatNumber(enemy.movementSpeed)} meters per second</div>
         <div>attack: {formatNumber(enemy.attackDamage)}</div>
         <div>range: {formatNumber(enemy.attackRange)} meters</div>
         <div>cooldown: {cooldown}</div>

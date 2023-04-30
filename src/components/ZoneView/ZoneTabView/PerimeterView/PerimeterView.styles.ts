@@ -19,7 +19,7 @@ export const styles = {
   enemyBox: (theme: Theme) => css`
     border: 1px solid ${theme.colors.primary};
     width: 90%;
-    height: 15.5em;
+    height: 16em;
     overflow-y: scroll;
     ::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
