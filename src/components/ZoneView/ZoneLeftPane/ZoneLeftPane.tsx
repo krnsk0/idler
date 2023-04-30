@@ -19,26 +19,6 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
 
   return (
     <div css={styles.paneContainer}>
-      {zone.radar.unlocked && (
-        <BorderContainer
-          title="radar"
-          styleOverride={styles.radarContainer}
-          showEntranceAnimation={zone.radar.showEntranceAnimation()}
-        >
-          {zone.radar.isScanning && (
-            <div css={styles.radarRow}>
-              <span>scanning...</span>
-              <span>{spinner(zone.radar.timeLeft)}</span>
-            </div>
-          )}
-          {zone.radar.isCountingDown && (
-            <div css={styles.radarRow}>
-              <span>wave {zone.radar.currentWave}</span>
-              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
-            </div>
-          )}
-        </BorderContainer>
-      )}
       {zone.power.unlocked && (
         <BorderContainer
           title="power"
@@ -76,24 +56,24 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
         </BorderContainer>
       )}
 
-      {zone.resources.unlocked && (
-        <BorderContainer
-          title="resources"
-          styleOverride={styles.resourcesContainer}
-          showEntranceAnimation={zone.resources.showEntranceAnimation()}
-        >
-          {zone.resources.unlockedAsArray.map((resource) => {
-            return <ResourceRow resource={resource} key={resource.name} />;
-          })}
-        </BorderContainer>
-      )}
-
       {zone.radar.unlocked && (
         <BorderContainer
           title="perimeter"
-          styleOverride={styles.perimeterContainer}
+          styleOverride={styles.radarContainer}
           showEntranceAnimation={zone.radar.showEntranceAnimation()}
         >
+          {zone.radar.isScanning && (
+            <div css={styles.radarRow}>
+              <span>scanning...</span>
+              <span>{spinner(zone.radar.timeLeft)}</span>
+            </div>
+          )}
+          {zone.radar.isCountingDown && (
+            <div css={styles.radarRow}>
+              <span>wave {zone.radar.currentWave}</span>
+              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
+            </div>
+          )}
           <div css={styles.integrityBox}>
             <div
               css={styles.progressBar}
@@ -106,6 +86,18 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
               {zone.perimeter.maxPerimeterHealth}
             </div>
           </div>
+        </BorderContainer>
+      )}
+
+      {zone.resources.unlocked && (
+        <BorderContainer
+          title="resources"
+          styleOverride={styles.resourcesContainer}
+          showEntranceAnimation={zone.resources.showEntranceAnimation()}
+        >
+          {zone.resources.unlockedAsArray.map((resource) => {
+            return <ResourceRow resource={resource} key={resource.name} />;
+          })}
         </BorderContainer>
       )}
     </div>

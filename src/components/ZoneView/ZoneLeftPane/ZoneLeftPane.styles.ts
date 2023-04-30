@@ -41,7 +41,6 @@ export const styles = {
     }
   `,
   perimeterContainer: css`
-    margin-top: 1em;
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
@@ -72,7 +71,7 @@ export const styles = {
     }
   `,
   integrityBox: (theme: Theme) => css`
-    margin-top: 0.5em;
+    margin-top: 0.1em;
     height: 1em;
     border: 1px solid ${theme.colors.primary};
     position: relative;
