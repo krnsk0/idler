@@ -9,6 +9,7 @@ import { statModifierFactory } from './enemies/utils/statModifierFactory';
 import { EnemyNames } from './enemies/enemyNames';
 import { PurchaseCost } from '../sharedTypes';
 import { ResourceNames } from '../resources/resourceNames';
+import { KineticTurret } from './turrets/kinetic';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -20,7 +21,7 @@ function exhaustiveGuard(value: never): never {
 
 const enemyTypes = types.or(types.model(PhaseWorm), types.model(PhaseMantis));
 
-const turretTypes = types.or();
+const turretTypes = types.or(types.model(KineticTurret));
 
 const STARTING_PERIMETER_HEALTH = 50;
 
@@ -120,6 +121,14 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   @modelAction
   damagePerimeter(damage: number) {
     this.perimeterHealth = Math.max(0, this.perimeterHealth - damage);
+  }
+
+  /**
+   * Construct a new turret
+   */
+  @modelAction
+  constructTurret() {
+    this.turrets.push(new KineticTurret({}));
   }
 
   /**

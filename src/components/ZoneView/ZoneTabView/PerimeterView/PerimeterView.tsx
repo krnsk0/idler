@@ -6,7 +6,8 @@ import EnemyRow from './EnemyRow';
 import { formatTime } from '../../../../utils/formatTime';
 import { spinner } from '../../../../utils/spinner';
 import { formatNumber } from '../../../../utils/formatNumber';
-import EmptyTurretBox from './EmptyTurretBox';
+import EmptyEmplacement from './EmptyEmplacement';
+import TurretBox from './TurretBox';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -54,7 +55,10 @@ function PerimeterView({ zone }: PerimeterViewProps) {
       </div>
       <div css={styles.turretHeader}>defensive emplacements</div>
       <div css={styles.turretContainer}>
-        {zone.perimeter.canPurchaseTurret && <EmptyTurretBox />}
+        {zone.perimeter.canPurchaseTurret && <EmptyEmplacement zone={zone} />}
+        {zone.perimeter.turrets.map((turret) => (
+          <TurretBox turret={turret} />
+        ))}
       </div>
     </div>
   );
