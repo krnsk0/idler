@@ -103,20 +103,22 @@ function ZoneView({ zone }: ZoneViewProps) {
                 )}
               </div>
             )}
-            {(() => {
-              switch (gui.selectedTab) {
-                case ZoneTabNames.ACTIONS:
-                  return <ShipColonyView zone={zone} />;
-                case ZoneTabNames.JOBS:
-                  return <JobsView zone={zone} />;
-                case ZoneTabNames.UPGRADES:
-                  return <UpgradeView zone={zone} />;
-                case ZoneTabNames.PERIMETER:
-                  return <PerimeterView zone={zone} />;
-                default:
-                  throw new Error('should not reach this case');
-              }
-            })()}
+            <div css={styles.scrollableZoneRight}>
+              {(() => {
+                switch (gui.selectedTab) {
+                  case ZoneTabNames.ACTIONS:
+                    return <ShipColonyView zone={zone} />;
+                  case ZoneTabNames.JOBS:
+                    return <JobsView zone={zone} />;
+                  case ZoneTabNames.UPGRADES:
+                    return <UpgradeView zone={zone} />;
+                  case ZoneTabNames.PERIMETER:
+                    return <PerimeterView zone={zone} />;
+                  default:
+                    throw new Error('should not reach this case');
+                }
+              })()}
+            </div>
           </div>
           <div css={styles.zoneRight} id={TooltipContainerId}></div>
         </div>

@@ -64,16 +64,18 @@ export const styles = {
     flex-direction: column;
     justify-content: start;
     align-items: center;
+    ${mq['desktop']} {
+      margin-left: 1em;
+    }
+  `,
+  scrollableZoneRight: css`
+    width: 100%;
     overflow-y: scroll;
     ::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
     }
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
-
-    ${mq['desktop']} {
-      margin-left: 1em;
-    }
   `,
   zoneRight: css`
     display: none;
