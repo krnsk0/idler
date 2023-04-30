@@ -1,4 +1,5 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
+import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { getRadar } from '../../selectors';
 import { PhaseWorm } from './phaseWorm';
@@ -15,15 +16,33 @@ function exhaustiveGuard(value: never): never {
   );
 }
 
+const STARTING_PERIMETER_HEALTH = 50;
 @model('Perimeter')
 export class Perimeter extends ExtendedModel(ZoneEntity, {
   enemies: tProp(
     types.array(types.or(types.model(PhaseWorm), types.model(PhaseMantis))),
     () => [],
   ),
+  perimeterHealth: tProp(types.number, () => STARTING_PERIMETER_HEALTH),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;
+
+  /**
+   * Max health of perimeter
+   */
+  @computed
+  get maxPerimeterHealth() {
+    return STARTING_PERIMETER_HEALTH;
+  }
+
+  /**
+   * Perimeter health as a percentage
+   */
+  @computed
+  get perimeterHealthPercent() {
+    return this.perimeterHealth / this.maxPerimeterHealth;
+  }
 
   /**
    * Starts a new wave
