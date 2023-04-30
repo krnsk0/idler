@@ -49,13 +49,15 @@ function EnemyRow({ enemy }: EnemyRowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const health = enemy.remainingHitPointsPercent * 100;
 
+  const isExpanded = enemy.isExpanded;
+
   return (
     <>
       <TooltipPortalRenderer containerRef={containerRef}>
         {<EnemyRowTooltip enemy={enemy} />}
       </TooltipPortalRenderer>
       <div
-        css={styles.enemyRow}
+        css={(theme) => styles.enemyRow(theme, !isExpanded)}
         ref={containerRef}
         onClick={() => {
           enemy.expandEnemy();
@@ -64,7 +66,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
         <div css={styles.progressBar} style={{ width: health + '%' }} />
         <div
           css={styles.caret}
-          style={{ transform: enemy.isExpanded ? 'rotate(90deg)' : 'none' }}
+          style={{ transform: isExpanded ? 'rotate(90deg)' : 'none' }}
         >
           {'>'}
         </div>

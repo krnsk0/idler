@@ -2,9 +2,11 @@ import { Theme, css } from '@emotion/react';
 import { mq } from '../../../../globalStyles';
 
 export const styles = {
-  enemyRow: (theme: Theme) => css`
+  enemyRow: (theme: Theme, showBottomBorder: boolean) => css`
     height: 2em;
-    border-bottom: 1px solid ${theme.colors.primary};
+    border-bottom: ${showBottomBorder
+      ? `1px solid ${theme.colors.primary}`
+      : `none`};
     display: flex;
     align-items: center;
     position: relative;
@@ -12,6 +14,7 @@ export const styles = {
 
     ${mq['hoverableDesktop']} {
       cursor: default;
+      border-bottom: 1px solid ${theme.colors.primary};
     }
   `,
 
