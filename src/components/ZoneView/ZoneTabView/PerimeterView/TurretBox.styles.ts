@@ -13,6 +13,13 @@ export const styles = {
     align-items: center;
     cursor: pointer;
   `,
+  constructEmplacementBox: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  `,
   plusSign: css`
     font-size: 2em;
     margin-bottom: -0.3em;

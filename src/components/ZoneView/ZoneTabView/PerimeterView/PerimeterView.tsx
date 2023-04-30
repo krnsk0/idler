@@ -8,6 +8,7 @@ import { spinner } from '../../../../utils/spinner';
 import { formatNumber } from '../../../../utils/formatNumber';
 import EmptyEmplacement from './EmptyEmplacement';
 import TurretBox from './TurretBox';
+import ConstructEmplacement from './ConstructEmplacement';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -59,6 +60,9 @@ function PerimeterView({ zone }: PerimeterViewProps) {
         {zone.perimeter.turrets.map((turret) => (
           <TurretBox turret={turret} />
         ))}
+        {zone.perimeter.newEmplacementAvailable && (
+          <ConstructEmplacement zone={zone} />
+        )}
       </div>
     </div>
   );
