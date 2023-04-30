@@ -3,10 +3,14 @@ import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
 import { getGui } from '../../selectors';
 
+// meters
+const PERIMETER_SIZE = 100;
+
 export abstract class BaseEnemy extends Model({
   id: idProp,
   damageTaken: tProp(types.number, 0),
   attackCooldownElapsed: tProp(types.number, 0),
+  distanceTraveled: tProp(types.number, 0),
 
   // modifiers to base stats
   hpModifier: tProp(types.number, 1),
@@ -113,7 +117,5 @@ export abstract class BaseEnemy extends Model({
    * The tick for the enemy
    */
   @modelAction
-  tick(delta: number) {
-    // TODO
-  }
+  tick(delta: number) {}
 }

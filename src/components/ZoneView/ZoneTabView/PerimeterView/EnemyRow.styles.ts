@@ -40,5 +40,6 @@ export const styles = {
     }
     color: ${theme.colors.secondary};
     font-size: 0.8em;
+    padding: 1em 0.5em 0.5em 0.5em;
   `,
 };
