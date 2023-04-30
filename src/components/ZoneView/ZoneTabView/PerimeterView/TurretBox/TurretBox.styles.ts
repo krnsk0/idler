@@ -32,6 +32,10 @@ export const styles = {
     font-size: 2em;
     margin-bottom: -0.3em;
   `,
+  fortifyHeader: css`
+    font-size: 0.8em;
+    text-align: center;
+  `,
   costDisplay: css`
     margin-top: 1em;
     display: flex;

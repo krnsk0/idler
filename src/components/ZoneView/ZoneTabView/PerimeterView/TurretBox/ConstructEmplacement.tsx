@@ -16,7 +16,7 @@ function ConstructEmplacement({ zone }: { zone: Zone }) {
       ]}
       onClick={() => {}}
     >
-      <div>fortify</div>
+      <div css={styles.fortifyHeader}>fortify new emplacement</div>
       <div css={styles.costDisplay}>
         {costs.map(
           ({
