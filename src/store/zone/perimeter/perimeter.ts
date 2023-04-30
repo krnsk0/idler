@@ -7,7 +7,7 @@ import { PhaseMantis } from './enemies/phaseMantis';
 import { waveBuilder } from './enemies/utils/waveBuilder';
 import { statModifierFactory } from './enemies/utils/statModifierFactory';
 import { EnemyNames } from './enemies/enemyNames';
-import { PurchaseCost } from '../sharedTypes';
+import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 import { ResourceNames } from '../resources/resourceNames';
 import { KineticTurret } from './turrets/kinetic';
 
@@ -29,6 +29,12 @@ const EMPLACEMENT_LIMIT = 4;
 
 const EMPLACEMENT_EXPONENT = 1.5;
 
+// first emplacement is free
+const BASE_EMPLACEMENT_COSTS = [
+  { resource: ResourceNames.ALLOY, quantity: 30 },
+  { resource: ResourceNames.ROCK, quantity: 35 },
+];
+
 @model('Perimeter')
 export class Perimeter extends ExtendedModel(ZoneEntity, {
   enemies: tProp(types.array(enemyTypes), () => []),
@@ -38,11 +44,6 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;
-
-  baseCost = [
-    { resource: ResourceNames.ALLOY, quantity: 50 },
-    { resource: ResourceNames.ROCK, quantity: 50 },
-  ];
 
   /**
    * Allowed to puchase more turrets?
@@ -56,14 +57,41 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    * Cost of next emplacement
    */
   @computed
-  get emplacementCost(): PurchaseCost[] {
-    return this.baseCost.map(({ resource, quantity: baseCost }) => {
+  get emplacementCosts(): PurchaseCost[] {
+    return BASE_EMPLACEMENT_COSTS.map(({ resource, quantity: baseCost }) => {
       return {
         resource,
         quantity: Math.floor(
-          baseCost * EMPLACEMENT_EXPONENT ** this.emplacementCount,
+          baseCost * EMPLACEMENT_EXPONENT ** (this.emplacementCount - 1),
         ),
       };
+    });
+  }
+
+  /**
+   * Current cost with displayable names
+   */
+  @computed
+  get emplacementCostDisplay(): PurchaseCostDisplay[] {
+    return this.emplacementCosts.map(({ resource, quantity }) => {
+      const resourceModel = this.zoneResources[resource];
+      return {
+        resourceDisplayName: resourceModel.displayName,
+        isSatisfied: resourceModel.quantity >= quantity,
+        availableQuantity: resourceModel.quantity,
+        storageConstrained: quantity > resourceModel.currentCap,
+        quantity,
+      };
+    });
+  }
+
+  /**
+   * Can this entity be bought?
+   */
+  @computed
+  get emplacementAffordable(): boolean {
+    return this.emplacementCosts.every(({ resource, quantity }) => {
+      return this.zoneResources[resource].quantity >= quantity;
     });
   }
 

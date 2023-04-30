@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { styles } from './TurretBox.styles';
-import { Zone } from '../../../../store/zone/zone';
+import { Zone } from '../../../../../store/zone/zone';
 
 function EmptyEmplacement({ zone }: { zone: Zone }) {
   return (
@@ -9,7 +9,7 @@ function EmptyEmplacement({ zone }: { zone: Zone }) {
       onClick={() => zone.perimeter.constructTurret()}
     >
       <div css={styles.plusSign}>+</div>
-      <div>construct</div>
+      <div>install</div>
       <div>turret</div>
     </div>
   );
