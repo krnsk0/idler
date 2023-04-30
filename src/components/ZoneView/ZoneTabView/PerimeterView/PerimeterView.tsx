@@ -5,7 +5,6 @@ import { styles } from './PerimeterView.styles';
 import EnemyRow from './EnemyRow';
 import { formatTime } from '../../../../utils/formatTime';
 import { spinner } from '../../../../utils/spinner';
-import PerimeterIntegrity from '../../../shared/PerimeterIntegrity/PerimeterIntegrity';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -44,7 +43,16 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           return <EnemyRow key={enemy.id} enemy={enemy} />;
         })}
       </div>
-      <PerimeterIntegrity zone={zone} />
+      <div css={styles.integrityBox}>
+        <div
+          css={styles.progressBar}
+          style={{ width: zone.perimeter.perimeterHealthPercent * 100 + '%' }}
+        ></div>
+        <div css={styles.integrityText}>
+          perimeter integrity {zone.perimeter.perimeterHealth} /{' '}
+          {zone.perimeter.maxPerimeterHealth}
+        </div>
+      </div>
     </div>
   );
 }
