@@ -69,6 +69,14 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Damage the perimeter
+   */
+  @modelAction
+  damagePerimeter(damage: number) {
+    this.perimeterHealth = Math.max(0, this.perimeterHealth - damage);
+  }
+
+  /**
    * The tick action for this model
    */
   @modelAction

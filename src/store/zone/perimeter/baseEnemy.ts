@@ -1,7 +1,7 @@
 import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
 import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
-import { getGui } from '../../selectors';
+import { getGui, getPerimeter } from '../../selectors';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -185,7 +185,7 @@ export abstract class BaseEnemy extends Model({
    */
   @modelAction
   doAttack() {
-    console.log(`${this.id} ATTACKED!`);
+    getPerimeter(this).damagePerimeter(this.attackDamage);
   }
 
   /**
