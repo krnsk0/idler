@@ -9,7 +9,7 @@ export class PhaseWorm extends ExtendedModel(BaseEnemy, {}) {
   description =
     'small vermiform organism. can induce destabilizing resonance in structures and equipment.';
   baseHitPoints = 10;
-  baseAttackCooldown = 10;
+  baseAttackCooldown = 5;
   baseAttackDamage = 1;
   baseAttackRange = 10;
   baseMovementSpeed = 1;

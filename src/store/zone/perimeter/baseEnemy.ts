@@ -2,6 +2,9 @@ import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
 import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
 import { getGui, getPerimeter } from '../../selectors';
+import { formatTime } from '../../../utils/formatTime';
+import { formatNumber } from '../../../utils/formatNumber';
+import { spinner } from '../../../utils/spinner';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -161,6 +164,30 @@ export abstract class BaseEnemy extends Model({
   @computed
   get isDead() {
     return this.remainingHitPoints <= 0;
+  }
+
+  /**
+   * Visual state descriptor
+   */
+  @computed
+  get stateDescriptor(): string {
+    switch (this.state) {
+      case EnemyState.IDLE: {
+        return formatTime(this.attackCooldownRemaining);
+      }
+      case EnemyState.MOVING: {
+        return formatNumber(this.distanceFromPerimeter) + 'm';
+      }
+      case EnemyState.ATTACKING: {
+        return spinner(this.attackTimeRemaining);
+      }
+      case EnemyState.DEAD: {
+        return 'Dead';
+      }
+      default: {
+        exhaustiveGuard(this.state);
+      }
+    }
   }
 
   /**

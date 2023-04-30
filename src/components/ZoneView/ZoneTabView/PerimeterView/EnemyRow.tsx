@@ -16,6 +16,10 @@ interface EnemyRowProps {
 }
 
 const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
+  const cooldown =
+    enemy.attackCooldownRemaining > 0
+      ? formatTime(enemy.attackCooldownRemaining)
+      : '-';
   return (
     <>
       <DesktopTooltipTitle showDivider={true}>
@@ -31,10 +35,11 @@ const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
           health: {formatNumber(enemy.remainingHitPoints)} /{' '}
           {formatNumber(enemy.maxHitPoints)}
         </div>
+        <div>distance: {formatNumber(enemy.distanceFromPerimeter)} meters</div>
+        <div>speed: {formatNumber(enemy.movementSpeed)} meters/sec</div>
         <div>attack: {formatNumber(enemy.attackDamage)}</div>
-        <div>speed: {formatNumber(enemy.movementSpeed)}</div>
-        <div>distance: {formatNumber(enemy.distanceFromPerimeter)}</div>
-        <div>cooldown: {formatTime(enemy.attackCooldownRemaining)}</div>
+        <div>range: {formatNumber(enemy.attackRange)} meters</div>
+        <div>cooldown: {cooldown}</div>
       </TooltipText>
     </>
   );
@@ -65,7 +70,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
         </div>
         <div css={styles.enemyRowRight}>
           <div>{enemy.displayName}</div>
-          <div>{enemy.state}</div>
+          <div>{enemy.stateDescriptor}</div>
         </div>
       </div>
       {enemy.isExpanded && (
