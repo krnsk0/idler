@@ -160,6 +160,19 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Purchase a new emplacement
+   */
+  @modelAction
+  purchaseEmplacement() {
+    if (this.emplacementAffordable) {
+      this.emplacementCosts.forEach(({ resource, quantity }) => {
+        this.zoneResources[resource].decrease(quantity, { untracked: true });
+      });
+      this.emplacementCount += 1;
+    }
+  }
+
+  /**
    * The tick action for this model
    */
   @modelAction

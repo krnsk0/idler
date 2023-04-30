@@ -14,7 +14,9 @@ function ConstructEmplacement({ zone }: { zone: Zone }) {
         styles.turretBox,
         styles.constructEmplacementBox(theme, affordable),
       ]}
-      onClick={() => {}}
+      onClick={() => {
+        zone.perimeter.purchaseEmplacement();
+      }}
     >
       <div css={styles.fortifyHeader}>fortify new emplacement</div>
       <div css={styles.costDisplay}>

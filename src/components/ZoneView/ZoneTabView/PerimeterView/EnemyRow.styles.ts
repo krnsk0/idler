@@ -25,7 +25,6 @@ export const styles = {
     width: 100%;
     padding-right: 0.5em;
     margin-left: 0.5em;
-
     z-index: 1;
   `,
   caret: css`

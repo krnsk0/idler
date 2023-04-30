@@ -56,10 +56,10 @@ function PerimeterView({ zone }: PerimeterViewProps) {
       </div>
       <div css={styles.turretHeader}>defensive emplacements</div>
       <div css={styles.turretContainer}>
-        {zone.perimeter.canPurchaseTurret && <EmptyEmplacement zone={zone} />}
         {zone.perimeter.turrets.map((turret) => (
           <TurretBox key={turret.id} turret={turret} />
         ))}
+        {zone.perimeter.canPurchaseTurret && <EmptyEmplacement zone={zone} />}
         {zone.perimeter.newEmplacementAvailable && (
           <ConstructEmplacement zone={zone} />
         )}
