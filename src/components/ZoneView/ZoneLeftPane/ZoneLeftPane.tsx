@@ -19,26 +19,6 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
 
   return (
     <div css={styles.paneContainer}>
-      {zone.radar.unlocked && (
-        <BorderContainer
-          title="radar"
-          styleOverride={styles.radarContainer}
-          showEntranceAnimation={zone.radar.showEntranceAnimation()}
-        >
-          {zone.radar.isScanning && (
-            <div css={styles.radarRow}>
-              <span>scanning...</span>
-              <span>{spinner(zone.radar.timeLeft)}</span>
-            </div>
-          )}
-          {zone.radar.isCountingDown && (
-            <div css={styles.radarRow}>
-              <span>wave {zone.radar.currentWave}</span>
-              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
-            </div>
-          )}
-        </BorderContainer>
-      )}
       {zone.power.unlocked && (
         <BorderContainer
           title="power"
@@ -73,6 +53,26 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
               })}
             </span>
           </div>
+        </BorderContainer>
+      )}
+      {zone.radar.unlocked && (
+        <BorderContainer
+          title="radar"
+          styleOverride={styles.radarContainer}
+          showEntranceAnimation={zone.radar.showEntranceAnimation()}
+        >
+          {zone.radar.isScanning && (
+            <div css={styles.radarRow}>
+              <span>scanning...</span>
+              <span>{spinner(zone.radar.timeLeft)}</span>
+            </div>
+          )}
+          {zone.radar.isCountingDown && (
+            <div css={styles.radarRow}>
+              <span>wave {zone.radar.currentWave}</span>
+              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
+            </div>
+          )}
         </BorderContainer>
       )}
       {zone.resources.unlocked && (
