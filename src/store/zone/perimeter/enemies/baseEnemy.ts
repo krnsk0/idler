@@ -1,10 +1,10 @@
 import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
 import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
-import { getGui, getPerimeter } from '../../selectors';
-import { formatTime } from '../../../utils/formatTime';
-import { formatNumber } from '../../../utils/formatNumber';
-import { spinner } from '../../../utils/spinner';
+import { getGui, getPerimeter } from '../../../selectors';
+import { formatTime } from '../../../../utils/formatTime';
+import { formatNumber } from '../../../../utils/formatNumber';
+import { spinner } from '../../../../utils/spinner';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(

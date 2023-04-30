@@ -2,11 +2,11 @@ import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
 import { getRadar } from '../../selectors';
-import { PhaseWorm } from './phaseWorm';
-import { PhaseMantis } from './phaseMantis';
-import { waveBuilder } from './utils/waveBuilder';
-import { statModifierFactory } from './utils/statModifierFactory';
-import { EnemyNames } from './enemyNames';
+import { PhaseWorm } from './enemies/phaseWorm';
+import { PhaseMantis } from './enemies/phaseMantis';
+import { waveBuilder } from './enemies/utils/waveBuilder';
+import { statModifierFactory } from './enemies/utils/statModifierFactory';
+import { EnemyNames } from './enemies/enemyNames';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(

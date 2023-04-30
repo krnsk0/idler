@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { BaseEnemy } from '../../../../store/zone/perimeter/baseEnemy';
+import { BaseEnemy } from '../../../../store/zone/perimeter/enemies/baseEnemy';
 import { styles } from './EnemyRow.styles';
 import { formatTime } from '../../../../utils/formatTime';
 import {
