@@ -59,17 +59,12 @@ export const styles = {
     margin-top: 1em;
   `,
   turretContainer: css`
-    padding-top: 0.5em;
+    padding-top: 0.2em;
     width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.5em;
-  `,
-  turretBox: (theme: Theme) => css`
-    width: 5em;
-    height: 8em;
-    border: 1px solid ${theme.colors.primary};
+    gap: 0.8em;
   `,
 };

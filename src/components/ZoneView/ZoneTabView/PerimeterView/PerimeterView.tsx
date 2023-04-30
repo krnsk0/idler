@@ -5,6 +5,8 @@ import { styles } from './PerimeterView.styles';
 import EnemyRow from './EnemyRow';
 import { formatTime } from '../../../../utils/formatTime';
 import { spinner } from '../../../../utils/spinner';
+import { formatNumber } from '../../../../utils/formatNumber';
+import EmptyTurretBox from './EmptyTurretBox';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -46,18 +48,14 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           style={{ width: zone.perimeter.perimeterHealthPercent * 100 + '%' }}
         ></div>
         <div css={styles.integrityText}>
-          {zone.perimeter.perimeterHealth} / {zone.perimeter.maxPerimeterHealth}
+          {formatNumber(zone.perimeter.perimeterHealth)} /{' '}
+          {formatNumber(zone.perimeter.maxPerimeterHealth)}
         </div>
       </div>
       <div css={styles.integrityHeader}>emplacements</div>
 
       <div css={styles.turretContainer}>
-        {zone.perimeter.canPurchaseTurret && (
-          <div css={styles.turretBox}>purchase turret</div>
-        )}
-        <div css={styles.turretBox}>purchase turret</div>
-        <div css={styles.turretBox}>purchase turret</div>
-        <div css={styles.turretBox}>purchase turret</div>
+        {zone.perimeter.canPurchaseTurret && <EmptyTurretBox />}
       </div>
     </div>
   );
