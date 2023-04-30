@@ -11,11 +11,13 @@ interface StatModifiers {
 }
 
 export function statModifierFactory(): StatModifiers {
+  const baseModifier = getConstrainedRandomFloat(0.75, 1.25);
+
   return {
-    hpModifier: getConstrainedRandomFloat(0.75, 1.25),
-    movementSpeedModifier: getConstrainedRandomFloat(0.75, 1.25),
-    attackCooldownModifier: getConstrainedRandomFloat(0.75, 1.25),
-    attackDamageModifier: getConstrainedRandomFloat(0.75, 1.25),
-    attackRangeModifier: getConstrainedRandomFloat(0.75, 1.25),
+    hpModifier: baseModifier + getConstrainedRandomFloat(-0.1, 0.1),
+    movementSpeedModifier: baseModifier + getConstrainedRandomFloat(-0.1, 0.1),
+    attackCooldownModifier: baseModifier + getConstrainedRandomFloat(-0.1, 0.1),
+    attackDamageModifier: baseModifier + getConstrainedRandomFloat(-0.1, 0.1),
+    attackRangeModifier: baseModifier + getConstrainedRandomFloat(-0.1, 0.1),
   };
 }

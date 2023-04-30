@@ -32,14 +32,14 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   startWave(wave: number) {
     const threatLevel = Math.floor(wave * 1.5); // consider making exponential?
     const waveDescription = waveBuilder(threatLevel);
-    console.log('waveDescription: ', { threatLevel, waveDescription });
     waveDescription.forEach((enemyName: EnemyNames) => {
+      const modifiers = statModifierFactory();
       switch (enemyName) {
         case EnemyNames.PHASE_WORM:
-          this.enemies.push(new PhaseWorm(statModifierFactory()));
+          this.enemies.push(new PhaseWorm(modifiers));
           break;
         case EnemyNames.PHASE_MANTIS:
-          this.enemies.push(new PhaseMantis(statModifierFactory()));
+          this.enemies.push(new PhaseMantis(modifiers));
           break;
         default:
           // if this highlights it means we are missing a value in the

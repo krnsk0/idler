@@ -27,11 +27,12 @@ function EnemyRowTooltip({ enemy }: EnemyRowProps) {
       <TooltipDivider smallMargin={true} />
 
       <TooltipText>
-        vigor: {formatNumber(enemy.remainingHitPoints)} /{' '}
-        {formatNumber(enemy.maxHitPoints)}
-      </TooltipText>
-      <TooltipText>
-        attack power: {formatNumber(enemy.attackDamage)}
+        <div>
+          vigor: {formatNumber(enemy.remainingHitPoints)} /{' '}
+          {formatNumber(enemy.maxHitPoints)}
+        </div>
+        <div>attack power: {formatNumber(enemy.attackDamage)}</div>
+        <div>movement speed: {formatNumber(enemy.movementSpeed)}</div>
       </TooltipText>
     </>
   );

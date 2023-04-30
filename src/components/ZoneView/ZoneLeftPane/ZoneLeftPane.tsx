@@ -33,7 +33,7 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
           )}
           {zone.radar.isCountingDown && (
             <div css={styles.radarRow}>
-              <span>next wave</span>
+              <span>wave {zone.radar.currentWave}</span>
               <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
             </div>
           )}
