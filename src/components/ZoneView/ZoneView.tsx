@@ -2,7 +2,6 @@ import { observer } from 'mobx-react-lite';
 import { Zone } from '../../store/zone/zone';
 import { styles } from './ZoneView.styles';
 import ZoneLeftPane from './ZoneLeftPane/ZoneLeftPane';
-import { useState } from 'react';
 import ShipColonyView from './ZoneTabView/ShipView/ShipColonyView';
 import JobsView from './ZoneTabView/JobsView/JobsView';
 import { useMediaQuery } from '../shared/useMediaQuery';
