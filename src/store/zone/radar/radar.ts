@@ -12,7 +12,7 @@ enum RadarState {
 }
 
 // seconds
-const SCAN_TIME = 59.999;
+const SCAN_TIME = 4.999;
 
 // seconds
 const ARRIVAL_TIME = 119.999;
