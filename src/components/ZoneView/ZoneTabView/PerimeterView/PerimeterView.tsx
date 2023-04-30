@@ -43,14 +43,14 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           return <EnemyRow key={enemy.id} enemy={enemy} />;
         })}
       </div>
+      <div css={styles.integrityHeader}>perimeter integrity</div>
       <div css={styles.integrityBox}>
         <div
           css={styles.progressBar}
           style={{ width: zone.perimeter.perimeterHealthPercent * 100 + '%' }}
         ></div>
         <div css={styles.integrityText}>
-          perimeter integrity {zone.perimeter.perimeterHealth} /{' '}
-          {zone.perimeter.maxPerimeterHealth}
+          {zone.perimeter.perimeterHealth} / {zone.perimeter.maxPerimeterHealth}
         </div>
       </div>
     </div>
