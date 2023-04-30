@@ -8,6 +8,11 @@ export const styles = {
     display: flex;
     align-items: center;
     position: relative;
+    cursor: pointer;
+
+    ${mq['hoverableDesktop']} {
+      cursor: default;
+    }
   `,
 
   enemyRowRight: css`
@@ -41,5 +46,6 @@ export const styles = {
     color: ${theme.colors.secondary};
     font-size: 0.8em;
     padding: 1em 0.5em 0.5em 0.5em;
+    border-bottom: 1px solid ${theme.colors.primary};
   `,
 };

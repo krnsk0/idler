@@ -5,8 +5,8 @@ function TurretBox() {
   return (
     <div css={[styles.turretBox, styles.emptyTurretBox]}>
       <div css={styles.plusSign}>+</div>
-      <div>construct</div>
-      <div>turret</div>
+      <div>augment</div>
+      <div>defenses</div>
     </div>
   );
 }

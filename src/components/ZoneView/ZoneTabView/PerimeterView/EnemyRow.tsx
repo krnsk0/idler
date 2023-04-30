@@ -74,7 +74,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
         </div>
       </div>
       {enemy.isExpanded && (
-        <div css={[styles.expandedResourceTooltip]}>
+        <div css={styles.expandedResourceTooltip}>
           <EnemyRowTooltip enemy={enemy} />
         </div>
       )}

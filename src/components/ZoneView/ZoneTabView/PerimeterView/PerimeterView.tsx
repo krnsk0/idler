@@ -52,8 +52,7 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           {formatNumber(zone.perimeter.maxPerimeterHealth)}
         </div>
       </div>
-      <div css={styles.integrityHeader}>emplacements</div>
-
+      <div css={styles.turretHeader}>defensive emplacements</div>
       <div css={styles.turretContainer}>
         {zone.perimeter.canPurchaseTurret && <EmptyTurretBox />}
       </div>

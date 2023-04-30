@@ -31,7 +31,7 @@ export const styles = {
     justify-content: center;
   `,
   integrityHeader: css`
-    margin-top: 1em;
+    margin-top: 1.2em;
   `,
   integrityBox: (theme: Theme) => css`
     height: 2em;
@@ -56,10 +56,9 @@ export const styles = {
     z-index: 1;
   `,
   turretHeader: css`
-    margin-top: 1em;
+    margin-top: 1.2em;
   `,
   turretContainer: css`
-    padding-top: 0.2em;
     width: 90%;
     display: flex;
     align-items: center;
