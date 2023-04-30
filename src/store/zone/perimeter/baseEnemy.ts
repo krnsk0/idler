@@ -3,14 +3,33 @@ import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
 import { getGui } from '../../selectors';
 
+function exhaustiveGuard(value: never): never {
+  throw new Error(
+    `Reached guard function with unexpected value: ${JSON.stringify(
+      value,
+    )}. Is switch/case missing a value?`,
+  );
+}
+
 // meters
 const PERIMETER_SIZE = 100;
+
+// seconds
+const BASE_ATTACK_TIME = 1;
+
+enum EnemyState {
+  IDLE = 'IDLE',
+  DEAD = 'DEAD',
+  MOVING = 'MOVING',
+  ATTACKING = 'ATTACKING',
+}
 
 export abstract class BaseEnemy extends Model({
   id: idProp,
   damageTaken: tProp(types.number, 0),
-  attackCooldownElapsed: tProp(types.number, 0),
-  distanceTraveled: tProp(types.number, 0),
+  attackCooldownRemaining: tProp(types.number, 0), // seconds
+  attackTimeRemaining: tProp(types.number, 0), // seconds
+  distanceTraveled: tProp(types.number, 0), // meters
 
   // modifiers to base stats
   hpModifier: tProp(types.number, 1),
@@ -18,6 +37,9 @@ export abstract class BaseEnemy extends Model({
   attackDamageModifier: tProp(types.number, 1),
   attackRangeModifier: tProp(types.number, 1),
   attackCooldownModifier: tProp(types.number, 1),
+
+  // state
+  state: tProp(types.enum(EnemyState), EnemyState.MOVING),
 }) {
   // splash
   abstract name: EnemyNames;
@@ -45,6 +67,8 @@ export abstract class BaseEnemy extends Model({
 
   /**
    * Total movement speed with modifier
+   *
+   * Meters per second
    */
   @computed
   get movementSpeed() {
@@ -55,7 +79,7 @@ export abstract class BaseEnemy extends Model({
    * Total attack cooldown with modifier
    */
   @computed
-  get attackCooldown() {
+  get totalAttackCooldown() {
     return this.baseAttackCooldown * this.attackCooldownModifier;
   }
 
@@ -94,15 +118,49 @@ export abstract class BaseEnemy extends Model({
   /**
    * Is the enemy row expanded?
    */
+  @computed
   get isExpanded(): boolean {
     return getGui(this).expandedEnemyId === this.id;
   }
 
   /**
-   * Get cooldown remaining
+   * Disance from perimeter
    */
-  get cooldown() {
-    return this.attackCooldown - this.attackCooldownElapsed;
+  @computed
+  get distanceFromPerimeter() {
+    return Math.max(PERIMETER_SIZE - this.distanceTraveled, 0);
+  }
+
+  /**
+   * Within attack range?
+   */
+  @computed
+  get isWithinAttackRange() {
+    return this.distanceFromPerimeter <= this.attackRange;
+  }
+
+  /**
+   * Ready to attack?
+   */
+  @computed
+  get canAttack() {
+    return this.attackCooldownRemaining <= 0;
+  }
+
+  /**
+   * Can move forward?
+   */
+  @computed
+  get canMoveForward() {
+    return this.distanceTraveled < PERIMETER_SIZE;
+  }
+
+  /**
+   * Check if enemy is dead
+   */
+  @computed
+  get isDead() {
+    return this.remainingHitPoints <= 0;
   }
 
   /**
@@ -114,8 +172,68 @@ export abstract class BaseEnemy extends Model({
   }
 
   /**
+   * Kick off attack phase
+   */
+  @modelAction
+  startAttackPhase() {
+    this.attackTimeRemaining = BASE_ATTACK_TIME;
+    this.state = EnemyState.ATTACKING;
+  }
+
+  /**
+   * Actually carry out attack
+   */
+  @modelAction
+  doAttack() {
+    console.log(`${this.id} ATTACKED!`);
+  }
+
+  /**
    * The tick for the enemy
    */
   @modelAction
-  tick(delta: number) {}
+  tick(delta: number) {
+    this.attackCooldownRemaining -= delta;
+    if (this.isDead) {
+      this.state = EnemyState.DEAD;
+    }
+
+    switch (this.state) {
+      case EnemyState.MOVING: {
+        if (this.isWithinAttackRange && this.canAttack) {
+          this.startAttackPhase();
+        } else if (this.canMoveForward) {
+          this.distanceTraveled += this.movementSpeed * delta;
+        } else {
+          this.state = EnemyState.IDLE;
+        }
+        break;
+      }
+      case EnemyState.ATTACKING: {
+        if (this.attackTimeRemaining > 0) {
+          this.attackTimeRemaining -= delta;
+        } else {
+          this.doAttack();
+          this.attackCooldownRemaining = this.totalAttackCooldown;
+          if (this.canMoveForward) this.state = EnemyState.MOVING;
+          else this.state = EnemyState.IDLE;
+        }
+
+        break;
+      }
+      case EnemyState.DEAD: {
+        break;
+      }
+      case EnemyState.IDLE: {
+        if (this.canMoveForward) this.state = EnemyState.MOVING;
+        else if (this.isWithinAttackRange && this.canAttack) {
+          this.startAttackPhase();
+        }
+        break;
+      }
+      default: {
+        exhaustiveGuard(this.state);
+      }
+    }
+  }
 }

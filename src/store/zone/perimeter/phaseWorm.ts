@@ -11,6 +11,6 @@ export class PhaseWorm extends ExtendedModel(BaseEnemy, {}) {
   baseHitPoints = 10;
   baseAttackCooldown = 10;
   baseAttackDamage = 1;
-  baseAttackRange = 5;
+  baseAttackRange = 10;
   baseMovementSpeed = 1;
 }

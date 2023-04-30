@@ -15,7 +15,7 @@ interface EnemyRowProps {
   enemy: BaseEnemy;
 }
 
-function EnemyRowTooltip({ enemy }: EnemyRowProps) {
+const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
   return (
     <>
       <DesktopTooltipTitle showDivider={true}>
@@ -33,10 +33,11 @@ function EnemyRowTooltip({ enemy }: EnemyRowProps) {
         </div>
         <div>attack: {formatNumber(enemy.attackDamage)}</div>
         <div>speed: {formatNumber(enemy.movementSpeed)}</div>
+        <div>distance: {formatNumber(enemy.distanceFromPerimeter)}</div>
       </TooltipText>
     </>
   );
-}
+});
 
 function EnemyRow({ enemy }: EnemyRowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -63,7 +64,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
         </div>
         <div css={styles.enemyRowRight}>
           <div>{enemy.displayName}</div>
-          <div>{formatTime(enemy.cooldown)}</div>
+          <div>{enemy.state}</div>
         </div>
       </div>
       {enemy.isExpanded && (
