@@ -82,8 +82,8 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
               }}
             ></div>
             <div css={styles.integrityText}>
-              {zone.perimeter.perimeterHealth} /{' '}
-              {zone.perimeter.maxPerimeterHealth}
+              {formatNumber(zone.perimeter.perimeterHealth)} /{' '}
+              {formatNumber(zone.perimeter.maxPerimeterHealth)}
             </div>
           </div>
         </BorderContainer>

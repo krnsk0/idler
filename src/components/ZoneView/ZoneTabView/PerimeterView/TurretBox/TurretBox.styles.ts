@@ -2,7 +2,7 @@ import { Theme, css } from '@emotion/react';
 
 export const styles = {
   turretBox: (theme: Theme) => css`
-    width: 5.2em;
+    width: 5em;
     height: 8em;
     border: 1px solid ${theme.colors.primary};
   `,
@@ -12,6 +12,10 @@ export const styles = {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+  `,
+  invisiblePlaceholder: css`
+    opacity: 0;
+    cursor: default;
   `,
   constructEmplacementBox: (theme: Theme, affordable: boolean) => css`
     display: flex;

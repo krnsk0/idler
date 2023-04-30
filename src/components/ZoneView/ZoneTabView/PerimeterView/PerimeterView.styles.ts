@@ -1,4 +1,5 @@
 import { Theme, css } from '@emotion/react';
+import { mq } from '../../../../globalStyles';
 
 export const styles = {
   perimeterContainer: css`
@@ -59,11 +60,19 @@ export const styles = {
     margin-top: 1.2em;
   `,
   turretContainer: css`
-    width: 90%;
+    width: 225px;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0.8em;
+    margin-bottom: 2em;
+
+    // note this is a special hardcoded breakpoint
+    // intended to ensure the flexbox breaks and wraps
+    // properly so we always only get either 2 or 4 turrets/row
+    @media (min-width: 728px) {
+      width: 88%;
+    }
   `,
 };

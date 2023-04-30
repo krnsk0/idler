@@ -100,7 +100,11 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get newEmplacementAvailable() {
-    return this.emplacementCount < EMPLACEMENT_LIMIT && !this.canPurchaseTurret;
+    return (
+      this.emplacementCount < EMPLACEMENT_LIMIT &&
+      !this.canPurchaseTurret &&
+      this.turrets.length < EMPLACEMENT_LIMIT
+    );
   }
 
   /**

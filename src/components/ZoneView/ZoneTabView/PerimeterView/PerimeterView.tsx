@@ -9,6 +9,7 @@ import { formatNumber } from '../../../../utils/formatNumber';
 import EmptyEmplacement from './TurretBox/EmptyEmplacement';
 import TurretBox from './TurretBox/TurretBox';
 import ConstructEmplacement from './TurretBox/ConstructEmplacement';
+import InvisiblePlaceholder from './TurretBox/InvisiblePlaceholder';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -16,6 +17,7 @@ interface PerimeterViewProps {
 
 function PerimeterView({ zone }: PerimeterViewProps) {
   const perimeter = zone.perimeter;
+  const radar = zone.radar;
 
   const enemiesPresent = perimeter.enemies.length > 0;
 
@@ -28,16 +30,16 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           })
         ) : (
           <div css={styles.emptyPerimeterMessage}>
-            {zone.radar.isScanning && (
+            {radar.isScanning && (
               <>
                 <div>scanning...</div>
-                <div>{spinner(zone.radar.timeLeft)}</div>
+                <div>{spinner(radar.timeLeft)}</div>
               </>
             )}
-            {zone.radar.isCountingDown && (
+            {radar.isCountingDown && (
               <>
                 <div>next wave</div>
-                <div>{formatTime(zone.radar.timeLeft ?? 0)}</div>
+                <div>{formatTime(radar.timeLeft ?? 0)}</div>
               </>
             )}
           </div>
@@ -47,22 +49,26 @@ function PerimeterView({ zone }: PerimeterViewProps) {
       <div css={styles.integrityBox}>
         <div
           css={styles.progressBar}
-          style={{ width: zone.perimeter.perimeterHealthPercent * 100 + '%' }}
+          style={{ width: perimeter.perimeterHealthPercent * 100 + '%' }}
         ></div>
         <div css={styles.integrityText}>
-          {formatNumber(zone.perimeter.perimeterHealth)} /{' '}
-          {formatNumber(zone.perimeter.maxPerimeterHealth)}
+          {formatNumber(perimeter.perimeterHealth)} /{' '}
+          {formatNumber(perimeter.maxPerimeterHealth)}
         </div>
       </div>
       <div css={styles.turretHeader}>defensive emplacements</div>
       <div css={styles.turretContainer}>
-        {zone.perimeter.turrets.map((turret) => (
+        {perimeter.turrets.map((turret) => (
           <TurretBox key={turret.id} turret={turret} />
         ))}
-        {zone.perimeter.canPurchaseTurret && <EmptyEmplacement zone={zone} />}
-        {zone.perimeter.newEmplacementAvailable && (
+        {perimeter.canPurchaseTurret && <EmptyEmplacement zone={zone} />}
+        {perimeter.newEmplacementAvailable && (
           <ConstructEmplacement zone={zone} />
         )}
+        {/* render the <InvisiblePlaceholder /> component if we have an odd number of turrets */}
+        {perimeter.turrets.length === 2 &&
+          (perimeter.canPurchaseTurret ||
+            perimeter.newEmplacementAvailable) && <InvisiblePlaceholder />}
       </div>
     </div>
   );
