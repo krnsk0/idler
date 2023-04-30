@@ -49,6 +49,16 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           {zone.perimeter.perimeterHealth} / {zone.perimeter.maxPerimeterHealth}
         </div>
       </div>
+      <div css={styles.integrityHeader}>emplacements</div>
+
+      <div css={styles.turretContainer}>
+        {zone.perimeter.canPurchaseTurret && (
+          <div css={styles.turretBox}>purchase turret</div>
+        )}
+        <div css={styles.turretBox}>purchase turret</div>
+        <div css={styles.turretBox}>purchase turret</div>
+        <div css={styles.turretBox}>purchase turret</div>
+      </div>
     </div>
   );
 }

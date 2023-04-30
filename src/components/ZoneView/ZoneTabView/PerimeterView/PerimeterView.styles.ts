@@ -1,5 +1,4 @@
 import { Theme, css } from '@emotion/react';
-import { mq } from '../../../../globalStyles';
 
 export const styles = {
   perimeterContainer: css`
@@ -32,7 +31,7 @@ export const styles = {
     justify-content: center;
   `,
   integrityHeader: css`
-    margin-top: 2em;
+    margin-top: 1em;
   `,
   integrityBox: (theme: Theme) => css`
     height: 2em;
@@ -55,5 +54,22 @@ export const styles = {
     width: 100%;
     height: 100%;
     z-index: 1;
+  `,
+  turretHeader: css`
+    margin-top: 1em;
+  `,
+  turretContainer: css`
+    padding-top: 0.5em;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5em;
+  `,
+  turretBox: (theme: Theme) => css`
+    width: 5em;
+    height: 8em;
+    border: 1px solid ${theme.colors.primary};
   `,
 };
