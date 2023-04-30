@@ -85,8 +85,8 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
 
     // TODO REMOVE THIS
     // if enemy array is over 10, limit it to 10 items
-    if (this.enemies.length > 10) {
-      this.enemies.splice(10);
+    while (this.enemies.length > 10) {
+      this.enemies.shift();
     }
   }
 }

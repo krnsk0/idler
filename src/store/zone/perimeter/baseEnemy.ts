@@ -193,7 +193,10 @@ export abstract class BaseEnemy extends Model({
    */
   @modelAction
   tick(delta: number) {
-    this.attackCooldownRemaining -= delta;
+    this.attackCooldownRemaining = Math.max(
+      0,
+      this.attackCooldownRemaining - delta,
+    );
     if (this.isDead) {
       this.state = EnemyState.DEAD;
     }

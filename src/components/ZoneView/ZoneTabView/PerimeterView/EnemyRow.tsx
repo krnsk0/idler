@@ -34,6 +34,7 @@ const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
         <div>attack: {formatNumber(enemy.attackDamage)}</div>
         <div>speed: {formatNumber(enemy.movementSpeed)}</div>
         <div>distance: {formatNumber(enemy.distanceFromPerimeter)}</div>
+        <div>cooldown: {formatTime(enemy.attackCooldownRemaining)}</div>
       </TooltipText>
     </>
   );
