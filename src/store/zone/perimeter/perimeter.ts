@@ -16,17 +16,29 @@ function exhaustiveGuard(value: never): never {
   );
 }
 
+const enemyTypes = types.or(types.model(PhaseWorm), types.model(PhaseMantis));
+
+const turretTypes = types.or();
+
 const STARTING_PERIMETER_HEALTH = 50;
+
+const TURRET_LIMIT = 4;
 @model('Perimeter')
 export class Perimeter extends ExtendedModel(ZoneEntity, {
-  enemies: tProp(
-    types.array(types.or(types.model(PhaseWorm), types.model(PhaseMantis))),
-    () => [],
-  ),
+  enemies: tProp(types.array(enemyTypes), () => []),
+  turrets: tProp(types.array(turretTypes), () => []),
   perimeterHealth: tProp(types.number, () => STARTING_PERIMETER_HEALTH),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;
+
+  /**
+   * Allowed to puchase more turrets?
+   */
+  @computed
+  get canPurchaseTurret() {
+    return this.turrets.length < TURRET_LIMIT;
+  }
 
   /**
    * Max health of perimeter
