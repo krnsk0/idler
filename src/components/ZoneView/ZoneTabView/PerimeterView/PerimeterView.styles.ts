@@ -27,8 +27,10 @@ export const styles = {
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
   `,
-  integrityBox: (theme: Theme) => css`
+  integrityHeader: css`
     margin-top: 2em;
+  `,
+  integrityBox: (theme: Theme) => css`
     height: 2em;
     border: 1px solid ${theme.colors.primary};
     position: relative;
