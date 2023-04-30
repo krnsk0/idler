@@ -43,6 +43,7 @@ export const styles = {
     background-color: ${theme.colors.progressBar};
   `,
   integrityText: css`
+    margin-top: 0.1em;
     position: absolute;
     display: flex;
     justify-content: center;
