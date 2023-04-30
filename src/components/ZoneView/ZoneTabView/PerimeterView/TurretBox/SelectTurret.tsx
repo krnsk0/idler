@@ -2,7 +2,7 @@ import { observer } from 'mobx-react-lite';
 import { styles } from './TurretBox.styles';
 import { Zone } from '../../../../../store/zone/zone';
 
-function EmptyEmplacement({ zone }: { zone: Zone }) {
+function SelectTurret({ zone }: { zone: Zone }) {
   return (
     <div
       css={[styles.turretBox, styles.emptyTurretBox]}
@@ -15,4 +15,4 @@ function EmptyEmplacement({ zone }: { zone: Zone }) {
   );
 }
 
-export default observer(EmptyEmplacement);
+export default observer(SelectTurret);

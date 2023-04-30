@@ -6,7 +6,7 @@ import EnemyRow from './EnemyRow';
 import { formatTime } from '../../../../utils/formatTime';
 import { spinner } from '../../../../utils/spinner';
 import { formatNumber } from '../../../../utils/formatNumber';
-import EmptyEmplacement from './TurretBox/EmptyEmplacement';
+import SelectTurret from './TurretBox/SelectTurret';
 import TurretBox from './TurretBox/TurretBox';
 import ConstructEmplacement from './TurretBox/ConstructEmplacement';
 import InvisiblePlaceholder from './TurretBox/InvisiblePlaceholder';
@@ -61,7 +61,7 @@ function PerimeterView({ zone }: PerimeterViewProps) {
         {perimeter.turrets.map((turret) => (
           <TurretBox key={turret.id} turret={turret} />
         ))}
-        {perimeter.canPurchaseTurret && <EmptyEmplacement zone={zone} />}
+        {perimeter.canPurchaseTurret && <SelectTurret zone={zone} />}
         {perimeter.newEmplacementAvailable && (
           <ConstructEmplacement zone={zone} />
         )}
