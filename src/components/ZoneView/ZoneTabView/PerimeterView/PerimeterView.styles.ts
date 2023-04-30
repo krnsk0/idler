@@ -33,6 +33,7 @@ export const styles = {
   `,
   integrityHeader: css`
     margin-top: 1.2em;
+    margin-bottom: 0.3em;
   `,
   integrityBox: (theme: Theme) => css`
     height: 2em;
@@ -58,6 +59,7 @@ export const styles = {
   `,
   turretHeader: css`
     margin-top: 1.2em;
+    margin-bottom: 0.3em;
   `,
   turretContainer: css`
     width: 225px;
