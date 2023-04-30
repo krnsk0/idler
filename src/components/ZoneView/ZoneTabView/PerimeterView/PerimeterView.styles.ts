@@ -10,9 +10,8 @@ export const styles = {
     justify-content: center;
     width: 100%;
   `,
-
-  enemyBoxHeader: css`
-    width: 90%;
+  emptyPerimeterMessage: css`
+    width: 80%;
     display: flex;
     justify-content: space-between;
   `,
@@ -26,6 +25,11 @@ export const styles = {
     }
     -ms-overflow-style: none; /* Internet Explorer 10+ */
     scrollbar-width: none; /* Firefox */
+  `,
+  emptyEnemyBox: css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
   `,
   integrityHeader: css`
     margin-top: 2em;

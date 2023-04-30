@@ -13,16 +13,17 @@ interface PerimeterViewProps {
 function PerimeterView({ zone }: PerimeterViewProps) {
   const perimeter = zone.perimeter;
 
+  const enemiesPresent = perimeter.enemies.length > 0;
+
   return (
     <div css={styles.perimeterContainer} id="perimeter-view-outer">
-      <div css={styles.enemyBoxHeader}>
-        {perimeter.enemies.length > 0 ? (
-          <>
-            <div>entities remaining</div>
-            <div>{perimeter.enemies.length}</div>
-          </>
+      <div css={[styles.enemyBox, !enemiesPresent && styles.emptyEnemyBox]}>
+        {enemiesPresent ? (
+          perimeter.enemies.map((enemy) => {
+            return <EnemyRow key={enemy.id} enemy={enemy} />;
+          })
         ) : (
-          <>
+          <div css={styles.emptyPerimeterMessage}>
             {zone.radar.isScanning && (
               <>
                 <div>scanning...</div>
@@ -35,13 +36,8 @@ function PerimeterView({ zone }: PerimeterViewProps) {
                 <div>{formatTime(zone.radar.timeLeft ?? 0)}</div>
               </>
             )}
-          </>
+          </div>
         )}
-      </div>
-      <div css={styles.enemyBox}>
-        {perimeter.enemies.map((enemy) => {
-          return <EnemyRow key={enemy.id} enemy={enemy} />;
-        })}
       </div>
       <div css={styles.integrityHeader}>perimeter integrity</div>
       <div css={styles.integrityBox}>
