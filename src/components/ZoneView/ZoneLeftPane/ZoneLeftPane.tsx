@@ -19,6 +19,26 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
 
   return (
     <div css={styles.paneContainer}>
+      {zone.radar.unlocked && (
+        <BorderContainer
+          title="radar"
+          styleOverride={styles.radarContainer}
+          showEntranceAnimation={zone.radar.showEntranceAnimation()}
+        >
+          {zone.radar.isScanning && (
+            <div css={styles.radarRow}>
+              <span>scanning...</span>
+              <span>{spinner(zone.radar.timeLeft)}</span>
+            </div>
+          )}
+          {zone.radar.isCountingDown && (
+            <div css={styles.radarRow}>
+              <span>wave {zone.radar.currentWave}</span>
+              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
+            </div>
+          )}
+        </BorderContainer>
+      )}
       {zone.power.unlocked && (
         <BorderContainer
           title="power"
@@ -55,26 +75,7 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
           </div>
         </BorderContainer>
       )}
-      {zone.radar.unlocked && (
-        <BorderContainer
-          title="radar"
-          styleOverride={styles.radarContainer}
-          showEntranceAnimation={zone.radar.showEntranceAnimation()}
-        >
-          {zone.radar.isScanning && (
-            <div css={styles.radarRow}>
-              <span>scanning...</span>
-              <span>{spinner(zone.radar.timeLeft)}</span>
-            </div>
-          )}
-          {zone.radar.isCountingDown && (
-            <div css={styles.radarRow}>
-              <span>wave {zone.radar.currentWave}</span>
-              <span>{formatTime(zone.radar.timeLeft ?? 0)}</span>
-            </div>
-          )}
-        </BorderContainer>
-      )}
+
       {zone.resources.unlocked && (
         <BorderContainer
           title="resources"
@@ -84,6 +85,27 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
           {zone.resources.unlockedAsArray.map((resource) => {
             return <ResourceRow resource={resource} key={resource.name} />;
           })}
+        </BorderContainer>
+      )}
+
+      {zone.radar.unlocked && (
+        <BorderContainer
+          title="perimeter"
+          styleOverride={styles.perimeterContainer}
+          showEntranceAnimation={zone.radar.showEntranceAnimation()}
+        >
+          <div css={styles.integrityBox}>
+            <div
+              css={styles.progressBar}
+              style={{
+                width: zone.perimeter.perimeterHealthPercent * 100 + '%',
+              }}
+            ></div>
+            <div css={styles.integrityText}>
+              {zone.perimeter.perimeterHealth} /{' '}
+              {zone.perimeter.maxPerimeterHealth}
+            </div>
+          </div>
         </BorderContainer>
       )}
     </div>
