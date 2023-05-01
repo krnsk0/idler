@@ -10,6 +10,7 @@ import SelectTurret from './TurretBox/SelectTurret';
 import TurretBox from './TurretBox/TurretBox';
 import ConstructEmplacement from './TurretBox/ConstructEmplacement';
 import InvisiblePlaceholder from './TurretBox/InvisiblePlaceholder';
+import { EMPLACEMENT_LIMIT } from '../../../../store/zone/perimeter/perimeter';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -56,7 +57,10 @@ function PerimeterView({ zone }: PerimeterViewProps) {
           {formatNumber(perimeter.maxPerimeterHealth)}
         </div>
       </div>
-      <div css={styles.turretHeader}>defensive emplacements</div>
+      <div css={styles.turretHeader}>
+        defensive emplacements ({perimeter.turrets.length} / {EMPLACEMENT_LIMIT}
+        )
+      </div>
       <div css={styles.turretContainer}>
         {perimeter.turrets.map((turret) => (
           <TurretBox key={turret.id} turret={turret} />

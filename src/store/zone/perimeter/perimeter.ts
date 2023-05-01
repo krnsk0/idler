@@ -25,7 +25,7 @@ const turretTypes = types.or(types.model(KineticTurret));
 
 const STARTING_PERIMETER_HEALTH = 50;
 
-const EMPLACEMENT_LIMIT = 4;
+export const EMPLACEMENT_LIMIT = 4;
 
 const EMPLACEMENT_EXPONENT = 1.5;
 
