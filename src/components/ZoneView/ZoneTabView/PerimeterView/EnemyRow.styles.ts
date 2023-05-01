@@ -2,22 +2,21 @@ import { Theme, css } from '@emotion/react';
 import { mq } from '../../../../globalStyles';
 
 export const styles = {
-  enemyRow: (theme: Theme, showBottomBorder: boolean) => css`
+  noBottomBorder: css`
+    border-bottom: none;
+  `,
+  enemyRow: (theme: Theme) => css`
     height: 2em;
-    border-bottom: ${showBottomBorder
-      ? `1px solid ${theme.colors.primary}`
-      : `none`};
+    border-bottom: 1px solid ${theme.colors.primary};
     display: flex;
     align-items: center;
     position: relative;
     cursor: pointer;
-
     ${mq['hoverableDesktop']} {
       cursor: default;
       border-bottom: 1px solid ${theme.colors.primary};
     }
   `,
-
   enemyRowRight: css`
     display: flex;
     flex-direction: row;

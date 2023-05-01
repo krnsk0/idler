@@ -57,7 +57,10 @@ function EnemyRow({ enemy }: EnemyRowProps) {
         {<EnemyRowTooltip enemy={enemy} />}
       </TooltipPortalRenderer>
       <div
-        css={(theme) => styles.enemyRow(theme, !isExpanded)}
+        css={(theme) => [
+          styles.enemyRow(theme),
+          isExpanded && styles.noBottomBorder,
+        ]}
         ref={containerRef}
         onClick={() => {
           enemy.expandEnemy();

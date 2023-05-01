@@ -1,10 +1,21 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { TurretNames } from './turretNames';
 import { BaseTurret } from './baseTurret';
+import { ResourceNames } from '../../resources/resourceNames';
 
 @model(TurretNames.KINETIC)
 export class KineticTurret extends ExtendedModel(BaseTurret, {}) {
+  // splash
   name = TurretNames.KINETIC;
-  displayName = 'kinetic arbalest';
-  description = 'acceleratate lithoid matter to lethal velocities';
+  displayName = 'kinetic impactor';
+  description = 'acceleratate lithoid mass to lethal velocities';
+
+  // ammo
+  baseAmmoCost = [{ resource: ResourceNames.ROCK, quantity: 3 }];
+  baseAmmoCapacity = 4;
+  baseAmmoLoadTime = 2; // seconds
+
+  // attack
+  baseAttackDamage = 1;
+  baseAttackCooldown = 3;
 }
