@@ -1,4 +1,13 @@
-import { Theme, css } from '@emotion/react';
+import { Theme, css, keyframes } from '@emotion/react';
+
+const flash = (theme: Theme) => keyframes`
+  0% {
+    color: ${theme.colors.secondary};
+  }
+  100%{
+    color: ${theme.colors.primary};
+  }
+`;
 
 export const styles = {
   emptyTurretBox: css`
@@ -62,14 +71,25 @@ export const styles = {
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
   `,
   turretBoxHeader: css`
     margin-top: 0.5em;
     text-align: center;
   `,
-
+  stateBox: (theme: Theme) => css`
+    height: 1em;
+    border: 1px solid ${theme.colors.primary};
+    position: relative;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-variant: small-caps;
+    margin-bottom: 0.4em;
+  `,
   turretBottom: css`
     width: 100%;
     display: flex;
@@ -77,20 +97,13 @@ export const styles = {
     justify-content: center;
     align-items: center;
   `,
-
-  ammoDisplay: css`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.8em;
-  `,
-  progressBarBox: (theme: Theme) => css`
+  progressBarBox: (theme: Theme, showPointer: boolean) => css`
     margin-bottom: 0.3em;
     height: 1em;
     border: 1px solid ${theme.colors.primary};
     position: relative;
     width: 90%;
+    cursor: ${showPointer ? 'pointer' : 'default'};
   `,
   progressBar: (theme: Theme) => css`
     position: absolute;
@@ -99,6 +112,7 @@ export const styles = {
     background-color: ${theme.colors.progressBar};
   `,
   boxText: css`
+    margin-top: 0.1em;
     position: absolute;
     display: flex;
     justify-content: center;
@@ -106,6 +120,9 @@ export const styles = {
     width: 100%;
     height: 100%;
     z-index: 1;
-    font-variant: small-caps;
+    font-size: 0.8em;
+  `,
+  reload: (theme: Theme) => css`
+    animation: ${flash(theme)} 1000ms ease infinite;
   `,
 };

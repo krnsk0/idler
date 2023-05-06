@@ -10,6 +10,7 @@ import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
 import { PurchaseCost } from '../../sharedTypes';
 import { getPerimeter } from '../../../selectors';
+import { spinner } from '../../../../utils/spinner';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -31,7 +32,7 @@ export abstract class BaseTurret extends Model({
   id: idProp,
   state: tProp(types.enum(TurretStates), TurretStates.EMPTY),
   ammo: tProp(types.number, 0),
-  ammoLoadTimeRemaining: tProp(types.number, 0),
+  reloadTimeRemaining: tProp(types.number, 0),
   attackCooldownRemaining: tProp(types.number, 0),
   fireTimeRemaining: tProp(types.number, 0),
 }) {
@@ -76,13 +77,12 @@ export abstract class BaseTurret extends Model({
   get ammoCapacity(): number {
     return this.baseAmmoCapacity;
   }
-
   /**
-   * Ammo Loaded
+   * Percent of ammo
    */
   @computed
-  get isAmmoFull() {
-    return this.ammo === this.ammoCapacity;
+  get ammoPercent(): number {
+    return this.ammo / this.ammoCapacity;
   }
 
   /**
@@ -97,8 +97,8 @@ export abstract class BaseTurret extends Model({
    * Is loading
    */
   @computed
-  get isLoading() {
-    return this.ammoLoadTimeRemaining > 0;
+  get isReloading() {
+    return this.state === TurretStates.RELOADING;
   }
 
   /**
@@ -119,21 +119,30 @@ export abstract class BaseTurret extends Model({
         return 'empty';
       }
       case TurretStates.RELOADING: {
-        return 'Reloading';
+        return `reloading ${spinner(this.reloadTimeRemaining)}`;
       }
       case TurretStates.IDLE: {
-        return 'Idle';
+        return 'idle';
       }
       case TurretStates.AIMING: {
-        return 'Aiming';
+        return `aiming ${spinner(this.attackCooldownRemaining)}`;
       }
       case TurretStates.FIRING: {
-        return 'Firing';
+        return 'firing!';
       }
       default: {
         exhaustiveGuard(this.state);
       }
     }
+  }
+
+  /**
+   * Start reload
+   */
+  @modelAction
+  startReload() {
+    this.state = TurretStates.RELOADING;
+    this.reloadTimeRemaining = this.baseAmmoLoadTime;
   }
 
   /**
@@ -146,6 +155,14 @@ export abstract class BaseTurret extends Model({
         break;
       }
       case TurretStates.RELOADING: {
+        this.reloadTimeRemaining = Math.max(
+          0,
+          this.reloadTimeRemaining - delta,
+        );
+        if (this.reloadTimeRemaining === 0) {
+          this.ammo = this.ammoCapacity;
+          this.state = TurretStates.IDLE;
+        }
         break;
       }
       case TurretStates.IDLE: {

@@ -182,7 +182,7 @@ export abstract class BaseEnemy extends Model({
         return spinner(this.attackTimeRemaining);
       }
       case EnemyState.DEAD: {
-        return 'Dead';
+        return 'dead';
       }
       default: {
         exhaustiveGuard(this.state);

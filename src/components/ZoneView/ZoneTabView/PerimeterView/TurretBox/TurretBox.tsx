@@ -9,12 +9,27 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
         <div css={styles.turretBoxHeader}>{turret.displayName}</div>
       </div>
       <div css={styles.turretBottom}>
-        <div css={styles.ammoDisplay}>
-          ammo: {turret.ammo} / {turret.ammoCapacity}
-        </div>
-        <div css={styles.progressBarBox}>
-          <div css={styles.progressBar} style={{ width: 50 + '%' }}></div>
-          <div css={styles.boxText}>{turret.stateDescriptor}</div>
+        <div css={styles.stateBox}>{turret.stateDescriptor}</div>
+        <div
+          css={(theme) => styles.progressBarBox(theme, turret.isAmmoEmpty)}
+          onClick={() => {
+            if (turret.isAmmoEmpty) turret.startReload();
+          }}
+        >
+          <div
+            css={styles.progressBar}
+            style={{ width: turret.ammoPercent * 100 + '%' }}
+          ></div>
+          <div
+            css={(theme) => [
+              styles.boxText,
+              turret.isAmmoEmpty && !turret.isReloading && styles.reload(theme),
+            ]}
+          >
+            {turret.isAmmoEmpty && !turret.isReloading && 'reload'}
+            {!turret.isAmmoEmpty && `${turret.ammo} / ${turret.ammoCapacity}`}
+            {turret.isReloading && ''}
+          </div>
         </div>
       </div>
     </div>
