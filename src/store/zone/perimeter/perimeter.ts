@@ -182,6 +182,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   @modelAction
   tick(delta: number) {
     this.enemies.forEach((enemy) => enemy.tick(delta));
+    this.turrets.forEach((turret) => turret.tick(delta));
 
     // TODO REMOVE THIS
     // if enemy array is over 10, limit it to 10 items

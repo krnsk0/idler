@@ -119,13 +119,13 @@ export abstract class BaseTurret extends Model({
         return 'empty';
       }
       case TurretStates.RELOADING: {
-        return `reloading ${spinner(this.reloadTimeRemaining)}`;
+        return `reloading`;
       }
       case TurretStates.IDLE: {
         return 'idle';
       }
       case TurretStates.AIMING: {
-        return `aiming ${spinner(this.attackCooldownRemaining)}`;
+        return `aiming`;
       }
       case TurretStates.FIRING: {
         return 'firing!';

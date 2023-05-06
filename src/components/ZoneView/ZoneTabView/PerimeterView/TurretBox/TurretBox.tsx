@@ -3,6 +3,8 @@ import { styles } from './TurretBox.styles';
 import { BaseTurret } from '../../../../../store/zone/perimeter/turrets/baseTurret';
 
 function TurretBox({ turret }: { turret: BaseTurret }) {
+  console.log({ reloadTime: turret.reloadTimeRemaining });
+
   return (
     <div css={styles.turretBox}>
       <div css={styles.turretTop}>
