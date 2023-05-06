@@ -1,19 +1,39 @@
-import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
+import {
+  Model,
+  getParent,
+  idProp,
+  modelAction,
+  tProp,
+  types,
+} from 'mobx-keystone';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
 import { PurchaseCost } from '../../sharedTypes';
+import { getPerimeter } from '../../../selectors';
+
+function exhaustiveGuard(value: never): never {
+  throw new Error(
+    `Reached guard function with unexpected value: ${JSON.stringify(
+      value,
+    )}. Is switch/case missing a value?`,
+  );
+}
 
 enum TurretStates {
-  IDLE = 'IDLE',
-  LOADING = 'LOADING',
-  FIRING = 'FIRING',
+  EMPTY = 'EMPTY', // no ammo
+  RELOADING = 'RELOADING', // loading ammo
+  IDLE = 'IDLE', // no targets
+  AIMING = 'AIMING', // cooling down between shots
+  FIRING = 'FIRING', // attack happens at and
 }
 
 export abstract class BaseTurret extends Model({
   id: idProp,
-  ammoLoaded: tProp(types.number, 0),
+  state: tProp(types.enum(TurretStates), TurretStates.EMPTY),
+  ammo: tProp(types.number, 0),
   ammoLoadTimeRemaining: tProp(types.number, 0),
   attackCooldownRemaining: tProp(types.number, 0),
+  fireTimeRemaining: tProp(types.number, 0),
 }) {
   // splash
   abstract name: TurretNames;
@@ -28,6 +48,18 @@ export abstract class BaseTurret extends Model({
   // attack
   abstract baseAttackDamage: number;
   abstract baseAttackCooldown: number;
+
+  /**
+   * Fgure out which of the 4 turrets this is
+   *
+   * TODO: test this. will be useful for offsetting turret start times
+   */
+  @computed
+  get turretIndex(): number {
+    const index = getPerimeter(this).turrets.findIndex((t) => t.id === this.id);
+    if (index < 0) throw new Error('turrent not found');
+    return index + 1;
+  }
 
   /**
    * Modified ammo cost
@@ -50,7 +82,7 @@ export abstract class BaseTurret extends Model({
    */
   @computed
   get isAmmoFull() {
-    return this.ammoLoaded === this.ammoCapacity;
+    return this.ammo === this.ammoCapacity;
   }
 
   /**
@@ -58,7 +90,7 @@ export abstract class BaseTurret extends Model({
    */
   @computed
   get isAmmoEmpty() {
-    return this.ammoLoaded === 0;
+    return this.ammo === 0;
   }
 
   /**
@@ -75,5 +107,32 @@ export abstract class BaseTurret extends Model({
   @computed
   get attackDamage(): number {
     return this.baseAttackDamage;
+  }
+
+  /**
+   * Tick
+   */
+  @modelAction
+  tick(delta: number) {
+    switch (this.state) {
+      case TurretStates.EMPTY: {
+        break;
+      }
+      case TurretStates.RELOADING: {
+        break;
+      }
+      case TurretStates.IDLE: {
+        break;
+      }
+      case TurretStates.AIMING: {
+        break;
+      }
+      case TurretStates.FIRING: {
+        break;
+      }
+      default: {
+        exhaustiveGuard(this.state);
+      }
+    }
   }
 }

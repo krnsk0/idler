@@ -107,7 +107,7 @@ export abstract class BaseEnemy extends Model({
    */
   @computed
   get remainingHitPoints() {
-    return this.maxHitPoints - this.damageTaken;
+    return Math.max(this.maxHitPoints - this.damageTaken, 0);
   }
 
   /**
@@ -213,6 +213,17 @@ export abstract class BaseEnemy extends Model({
   @modelAction
   doAttack() {
     getPerimeter(this).damagePerimeter(this.attackDamage);
+  }
+
+  /**
+   * take damage
+   */
+  @modelAction
+  takeDamage(damage: number) {
+    this.damageTaken += damage;
+    if (this.damageTaken > this.maxHitPoints) {
+      this.state = EnemyState.DEAD;
+    }
   }
 
   /**
