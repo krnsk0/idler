@@ -1,11 +1,6 @@
 import { Theme, css } from '@emotion/react';
 
 export const styles = {
-  turretBox: (theme: Theme) => css`
-    width: 5em;
-    height: 8em;
-    border: 1px solid ${theme.colors.primary};
-  `,
   emptyTurretBox: css`
     display: flex;
     flex-direction: column;
@@ -50,5 +45,67 @@ export const styles = {
   `,
   costHeader: css`
     margin-top: 0.2em;
+  `,
+  turretBox: (theme: Theme) => css`
+    width: 5em;
+    max-width: 5em;
+    height: 8em;
+    border: 1px solid ${theme.colors.primary};
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  `,
+
+  turretTop: css`
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+  turretBoxHeader: css`
+    margin-top: 0.5em;
+    text-align: center;
+  `,
+
+  turretBottom: css`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  `,
+
+  ammoDisplay: css`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8em;
+  `,
+  progressBarBox: (theme: Theme) => css`
+    margin-bottom: 0.3em;
+    height: 1em;
+    border: 1px solid ${theme.colors.primary};
+    position: relative;
+    width: 90%;
+  `,
+  progressBar: (theme: Theme) => css`
+    position: absolute;
+    height: 1em;
+    width: 100%;
+    background-color: ${theme.colors.progressBar};
+  `,
+  boxText: css`
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    font-variant: small-caps;
   `,
 };

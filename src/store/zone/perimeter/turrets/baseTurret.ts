@@ -110,6 +110,33 @@ export abstract class BaseTurret extends Model({
   }
 
   /**
+   * State descriptor
+   */
+  @computed
+  get stateDescriptor(): string {
+    switch (this.state) {
+      case TurretStates.EMPTY: {
+        return 'empty';
+      }
+      case TurretStates.RELOADING: {
+        return 'Reloading';
+      }
+      case TurretStates.IDLE: {
+        return 'Idle';
+      }
+      case TurretStates.AIMING: {
+        return 'Aiming';
+      }
+      case TurretStates.FIRING: {
+        return 'Firing';
+      }
+      default: {
+        exhaustiveGuard(this.state);
+      }
+    }
+  }
+
+  /**
    * Tick
    */
   @modelAction

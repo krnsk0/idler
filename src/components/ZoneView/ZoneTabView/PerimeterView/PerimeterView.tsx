@@ -58,8 +58,7 @@ function PerimeterView({ zone }: PerimeterViewProps) {
         </div>
       </div>
       <div css={styles.turretHeader}>
-        defensive emplacements ({perimeter.turrets.length} / {EMPLACEMENT_LIMIT}
-        )
+        emplacements ({perimeter.turrets.length} / {EMPLACEMENT_LIMIT})
       </div>
       <div css={styles.turretContainer}>
         {perimeter.turrets.map((turret) => (
