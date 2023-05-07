@@ -32,11 +32,6 @@ export const styles = {
     flex-direction: row;
     align-items: center;
     overflow-x: scroll;
-    ::-webkit-scrollbar {
-      display: none; /* Safari and Chrome */
-    }
-    -ms-overflow-style: none; /* Internet Explorer 10+ */
-    scrollbar-width: none; /* Firefox */
 
     ${mq['desktop']} {
       justify-content: center;

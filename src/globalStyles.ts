@@ -17,8 +17,8 @@ export const darkTheme: Theme = {
     primary: '#EFEFEF',
     secondary: '#A0A0A0',
     disabled: '#717171',
-    progressBar: '#515151',
-    dimProgressBar: '#818181',
+    progressBar: '#616161',
+    dimProgressBar: '#919191',
   },
 };
 
