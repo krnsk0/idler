@@ -8,6 +8,7 @@ declare module '@emotion/react' {
       secondary: string;
       disabled: string;
       progressBar: string;
+      dimProgressBar: string;
     };
   }
 }

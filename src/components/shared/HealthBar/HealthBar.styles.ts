@@ -11,7 +11,7 @@ export const styles = {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-color: ${theme.colors.disabled};
-    transition: width 500ms 500ms linear;
+    background-color: ${theme.colors.dimProgressBar};
+    transition: width 400ms 300ms linear;
   `,
 };

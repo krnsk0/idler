@@ -6,7 +6,8 @@ export const lightTheme: Theme = {
     primary: 'black',
     secondary: '#808080',
     disabled: '#919191',
-    progressBar: '#D1D1D1',
+    progressBar: '#C1C1C1',
+    dimProgressBar: '#E1E1E1',
   },
 };
 
@@ -17,6 +18,7 @@ export const darkTheme: Theme = {
     secondary: '#A0A0A0',
     disabled: '#717171',
     progressBar: '#515151',
+    dimProgressBar: '#818181',
   },
 };
 
