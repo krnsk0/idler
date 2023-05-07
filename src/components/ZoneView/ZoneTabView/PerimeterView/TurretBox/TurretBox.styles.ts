@@ -78,6 +78,10 @@ export const styles = {
     margin-top: 0.5em;
     text-align: center;
   `,
+  stateIcon: css`
+    margin-top: 0.5em;
+    text-align: center;
+  `,
   stateBox: (theme: Theme) => css`
     height: 1em;
     border: 1px solid ${theme.colors.primary};

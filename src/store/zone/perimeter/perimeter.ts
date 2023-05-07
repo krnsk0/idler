@@ -124,6 +124,14 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * Are targets present?
+   */
+  @computed
+  get areTargetsPresent() {
+    return this.enemies.length > 0;
+  }
+
+  /**
    * Starts a new wave
    */
   @modelAction
@@ -173,6 +181,17 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
         this.zoneResources[resource].decrease(quantity, { untracked: true });
       });
       this.emplacementCount += 1;
+    }
+  }
+
+  /**
+   * Attack first enemy
+   */
+  @modelAction
+  attackEnemy(damage: number) {
+    const enemy = this.enemies[0];
+    if (enemy) {
+      enemy.takeDamage(damage);
     }
   }
 

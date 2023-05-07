@@ -28,6 +28,8 @@ enum TurretStates {
   FIRING = 'FIRING', // attack happens at and
 }
 
+const BASE_ATTACK_TIME = 1;
+
 export abstract class BaseTurret extends Model({
   id: idProp,
   state: tProp(types.enum(TurretStates), TurretStates.EMPTY),
@@ -128,7 +130,34 @@ export abstract class BaseTurret extends Model({
         return `aiming`;
       }
       case TurretStates.FIRING: {
-        return 'firing!';
+        return 'firing';
+      }
+      default: {
+        exhaustiveGuard(this.state);
+      }
+    }
+  }
+
+  /**
+   * State icon
+   */
+  @computed
+  get stateIcon(): string {
+    switch (this.state) {
+      case TurretStates.EMPTY: {
+        return '';
+      }
+      case TurretStates.RELOADING: {
+        return ``;
+      }
+      case TurretStates.IDLE: {
+        return '';
+      }
+      case TurretStates.AIMING: {
+        return spinner(this.attackCooldownRemaining);
+      }
+      case TurretStates.FIRING: {
+        return '^';
       }
       default: {
         exhaustiveGuard(this.state);
@@ -166,12 +195,36 @@ export abstract class BaseTurret extends Model({
         break;
       }
       case TurretStates.IDLE: {
+        if (getPerimeter(this).areTargetsPresent) {
+          this.state = TurretStates.AIMING;
+          this.attackCooldownRemaining = this.baseAttackCooldown;
+        }
         break;
       }
       case TurretStates.AIMING: {
+        this.attackCooldownRemaining = Math.max(
+          0,
+          this.attackCooldownRemaining - delta,
+        );
+        if (this.attackCooldownRemaining === 0) {
+          this.state = TurretStates.FIRING;
+          this.fireTimeRemaining = BASE_ATTACK_TIME;
+        }
         break;
       }
       case TurretStates.FIRING: {
+        this.fireTimeRemaining = Math.max(0, this.fireTimeRemaining - delta);
+        if (this.fireTimeRemaining === 0) {
+          getPerimeter(this).attackEnemy(this.attackDamage);
+          this.ammo -= 1;
+
+          if (this.ammo === 0) {
+            this.state = TurretStates.EMPTY;
+          } else {
+            this.state = TurretStates.AIMING;
+            this.attackCooldownRemaining = this.baseAttackCooldown;
+          }
+        }
         break;
       }
       default: {
