@@ -174,6 +174,14 @@ export abstract class BaseEnemy extends Model({
   }
 
   /**
+   * Is attackng
+   */
+  @computed
+  get isAttacking() {
+    return this.state === EnemyState.ATTACKING;
+  }
+
+  /**
    * Visual state descriptor
    */
   @computed

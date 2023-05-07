@@ -1,5 +1,20 @@
-import { Theme, css } from '@emotion/react';
+import { Theme, css, keyframes } from '@emotion/react';
 import { mq } from '../../../../globalStyles';
+
+const bump = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  45%{
+    transform: translateY(-0.4em);
+  }
+  100%{
+    transform: translateY(-0.2em);
+  }
+`;
 
 export const styles = {
   noBottomBorder: css`
@@ -48,5 +63,8 @@ export const styles = {
     font-size: 0.8em;
     padding: 1em 0.5em 0.5em 0.5em;
     border-bottom: 1px solid ${theme.colors.primary};
+  `,
+  bump: css`
+    animation: ${bump} 1000ms linear;
   `,
 };

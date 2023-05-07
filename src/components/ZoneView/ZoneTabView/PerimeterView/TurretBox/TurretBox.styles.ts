@@ -9,7 +9,7 @@ const flash = (theme: Theme) => keyframes`
   }
 `;
 
-const bumpUp = keyframes`
+const bump = keyframes`
   0% {
     transform: translateY(0);
   }
@@ -141,7 +141,7 @@ export const styles = {
     animation: ${flash(theme)} 500ms ease infinite;
     background: ${theme.colors.background};
   `,
-  bumpUp: css`
-    animation: ${bumpUp} 1000ms linear;
+  bump: css`
+    animation: ${bump} 1000ms linear;
   `,
 };
