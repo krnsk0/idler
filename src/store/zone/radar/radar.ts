@@ -64,6 +64,12 @@ export class Radar extends ExtendedModel(ZoneEntity, {
     this.timeLeft = SCAN_TIME;
   }
 
+  @modelAction
+  rushNextWave(): void {
+    this.state = RadarState.COUNTING_DOWN;
+    this.timeLeft = 0;
+  }
+
   /**
    * The tick action for this model.
    */
