@@ -48,6 +48,9 @@ export abstract class BaseTurret extends Model({
   abstract baseAttackDamage: number;
   abstract baseAttackCooldown: number;
 
+  // purchase
+  abstract purchaseCost: PurchaseCost[];
+
   /**
    * Fgure out which of the 4 turrets this is
    *

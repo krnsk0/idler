@@ -18,4 +18,11 @@ export class Autoballista extends ExtendedModel(BaseTurret, {}) {
   // attack
   baseAttackDamage = 1;
   baseAttackCooldown = 5;
+
+  // purchase
+  purchaseCost = [
+    { resource: ResourceNames.ROCK, quantity: 20 },
+    { resource: ResourceNames.LUMBER, quantity: 25 },
+    { resource: ResourceNames.ALLOY, quantity: 10 },
+  ];
 }

@@ -1,7 +1,16 @@
-import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
+import {
+  AbstractModelClass,
+  ExtendedModel,
+  ModelProps,
+  ModelPropsOf,
+  model,
+  modelAction,
+  tProp,
+  types,
+} from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
-import { getRadar } from '../../selectors';
+import { getRadar, getTech } from '../../selectors';
 import { PhaseWorm } from './enemies/phaseWorm';
 import { PhaseMantis } from './enemies/phaseMantis';
 import { waveBuilder } from './enemies/utils/waveBuilder';
@@ -10,6 +19,10 @@ import { EnemyNames } from './enemies/enemyNames';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 import { ResourceNames } from '../resources/resourceNames';
 import { Autoballista } from './turrets/autoballista';
+import { TurretNames } from './turrets/turretNames';
+import { BaseTurret } from './turrets/baseTurret';
+import { BaseEnemy } from './enemies/baseEnemy';
+import { ResolveModulePreloadDependenciesFn } from 'vite';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -22,6 +35,17 @@ function exhaustiveGuard(value: never): never {
 const enemyTypes = types.or(types.model(PhaseWorm), types.model(PhaseMantis));
 
 const turretTypes = types.or(types.model(Autoballista));
+
+type TurretFactory = () => BaseTurret;
+
+const turretFactoryMapping: Record<TurretNames, TurretFactory> = {
+  [TurretNames.BALLISTA]: () => new Autoballista({}),
+};
+
+interface TurretPurchaseListing {
+  turretFactory: TurretFactory;
+  purchaseCosts: PurchaseCost[];
+}
 
 const STARTING_PERIMETER_HEALTH = 50;
 
@@ -140,6 +164,22 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
       this.turrets.length > 0 &&
       this.turrets.every((turret) => turret.isAmmoEmpty)
     );
+  }
+
+  /**
+   * All purchaseable turrets with costs
+   */
+  @computed
+  get turretPurchaseListings(): TurretPurchaseListing[] {
+    return getTech(this).unlockedTurrets.map((turretName) => {
+      const turretFactory = turretFactoryMapping[turretName];
+      const instance = turretFactory();
+      const costs = instance.purchaseCost.slice();
+      return {
+        turretFactory: turretFactory,
+        purchaseCosts: costs,
+      };
+    });
   }
 
   /**

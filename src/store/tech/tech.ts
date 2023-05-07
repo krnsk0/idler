@@ -38,6 +38,7 @@ import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { ZoneUpgrades } from './zoneUpgrades';
 import { TemperatureControl } from './temperatureControl';
 import { Construction } from './construction';
+import { TurretNames } from '../zone/perimeter/turrets/turretNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 
@@ -209,6 +210,18 @@ export class Tech extends ExtendedModel(Unlockable, {
   @computed
   get isExpanded(): boolean {
     return getGui(this).expandedShipColonyButton === TechName;
+  }
+
+  /**
+   * List of unlocked turrets
+   */
+  @computed
+  get unlockedTurrets(): TurretNames[] {
+    const turrets: TurretNames[] = [];
+    for (const tech of this.researchedAsArray) {
+      turrets.push(...tech.turretsUnlocked);
+    }
+    return turrets;
   }
 
   /**
