@@ -128,7 +128,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    */
   @computed
   get areTargetsPresent() {
-    return this.enemies.length > 0;
+    return this.enemies.some((enemy) => enemy.isAlive);
   }
 
   /**
@@ -189,7 +189,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    */
   @modelAction
   attackEnemy(damage: number) {
-    const enemy = this.enemies[0];
+    const enemy = this.enemies.find((enemy) => enemy.isAlive);
     if (enemy) {
       enemy.takeDamage(damage);
     }

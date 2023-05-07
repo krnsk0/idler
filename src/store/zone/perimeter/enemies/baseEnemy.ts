@@ -68,6 +68,14 @@ export abstract class BaseEnemy extends Model({
   }
 
   /**
+   * Is this enemy alive
+   */
+  @computed
+  get isAlive() {
+    return this.state !== EnemyState.DEAD;
+  }
+
+  /**
    * Total movement speed with modifier
    *
    * Meters per second

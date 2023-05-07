@@ -7,8 +7,6 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
     ? turret.reloadProgress
     : turret.ammoPercent;
 
-  console.log(turret.stateIcon);
-
   return (
     <div css={styles.turretBox}>
       <div css={styles.turretTop}>
