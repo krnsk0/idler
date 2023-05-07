@@ -36,17 +36,6 @@ const enemyTypes = types.or(types.model(PhaseWorm), types.model(PhaseMantis));
 
 const turretTypes = types.or(types.model(Autoballista));
 
-type TurretFactory = () => BaseTurret;
-
-const turretFactoryMapping: Record<TurretNames, TurretFactory> = {
-  [TurretNames.BALLISTA]: () => new Autoballista({}),
-};
-
-interface TurretPurchaseListing {
-  turretFactory: TurretFactory;
-  purchaseCosts: PurchaseCost[];
-}
-
 const STARTING_PERIMETER_HEALTH = 50;
 
 export const EMPLACEMENT_LIMIT = 4;
@@ -164,22 +153,6 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
       this.turrets.length > 0 &&
       this.turrets.every((turret) => turret.isAmmoEmpty)
     );
-  }
-
-  /**
-   * All purchaseable turrets with costs
-   */
-  @computed
-  get turretPurchaseListings(): TurretPurchaseListing[] {
-    return getTech(this).unlockedTurrets.map((turretName) => {
-      const turretFactory = turretFactoryMapping[turretName];
-      const instance = turretFactory();
-      const costs = instance.purchaseCost.slice();
-      return {
-        turretFactory: turretFactory,
-        purchaseCosts: costs,
-      };
-    });
   }
 
   /**

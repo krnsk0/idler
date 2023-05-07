@@ -39,8 +39,22 @@ import { ZoneUpgrades } from './zoneUpgrades';
 import { TemperatureControl } from './temperatureControl';
 import { Construction } from './construction';
 import { TurretNames } from '../zone/perimeter/turrets/turretNames';
+import { Autoballista } from '../zone/perimeter/turrets/autoballista';
+import { BaseTurret } from '../zone/perimeter/turrets/baseTurret';
+import { PurchaseCost } from '../zone/sharedTypes';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
+
+type TurretFactory = () => BaseTurret;
+
+const turretFactoryMapping: Record<TurretNames, TurretFactory> = {
+  [TurretNames.BALLISTA]: () => new Autoballista({}),
+};
+
+interface TurretPurchaseListing {
+  turretFactory: TurretFactory;
+  purchaseCosts: PurchaseCost[];
+}
 
 @model('Tech')
 export class Tech extends ExtendedModel(Unlockable, {
@@ -222,6 +236,22 @@ export class Tech extends ExtendedModel(Unlockable, {
       turrets.push(...tech.turretsUnlocked);
     }
     return turrets;
+  }
+
+  /**
+   * All purchaseable turrets with costs
+   */
+  @computed
+  get turretPurchaseListings(): TurretPurchaseListing[] {
+    return this.unlockedTurrets.map((turretName) => {
+      const turretFactory = turretFactoryMapping[turretName];
+      const instance = turretFactory();
+      const costs = instance.purchaseCost.slice();
+      return {
+        turretFactory: turretFactory,
+        purchaseCosts: costs,
+      };
+    });
   }
 
   /**
