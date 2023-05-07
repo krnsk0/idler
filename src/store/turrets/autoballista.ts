@@ -1,7 +1,7 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { TurretNames } from './turretNames';
 import { BaseTurret } from './baseTurret';
-import { ResourceNames } from '../../resources/resourceNames';
+import { ResourceNames } from '../zone/resources/resourceNames';
 
 @model(TurretNames.AUTOBALLISTA)
 export class Autoballista extends ExtendedModel(BaseTurret, {}) {

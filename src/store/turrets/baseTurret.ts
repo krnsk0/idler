@@ -1,9 +1,17 @@
-import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
+import {
+  ExtendedModel,
+  Model,
+  idProp,
+  modelAction,
+  tProp,
+  types,
+} from 'mobx-keystone';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
-import { PurchaseCost } from '../../sharedTypes';
-import { getPerimeter } from '../../../selectors';
-import { spinner } from '../../../../utils/spinner';
+import { PurchaseCost } from '../zone/sharedTypes';
+import { getPerimeter, getTech } from '../selectors';
+import { spinner } from '../../utils/spinner';
+import { Unlockable } from '../unlockable';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -25,7 +33,7 @@ enum TurretStates {
 const BASE_ATTACK_TIME = 1;
 
 const START_OFFSET_PER_TURRET = 0.2;
-export abstract class BaseTurret extends Model({
+export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   id: idProp,
   state: tProp(types.enum(TurretStates), TurretStates.EMPTY),
   ammo: tProp(types.number, 0),
@@ -50,6 +58,16 @@ export abstract class BaseTurret extends Model({
 
   // purchase
   abstract purchaseCost: PurchaseCost[];
+
+  // can be overriden
+  transientUnlockCheck = () => true;
+
+  /**
+   * Responsible for managing when buildings are unlocked
+   */
+  observableUnlockCheck = () => {
+    return getTech(this).unlockedTurrets.includes(this.name);
+  };
 
   /**
    * Fgure out which of the 4 turrets this is

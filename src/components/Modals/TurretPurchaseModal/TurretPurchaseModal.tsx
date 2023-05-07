@@ -7,7 +7,7 @@ import { styles } from './TurretPurchaseModal.styles';
 const TechModal = () => {
   const root = useStore();
 
-  const purchaseList = root.game.tech.turretPurchaseListings;
+  const purchaseList = root.game.turrets.purchaseable;
 
   return (
     <StyledModal

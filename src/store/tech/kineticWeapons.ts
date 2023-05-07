@@ -1,7 +1,7 @@
 import { model, ExtendedModel } from 'mobx-keystone';
 import { BaseTech } from './baseTech';
 import { TechNames } from './techNames';
-import { TurretNames } from '../zone/perimeter/turrets/turretNames';
+import { TurretNames } from '../turrets/turretNames';
 
 @model(TechNames.KINETIC_WEAPONS)
 export class KineticWeapons extends ExtendedModel(BaseTech, {}) {
