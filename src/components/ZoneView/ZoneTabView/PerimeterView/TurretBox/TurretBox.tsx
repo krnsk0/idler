@@ -14,7 +14,14 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
         <div css={styles.stateIcon}>{turret.stateIcon}</div>
       </div>
       <div css={styles.turretBottom}>
-        <div css={styles.stateBox}>{turret.stateDescriptor}</div>
+        <div
+          css={(theme) => [
+            styles.stateBox,
+            turret.isAmmoEmpty && !turret.isReloading && styles.flasher(theme),
+          ]}
+        >
+          {turret.stateDescriptor}
+        </div>
         <div
           css={(theme) => styles.progressBarBox(theme, turret.isAmmoEmpty)}
           onClick={() => {
@@ -25,12 +32,7 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
             css={styles.progressBar}
             style={{ width: ammoBarWidth * 100 + '%' }}
           ></div>
-          <div
-            css={(theme) => [
-              styles.boxText,
-              turret.isAmmoEmpty && !turret.isReloading && styles.reload(theme),
-            ]}
-          >
+          <div css={(theme) => [styles.boxText]}>
             {turret.isAmmoEmpty && !turret.isReloading && 'reload'}
             {!turret.isAmmoEmpty && `${turret.ammo} / ${turret.ammoCapacity}`}
             {turret.isReloading && ''}

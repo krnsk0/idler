@@ -45,6 +45,7 @@ export const StyledModal = ({
       style={{
         overlay: {
           backgroundColor: 'none',
+          zIndex: 10,
         },
         content: isDesktop
           ? {

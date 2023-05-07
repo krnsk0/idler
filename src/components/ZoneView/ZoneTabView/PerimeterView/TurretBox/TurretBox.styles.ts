@@ -2,7 +2,7 @@ import { Theme, css, keyframes } from '@emotion/react';
 
 const flash = (theme: Theme) => keyframes`
   0% {
-    color: ${theme.colors.secondary};
+    color: ${theme.colors.background};
   }
   100%{
     color: ${theme.colors.primary};
@@ -84,7 +84,7 @@ export const styles = {
   `,
   stateBox: (theme: Theme) => css`
     height: 1em;
-    border: 1px solid ${theme.colors.primary};
+    // border: 1px solid ${theme.colors.primary};
     position: relative;
     width: 90%;
     display: flex;
@@ -126,7 +126,8 @@ export const styles = {
     z-index: 1;
     font-size: 0.8em;
   `,
-  reload: (theme: Theme) => css`
-    animation: ${flash(theme)} 1000ms ease infinite;
+  flasher: (theme: Theme) => css`
+    animation: ${flash(theme)} 500ms ease infinite;
+    background: ${theme.colors.background};
   `,
 };
