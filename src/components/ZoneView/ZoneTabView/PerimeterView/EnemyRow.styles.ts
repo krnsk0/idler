@@ -49,12 +49,6 @@ export const styles = {
       display: none;
     }
   `,
-  progressBar: (theme: Theme) => css`
-    position: absolute;
-    height: 2em;
-    width: 100%;
-    background-color: ${theme.colors.progressBar};
-  `,
   expandedResourceTooltip: (theme: Theme) => css`
     ${mq['hoverableDesktop']} {
       display: none;

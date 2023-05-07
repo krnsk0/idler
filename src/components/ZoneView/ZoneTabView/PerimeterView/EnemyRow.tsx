@@ -10,6 +10,7 @@ import {
 } from '../../../shared/Tooltip/Tooltip';
 import { useRef } from 'react';
 import { formatNumber } from '../../../../utils/formatNumber';
+import { HealthBar } from '../../../shared/HealthBar/HealthBar';
 
 interface EnemyRowProps {
   enemy: BaseEnemy;
@@ -66,7 +67,7 @@ function EnemyRow({ enemy }: EnemyRowProps) {
           enemy.expandEnemy();
         }}
       >
-        <div css={styles.progressBar} style={{ width: health + '%' }} />
+        <HealthBar healthPercent={health} />
         <div
           css={styles.caret}
           style={{ transform: isExpanded ? 'rotate(90deg)' : 'none' }}
