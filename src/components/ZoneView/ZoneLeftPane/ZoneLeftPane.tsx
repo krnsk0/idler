@@ -6,6 +6,7 @@ import { styles } from './ZoneLeftPane.styles';
 import ResourceRow from './ResourceRow/ResourceRow';
 import { formatTime } from '../../../utils/formatTime';
 import { spinner } from '../../../utils/spinner';
+import { HealthBar } from '../../shared/HealthBar/HealthBar';
 
 interface ResourceViewProps {
   zone: Zone;
@@ -86,12 +87,10 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
             </div>
           )}
           <div css={styles.integrityBox}>
-            <div
-              css={styles.progressBar}
-              style={{
-                width: zone.perimeter.perimeterHealthPercent * 100 + '%',
-              }}
-            ></div>
+            <HealthBar
+              healthPercent={zone.perimeter.perimeterHealthPercent * 100}
+            />
+
             <div css={styles.integrityText}>
               {formatNumber(zone.perimeter.perimeterHealth)} /{' '}
               {formatNumber(zone.perimeter.maxPerimeterHealth)}

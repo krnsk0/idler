@@ -11,6 +11,7 @@ import TurretBox from './TurretBox/TurretBox';
 import ConstructEmplacement from './TurretBox/ConstructEmplacement';
 import InvisiblePlaceholder from './TurretBox/InvisiblePlaceholder';
 import { EMPLACEMENT_LIMIT } from '../../../../store/zone/perimeter/perimeter';
+import { HealthBar } from '../../../shared/HealthBar/HealthBar';
 
 interface PerimeterViewProps {
   zone: Zone;
@@ -48,10 +49,9 @@ function PerimeterView({ zone }: PerimeterViewProps) {
       </div>
       <div css={styles.integrityHeader}>perimeter integrity</div>
       <div css={styles.integrityBox}>
-        <div
-          css={styles.progressBar}
-          style={{ width: perimeter.perimeterHealthPercent * 100 + '%' }}
-        ></div>
+        <HealthBar
+          healthPercent={zone.perimeter.perimeterHealthPercent * 100}
+        />
         <div css={styles.integrityText}>
           {formatNumber(perimeter.perimeterHealth)} /{' '}
           {formatNumber(perimeter.maxPerimeterHealth)}

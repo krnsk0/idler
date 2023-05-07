@@ -77,12 +77,6 @@ export const styles = {
     position: relative;
     width: 99%;
   `,
-  progressBar: (theme: Theme) => css`
-    position: absolute;
-    height: 1em;
-    width: 100%;
-    background-color: ${theme.colors.progressBar};
-  `,
   integrityText: css`
     margin-top: 0.1em;
     position: absolute;
