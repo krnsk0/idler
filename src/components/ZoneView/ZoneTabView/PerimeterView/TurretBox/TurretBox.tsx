@@ -27,7 +27,7 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
         <div
           css={(theme) => styles.progressBarBox(theme, turret.isAmmoEmpty)}
           onClick={() => {
-            if (turret.isAmmoEmpty) turret.startReload();
+            if (turret.isAmmoEmpty && !turret.isReloading) turret.startReload();
           }}
         >
           <div

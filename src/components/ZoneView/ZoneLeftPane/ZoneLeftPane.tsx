@@ -16,6 +16,7 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
   const satisfactionPercentage = formatNumber(satisfaction * 100, {
     digits: 0,
   });
+  const isAmmoEmpty = zone.perimeter.isAmmoEmpty;
 
   return (
     <div css={styles.paneContainer}>
@@ -61,6 +62,16 @@ const ZoneLeftPane = ({ zone }: ResourceViewProps) => {
           title="perimeter"
           styleOverride={styles.radarContainer}
           showEntranceAnimation={zone.radar.showEntranceAnimation()}
+          rightText={
+            isAmmoEmpty ? (
+              <span>
+                <span css={styles.tabletOnly}>no </span>
+                <span>ammo!</span>
+              </span>
+            ) : (
+              ''
+            )
+          }
         >
           {zone.radar.isScanning && (
             <div css={styles.radarRow}>

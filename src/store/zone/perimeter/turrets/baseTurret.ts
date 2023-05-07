@@ -170,7 +170,7 @@ export abstract class BaseTurret extends Model({
         return '';
       }
       case TurretStates.AIMING: {
-        return spinner(this.attackCooldownRemaining);
+        return '^';
       }
       case TurretStates.FIRING: {
         return '^';

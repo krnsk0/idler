@@ -132,6 +132,17 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   }
 
   /**
+   * All are turrents out of ammo
+   */
+  @computed
+  get isAmmoEmpty() {
+    return (
+      this.turrets.length > 0 &&
+      this.turrets.every((turret) => turret.isAmmoEmpty)
+    );
+  }
+
+  /**
    * Starts a new wave
    */
   @modelAction
