@@ -177,6 +177,7 @@ export class Debug extends Model({
 
     // perimeter
     tech[TechNames.RADAR].cheat();
+    tech[TechNames.KINETIC_WEAPONS].cheat();
     initialZone.radar.closeWarningModal();
     initialZone.radar.rushNextWave();
   }
