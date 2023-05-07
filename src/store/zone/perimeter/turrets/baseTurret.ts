@@ -80,11 +80,19 @@ export abstract class BaseTurret extends Model({
     return this.baseAmmoCapacity;
   }
   /**
-   * Percent of ammo
+   * Percent of ammo remaining
    */
   @computed
   get ammoPercent(): number {
     return this.ammo / this.ammoCapacity;
+  }
+
+  /**
+   * Reload progress as percent
+   */
+  @computed
+  get reloadProgress(): number {
+    return 1 - this.reloadTimeRemaining / this.baseAmmoLoadTime;
   }
 
   /**

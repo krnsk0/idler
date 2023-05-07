@@ -3,6 +3,10 @@ import { styles } from './TurretBox.styles';
 import { BaseTurret } from '../../../../../store/zone/perimeter/turrets/baseTurret';
 
 function TurretBox({ turret }: { turret: BaseTurret }) {
+  const ammoBarWidth = turret.isReloading
+    ? turret.reloadProgress
+    : turret.ammoPercent;
+
   return (
     <div css={styles.turretBox}>
       <div css={styles.turretTop}>
@@ -19,7 +23,7 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
         >
           <div
             css={styles.progressBar}
-            style={{ width: turret.ammoPercent * 100 + '%' }}
+            style={{ width: ammoBarWidth * 100 + '%' }}
           ></div>
           <div
             css={(theme) => [
