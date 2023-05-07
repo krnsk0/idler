@@ -52,9 +52,17 @@ export abstract class BaseTurret extends Model({
    */
   @computed
   get turretIndex(): number {
-    const index = getPerimeter(this).turrets.findIndex((t) => t.id === this.id);
+    const index = this.perimeter.turrets.findIndex((t) => t.id === this.id);
     if (index < 0) throw new Error('turrent not found');
     return index + 1;
+  }
+
+  /**
+   * Point to perimeter
+   */
+  @computed
+  get perimeter() {
+    return getPerimeter(this);
   }
 
   /**
@@ -192,6 +200,14 @@ export abstract class BaseTurret extends Model({
   }
 
   /**
+   * Switch to idle state if no enemies
+   */
+  @modelAction
+  maybeBecomeIdle() {
+    if (!this.perimeter.areTargetsPresent) this.state = TurretStates.IDLE;
+  }
+
+  /**
    * Tick
    */
   @modelAction
@@ -212,32 +228,38 @@ export abstract class BaseTurret extends Model({
         break;
       }
       case TurretStates.IDLE: {
-        if (getPerimeter(this).areTargetsPresent) {
+        if (this.perimeter.areTargetsPresent) {
           this.state = TurretStates.AIMING;
           this.attackCooldownRemaining = this.baseAttackCooldown;
         }
         break;
       }
       case TurretStates.AIMING: {
+        this.maybeBecomeIdle();
+
         this.attackCooldownRemaining = Math.max(
           0,
           this.attackCooldownRemaining - delta,
         );
-        if (this.attackCooldownRemaining === 0) {
+        if (
+          this.attackCooldownRemaining === 0 &&
+          this.perimeter.areTargetsPresent
+        ) {
           this.state = TurretStates.FIRING;
           this.fireTimeRemaining = BASE_ATTACK_TIME;
         }
         break;
       }
       case TurretStates.FIRING: {
+        this.maybeBecomeIdle();
         this.fireTimeRemaining = Math.max(0, this.fireTimeRemaining - delta);
         if (this.fireTimeRemaining === 0) {
-          getPerimeter(this).attackEnemy(this.attackDamage);
+          this.perimeter.attackEnemy(this.attackDamage);
           this.ammo -= 1;
 
           if (this.ammo === 0) {
             this.state = TurretStates.EMPTY;
-          } else {
+          } else if (this.perimeter.areTargetsPresent) {
             this.state = TurretStates.AIMING;
             this.attackCooldownRemaining = this.baseAttackCooldown;
           }
