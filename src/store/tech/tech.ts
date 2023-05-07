@@ -23,6 +23,7 @@ import { Radar } from './radar';
 import { BaseTech } from './baseTech';
 import { getGame, getGui } from '../selectors';
 import { Forestry } from './forestry';
+import { KineticWeapons } from './kineticWeapons';
 import { Storage } from './storage';
 import { ResourceNames } from '../zone/resources/resourceNames';
 import { Unlockable } from '../unlockable';
@@ -87,6 +88,10 @@ export class Tech extends ExtendedModel(Unlockable, {
     () => new Construction({}),
   ),
   [TechNames.RADAR]: tProp(types.model(Radar), () => new Radar({})),
+  [TechNames.KINETIC_WEAPONS]: tProp(
+    types.model(KineticWeapons),
+    () => new KineticWeapons({}),
+  ),
 }) {
   transientUnlockCheck = () => {
     return (

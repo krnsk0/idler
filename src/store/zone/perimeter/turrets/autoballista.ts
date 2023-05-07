@@ -3,16 +3,16 @@ import { TurretNames } from './turretNames';
 import { BaseTurret } from './baseTurret';
 import { ResourceNames } from '../../resources/resourceNames';
 
-@model(TurretNames.KINETIC)
-export class KineticTurret extends ExtendedModel(BaseTurret, {}) {
+@model(TurretNames.BALLISTA)
+export class Autoballista extends ExtendedModel(BaseTurret, {}) {
   // splash
-  name = TurretNames.KINETIC;
-  displayName = 'kinetic impactor';
-  description = 'acceleratate lithoid mass to lethal velocities';
+  name = TurretNames.BALLISTA;
+  displayName = 'auto​ballista'; // note the zero-width space
+  description = 'acceleratate lithoid matter to lethal velocities';
 
   // ammo
   baseAmmoCost = [{ resource: ResourceNames.ROCK, quantity: 3 }];
-  baseAmmoCapacity = 500;
+  baseAmmoCapacity = 5;
   baseAmmoLoadTime = 8; // seconds
 
   // attack
