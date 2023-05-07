@@ -3,10 +3,10 @@ import { TurretNames } from './turretNames';
 import { BaseTurret } from './baseTurret';
 import { ResourceNames } from '../../resources/resourceNames';
 
-@model(TurretNames.BALLISTA)
+@model(TurretNames.AUTOBALLISTA)
 export class Autoballista extends ExtendedModel(BaseTurret, {}) {
   // splash
-  name = TurretNames.BALLISTA;
+  name = TurretNames.AUTOBALLISTA;
   displayName = 'auto​ballista'; // note the zero-width space
   description = 'acceleratate lithoid matter to lethal velocities';
 

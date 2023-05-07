@@ -48,7 +48,7 @@ const techRef = rootRef<BaseTech>('tech_ref', {});
 type TurretFactory = () => BaseTurret;
 
 const turretFactoryMapping: Record<TurretNames, TurretFactory> = {
-  [TurretNames.BALLISTA]: () => new Autoballista({}),
+  [TurretNames.AUTOBALLISTA]: () => new Autoballista({}),
 };
 
 interface TurretPurchaseListing {

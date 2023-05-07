@@ -1,3 +1,3 @@
 export enum TurretNames {
-  BALLISTA = 'BALLISTA',
+  AUTOBALLISTA = 'AUTOBALLISTA',
 }

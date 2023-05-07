@@ -11,5 +11,5 @@ export class KineticWeapons extends ExtendedModel(BaseTech, {}) {
     'devise an improvised, if primitive, means to defend the perimeter';
   powerCost = 50;
   transientUnlockCheck = () => true;
-  turretsUnlocked = [TurretNames.BALLISTA];
+  turretsUnlocked = [TurretNames.AUTOBALLISTA];
 }
