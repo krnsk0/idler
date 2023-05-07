@@ -7,6 +7,8 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
     ? turret.reloadProgress
     : turret.ammoPercent;
 
+  console.log(turret.stateIcon);
+
   return (
     <div css={styles.turretBox}>
       <div css={styles.turretTop}>
@@ -32,7 +34,7 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
             css={styles.progressBar}
             style={{ width: ammoBarWidth * 100 + '%' }}
           ></div>
-          <div css={(theme) => [styles.boxText]}>
+          <div css={styles.boxText}>
             {turret.isAmmoEmpty && !turret.isReloading && 'reload'}
             {!turret.isAmmoEmpty && `${turret.ammo} / ${turret.ammoCapacity}`}
             {turret.isReloading && ''}

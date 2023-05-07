@@ -4,7 +4,6 @@ import { computed } from 'mobx';
 import { getGui, getPerimeter } from '../../../selectors';
 import { formatTime } from '../../../../utils/formatTime';
 import { formatNumber } from '../../../../utils/formatNumber';
-import { spinner } from '../../../../utils/spinner';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -179,7 +178,7 @@ export abstract class BaseEnemy extends Model({
         return formatNumber(this.distanceFromPerimeter) + 'm';
       }
       case EnemyState.ATTACKING: {
-        return spinner(this.attackTimeRemaining);
+        return 'v';
       }
       case EnemyState.DEAD: {
         return 'dead';

@@ -18,7 +18,7 @@ function ConstructEmplacement({ zone }: { zone: Zone }) {
         zone.perimeter.purchaseEmplacement();
       }}
     >
-      <div css={styles.fortifyHeader}>new emplacement</div>
+      <div css={styles.plusSign}>+</div>
       <div css={styles.costDisplay}>
         {costs.map(
           ({
