@@ -14,7 +14,7 @@ function exhaustiveGuard(value: never): never {
 }
 
 // meters
-const PERIMETER_SIZE = 100;
+const PERIMETER_SIZE = 50;
 
 // seconds
 const BASE_ATTACK_TIME = 1;

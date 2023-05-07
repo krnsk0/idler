@@ -8,7 +8,7 @@ export class PhaseMantis extends ExtendedModel(BaseEnemy, {}) {
   displayName = 'phase mantis';
   description =
     'mature insectoid organism. can induce destabilizing resonance from greater distance.';
-  baseHitPoints = 30;
+  baseHitPoints = 12;
   baseAttackCooldown = 5;
   baseAttackDamage = 3;
   baseAttackRange = 20;
