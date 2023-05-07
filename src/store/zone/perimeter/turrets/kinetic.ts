@@ -12,7 +12,7 @@ export class KineticTurret extends ExtendedModel(BaseTurret, {}) {
 
   // ammo
   baseAmmoCost = [{ resource: ResourceNames.ROCK, quantity: 3 }];
-  baseAmmoCapacity = 5;
+  baseAmmoCapacity = 500;
   baseAmmoLoadTime = 8; // seconds
 
   // attack

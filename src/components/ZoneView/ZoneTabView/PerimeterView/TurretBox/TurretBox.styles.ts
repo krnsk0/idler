@@ -24,6 +24,24 @@ const bump = keyframes`
   }
 `;
 
+const aim = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-30deg);
+  }
+  50%{
+    transform: rotate(0deg);
+  }
+  75%{
+    transform: rotate(30deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+`;
+
 export const styles = {
   emptyTurretBox: css`
     display: flex;
@@ -95,15 +113,14 @@ export const styles = {
   `,
   stateBox: (theme: Theme) => css`
     height: 1em;
-    // border: 1px solid ${theme.colors.primary};
     position: relative;
     width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    font-variant: small-caps;
     margin-bottom: 0.4em;
+    font-size: 0.8em;
   `,
   turretBottom: css`
     width: 100%;

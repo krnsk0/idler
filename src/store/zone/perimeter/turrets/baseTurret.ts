@@ -1,11 +1,4 @@
-import {
-  Model,
-  getParent,
-  idProp,
-  modelAction,
-  tProp,
-  types,
-} from 'mobx-keystone';
+import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
 import { PurchaseCost } from '../../sharedTypes';
@@ -128,6 +121,14 @@ export abstract class BaseTurret extends Model({
   }
 
   /**
+   * Is turret aiming?
+   */
+  @computed
+  get isAiming(): boolean {
+    return this.state === TurretStates.AIMING;
+  }
+
+  /**
    * State descriptor
    */
   @computed
@@ -143,7 +144,7 @@ export abstract class BaseTurret extends Model({
         return 'idle';
       }
       case TurretStates.AIMING: {
-        return `aiming`;
+        return `aiming ${spinner(this.attackCooldownRemaining)}`;
       }
       case TurretStates.FIRING: {
         return 'firing';
