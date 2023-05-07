@@ -12,6 +12,7 @@ import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { JobNames } from '../zone/jobs/jobNames';
 import { ResourceNames } from '../zone/resources/resourceNames';
+import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 
 @model('Debug')
 export class Debug extends Model({
@@ -153,7 +154,26 @@ export class Debug extends Model({
     tech[TechNames.ZONE_UPGRADES].cheat();
     tech[TechNames.TEMPERATURE_CONTROL].cheat();
     tech[TechNames.CONSTRUCTION].cheat();
-    initialZone.upgrades.cheat();
+    initialZone.upgrades[UpgradeNames.CHAINSAWS].cheat();
+    initialZone.upgrades[UpgradeNames.COMPOSTING_DRUMS].cheat();
+    initialZone.upgrades[UpgradeNames.TUYERES].cheat();
+    initialZone.upgrades[UpgradeNames.CRATES].cheat();
+    initialZone.upgrades[UpgradeNames.HEAT_RECLAMATORS].cheat();
+    initialZone.upgrades[UpgradeNames.PREFABRICATION].cheat();
+
+    // max buildings
+    initialZone.buildings[BuildingNames.CACHE].cheat(2);
+    initialZone.buildings[BuildingNames.FARM].cheat(2);
+    initialZone.buildings[BuildingNames.TREE_FARM].cheat(1);
+    initialZone.buildings[BuildingNames.HABITAT].cheat(7);
+    initialZone.buildings[BuildingNames.DYNAMO].enableEntity();
+
+    // resource max
+    initialZone.resources[ResourceNames.ALLOY].cheat();
+    initialZone.resources[ResourceNames.ORE].cheat();
+    initialZone.resources[ResourceNames.ROCK].cheat();
+    initialZone.resources[ResourceNames.BIOMASS].cheat();
+    initialZone.resources[ResourceNames.LUMBER].cheat();
 
     // perimeter
     tech[TechNames.RADAR].cheat();
@@ -165,9 +185,7 @@ export class Debug extends Model({
    */
   @modelAction
   debug() {
-    this.phaseTwo();
+    this.phaseFour();
     const tech = getTech(this);
-
-    tech[TechNames.ELECTROMAGNETISM].cheat();
   }
 }

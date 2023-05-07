@@ -74,14 +74,4 @@ export class Upgrades extends ExtendedModel(ZoneEntity, {
   get purchasedAsArray() {
     return this.unlockedAsArray.filter((upgrade) => upgrade.purchased);
   }
-
-  /**
-   * Buys all
-   */
-  @modelAction
-  cheat() {
-    this.unlockedAsArray.forEach((upgrade) => {
-      upgrade.cheat();
-    });
-  }
 }

@@ -112,6 +112,14 @@ export abstract class BaseTurret extends Model({
   }
 
   /**
+   * Is attacking
+   */
+  @computed
+  get isAttacking() {
+    return this.state === TurretStates.FIRING;
+  }
+
+  /**
    * Modified attack damage
    */
   @computed

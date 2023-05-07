@@ -9,6 +9,21 @@ const flash = (theme: Theme) => keyframes`
   }
 `;
 
+const bumpUp = keyframes`
+  0% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  45%{
+    transform: translateY(0.6em);
+  }
+  100%{
+    transform: translateY(0.3em);
+  }
+`;
+
 export const styles = {
   emptyTurretBox: css`
     display: flex;
@@ -125,5 +140,8 @@ export const styles = {
   flasher: (theme: Theme) => css`
     animation: ${flash(theme)} 500ms ease infinite;
     background: ${theme.colors.background};
+  `,
+  bumpUp: css`
+    animation: ${bumpUp} 1000ms linear;
   `,
 };

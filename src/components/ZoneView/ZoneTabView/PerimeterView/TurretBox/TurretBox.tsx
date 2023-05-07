@@ -11,7 +11,9 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
     <div css={styles.turretBox}>
       <div css={styles.turretTop}>
         <div css={styles.turretBoxHeader}>{turret.displayName}</div>
-        <div css={styles.stateIcon}>{turret.stateIcon}</div>
+        <div css={[styles.stateIcon, turret.isAttacking && styles.bumpUp]}>
+          {turret.stateIcon}
+        </div>
       </div>
       <div css={styles.turretBottom}>
         <div
