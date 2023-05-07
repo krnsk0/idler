@@ -11,10 +11,6 @@ export class BiomassCompression extends ExtendedModel(BaseTech, {}) {
     'subject to heat and pressure, biomass becomes an arboraceous material suitable for construction';
   powerCost = 10;
   transientUnlockCheck = () => true;
-  techUnlocked: TechNames[] = [TechNames.FARMING];
+  techUnlocked = [TechNames.FARMING];
   actionsUnlocked = [ActionNames.COMPRESS];
-  actionsRelocked = [];
-  jobsUnlocked = [];
-  buildingsUnlocked = [];
-  upgradesUnlocked = [];
 }

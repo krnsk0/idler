@@ -11,9 +11,5 @@ export class Storage extends ExtendedModel(BaseTech, {}) {
   powerCost = 30;
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.CONSTRUCTION];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.CACHE];
-  upgradesUnlocked = [];
 }

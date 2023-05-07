@@ -11,10 +11,5 @@ export class Agronomy extends ExtendedModel(BaseTech, {}) {
     'with some training in xenobiology, colonists can increase food production';
   powerCost = 30;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
-  actionsUnlocked = [];
-  actionsRelocked = [];
   jobsUnlocked = [JobNames.AGRONOMIST];
-  buildingsUnlocked = [];
-  upgradesUnlocked = [];
 }

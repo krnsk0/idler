@@ -9,10 +9,4 @@ export class Radar extends ExtendedModel(BaseTech, {}) {
   description = 'ship offers a means scan terrain adjacent to the colony';
   powerCost = 150;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
-  buildingsUnlocked = [];
-  upgradesUnlocked = [];
 }

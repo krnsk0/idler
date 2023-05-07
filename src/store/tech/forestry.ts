@@ -11,9 +11,5 @@ export class Forestry extends ExtendedModel(BaseTech, {}) {
   powerCost = 25;
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.SHELTER, TechNames.EXCAVATION];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.TREE_FARM];
-  upgradesUnlocked = [];
 }

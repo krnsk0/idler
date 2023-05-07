@@ -11,10 +11,5 @@ export class Geology extends ExtendedModel(BaseTech, {}) {
     'with some training in mining geology, colonists can increase mine productivity';
   powerCost = 30;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
-  actionsUnlocked = [];
-  actionsRelocked = [];
   jobsUnlocked = [JobNames.GEOLOGIST];
-  buildingsUnlocked = [];
-  upgradesUnlocked = [];
 }

@@ -12,9 +12,5 @@ export class ZoneUpgrades extends ExtendedModel(BaseTech, {}) {
   powerCost = 250;
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.CONSTRUCTION, TechNames.TEMPERATURE_CONTROL];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
-  buildingsUnlocked = [];
   upgradesUnlocked = [UpgradeNames.COMPOSTING_DRUMS];
 }

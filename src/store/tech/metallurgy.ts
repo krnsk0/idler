@@ -12,9 +12,6 @@ export class Metallurgy extends ExtendedModel(BaseTech, {}) {
   powerCost = 25;
   transientUnlockCheck = () => true;
   techUnlocked = [TechNames.ELECTROMAGNETISM];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.FURNACE];
   upgradesUnlocked = [UpgradeNames.CHAINSAWS];
 }

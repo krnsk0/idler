@@ -13,6 +13,7 @@ import { JobNames } from '../zone/jobs/jobNames';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { UpgradeNames } from '../zone/upgrades/upgradeNames';
+import { TurretNames } from '../zone/perimeter/turrets/turretNames';
 export abstract class BaseTech extends ExtendedModel(Unlockable, {
   id: idProp,
   power: tProp(types.number, 0),
@@ -43,32 +44,37 @@ export abstract class BaseTech extends ExtendedModel(Unlockable, {
    *
    * Note that techs do not unlock until all dependencies are satisfied!!
    */
-  abstract techUnlocked: TechNames[];
+  techUnlocked: TechNames[] = [];
 
   /**
    * What actions are unlocked by this tech
    */
-  abstract actionsUnlocked: ActionNames[];
+  actionsUnlocked: ActionNames[] = [];
 
   /**
    * Actions which get locked by researching this
    */
-  abstract actionsRelocked: ActionNames[];
+  actionsRelocked: ActionNames[] = [];
 
   /**
    * What jobs are unlocked by this tech
    */
-  abstract jobsUnlocked: JobNames[];
+  jobsUnlocked: JobNames[] = [];
 
   /**
    * What buildings are unlocked by this tech
    */
-  abstract buildingsUnlocked: BuildingNames[];
+  buildingsUnlocked: BuildingNames[] = [];
 
   /**
    * What upgrades are unlocked by this tech
    */
-  abstract upgradesUnlocked: UpgradeNames[];
+  upgradesUnlocked: UpgradeNames[] = [];
+
+  /**
+   * What turrets are unlocked by this tech
+   */
+  turretsUnlocked: TurretNames[] = [];
 
   /**
    * Responsible for managing when tech is unlocked

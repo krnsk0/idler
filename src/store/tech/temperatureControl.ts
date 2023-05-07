@@ -10,10 +10,5 @@ export class TemperatureControl extends ExtendedModel(BaseTech, {}) {
   description = 'techniques and tools for controlling endothermic reactions';
   powerCost = 50;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
-  buildingsUnlocked = [];
   upgradesUnlocked = [UpgradeNames.TUYERES, UpgradeNames.HEAT_RECLAMATORS];
 }

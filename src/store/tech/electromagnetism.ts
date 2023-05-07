@@ -15,9 +15,5 @@ export class Electromagnetism extends ExtendedModel(BaseTech, {}) {
     TechNames.SUBSURFACE_EXCAVATION,
     TechNames.RADAR,
   ];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
   buildingsUnlocked = [BuildingNames.DYNAMO];
-  upgradesUnlocked = [];
 }

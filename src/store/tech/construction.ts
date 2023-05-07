@@ -10,10 +10,5 @@ export class Construction extends ExtendedModel(BaseTech, {}) {
   description = 'techniques and tools outpost expansion';
   powerCost = 80;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
-  actionsUnlocked = [];
-  actionsRelocked = [];
-  jobsUnlocked = [];
-  buildingsUnlocked = [];
   upgradesUnlocked = [UpgradeNames.PREFABRICATION];
 }

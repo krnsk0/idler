@@ -12,10 +12,6 @@ export class Arboriculture extends ExtendedModel(BaseTech, {}) {
     'with training in the biology of arboriform xenoflora, colonists can increase tree farm productivity';
   powerCost = 30;
   transientUnlockCheck = () => true;
-  techUnlocked = [];
-  actionsUnlocked = [];
-  actionsRelocked = [];
   jobsUnlocked = [JobNames.ARBORIST];
-  buildingsUnlocked = [];
   upgradesUnlocked = [UpgradeNames.CHAINSAWS];
 }
