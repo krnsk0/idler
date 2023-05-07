@@ -17,19 +17,22 @@ enum TurretStates {
   EMPTY = 'EMPTY', // no ammo
   RELOADING = 'RELOADING', // loading ammo
   IDLE = 'IDLE', // no targets
+  WARMUP = 'WARMUP', // offset that makes it so multiple turrets don't line up
   AIMING = 'AIMING', // cooling down between shots
   FIRING = 'FIRING', // attack happens at and
 }
 
 const BASE_ATTACK_TIME = 1;
 
+const START_OFFSET_PER_TURRET = 0.2;
 export abstract class BaseTurret extends Model({
   id: idProp,
   state: tProp(types.enum(TurretStates), TurretStates.EMPTY),
   ammo: tProp(types.number, 0),
   reloadTimeRemaining: tProp(types.number, 0),
-  attackCooldownRemaining: tProp(types.number, 0),
+  aimTimeRemaining: tProp(types.number, 0),
   fireTimeRemaining: tProp(types.number, 0),
+  warmupTimeRemaining: tProp(types.number, 0),
 }) {
   // splash
   abstract name: TurretNames;
@@ -54,7 +57,15 @@ export abstract class BaseTurret extends Model({
   get turretIndex(): number {
     const index = this.perimeter.turrets.findIndex((t) => t.id === this.id);
     if (index < 0) throw new Error('turrent not found');
-    return index + 1;
+    return index;
+  }
+
+  /**
+   * Warmup time is proportional to the turretInfex
+   */
+  @computed
+  get warmupTime(): number {
+    return this.turretIndex * START_OFFSET_PER_TURRET;
   }
 
   /**
@@ -151,8 +162,11 @@ export abstract class BaseTurret extends Model({
       case TurretStates.IDLE: {
         return 'idle';
       }
+      case TurretStates.WARMUP: {
+        return 'idle';
+      }
       case TurretStates.AIMING: {
-        return `aiming ${spinner(this.attackCooldownRemaining)}`;
+        return `aiming ${spinner(this.aimTimeRemaining)}`;
       }
       case TurretStates.FIRING: {
         return 'firing';
@@ -176,6 +190,9 @@ export abstract class BaseTurret extends Model({
         return ``;
       }
       case TurretStates.IDLE: {
+        return '';
+      }
+      case TurretStates.WARMUP: {
         return '';
       }
       case TurretStates.AIMING: {
@@ -229,22 +246,27 @@ export abstract class BaseTurret extends Model({
       }
       case TurretStates.IDLE: {
         if (this.perimeter.areTargetsPresent) {
+          this.state = TurretStates.WARMUP;
+          this.warmupTimeRemaining = this.warmupTime;
+        }
+        break;
+      }
+      case TurretStates.WARMUP: {
+        this.warmupTimeRemaining = Math.max(
+          0,
+          this.warmupTimeRemaining - delta,
+        );
+        if (this.warmupTimeRemaining === 0) {
           this.state = TurretStates.AIMING;
-          this.attackCooldownRemaining = this.baseAttackCooldown;
+          this.aimTimeRemaining = this.baseAttackCooldown;
         }
         break;
       }
       case TurretStates.AIMING: {
         this.maybeBecomeIdle();
 
-        this.attackCooldownRemaining = Math.max(
-          0,
-          this.attackCooldownRemaining - delta,
-        );
-        if (
-          this.attackCooldownRemaining === 0 &&
-          this.perimeter.areTargetsPresent
-        ) {
+        this.aimTimeRemaining = Math.max(0, this.aimTimeRemaining - delta);
+        if (this.aimTimeRemaining === 0 && this.perimeter.areTargetsPresent) {
           this.state = TurretStates.FIRING;
           this.fireTimeRemaining = BASE_ATTACK_TIME;
         }
@@ -261,7 +283,7 @@ export abstract class BaseTurret extends Model({
             this.state = TurretStates.EMPTY;
           } else if (this.perimeter.areTargetsPresent) {
             this.state = TurretStates.AIMING;
-            this.attackCooldownRemaining = this.baseAttackCooldown;
+            this.aimTimeRemaining = this.baseAttackCooldown;
           }
         }
         break;
