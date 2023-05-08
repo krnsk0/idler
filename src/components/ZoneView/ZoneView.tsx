@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import { Zone } from '../../store/zone/zone';
+import { Zone, ZoneTabNames } from '../../store/zone/zone';
 import { styles } from './ZoneView.styles';
 import ZoneLeftPane from './ZoneLeftPane/ZoneLeftPane';
 import ShipColonyView from './ZoneTabView/ShipView/ShipColonyView';
@@ -9,7 +9,6 @@ import { useStore } from '../../store/Provider';
 import { TooltipContainerId } from '../shared/Tooltip/Tooltip';
 import UpgradeView from './ZoneTabView/UpgradeView/UpgradeView';
 import PerimeterView from './ZoneTabView/PerimeterView/PerimeterView';
-import { ZoneTabNames } from '../../store/gui/gui';
 
 interface ZoneViewProps {
   zone: Zone;
@@ -63,8 +62,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                 <TabButton
                   text="outpost"
                   tabName={ZoneTabNames.ACTIONS}
-                  selectedTab={gui.selectedTab}
-                  setSelectedTab={() => gui.selectTab(ZoneTabNames.ACTIONS)}
+                  selectedTab={zone.selectedTab}
+                  setSelectedTab={() => zone.selectTab(ZoneTabNames.ACTIONS)}
                 />
                 <span css={styles.separator} />
                 <TabButton
@@ -72,8 +71,8 @@ function ZoneView({ zone }: ZoneViewProps) {
                     zone.jobs.unassigned > 0 ? ` (${zone.jobs.unassigned})` : ''
                   }`}
                   tabName={ZoneTabNames.JOBS}
-                  selectedTab={gui.selectedTab}
-                  setSelectedTab={() => gui.selectTab(ZoneTabNames.JOBS)}
+                  selectedTab={zone.selectedTab}
+                  setSelectedTab={() => zone.selectTab(ZoneTabNames.JOBS)}
                 />
                 {zone.upgrades.unlocked && (
                   <>
@@ -81,9 +80,9 @@ function ZoneView({ zone }: ZoneViewProps) {
                     <TabButton
                       text="improvements"
                       tabName={ZoneTabNames.UPGRADES}
-                      selectedTab={gui.selectedTab}
+                      selectedTab={zone.selectedTab}
                       setSelectedTab={() =>
-                        gui.selectTab(ZoneTabNames.UPGRADES)
+                        zone.selectTab(ZoneTabNames.UPGRADES)
                       }
                     />
                   </>
@@ -94,9 +93,9 @@ function ZoneView({ zone }: ZoneViewProps) {
                     <TabButton
                       text="perimeter"
                       tabName={ZoneTabNames.PERIMETER}
-                      selectedTab={gui.selectedTab}
+                      selectedTab={zone.selectedTab}
                       setSelectedTab={() =>
-                        gui.selectTab(ZoneTabNames.PERIMETER)
+                        zone.selectTab(ZoneTabNames.PERIMETER)
                       }
                     />
                   </>
@@ -105,7 +104,7 @@ function ZoneView({ zone }: ZoneViewProps) {
             )}
             <div css={styles.scrollableZoneRight}>
               {(() => {
-                switch (gui.selectedTab) {
+                switch (zone.selectedTab) {
                   case ZoneTabNames.ACTIONS:
                     return <ShipColonyView zone={zone} />;
                   case ZoneTabNames.JOBS:

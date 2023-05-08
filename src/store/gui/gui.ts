@@ -15,12 +15,6 @@ type ShipColonyExpandables =
   | typeof TechName
   | undefined;
 
-export enum ZoneTabNames {
-  ACTIONS = 'ACTIONS',
-  JOBS = 'JOBS',
-  UPGRADES = 'UPGRADES',
-  PERIMETER = 'PERIMETER',
-}
 @model('Gui')
 export class Gui extends Model({
   optionsModal: tProp(types.boolean, false),
@@ -42,7 +36,6 @@ export class Gui extends Model({
   expandedJobRow: tProp(types.maybe(types.enum(JobNames)), undefined),
   expandedUpgradeRow: tProp(types.maybe(types.enum(UpgradeNames)), undefined),
   expandedEnemyId: tProp(types.string, ''),
-  selectedTab: tProp(types.enum(ZoneTabNames), ZoneTabNames.ACTIONS),
 }) {
   @modelAction
   openTechModal(): void {
@@ -125,10 +118,5 @@ export class Gui extends Model({
     if (id === this.expandedEnemyId) {
       this.expandedEnemyId = '';
     } else this.expandedEnemyId = id;
-  }
-
-  @modelAction
-  selectTab(tab: ZoneTabNames) {
-    this.selectedTab = tab;
   }
 }

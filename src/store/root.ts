@@ -12,11 +12,12 @@ import {
 import { computed } from 'mobx';
 
 import { Debug } from './debug/debug';
-import { Gui, ZoneTabNames } from './gui/gui';
+import { Gui } from './gui/gui';
 import { Game } from './game';
 import { migrateToCurrentVersion } from './migrator/migrateToCurrentVersion';
 import { makeNewGame } from './migrator/makeNewGame';
 import { ensureFirstZoneIsSelected } from './migrator/ensureFirstZoneIsSelected';
+import { ZoneTabNames } from './zone/zone';
 
 export function migrator(gameJson: any, currentSaveVersion: string): Game {
   return ensureFirstZoneIsSelected(
@@ -88,6 +89,6 @@ export class Root extends Model({
       colorTheme: oldTheme,
     });
     this.gui = new Gui({});
-    this.gui.selectTab(ZoneTabNames.ACTIONS);
+    this.game.zones[0].selectTab(ZoneTabNames.ACTIONS);
   }
 }
