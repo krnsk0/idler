@@ -1,7 +1,7 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
-import { getRadar, getTech } from '../../selectors';
+import { getRadar } from '../../selectors';
 import { PhaseWorm } from './enemies/phaseWorm';
 import { PhaseMantis } from './enemies/phaseMantis';
 import { waveBuilder } from './enemies/utils/waveBuilder';
@@ -42,10 +42,18 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   emplacementCount: tProp(types.number, 1),
   turrets: tProp(types.array(turretTypes), () => []),
   perimeterHealth: tProp(types.number, () => STARTING_PERIMETER_HEALTH),
-  turretPurchaseModalOpen: tProp(types.boolean, false),
+  turretPurchaseIndex: tProp(types.maybe(types.number), () => undefined),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;
+
+  /**
+   * Is turret purchase modal open
+   */
+  @computed
+  get isTurretPurchaseModalOpen() {
+    return this.turretPurchaseIndex !== undefined;
+  }
 
   /**
    * Allowed to puchase more turrets?
@@ -180,8 +188,9 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    * Construct a new turret
    */
   @modelAction
-  constructTurret(turretFactory: () => BaseTurret) {
-    this.turrets.push(turretFactory());
+  constructTurret(turretIndex: number, turretFactory: () => BaseTurret) {
+    const turret = turretFactory();
+    this.turrets.splice(turretIndex, 1, turret);
   }
 
   /**
@@ -209,13 +218,13 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   }
 
   @modelAction
-  openTurretPurchaseModal(): void {
-    this.turretPurchaseModalOpen = true;
+  openTurretPurchaseModal(turretIndex: number): void {
+    this.turretPurchaseIndex = turretIndex;
   }
 
   @modelAction
   closeTurretPurchaseModal(): void {
-    this.turretPurchaseModalOpen = false;
+    this.turretPurchaseIndex = undefined;
   }
 
   /**

@@ -45,7 +45,7 @@ export const styles = {
       padding-left: 0px;
     }
   `,
-  techTile: (theme: Theme) => css`
+  turretTile: (theme: Theme) => css`
     width: 175px;
     min-width: 175px;
     height: 200px;
@@ -63,18 +63,18 @@ export const styles = {
       box-shadow: 0 0 0 0.6px ${theme.colors.primary};
     }
   `,
-  techTitle: css`
+  turretTitle: css`
     font-size: 1em;
     text-align: center;
     font-weight: bold;
   `,
-  techDescription: css`
+  turretDescription: css`
     font-size: 0.7em;
     margin: 1.3em 1em 0em 1em;
     font-style: italic;
     text-align: center;
   `,
-  techCost: css`
+  turretCost: css`
     font-size: 0.8em;
     margin: 1em 1em 0em 1em;
     text-align: center;

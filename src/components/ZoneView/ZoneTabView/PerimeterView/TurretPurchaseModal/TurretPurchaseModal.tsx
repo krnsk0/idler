@@ -9,9 +9,12 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
 
   const purchaseList = root.game.turrets.purchaseable;
 
+  const turretIndex = zone.perimeter.turretPurchaseIndex;
+  if (turretIndex === undefined) return null;
+
   return (
     <StyledModal
-      isOpen={zone.perimeter.turretPurchaseModalOpen}
+      isOpen={zone.perimeter.isTurretPurchaseModalOpen}
       onRequestClose={() => zone.perimeter.closeTurretPurchaseModal()}
     >
       <div css={styles.modalHeader}>
@@ -26,24 +29,26 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
           <em>no turrets unlocked; consult the databanks</em>
         )}
         {!purchaseList.length && <div css={styles.paddingTile} />}
-        {/* {purchaseList.map((turret) => {
+        {purchaseList.map((turretListing) => {
           const onClick = () => {
-            // TODO
-            root.gui.closeTurretPurchaseModal();
+            zone.perimeter.constructTurret(
+              turretIndex,
+              turretListing.turretFactory,
+            );
+            zone.perimeter.closeTurretPurchaseModal();
           };
+          const turret = turretListing.instance;
+
           return (
-            <div key={tech.name} css={styles.techTile} onClick={onClick}>
-              <div css={styles.techTitle}>{tech.displayName}</div>
-              <div css={styles.techDescription}>{tech.description}</div>
-              <div css={styles.techCost}>
-                {tech.power != 0 && (
-                  <span>{formatNumber(tech.power, { digits: 0 })} / </span>
-                )}
-                <span>{tech.powerCost} power</span>
+            <div key={turret.name} css={styles.turretTile} onClick={onClick}>
+              <div css={styles.turretTitle}>{turret.displayName}</div>
+              <div css={styles.turretDescription}>{turret.description}</div>
+              <div css={styles.turretCost}>
+                <span>TODO</span>
               </div>
             </div>
           );
-        })} */}
+        })}
         {!purchaseList.length && <div css={styles.paddingTile} />}
       </div>
     </StyledModal>
