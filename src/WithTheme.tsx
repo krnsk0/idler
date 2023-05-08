@@ -1,8 +1,8 @@
 import { ThemeProvider } from '@emotion/react';
 import { observer } from 'mobx-react-lite';
 import { darkTheme, lightTheme } from './globalStyles';
+import { ColorThemes } from './store/game';
 import { useStore } from './store/Provider';
-import { ColorThemes } from './store/persistedGui';
 
 interface WithThemeProps {
   children: React.ReactNode;
@@ -10,9 +10,7 @@ interface WithThemeProps {
 
 export const WithTheme = observer(({ children }: WithThemeProps) => {
   const {
-    game: {
-      persistedGui: { colorTheme },
-    },
+    game: { colorTheme },
   } = useStore();
 
   let selctedTheme = lightTheme;

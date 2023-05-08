@@ -1,7 +1,6 @@
-import { Game } from '../game';
+import { ColorThemes, Game } from '../game';
 import { fromSnapshot } from 'mobx-keystone';
 import { ensureFirstZoneIsSelected } from './ensureFirstZoneIsSelected';
-import { ColorThemes } from '../persistedGui';
 
 interface MakeNewGameProps {
   currentSaveVersion: string;
@@ -13,7 +12,7 @@ export function makeNewGame({
   colorTheme,
 }: MakeNewGameProps): Game {
   const game = fromSnapshot(Game, {});
-  game.persistedGui.setColorTheme(colorTheme);
+  game.setColorTheme(colorTheme);
   game.metadata.setSaveVersion(currentSaveVersion);
   return ensureFirstZoneIsSelected(game);
 }

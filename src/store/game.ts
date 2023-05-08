@@ -14,11 +14,15 @@ import { Tech } from './tech/tech';
 import { SystemRegistry } from './systemRegistry';
 import { Metadata } from './metadata';
 import { Turrets } from './turrets/turrets';
-import { PersistedGui } from './persistedGui';
 
 const initialZoneName = 'landing zone';
 
 const zoneRef = rootRef<Zone>('zone_ref', {});
+
+export enum ColorThemes {
+  LIGHT = 'LIGHT',
+  DARK = 'DARK',
+}
 
 @model('Game')
 export class Game extends Model({
@@ -33,7 +37,7 @@ export class Game extends Model({
   turrets: tProp(types.model(Turrets), () => new Turrets({})),
   selectedZoneRef: prop<Ref<Zone> | undefined>(),
   metadata: tProp(types.model(Metadata), () => new Metadata({})),
-  persistedGui: tProp(types.model(PersistedGui), () => new PersistedGui({})),
+  colorTheme: tProp(types.enum(ColorThemes), ColorThemes.LIGHT).withSetter(),
 }) {
   @computed
   get selectedZone(): Zone | undefined {

@@ -3,7 +3,7 @@ import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
 import { useStore } from '../../store/Provider';
 import { styles } from './DebugView.styles';
-import { ColorThemes } from '../../store/persistedGui';
+import { ColorThemes } from '../../store/game';
 
 const DebugView = () => {
   const root = useStore();
@@ -44,14 +44,14 @@ const DebugView = () => {
 
         <button
           onClick={() =>
-            root.game.persistedGui.setColorTheme(
-              root.game.persistedGui.colorTheme === ColorThemes.LIGHT
+            root.game.setColorTheme(
+              root.game.colorTheme === ColorThemes.LIGHT
                 ? ColorThemes.DARK
                 : ColorThemes.LIGHT,
             )
           }
         >
-          {root.game.persistedGui.colorTheme === ColorThemes.LIGHT
+          {root.game.colorTheme === ColorThemes.LIGHT
             ? 'dark mode'
             : 'light mode'}
         </button>

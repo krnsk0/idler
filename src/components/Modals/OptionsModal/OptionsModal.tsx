@@ -1,10 +1,10 @@
 import { observer } from 'mobx-react-lite';
 import { useState } from 'react';
+import { ColorThemes } from '../../../store/game';
 import { useStore } from '../../../store/Provider';
 import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { Changelog } from './Changelog';
 import { styles } from './OptionsModal.styles';
-import { ColorThemes } from '../../../store/persistedGui';
 
 const OptionsModal = () => {
   const root = useStore();
@@ -45,14 +45,14 @@ const OptionsModal = () => {
         <button
           css={styles.button}
           onClick={() =>
-            root.game.persistedGui.setColorTheme(
-              root.game.persistedGui.colorTheme === ColorThemes.LIGHT
+            root.game.setColorTheme(
+              root.game.colorTheme === ColorThemes.LIGHT
                 ? ColorThemes.DARK
                 : ColorThemes.LIGHT,
             )
           }
         >
-          {root.game.persistedGui.colorTheme === ColorThemes.LIGHT
+          {root.game.colorTheme === ColorThemes.LIGHT
             ? 'dark mode'
             : 'light mode'}
         </button>
