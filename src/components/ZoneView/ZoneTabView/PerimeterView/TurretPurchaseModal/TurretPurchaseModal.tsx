@@ -12,7 +12,7 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
   return (
     <StyledModal
       isOpen={zone.perimeter.turretPurchaseModalOpen}
-      onRequestClose={() => zone.perimeter.closeTurretPurchaseModal}
+      onRequestClose={() => zone.perimeter.closeTurretPurchaseModal()}
     >
       <div css={styles.modalHeader}>
         <h2>install turret</h2>
