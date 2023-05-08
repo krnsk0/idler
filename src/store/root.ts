@@ -82,7 +82,7 @@ export class Root extends Model({
   @modelAction
   reset(): void {
     console.log('resetting game state');
-    const oldTheme = this.game.colorTheme;
+    const oldTheme = this.game.persistedGui.colorTheme;
     this.game = makeNewGame({
       currentSaveVersion: APP_VERSION,
       colorTheme: oldTheme,
