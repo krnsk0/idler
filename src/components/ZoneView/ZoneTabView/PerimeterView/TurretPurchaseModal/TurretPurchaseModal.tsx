@@ -26,9 +26,11 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
       </div>
       <div css={styles.turretsContainer}>
         {purchaseList.length === 0 && (
-          <em>no turrets unlocked; consult the databanks</em>
+          <em css={styles.emptyLabel}>
+            no turrets unlocked; consult the databanks
+          </em>
         )}
-        {!purchaseList.length && <div css={styles.paddingTile} />}
+        {!!purchaseList.length && <div css={styles.paddingTile} />}
         {purchaseList.map((turretListing) => {
           const onClick = () => {
             zone.perimeter.constructTurret(
@@ -49,7 +51,7 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
             </div>
           );
         })}
-        {!purchaseList.length && <div css={styles.paddingTile} />}
+        {!!purchaseList.length && <div css={styles.paddingTile} />}
       </div>
     </StyledModal>
   );

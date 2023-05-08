@@ -31,11 +31,16 @@ export const styles = {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+
     overflow-x: scroll;
 
     ${mq['desktop']} {
       justify-content: center;
     }
+  `,
+  emptyLabel: css`
+    text-align: center;
   `,
   paddingTile: css`
     display: inline-block;
