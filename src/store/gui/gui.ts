@@ -43,7 +43,6 @@ export class Gui extends Model({
   expandedUpgradeRow: tProp(types.maybe(types.enum(UpgradeNames)), undefined),
   expandedEnemyId: tProp(types.string, ''),
   selectedTab: tProp(types.enum(ZoneTabNames), ZoneTabNames.ACTIONS),
-  turretPurchaseModal: tProp(types.boolean, false),
 }) {
   @modelAction
   openTechModal(): void {
@@ -68,16 +67,6 @@ export class Gui extends Model({
   @modelAction
   toggleResourcePane(): void {
     this._resourcePaneOpen = !this._resourcePaneOpen;
-  }
-
-  @modelAction
-  openTurretPurchaseModal(): void {
-    this.turretPurchaseModal = true;
-  }
-
-  @modelAction
-  closeTurretPurchaseModal(): void {
-    this.turretPurchaseModal = false;
   }
 
   @computed

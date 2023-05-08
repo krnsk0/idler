@@ -1,5 +1,5 @@
 import { css, Theme } from '@emotion/react';
-import { mq } from '../../../globalStyles';
+import { mq } from '../../../../../globalStyles';
 
 export const styles = {
   modalHeader: css`

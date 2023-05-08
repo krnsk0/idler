@@ -10,6 +10,7 @@ import { EnemyNames } from './enemies/enemyNames';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 import { ResourceNames } from '../resources/resourceNames';
 import { Autoballista } from '../../turrets/autoballista';
+import { BaseTurret } from '../../turrets/baseTurret';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -41,6 +42,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   emplacementCount: tProp(types.number, 1),
   turrets: tProp(types.array(turretTypes), () => []),
   perimeterHealth: tProp(types.number, () => STARTING_PERIMETER_HEALTH),
+  turretPurchaseModalOpen: tProp(types.boolean, false),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;
@@ -178,8 +180,8 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    * Construct a new turret
    */
   @modelAction
-  constructTurret() {
-    this.turrets.push(new Autoballista({}));
+  constructTurret(turretFactory: () => BaseTurret) {
+    this.turrets.push(turretFactory());
   }
 
   /**
@@ -204,6 +206,16 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
     if (enemy) {
       enemy.takeDamage(damage);
     }
+  }
+
+  @modelAction
+  openTurretPurchaseModal(): void {
+    this.turretPurchaseModalOpen = true;
+  }
+
+  @modelAction
+  closeTurretPurchaseModal(): void {
+    this.turretPurchaseModalOpen = false;
   }
 
   /**

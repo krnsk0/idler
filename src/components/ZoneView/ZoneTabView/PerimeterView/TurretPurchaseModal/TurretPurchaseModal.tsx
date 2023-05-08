@@ -1,18 +1,18 @@
 import { observer } from 'mobx-react-lite';
-import { useStore } from '../../../store/Provider';
-import { formatNumber } from '../../../utils/formatNumber';
-import { StyledModal } from '../../shared/StyledModal/StyledModal';
 import { styles } from './TurretPurchaseModal.styles';
+import { useStore } from '../../../../../store/Provider';
+import { StyledModal } from '../../../../shared/StyledModal/StyledModal';
+import { Zone } from '../../../../../store/zone/zone';
 
-const TechModal = () => {
+const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
   const root = useStore();
 
   const purchaseList = root.game.turrets.purchaseable;
 
   return (
     <StyledModal
-      isOpen={root.gui.turretPurchaseModal}
-      onRequestClose={() => root.gui.closeTurretPurchaseModal()}
+      isOpen={zone.perimeter.turretPurchaseModalOpen}
+      onRequestClose={() => zone.perimeter.closeTurretPurchaseModal}
     >
       <div css={styles.modalHeader}>
         <h2>install turret</h2>
@@ -50,4 +50,4 @@ const TechModal = () => {
   );
 };
 
-export default observer(TechModal);
+export default observer(TurretPurchaseModal);

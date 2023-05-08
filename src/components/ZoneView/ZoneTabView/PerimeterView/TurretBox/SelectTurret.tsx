@@ -6,7 +6,7 @@ function SelectTurret({ zone }: { zone: Zone }) {
   return (
     <div
       css={[styles.turretBox, styles.emptyTurretBox]}
-      onClick={() => zone.perimeter.constructTurret()}
+      onClick={() => zone.perimeter.openTurretPurchaseModal()}
     >
       <div css={styles.plusSign}>+</div>
       <div>install</div>
