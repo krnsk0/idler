@@ -1,9 +1,16 @@
-import { Model, idProp, modelAction, tProp, types } from 'mobx-keystone';
+import {
+  idProp,
+  modelAction,
+  tProp,
+  types,
+  ExtendedModel,
+} from 'mobx-keystone';
 import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
-import { getGui, getPerimeter } from '../../../selectors';
-import { formatTime } from '../../../../utils/formatTime';
-import { formatNumber } from '../../../../utils/formatNumber';
+import { getGui, getPerimeter } from '../selectors';
+import { formatTime } from '../../utils/formatTime';
+import { formatNumber } from '../../utils/formatNumber';
+import { Unlockable } from '../unlockable';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -26,7 +33,7 @@ enum EnemyState {
   ATTACKING = 'ATTACKING',
 }
 
-export abstract class BaseEnemy extends Model({
+export abstract class BaseEnemy extends ExtendedModel(Unlockable, {
   id: idProp,
   damageTaken: tProp(types.number, 0),
   attackCooldownRemaining: tProp(types.number, 0), // seconds
@@ -58,6 +65,9 @@ export abstract class BaseEnemy extends Model({
   abstract baseAttackCooldown: number;
   abstract baseAttackDamage: number;
   abstract baseAttackRange: number;
+
+  observableUnlockCheck = () => true;
+  transientUnlockCheck = () => true;
 
   /**
    * Total HP with modifier

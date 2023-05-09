@@ -3,7 +3,6 @@ import { Autoballista } from './autoballista';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
 import { BaseTurret } from './baseTurret';
-import { PurchaseCost } from '../zone/sharedTypes';
 import { enumKeys } from '../../utils/enumKeys';
 
 type TurretFactory = () => BaseTurret;

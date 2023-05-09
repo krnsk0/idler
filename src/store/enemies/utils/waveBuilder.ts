@@ -5,6 +5,7 @@ interface ThreatProfile {
   modelName: EnemyNames;
 }
 
+// TODO: allow using only unlocked enemies
 const enemiesByThreatLevel: Array<ThreatProfile> = [
   { threat: 5, modelName: EnemyNames.PHASE_MANTIS },
   { threat: 1, modelName: EnemyNames.PHASE_WORM },

@@ -1,5 +1,4 @@
 import { observer } from 'mobx-react-lite';
-import { BaseEnemy } from '../../../../store/zone/perimeter/enemies/baseEnemy';
 import { styles } from './EnemyRow.styles';
 import { formatTime } from '../../../../utils/formatTime';
 import {
@@ -11,6 +10,7 @@ import {
 import { useRef } from 'react';
 import { formatNumber } from '../../../../utils/formatNumber';
 import { HealthBar } from '../../../shared/HealthBar/HealthBar';
+import { BaseEnemy } from '../../../../store/enemies/baseEnemy';
 
 interface EnemyRowProps {
   enemy: BaseEnemy;
