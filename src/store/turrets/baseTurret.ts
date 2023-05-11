@@ -8,10 +8,11 @@ import {
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
-import { PurchaseCost } from '../zone/sharedTypes';
-import { getPerimeter, getTech } from '../selectors';
+import { PurchaseCost, PurchaseCostDisplay } from '../zone/sharedTypes';
+import { getPerimeter, getTech, getZone } from '../selectors';
 import { spinner } from '../../utils/spinner';
 import { Unlockable } from '../unlockable';
+import { Zone } from '../zone/zone';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -71,8 +72,6 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
 
   /**
    * Fgure out which of the 4 turrets this is
-   *
-   * TODO: test this. will be useful for offsetting turret start times
    */
   @computed
   get turretIndex(): number {
@@ -166,6 +165,34 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   @computed
   get isAiming(): boolean {
     return this.state === TurretStates.AIMING;
+  }
+
+  /**
+   * Displayable purchase costs
+   *
+   * Zone must be injected as this is consulted when model is outside of zone
+   * as it has not yet been purchased
+   */
+  purchaseCostDisplay(zone: Zone): PurchaseCostDisplay[] {
+    return this.purchaseCost.map(({ resource, quantity }) => {
+      const resourceModel = zone.resources[resource];
+      return {
+        resourceDisplayName: resourceModel.displayName,
+        isSatisfied: resourceModel.quantity >= quantity,
+        availableQuantity: resourceModel.quantity,
+        storageConstrained: quantity > resourceModel.currentCap,
+        quantity,
+      };
+    });
+  }
+
+  /**
+   * Can this entity be bought?
+   */
+  affordable(zone: Zone): boolean {
+    return this.purchaseCost.every(({ resource, quantity }) => {
+      return zone.resources[resource].quantity >= quantity;
+    });
   }
 
   /**

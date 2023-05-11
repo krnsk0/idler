@@ -3,6 +3,7 @@ import { styles } from './TurretPurchaseModal.styles';
 import { useStore } from '../../../../../store/Provider';
 import { StyledModal } from '../../../../shared/StyledModal/StyledModal';
 import { Zone } from '../../../../../store/zone/zone';
+import { formatNumber } from '../../../../../utils/formatNumber';
 
 const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
   const root = useStore();
@@ -41,12 +42,40 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
           };
           const turret = turretListing.instance;
 
+          const affordable = turret.affordable(zone);
+          console.log('affordable: ', affordable);
+
           return (
-            <div key={turret.name} css={styles.turretTile} onClick={onClick}>
+            <div
+              key={turret.name}
+              css={(theme) => [styles.turretTile(theme, affordable)]}
+              onClick={onClick}
+            >
               <div css={styles.turretTitle}>{turret.displayName}</div>
               <div css={styles.turretDescription}>{turret.description}</div>
               <div css={styles.turretCost}>
-                <span>TODO</span>
+                {turret
+                  .purchaseCostDisplay(zone)
+                  .map(
+                    ({
+                      resourceDisplayName,
+                      isSatisfied,
+                      availableQuantity,
+                      storageConstrained,
+                      quantity,
+                    }) => {
+                      return (
+                        <div key={resourceDisplayName}>
+                          {resourceDisplayName}:{' '}
+                          {isSatisfied
+                            ? ''
+                            : `${formatNumber(availableQuantity)} / `}
+                          {formatNumber(quantity)}
+                          {storageConstrained ? 'ᶜ' : ''}
+                        </div>
+                      );
+                    },
+                  )}
               </div>
             </div>
           );

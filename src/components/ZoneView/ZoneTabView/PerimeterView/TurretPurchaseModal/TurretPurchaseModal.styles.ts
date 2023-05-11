@@ -50,7 +50,8 @@ export const styles = {
       padding-left: 0px;
     }
   `,
-  turretTile: (theme: Theme) => css`
+  turretTile: (theme: Theme, affordable: boolean) => css`
+    color: ${affordable ? theme.colors.primary : theme.colors.disabled};
     width: 175px;
     min-width: 175px;
     height: 200px;
@@ -62,10 +63,12 @@ export const styles = {
     flex-direction: column;
     justify-content: space-between;
     box-sizing: border-box;
-    cursor: pointer;
+    cursor: ${affordable ? 'pointer' : 'inherit'};
 
     &:hover {
-      box-shadow: 0 0 0 0.6px ${theme.colors.primary};
+      box-shadow: ${affordable
+        ? `0 0 0 0.6px ${theme.colors.primary}`
+        : `none`};
     }
   `,
   turretTitle: css`
