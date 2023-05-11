@@ -77,7 +77,6 @@ export abstract class Unlockable extends Model({
    * Register with ticking systems
    */
   protected onAttachedToRootStore() {
-    console.log('ATTACHED TO ROOT STORE', this.$modelType);
     const registry = getSystemRegistry(this);
     registry.registerUnlockable(this);
     return () => {

@@ -14,7 +14,7 @@ const DebugView = () => {
 
   useEffect(() => {
     if (debugParam) {
-      debug.enableHyper();
+      // debug.enableHyper();
     }
   }, [debugParam, debug]);
 

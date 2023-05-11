@@ -45,14 +45,23 @@ export const getGame = (child: object): Game => {
   const root = findParent<Root>(child, (node) => {
     return node instanceof Root;
   });
-  if (!root) throw new Error('no game model found in getGame');
+  if (!root)
+    throw new Error(
+      `no game model found in getGame for ${(child as any).$modelType}`,
+    );
   return root.game;
 };
+
 export const getSystemRegistry = (child: object): SystemRegistry => {
   const root = findParent<Root>(child, (node) => {
     return node instanceof Root;
   });
-  if (!root) throw new Error('no game model found in getGame');
+  if (!root)
+    throw new Error(
+      `no system registry model found in getSystemRegistry for ${
+        (child as any).$modelType
+      }`,
+    );
   return root.game.systemRegistry;
 };
 
