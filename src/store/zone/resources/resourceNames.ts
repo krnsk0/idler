@@ -6,4 +6,5 @@ export enum ResourceNames {
   ROCK = 'ROCK',
   ORE = 'ORE',
   ALLOY = 'ALLOY',
+  PHASE_MATTER = 'PHASE_MATTER',
 }
