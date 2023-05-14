@@ -1,7 +1,7 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
-import { getRadar, getZone } from '../../selectors';
+import { getRadar } from '../../selectors';
 import { waveBuilder } from './enemies/utils/waveBuilder';
 import { statModifierFactory } from './enemies/utils/statModifierFactory';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
@@ -11,8 +11,8 @@ import { BaseTurret } from './turrets/baseTurret';
 import { PhaseWorm } from './enemies/phaseWorm';
 import { PhaseMantis } from './enemies/phaseMantis';
 import { EnemyNames } from './enemies/enemyNames';
-import { TurretMenu } from './turrets/turretMenu';
-import { EnemyMenu } from './enemies/enemyMenu';
+import { TurretList } from './turrets/turretList';
+import { EnemyList } from './enemies/enemyList';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -45,8 +45,8 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   turrets: tProp(types.array(turretTypes), () => []),
   perimeterHealth: tProp(types.number, () => STARTING_PERIMETER_HEALTH),
   turretPurchaseIndex: tProp(types.maybe(types.number), () => undefined),
-  turretMenu: tProp(types.model(TurretMenu), () => new TurretMenu({})),
-  enemyMenu: tProp(types.model(EnemyMenu), () => new EnemyMenu({})),
+  turretList: tProp(types.model(TurretList), () => new TurretList({})),
+  enemyList: tProp(types.model(EnemyList), () => new EnemyList({})),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;

@@ -13,8 +13,8 @@ import { enumKeys } from '../../../../utils/enumKeys';
  * This model exists to store single global isntances of enemies to run
  * their unlock logic. May be useful in future for an in-game encyclopedia
  */
-@model('EnemyMenu')
-export class EnemyMenu extends Model({
+@model('EnemyList')
+export class EnemyList extends Model({
   [EnemyNames.PHASE_WORM]: tProp(
     types.model(PhaseWorm),
     () => new PhaseWorm({}),

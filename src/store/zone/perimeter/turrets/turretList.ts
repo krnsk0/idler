@@ -19,8 +19,8 @@ interface TurretPurchaseListing {
 /**
  * These turret models are used for unlock/purchase, not combat.
  */
-@model('TurretMenu')
-export class TurretMenu extends Model({
+@model('TurretList')
+export class TurretList extends Model({
   [TurretNames.AUTOBALLISTA]: tProp(
     types.model(Autoballista),
     () => new Autoballista({}),

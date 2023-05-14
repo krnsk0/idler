@@ -5,7 +5,7 @@ import { Zone } from '../../../../../store/zone/zone';
 import { formatNumber } from '../../../../../utils/formatNumber';
 
 const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
-  const purchaseList = zone.perimeter.turretMenu.purchaseable;
+  const purchaseList = zone.perimeter.turretList.purchaseable;
   const turretIndex = zone.perimeter.turretPurchaseIndex;
   if (turretIndex === undefined) return null;
 
