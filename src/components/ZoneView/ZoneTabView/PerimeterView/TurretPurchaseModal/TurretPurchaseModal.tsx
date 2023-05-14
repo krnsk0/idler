@@ -38,7 +38,7 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
           };
           const turret = turretListing.instance;
 
-          const affordable = turret.affordable();
+          const affordable = turret.affordable;
           console.log('affordable: ', affordable);
 
           return (
@@ -50,28 +50,26 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
               <div css={styles.turretTitle}>{turret.displayName}</div>
               <div css={styles.turretDescription}>{turret.description}</div>
               <div css={styles.turretCost}>
-                {turret
-                  .purchaseCostDisplay()
-                  .map(
-                    ({
-                      resourceDisplayName,
-                      isSatisfied,
-                      availableQuantity,
-                      storageConstrained,
-                      quantity,
-                    }) => {
-                      return (
-                        <div key={resourceDisplayName}>
-                          {resourceDisplayName}:{' '}
-                          {isSatisfied
-                            ? ''
-                            : `${formatNumber(availableQuantity)} / `}
-                          {formatNumber(quantity)}
-                          {storageConstrained ? 'ᶜ' : ''}
-                        </div>
-                      );
-                    },
-                  )}
+                {turret.purchaseCostDisplay.map(
+                  ({
+                    resourceDisplayName,
+                    isSatisfied,
+                    availableQuantity,
+                    storageConstrained,
+                    quantity,
+                  }) => {
+                    return (
+                      <div key={resourceDisplayName}>
+                        {resourceDisplayName}:{' '}
+                        {isSatisfied
+                          ? ''
+                          : `${formatNumber(availableQuantity)} / `}
+                        {formatNumber(quantity)}
+                        {storageConstrained ? 'ᶜ' : ''}
+                      </div>
+                    );
+                  },
+                )}
               </div>
             </div>
           );

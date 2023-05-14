@@ -183,7 +183,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    * as it has not yet been purchased
    */
   @computed
-  purchaseCostDisplay(): PurchaseCostDisplay[] {
+  get purchaseCostDisplay(): PurchaseCostDisplay[] {
     return this.purchaseCost.map(({ resource, quantity }) => {
       const resourceModel = getZone(this).resources[resource];
       return {
@@ -200,7 +200,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    * Can this entity be bought?
    */
   @computed
-  affordable(): boolean {
+  get affordable(): boolean {
     return this.purchaseCost.every(({ resource, quantity }) => {
       return getZone(this).resources[resource].quantity >= quantity;
     });
@@ -210,7 +210,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    * Can afford a reload?
    */
   @computed
-  canAffordReload(): boolean {
+  get canAffordReload(): boolean {
     return this.reloadCost.every(({ resource, quantity }) => {
       return getZone(this).resources[resource].quantity >= quantity;
     });
@@ -222,7 +222,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    */
   @modelAction
   buy() {
-    if (this.affordable()) {
+    if (this.affordable) {
       this.purchaseCost.forEach(({ resource, quantity }) => {
         getZone(this).resources[resource].decrease(quantity, {
           untracked: true,
@@ -236,7 +236,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    */
   @modelAction
   startReload() {
-    if (this.canAffordReload()) {
+    if (this.canAffordReload) {
       this.reloadCost.forEach(({ resource, quantity }) => {
         getZone(this).resources[resource].decrease(quantity, {
           untracked: true,
