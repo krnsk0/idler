@@ -192,7 +192,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   @modelAction
   constructTurret(turretIndex: number, turretFactory: () => BaseTurret) {
     const turret = turretFactory();
-    turret.buy(getZone(this));
+    turret.buy();
     this.turrets.splice(turretIndex, 1, turret);
   }
 
