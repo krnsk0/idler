@@ -4,6 +4,6 @@
  */
 export function dots(time: number): string {
   const chars = ['...', '..', '.'];
-  const index = Math.floor(time / 0.3333) % chars.length;
+  const index = Math.floor((time - 0.001) / 0.3333) % chars.length;
   return chars[index];
 }
