@@ -1,7 +1,7 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
-import { getRadar } from '../../selectors';
+import { getRadar, getZone } from '../../selectors';
 import { waveBuilder } from '../../enemies/utils/waveBuilder';
 import { statModifierFactory } from '../../enemies/utils/statModifierFactory';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
@@ -190,6 +190,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   @modelAction
   constructTurret(turretIndex: number, turretFactory: () => BaseTurret) {
     const turret = turretFactory();
+    turret.buy(getZone(this));
     this.turrets.splice(turretIndex, 1, turret);
   }
 

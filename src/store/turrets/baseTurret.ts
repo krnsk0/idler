@@ -196,6 +196,18 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * Does the resource decrementing for puchasing a single
+   * entity
+   */
+  buy(zone: Zone) {
+    if (this.affordable(zone)) {
+      this.purchaseCost.forEach(({ resource, quantity }) => {
+        zone.resources[resource].decrease(quantity, { untracked: true });
+      });
+    }
+  }
+
+  /**
    * State descriptor
    */
   @computed
