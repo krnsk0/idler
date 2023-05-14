@@ -1,43 +1,47 @@
 import { observer } from 'mobx-react-lite';
 import { styles } from './TurretBox.styles';
-import { Zone } from '../../../../../store/zone/zone';
 import { BaseTurret } from '../../../../../store/zone/perimeter/turrets/baseTurret';
 
-function TurretBox({ turret, zone }: { turret: BaseTurret; zone: Zone }) {
-  const ammoBarWidth = turret.isReloading
-    ? turret.reloadProgress
-    : turret.ammoPercent;
+function TurretBox({ turret }: { turret: BaseTurret }) {
+  const {
+    canAffordReload,
+    displayName,
+    isAttacking,
+    isAmmoEmpty,
+    isReloading,
+    ammo,
+    ammoCapacity,
+    stateIcon,
+    stateDescriptor,
+    ammoPercent,
+    reloadProgress,
+  } = turret;
+
+  const ammoBarWidth = turret.isReloading ? reloadProgress : ammoPercent;
 
   return (
     <div css={styles.turretBox}>
       <div css={styles.turretTop}>
-        <div css={styles.turretBoxHeader}>{turret.displayName}</div>
-        <div css={[styles.stateIcon, turret.isAttacking && styles.bump]}>
-          {turret.stateIcon}
+        <div css={styles.turretBoxHeader}>{displayName}</div>
+        <div css={[styles.stateIcon, isAttacking && styles.bump]}>
+          {stateIcon}
         </div>
       </div>
       <div css={styles.turretBottom}>
         <div
           css={(theme) => [
             styles.stateBox,
-            turret.isAmmoEmpty && !turret.isReloading && styles.flasher(theme),
+            isAmmoEmpty && !isReloading && styles.flasher(theme),
           ]}
         >
-          {turret.stateDescriptor}
+          {stateDescriptor}
         </div>
         <div
           css={(theme) =>
-            styles.progressBarBox(
-              theme,
-              turret.isAmmoEmpty && turret.canAffordReload,
-            )
+            styles.progressBarBox(theme, isAmmoEmpty && canAffordReload)
           }
           onClick={() => {
-            if (
-              turret.isAmmoEmpty &&
-              !turret.isReloading &&
-              turret.canAffordReload
-            )
+            if (isAmmoEmpty && !isReloading && canAffordReload)
               turret.startReload();
           }}
         >
@@ -47,15 +51,12 @@ function TurretBox({ turret, zone }: { turret: BaseTurret; zone: Zone }) {
           ></div>
           <div
             css={(theme) =>
-              styles.boxText(
-                theme,
-                !turret.isAmmoEmpty || turret.canAffordReload,
-              )
+              styles.boxText(theme, !isAmmoEmpty || canAffordReload)
             }
           >
-            {turret.isAmmoEmpty && !turret.isReloading && 'reload'}
-            {!turret.isAmmoEmpty && `${turret.ammo} / ${turret.ammoCapacity}`}
-            {turret.isReloading && ''}
+            {isAmmoEmpty && !isReloading && 'reload'}
+            {!isAmmoEmpty && `${ammo} / ${ammoCapacity}`}
+            {isReloading && ''}
           </div>
         </div>
       </div>
