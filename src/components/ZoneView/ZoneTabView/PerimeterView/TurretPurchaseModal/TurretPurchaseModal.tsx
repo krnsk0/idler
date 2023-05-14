@@ -38,7 +38,7 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
           };
           const turret = turretListing.instance;
 
-          const affordable = turret.affordable(zone);
+          const affordable = turret.affordable();
           console.log('affordable: ', affordable);
 
           return (
@@ -51,7 +51,7 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
               <div css={styles.turretDescription}>{turret.description}</div>
               <div css={styles.turretCost}>
                 {turret
-                  .purchaseCostDisplay(zone)
+                  .purchaseCostDisplay()
                   .map(
                     ({
                       resourceDisplayName,

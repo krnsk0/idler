@@ -29,16 +29,16 @@ function TurretBox({ turret, zone }: { turret: BaseTurret; zone: Zone }) {
           css={(theme) =>
             styles.progressBarBox(
               theme,
-              turret.isAmmoEmpty && turret.canAffordReload(zone),
+              turret.isAmmoEmpty && turret.canAffordReload(),
             )
           }
           onClick={() => {
             if (
               turret.isAmmoEmpty &&
               !turret.isReloading &&
-              turret.canAffordReload(zone)
+              turret.canAffordReload()
             )
-              turret.startReload(zone);
+              turret.startReload();
           }}
         >
           <div
@@ -49,7 +49,7 @@ function TurretBox({ turret, zone }: { turret: BaseTurret; zone: Zone }) {
             css={(theme) =>
               styles.boxText(
                 theme,
-                !turret.isAmmoEmpty || turret.canAffordReload(zone),
+                !turret.isAmmoEmpty || turret.canAffordReload(),
               )
             }
           >

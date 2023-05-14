@@ -11,7 +11,6 @@ import { PurchaseCost, PurchaseCostDisplay } from '../../../zone/sharedTypes';
 import { getPerimeter, getTech, getZone } from '../../../selectors';
 import { spinner } from '../../../../utils/spinner';
 import { Unlockable } from '../../../unlockable';
-import { Zone } from '../../../zone/zone';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -183,9 +182,10 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    * Zone must be injected as this is consulted when model is outside of zone
    * as it has not yet been purchased
    */
-  purchaseCostDisplay(zone: Zone): PurchaseCostDisplay[] {
+  @computed
+  purchaseCostDisplay(): PurchaseCostDisplay[] {
     return this.purchaseCost.map(({ resource, quantity }) => {
-      const resourceModel = zone.resources[resource];
+      const resourceModel = getZone(this).resources[resource];
       return {
         resourceDisplayName: resourceModel.displayName,
         isSatisfied: resourceModel.quantity >= quantity,
@@ -199,18 +199,20 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   /**
    * Can this entity be bought?
    */
-  affordable(zone: Zone): boolean {
+  @computed
+  affordable(): boolean {
     return this.purchaseCost.every(({ resource, quantity }) => {
-      return zone.resources[resource].quantity >= quantity;
+      return getZone(this).resources[resource].quantity >= quantity;
     });
   }
 
   /**
    * Can afford a reload?
    */
-  canAffordReload(zone: Zone): boolean {
+  @computed
+  canAffordReload(): boolean {
     return this.reloadCost.every(({ resource, quantity }) => {
-      return zone.resources[resource].quantity >= quantity;
+      return getZone(this).resources[resource].quantity >= quantity;
     });
   }
 
@@ -219,10 +221,12 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    * entity
    */
   @modelAction
-  buy(zone: Zone) {
-    if (this.affordable(zone)) {
+  buy() {
+    if (this.affordable()) {
       this.purchaseCost.forEach(({ resource, quantity }) => {
-        zone.resources[resource].decrease(quantity, { untracked: true });
+        getZone(this).resources[resource].decrease(quantity, {
+          untracked: true,
+        });
       });
     }
   }
@@ -231,10 +235,12 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    * Do reload
    */
   @modelAction
-  startReload(zone: Zone) {
-    if (this.canAffordReload(zone)) {
+  startReload() {
+    if (this.canAffordReload()) {
       this.reloadCost.forEach(({ resource, quantity }) => {
-        zone.resources[resource].decrease(quantity, { untracked: true });
+        getZone(this).resources[resource].decrease(quantity, {
+          untracked: true,
+        });
       });
       this.state = TurretStates.RELOADING;
       this.reloadTimeRemaining = this.baseAmmoLoadTime;
