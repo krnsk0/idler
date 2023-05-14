@@ -4,13 +4,15 @@ import {
   tProp,
   types,
   ExtendedModel,
+  detach,
 } from 'mobx-keystone';
 import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
-import { getGui, getPerimeter } from '../../../selectors';
+import { getGui, getPerimeter, getResources } from '../../../selectors';
 import { formatTime } from '../../../../utils/formatTime';
 import { formatNumber } from '../../../../utils/formatNumber';
 import { Unlockable } from '../../../unlockable';
+import { ResourceNames } from '../../resources/resourceNames';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -260,6 +262,17 @@ export abstract class BaseEnemy extends ExtendedModel(Unlockable, {
     if (this.damageTaken > this.maxHitPoints) {
       this.state = EnemyState.DEAD;
     }
+  }
+
+  /**
+   * Collect resources and remove
+   */
+  @modelAction
+  collect() {
+    getResources(this)[ResourceNames.PHASE_MASS].increase(this.phaseMass, {
+      untracked: true,
+    });
+    detach(this);
   }
 
   /**

@@ -59,7 +59,9 @@ function EnemyRow({ enemy }: EnemyRowProps) {
       {enemy.isDead && (
         <div css={styles.dead}>
           <div>{formatNumber(enemy.phaseMass)} phase mass</div>
-          <div css={styles.collect}>collect</div>
+          <div css={styles.collect} onClick={() => enemy.collect()}>
+            collect
+          </div>
         </div>
       )}
       {!enemy.isDead && (
