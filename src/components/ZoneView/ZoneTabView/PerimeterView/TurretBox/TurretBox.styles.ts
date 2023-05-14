@@ -1,4 +1,5 @@
 import { Theme, css, keyframes } from '@emotion/react';
+import { mq } from '../../../../../globalStyles';
 
 const flash = (theme: Theme) => keyframes`
   0% {
@@ -111,7 +112,19 @@ export const styles = {
     margin-top: 0.5em;
     text-align: center;
   `,
-  stateBox: (theme: Theme) => css`
+  smallScreenOnly: css`
+    display: inherit;
+    ${mq['hoverableDesktop']} {
+      display: none;
+    }
+  `,
+  largeScreenOnly: css`
+    display: none;
+    ${mq['hoverableDesktop']} {
+      display: inherit;
+    }
+  `,
+  stateBox: css`
     height: 1em;
     position: relative;
     width: 90%;

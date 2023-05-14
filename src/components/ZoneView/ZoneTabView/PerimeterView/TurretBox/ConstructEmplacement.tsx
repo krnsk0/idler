@@ -70,7 +70,10 @@ function ConstructEmplacement({ zone }: { zone: Zone }) {
         ref={containerRef}
       >
         <div css={styles.plusSign}>+</div>
-        <div css={styles.costDisplay}>
+        <div css={[styles.turretBoxHeader, styles.largeScreenOnly]}>
+          fortify
+        </div>
+        <div css={[styles.costDisplay, styles.smallScreenOnly]}>
           {costs.map(
             ({
               resourceDisplayName,
