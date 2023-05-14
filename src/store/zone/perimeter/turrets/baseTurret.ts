@@ -299,7 +299,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   get stateIcon(): string {
     switch (this.state) {
       case TurretStates.EMPTY: {
-        return '_';
+        return '';
       }
       case TurretStates.RELOADING: {
         return dots(this.reloadTimeRemaining);
