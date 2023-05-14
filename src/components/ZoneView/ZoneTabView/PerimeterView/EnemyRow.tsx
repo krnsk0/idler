@@ -75,7 +75,10 @@ function EnemyRow({ enemy }: EnemyRowProps) {
           {'>'}
         </div>
         <div css={styles.enemyRowRight}>
-          <div>{enemy.displayName}</div>
+          <div>
+            {enemy.displayName}
+            {enemy.isDead && ' (dead)'}
+          </div>
           <div css={[enemy.isAttacking && styles.bump]}>
             {enemy.stateDescriptor}
           </div>

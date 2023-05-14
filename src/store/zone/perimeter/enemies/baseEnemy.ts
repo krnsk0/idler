@@ -180,7 +180,7 @@ export abstract class BaseEnemy extends ExtendedModel(Unlockable, {
    */
   @computed
   get isDead() {
-    return this.remainingHitPoints <= 0;
+    return this.state === EnemyState.DEAD;
   }
 
   /**
