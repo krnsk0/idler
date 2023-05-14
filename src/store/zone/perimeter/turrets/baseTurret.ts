@@ -1,6 +1,5 @@
 import {
   ExtendedModel,
-  Model,
   idProp,
   modelAction,
   tProp,
@@ -8,11 +7,11 @@ import {
 } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
-import { PurchaseCost, PurchaseCostDisplay } from '../zone/sharedTypes';
-import { getPerimeter, getTech, getZone } from '../selectors';
-import { spinner } from '../../utils/spinner';
-import { Unlockable } from '../unlockable';
-import { Zone } from '../zone/zone';
+import { PurchaseCost, PurchaseCostDisplay } from '../../../zone/sharedTypes';
+import { getPerimeter, getTech, getZone } from '../../../selectors';
+import { spinner } from '../../../../utils/spinner';
+import { Unlockable } from '../../../unlockable';
+import { Zone } from '../../../zone/zone';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(

@@ -6,11 +6,12 @@ import { waveBuilder } from '../../enemies/utils/waveBuilder';
 import { statModifierFactory } from '../../enemies/utils/statModifierFactory';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
 import { ResourceNames } from '../resources/resourceNames';
-import { Autoballista } from '../../turrets/autoballista';
-import { BaseTurret } from '../../turrets/baseTurret';
+import { Autoballista } from './turrets/autoballista';
+import { BaseTurret } from './turrets/baseTurret';
 import { PhaseWorm } from '../../enemies/phaseWorm';
 import { PhaseMantis } from '../../enemies/phaseMantis';
 import { EnemyNames } from '../../enemies/enemyNames';
+import { TurretMenu } from './turrets/turretMenu';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -43,6 +44,7 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
   turrets: tProp(types.array(turretTypes), () => []),
   perimeterHealth: tProp(types.number, () => STARTING_PERIMETER_HEALTH),
   turretPurchaseIndex: tProp(types.maybe(types.number), () => undefined),
+  turretMenu: tProp(types.model(TurretMenu), () => new TurretMenu({})),
 }) {
   transientUnlockCheck = () => true;
   observableUnlockCheck = () => getRadar(this).unlocked;

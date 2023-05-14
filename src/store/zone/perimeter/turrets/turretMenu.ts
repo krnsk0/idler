@@ -3,7 +3,7 @@ import { Autoballista } from './autoballista';
 import { computed } from 'mobx';
 import { TurretNames } from './turretNames';
 import { BaseTurret } from './baseTurret';
-import { enumKeys } from '../../utils/enumKeys';
+import { enumKeys } from '../../../../utils/enumKeys';
 
 type TurretFactory = () => BaseTurret;
 
@@ -17,15 +17,10 @@ interface TurretPurchaseListing {
 }
 
 /**
- * Instances of turrets actually used for combat are stored in zone data,
- * and there are often multiples of them
- *
- * This model exists to store  single global isntances of turrets to run
- * theri unlock logic and to allow us to reason about which are purchaseable
- * based on this logic
+ * These turret models are used for unlock/purchase, not combat.
  */
-@model('Turrets')
-export class Turrets extends Model({
+@model('TurretMenu')
+export class TurretMenu extends Model({
   [TurretNames.AUTOBALLISTA]: tProp(
     types.model(Autoballista),
     () => new Autoballista({}),

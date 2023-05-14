@@ -1,15 +1,11 @@
 import { observer } from 'mobx-react-lite';
 import { styles } from './TurretPurchaseModal.styles';
-import { useStore } from '../../../../../store/Provider';
 import { StyledModal } from '../../../../shared/StyledModal/StyledModal';
 import { Zone } from '../../../../../store/zone/zone';
 import { formatNumber } from '../../../../../utils/formatNumber';
 
 const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
-  const root = useStore();
-
-  const purchaseList = root.game.turrets.purchaseable;
-
+  const purchaseList = zone.perimeter.turretMenu.purchaseable;
   const turretIndex = zone.perimeter.turretPurchaseIndex;
   if (turretIndex === undefined) return null;
 

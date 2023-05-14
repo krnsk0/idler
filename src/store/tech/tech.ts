@@ -38,7 +38,7 @@ import { UpgradeNames } from '../zone/upgrades/upgradeNames';
 import { ZoneUpgrades } from './zoneUpgrades';
 import { TemperatureControl } from './temperatureControl';
 import { Construction } from './construction';
-import { TurretNames } from '../turrets/turretNames';
+import { TurretNames } from '../zone/perimeter/turrets/turretNames';
 
 const techRef = rootRef<BaseTech>('tech_ref', {});
 

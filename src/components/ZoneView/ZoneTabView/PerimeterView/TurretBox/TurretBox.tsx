@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
 import { styles } from './TurretBox.styles';
-import { BaseTurret } from '../../../../../store/turrets/baseTurret';
 import { Zone } from '../../../../../store/zone/zone';
+import { BaseTurret } from '../../../../../store/zone/perimeter/turrets/baseTurret';
 
 function TurretBox({ turret, zone }: { turret: BaseTurret; zone: Zone }) {
   const ammoBarWidth = turret.isReloading

@@ -13,7 +13,7 @@ import { JobNames } from '../zone/jobs/jobNames';
 import { ActionNames } from '../zone/actions/actionNames';
 import { BuildingNames } from '../zone/buildings/buildingNames';
 import { UpgradeNames } from '../zone/upgrades/upgradeNames';
-import { TurretNames } from '../turrets/turretNames';
+import { TurretNames } from '../zone/perimeter/turrets/turretNames';
 export abstract class BaseTech extends ExtendedModel(Unlockable, {
   id: idProp,
   power: tProp(types.number, 0),
