@@ -49,7 +49,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   abstract description: string;
 
   // ammo
-  abstract baseAmmoCost: PurchaseCost[];
+  abstract baseAmmoCost: PurchaseCost[]; // cost per shot
   abstract baseAmmoCapacity: number;
   abstract baseAmmoLoadTime: number; // seconds
 
@@ -168,6 +168,17 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * Total cost to reload
+   */
+  @computed
+  get reloadCost(): PurchaseCost[] {
+    return this.ammoCost.map(({ resource, quantity }) => ({
+      resource,
+      quantity: quantity * this.ammoCapacity,
+    }));
+  }
+
+  /**
    * Displayable purchase costs
    *
    * Zone must be injected as this is consulted when model is outside of zone
@@ -196,14 +207,38 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * Can afford a reload?
+   */
+  canAffordReload(zone: Zone): boolean {
+    return this.reloadCost.every(({ resource, quantity }) => {
+      return zone.resources[resource].quantity >= quantity;
+    });
+  }
+
+  /**
    * Does the resource decrementing for puchasing a single
    * entity
    */
+  @modelAction
   buy(zone: Zone) {
     if (this.affordable(zone)) {
       this.purchaseCost.forEach(({ resource, quantity }) => {
         zone.resources[resource].decrease(quantity, { untracked: true });
       });
+    }
+  }
+
+  /**
+   * Do reload
+   */
+  @modelAction
+  startReload(zone: Zone) {
+    if (this.canAffordReload(zone)) {
+      this.reloadCost.forEach(({ resource, quantity }) => {
+        zone.resources[resource].decrease(quantity, { untracked: true });
+      });
+      this.state = TurretStates.RELOADING;
+      this.reloadTimeRemaining = this.baseAmmoLoadTime;
     }
   }
 
@@ -265,15 +300,6 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
         exhaustiveGuard(this.state);
       }
     }
-  }
-
-  /**
-   * Start reload
-   */
-  @modelAction
-  startReload() {
-    this.state = TurretStates.RELOADING;
-    this.reloadTimeRemaining = this.baseAmmoLoadTime;
   }
 
   /**
