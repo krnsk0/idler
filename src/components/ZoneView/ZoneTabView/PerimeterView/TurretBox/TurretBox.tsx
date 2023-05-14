@@ -1,8 +1,9 @@
 import { observer } from 'mobx-react-lite';
 import { styles } from './TurretBox.styles';
 import { BaseTurret } from '../../../../../store/turrets/baseTurret';
+import { Zone } from '../../../../../store/zone/zone';
 
-function TurretBox({ turret }: { turret: BaseTurret }) {
+function TurretBox({ turret, zone }: { turret: BaseTurret; zone: Zone }) {
   const ammoBarWidth = turret.isReloading
     ? turret.reloadProgress
     : turret.ammoPercent;
@@ -25,16 +26,33 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
           {turret.stateDescriptor}
         </div>
         <div
-          css={(theme) => styles.progressBarBox(theme, turret.isAmmoEmpty)}
+          css={(theme) =>
+            styles.progressBarBox(
+              theme,
+              turret.isAmmoEmpty && turret.canAffordReload(zone),
+            )
+          }
           onClick={() => {
-            if (turret.isAmmoEmpty && !turret.isReloading) turret.startReload();
+            if (
+              turret.isAmmoEmpty &&
+              !turret.isReloading &&
+              turret.canAffordReload(zone)
+            )
+              turret.startReload(zone);
           }}
         >
           <div
             css={styles.progressBar}
             style={{ width: ammoBarWidth * 100 + '%' }}
           ></div>
-          <div css={styles.boxText}>
+          <div
+            css={(theme) =>
+              styles.boxText(
+                theme,
+                !turret.isAmmoEmpty || turret.canAffordReload(zone),
+              )
+            }
+          >
             {turret.isAmmoEmpty && !turret.isReloading && 'reload'}
             {!turret.isAmmoEmpty && `${turret.ammo} / ${turret.ammoCapacity}`}
             {turret.isReloading && ''}

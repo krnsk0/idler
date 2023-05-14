@@ -143,7 +143,7 @@ export const styles = {
     width: 100%;
     background-color: ${theme.colors.progressBar};
   `,
-  boxText: css`
+  boxText: (theme: Theme, enabled: boolean) => css`
     margin-top: 0.1em;
     position: absolute;
     display: flex;
@@ -153,6 +153,7 @@ export const styles = {
     height: 100%;
     z-index: 1;
     font-size: 0.8em;
+    color: ${enabled ? theme.colors.primary : theme.colors.disabled};
   `,
   flasher: (theme: Theme) => css`
     animation: ${flash(theme)} 500ms ease infinite;
