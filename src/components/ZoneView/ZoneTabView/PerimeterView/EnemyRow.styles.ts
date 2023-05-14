@@ -61,4 +61,22 @@ export const styles = {
   bump: css`
     animation: ${bump} 1000ms linear;
   `,
+  dead: (theme: Theme) => css`
+    height: 2em;
+    border-bottom: 1px solid ${theme.colors.primary};
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+    cursor: inherit;
+  `,
+  collect: (theme: Theme) => css`
+    cursor: pointer;
+    border: 1px solid ${theme.colors.primary};
+    font-size: 0.8em;
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+  `,
 };

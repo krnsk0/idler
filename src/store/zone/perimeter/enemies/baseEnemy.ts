@@ -66,6 +66,9 @@ export abstract class BaseEnemy extends ExtendedModel(Unlockable, {
   abstract baseAttackDamage: number;
   abstract baseAttackRange: number;
 
+  // drops
+  abstract basePhaseMass: number;
+
   observableUnlockCheck = () => true;
   transientUnlockCheck = () => true;
 
@@ -192,6 +195,14 @@ export abstract class BaseEnemy extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * phase mass dropped on death
+   */
+  @computed
+  get phaseMass() {
+    return this.basePhaseMass;
+  }
+
+  /**
    * Visual state descriptor
    */
   @computed
@@ -207,7 +218,7 @@ export abstract class BaseEnemy extends ExtendedModel(Unlockable, {
         return 'v';
       }
       case EnemyState.DEAD: {
-        return 'dead';
+        return ``;
       }
       default: {
         exhaustiveGuard(this.state);

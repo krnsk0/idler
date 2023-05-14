@@ -13,4 +13,5 @@ export class PhaseMantis extends ExtendedModel(BaseEnemy, {}) {
   baseAttackDamage = 3;
   baseAttackRange = 20;
   baseMovementSpeed = 1.5;
+  basePhaseMass = 0.1;
 }

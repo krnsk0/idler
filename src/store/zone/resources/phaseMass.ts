@@ -2,9 +2,9 @@ import { model, ExtendedModel } from 'mobx-keystone';
 import { BaseResource } from './baseResource';
 import { ResourceNames } from './resourceNames';
 
-@model(ResourceNames.PHASE_MATTER)
-export class PhaseMatter extends ExtendedModel(BaseResource, {}) {
-  name = ResourceNames.PHASE_MATTER;
-  displayName = 'phase matter';
+@model(ResourceNames.PHASE_MASS)
+export class PhaseMass extends ExtendedModel(BaseResource, {}) {
+  name = ResourceNames.PHASE_MASS;
+  displayName = 'phase mass';
   initialCap = 10;
 }

@@ -49,7 +49,6 @@ const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
 function EnemyRow({ enemy }: EnemyRowProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const health = enemy.remainingHitPointsPercent * 100;
-
   const isExpanded = enemy.isExpanded;
 
   return (
@@ -57,37 +56,47 @@ function EnemyRow({ enemy }: EnemyRowProps) {
       <TooltipPortalRenderer containerRef={containerRef}>
         {<EnemyRowTooltip enemy={enemy} />}
       </TooltipPortalRenderer>
-      <div
-        css={(theme) => [
-          styles.enemyRow(theme),
-          isExpanded && styles.noBottomBorder,
-        ]}
-        ref={containerRef}
-        onClick={() => {
-          enemy.expandEnemy();
-        }}
-      >
-        <HealthBar healthPercent={health} />
-        <div
-          css={styles.caret}
-          style={{ transform: isExpanded ? 'rotate(90deg)' : 'none' }}
-        >
-          {'>'}
+      {enemy.isDead && (
+        <div css={styles.dead}>
+          <div>{formatNumber(enemy.phaseMass)} phase mass</div>
+          <div css={styles.collect}>collect</div>
         </div>
-        <div css={styles.enemyRowRight}>
-          <div>
-            {enemy.displayName}
-            {enemy.isDead && ' (dead)'}
+      )}
+      {!enemy.isDead && (
+        <>
+          <div
+            css={(theme) => [
+              styles.enemyRow(theme),
+              isExpanded && styles.noBottomBorder,
+            ]}
+            ref={containerRef}
+            onClick={() => {
+              enemy.expandEnemy();
+            }}
+          >
+            <HealthBar healthPercent={health} />
+            <div
+              css={styles.caret}
+              style={{ transform: isExpanded ? 'rotate(90deg)' : 'none' }}
+            >
+              {'>'}
+            </div>
+            <div css={styles.enemyRowRight}>
+              <div>
+                {enemy.displayName}
+                {enemy.isDead && ' (dead)'}
+              </div>
+              <div css={[enemy.isAttacking && styles.bump]}>
+                {enemy.stateDescriptor}
+              </div>
+            </div>
           </div>
-          <div css={[enemy.isAttacking && styles.bump]}>
-            {enemy.stateDescriptor}
-          </div>
-        </div>
-      </div>
-      {enemy.isExpanded && (
-        <div css={styles.expandedResourceTooltip}>
-          <EnemyRowTooltip enemy={enemy} />
-        </div>
+          {enemy.isExpanded && (
+            <div css={styles.expandedResourceTooltip}>
+              <EnemyRowTooltip enemy={enemy} />
+            </div>
+          )}
+        </>
       )}
     </>
   );

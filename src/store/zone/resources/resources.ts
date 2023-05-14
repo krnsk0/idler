@@ -10,7 +10,7 @@ import { ZoneEntity } from '../zoneEntity';
 import { Rock } from './rock';
 import { Ore } from './ore';
 import { Alloy } from './alloy';
-import { PhaseMatter } from './phaseMatter';
+import { PhaseMass } from './phaseMass';
 
 @model('Resources')
 export class Resources extends ExtendedModel(ZoneEntity, {
@@ -24,9 +24,9 @@ export class Resources extends ExtendedModel(ZoneEntity, {
   [ResourceNames.ROCK]: tProp(types.model(Rock), () => new Rock({})),
   [ResourceNames.ORE]: tProp(types.model(Ore), () => new Ore({})),
   [ResourceNames.ALLOY]: tProp(types.model(Alloy), () => new Alloy({})),
-  [ResourceNames.PHASE_MATTER]: tProp(
-    types.model(PhaseMatter),
-    () => new PhaseMatter({}),
+  [ResourceNames.PHASE_MASS]: tProp(
+    types.model(PhaseMass),
+    () => new PhaseMass({}),
   ),
 }) {
   transientUnlockCheck = () => !!this.unlockedAsArray.length;
