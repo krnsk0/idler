@@ -10,7 +10,7 @@ import {
 import { useRef } from 'react';
 import { formatNumber } from '../../../../utils/formatNumber';
 import { HealthBar } from '../../../shared/HealthBar/HealthBar';
-import { BaseEnemy } from '../../../../store/enemies/baseEnemy';
+import { BaseEnemy } from '../../../../store/zone/perimeter/enemies/baseEnemy';
 
 interface EnemyRowProps {
   enemy: BaseEnemy;

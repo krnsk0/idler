@@ -1,10 +1,10 @@
 import { Model, model, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 
-import { enumKeys } from '../../utils/enumKeys';
 import { EnemyNames } from './enemyNames';
 import { PhaseWorm } from './phaseWorm';
 import { PhaseMantis } from './phaseMantis';
+import { enumKeys } from '../../../../utils/enumKeys';
 
 /**
  * Instances of enemies actually used for combat are stored in zone data,
@@ -13,8 +13,8 @@ import { PhaseMantis } from './phaseMantis';
  * This model exists to store single global isntances of enemies to run
  * their unlock logic. May be useful in future for an in-game encyclopedia
  */
-@model('Enemies')
-export class Enemies extends Model({
+@model('EnemyMenu')
+export class EnemyMenu extends Model({
   [EnemyNames.PHASE_WORM]: tProp(
     types.model(PhaseWorm),
     () => new PhaseWorm({}),

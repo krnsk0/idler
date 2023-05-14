@@ -13,7 +13,6 @@ import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 import { SystemRegistry } from './systemRegistry';
 import { Metadata } from './metadata';
-import { Enemies } from './enemies/enemies';
 
 const initialZoneName = 'landing zone';
 
@@ -34,7 +33,6 @@ export class Game extends Model({
     new Zone({ name: initialZoneName }),
   ]),
   tech: tProp(types.model(Tech), () => new Tech({})),
-  enemies: tProp(types.model(Enemies), () => new Enemies({})),
   selectedZoneRef: prop<Ref<Zone> | undefined>(),
   metadata: tProp(types.model(Metadata), () => new Metadata({})),
   colorTheme: tProp(types.enum(ColorThemes), ColorThemes.LIGHT).withSetter(),

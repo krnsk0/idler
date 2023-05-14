@@ -7,10 +7,10 @@ import {
 } from 'mobx-keystone';
 import { EnemyNames } from './enemyNames';
 import { computed } from 'mobx';
-import { getGui, getPerimeter } from '../selectors';
-import { formatTime } from '../../utils/formatTime';
-import { formatNumber } from '../../utils/formatNumber';
-import { Unlockable } from '../unlockable';
+import { getGui, getPerimeter } from '../../../selectors';
+import { formatTime } from '../../../../utils/formatTime';
+import { formatNumber } from '../../../../utils/formatNumber';
+import { Unlockable } from '../../../unlockable';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
