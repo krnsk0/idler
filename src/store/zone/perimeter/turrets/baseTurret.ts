@@ -11,6 +11,7 @@ import { PurchaseCost, PurchaseCostDisplay } from '../../../zone/sharedTypes';
 import { getPerimeter, getTech, getZone } from '../../../selectors';
 import { spinner } from '../../../../utils/spinner';
 import { Unlockable } from '../../../unlockable';
+import { dots } from '../../../../utils/dots';
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -177,10 +178,24 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * Displayable reload costs
+   */
+  @computed
+  get reloadCostDisplay(): PurchaseCostDisplay[] {
+    return this.reloadCost.map(({ resource, quantity }) => {
+      const resourceModel = getZone(this).resources[resource];
+      return {
+        resourceDisplayName: resourceModel.displayName,
+        isSatisfied: resourceModel.quantity >= quantity,
+        availableQuantity: resourceModel.quantity,
+        storageConstrained: quantity > resourceModel.currentCap,
+        quantity,
+      };
+    });
+  }
+
+  /**
    * Displayable purchase costs
-   *
-   * Zone must be injected as this is consulted when model is outside of zone
-   * as it has not yet been purchased
    */
   @computed
   get purchaseCostDisplay(): PurchaseCostDisplay[] {
@@ -266,7 +281,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
         return 'idle';
       }
       case TurretStates.AIMING: {
-        return `aiming ${spinner(this.aimTimeRemaining)}`;
+        return `aiming`;
       }
       case TurretStates.FIRING: {
         return 'firing';
@@ -284,19 +299,19 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   get stateIcon(): string {
     switch (this.state) {
       case TurretStates.EMPTY: {
-        return '';
+        return '_';
       }
       case TurretStates.RELOADING: {
-        return ``;
+        return dots(this.reloadTimeRemaining);
       }
       case TurretStates.IDLE: {
-        return '';
+        return '.';
       }
       case TurretStates.WARMUP: {
-        return '';
+        return '.';
       }
       case TurretStates.AIMING: {
-        return '^';
+        return spinner(this.aimTimeRemaining);
       }
       case TurretStates.FIRING: {
         return '^';
