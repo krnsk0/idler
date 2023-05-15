@@ -65,6 +65,10 @@ export const styles = {
     box-sizing: border-box;
     cursor: ${affordable ? 'pointer' : 'inherit'};
 
+    div {
+      color: ${affordable ? theme.colors.primary : theme.colors.disabled};
+    }
+
     &:hover {
       box-shadow: ${affordable
         ? `0 0 0 0.6px ${theme.colors.primary}`
