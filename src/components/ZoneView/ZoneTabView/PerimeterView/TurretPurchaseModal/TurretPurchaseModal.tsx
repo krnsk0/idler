@@ -39,7 +39,6 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
           const turret = turretListing.instance;
 
           const affordable = turret.affordable;
-          console.log('affordable: ', affordable);
 
           return (
             <div
