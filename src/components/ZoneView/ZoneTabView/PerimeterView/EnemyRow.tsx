@@ -17,10 +17,6 @@ interface EnemyRowProps {
 }
 
 const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
-  const cooldown =
-    enemy.attackCooldownRemaining > 0
-      ? formatTime(enemy.attackCooldownRemaining)
-      : '-';
   return (
     <>
       <DesktopTooltipTitle showDivider={true}>
@@ -40,7 +36,6 @@ const EnemyRowTooltip = observer(({ enemy }: EnemyRowProps) => {
         <div>speed: {formatNumber(enemy.movementSpeed)} meters per second</div>
         <div>attack: {formatNumber(enemy.attackDamage)}</div>
         <div>range: {formatNumber(enemy.attackRange)} meters</div>
-        <div>cooldown: {cooldown}</div>
       </TooltipText>
     </>
   );
