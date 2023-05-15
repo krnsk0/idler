@@ -8,7 +8,7 @@ export class PhaseWorm extends ExtendedModel(BaseEnemy, {}) {
   displayName = 'phase worm';
   description =
     'small vermiform organism. can induce destabilizing resonance in structures and equipment.';
-  baseHitPoints = 4;
+  baseHitPoints = 3;
   baseAttackCooldown = 5;
   baseAttackDamage = 1;
   baseAttackRange = 10;
