@@ -11,7 +11,7 @@ export class Autoballista extends ExtendedModel(BaseTurret, {}) {
   description = 'acceleratate lithoid matter to lethal velocities';
 
   // ammo
-  baseAmmoCost = [{ resource: ResourceNames.ROCK, quantity: 3 }];
+  baseAmmoCost = [{ resource: ResourceNames.ROCK, quantity: 1 }];
   baseAmmoCapacity = 5;
   baseAmmoLoadTime = 8; // seconds
 
