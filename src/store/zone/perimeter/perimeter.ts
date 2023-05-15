@@ -13,6 +13,13 @@ import { PhaseMantis } from './enemies/phaseMantis';
 import { EnemyNames } from './enemies/enemyNames';
 import { TurretList } from './turrets/turretList';
 import { EnemyList } from './enemies/enemyList';
+import { TurretNames } from './turrets/turretNames';
+
+type TurretFactory = () => BaseTurret;
+
+const turretFactoryMapping: Record<TurretNames, TurretFactory> = {
+  [TurretNames.AUTOBALLISTA]: () => new Autoballista({}),
+};
 
 function exhaustiveGuard(value: never): never {
   throw new Error(
@@ -192,8 +199,8 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
    * Construct a new turret
    */
   @modelAction
-  constructTurret(turretIndex: number, turretFactory: () => BaseTurret) {
-    const turret = turretFactory();
+  constructTurret(turretIndex: number, turretName: TurretNames) {
+    const turret = turretFactoryMapping[turretName]();
     this.turrets.splice(turretIndex, 1, turret);
     turret.buy();
   }

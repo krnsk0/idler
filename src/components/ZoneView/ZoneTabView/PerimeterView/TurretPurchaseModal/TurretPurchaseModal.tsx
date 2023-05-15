@@ -5,7 +5,7 @@ import { Zone } from '../../../../../store/zone/zone';
 import { formatNumber } from '../../../../../utils/formatNumber';
 
 const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
-  const purchaseList = zone.perimeter.turretList.purchaseable;
+  const purchaseList = zone.perimeter.turretList.unlockedAsArray;
   const turretIndex = zone.perimeter.turretPurchaseIndex;
   if (turretIndex === undefined) return null;
 
@@ -28,15 +28,12 @@ const TurretPurchaseModal = ({ zone }: { zone: Zone }) => {
           </em>
         )}
         {!!purchaseList.length && <div css={styles.paddingTile} />}
-        {purchaseList.map((turretListing) => {
+        {purchaseList.map((turret) => {
           const onClick = () => {
-            zone.perimeter.constructTurret(
-              turretIndex,
-              turretListing.turretFactory,
-            );
+            if (!turret.affordable) return;
+            zone.perimeter.constructTurret(turretIndex, turret.name);
             zone.perimeter.closeTurretPurchaseModal();
           };
-          const turret = turretListing.instance;
 
           const affordable = turret.affordable;
 
