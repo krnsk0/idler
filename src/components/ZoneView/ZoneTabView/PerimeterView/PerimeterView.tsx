@@ -29,14 +29,9 @@ function PerimeterView({ zone }: PerimeterViewProps) {
       <div css={styles.perimeterContainer} id="perimeter-view-outer">
         <div css={[styles.enemyBox, !enemiesPresent && styles.emptyEnemyBox]}>
           {enemiesPresent ? (
-            perimeter.enemies
-              .slice()
-              .sort((a, b) => {
-                return a.isDead ? 1 : b.isDead ? -1 : 0;
-              })
-              .map((enemy) => {
-                return <EnemyRow key={enemy.id} enemy={enemy} />;
-              })
+            perimeter.enemies.map((enemy) => {
+              return <EnemyRow key={enemy.id} enemy={enemy} />;
+            })
           ) : (
             <div css={styles.emptyPerimeterMessage}>
               {radar.isScanning && (
