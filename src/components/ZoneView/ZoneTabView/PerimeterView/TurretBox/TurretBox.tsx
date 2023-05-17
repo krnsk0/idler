@@ -18,6 +18,7 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
     stateDescriptor,
     ammoPercent,
     reloadProgress,
+    canReload,
   } = turret;
 
   const ammoBarWidth = turret.isReloading ? reloadProgress : ammoPercent;
@@ -50,8 +51,7 @@ function TurretBox({ turret }: { turret: BaseTurret }) {
               styles.progressBarBox(theme, isAmmoEmpty && canAffordReload)
             }
             onClick={() => {
-              if (isAmmoEmpty && !isReloading && canAffordReload)
-                turret.startReload();
+              if (canReload) turret.startReload();
             }}
           >
             <div

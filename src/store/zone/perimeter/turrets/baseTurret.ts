@@ -232,6 +232,26 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
   }
 
   /**
+   * Is the turret idle?
+   */
+  @computed
+  get isIdle(): boolean {
+    return this.state === TurretStates.IDLE;
+  }
+
+  /**
+   * Are we allowed to start a reload?
+   */
+  @computed
+  get canReload(): boolean {
+    return (
+      (this.isIdle || this.isAmmoEmpty) &&
+      !this.isReloading &&
+      this.canAffordReload
+    );
+  }
+
+  /**
    * Does the resource decrementing for puchasing a single
    * entity
    */
@@ -251,7 +271,7 @@ export abstract class BaseTurret extends ExtendedModel(Unlockable, {
    */
   @modelAction
   startReload() {
-    if (this.canAffordReload) {
+    if (this.canReload) {
       this.reloadCost.forEach(({ resource, quantity }) => {
         getZone(this).resources[resource].decrease(quantity, {
           untracked: true,
