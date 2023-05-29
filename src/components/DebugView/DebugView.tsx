@@ -35,7 +35,7 @@ const DebugView = () => {
         <button
           type="button"
           onClick={() => {
-            root.reset();
+            root.hardReset();
             localStorage.removeItem('save');
           }}
         >

@@ -1,4 +1,4 @@
-import { Model, model, modelAction } from 'mobx-keystone';
+import { Model, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { Game } from './game';
 import { getDebug, getGame } from './selectors';
@@ -12,7 +12,9 @@ export interface Unlockable {
  * get registered here
  */
 @model('SystemRegistry')
-export class SystemRegistry extends Model({}) {
+export class SystemRegistry extends Model({
+  paused: tProp(types.boolean, false),
+}) {
   /**
    * There are a lot of unlockables and walking the tree to find them is
    * a performance cost, so they register themselves here
@@ -103,6 +105,8 @@ export class SystemRegistry extends Model({}) {
    */
   @modelAction
   executeTick(time: number): void {
+    if (this.paused) return;
+
     // reject ticks that are over 10 sec long
     if (time > 10) return;
 
@@ -119,5 +123,15 @@ export class SystemRegistry extends Model({}) {
       console.log('broke up long tick of length', time);
       console.log(`took ${(performance.now() - start).toFixed(2)}ms`);
     }
+  }
+
+  @modelAction
+  pauseGame() {
+    this.paused = true;
+  }
+
+  @modelAction
+  unpauseGame() {
+    this.paused = false;
   }
 }

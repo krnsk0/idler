@@ -51,7 +51,7 @@ export class Root extends Model({
     console.log('attempting to load save from localstorage...');
     const savegame = localStorage.getItem('save');
     try {
-      if (!savegame) return this.reset();
+      if (!savegame) return this.hardReset();
       let gameJson = JSON.parse(savegame);
       this.game = migrator(gameJson, APP_VERSION);
       console.log('save loaded');
@@ -60,7 +60,7 @@ export class Root extends Model({
         error,
         savegame,
       });
-      this.reset();
+      this.hardReset();
     }
   }
 
@@ -81,7 +81,7 @@ export class Root extends Model({
   });
 
   @modelAction
-  reset(): void {
+  hardReset(): void {
     console.log('resetting game state');
     const oldTheme = this.game.colorTheme;
     this.game = makeNewGame({

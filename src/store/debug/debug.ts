@@ -33,7 +33,7 @@ export class Debug extends Model({
    */
   @modelAction
   phaseOne() {
-    getRoot(this).reset();
+    getRoot(this).hardReset();
     const initialZone = getGame(this).initialZone;
     const tech = getTech(this);
 

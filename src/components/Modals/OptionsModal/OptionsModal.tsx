@@ -72,7 +72,7 @@ const OptionsModal = () => {
           <button
             css={styles.button}
             onClick={() => {
-              root.reset();
+              root.hardReset();
               setResetConfirm(false);
               root.gui.closeOptionsModal();
             }}

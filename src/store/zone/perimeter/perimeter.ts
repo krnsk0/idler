@@ -1,7 +1,7 @@
 import { ExtendedModel, model, modelAction, tProp, types } from 'mobx-keystone';
 import { computed } from 'mobx';
 import { ZoneEntity } from '../zoneEntity';
-import { getRadar } from '../../selectors';
+import { getGame, getRadar } from '../../selectors';
 import { waveBuilder } from './enemies/utils/waveBuilder';
 import { statModifierFactory } from './enemies/utils/statModifierFactory';
 import { PurchaseCost, PurchaseCostDisplay } from '../sharedTypes';
@@ -247,10 +247,8 @@ export class Perimeter extends ExtendedModel(ZoneEntity, {
     this.enemies.forEach((enemy) => enemy.tick(delta));
     this.turrets.forEach((turret) => turret.tick(delta));
 
-    // TODO REMOVE THIS
-    // if enemy array is over 10, limit it to 10 items
-    // while (this.enemies.length > 10) {
-    //   this.enemies.shift();
-    // }
+    if (this.perimeterHealth <= 0) {
+      getGame(this).gameOver();
+    }
   }
 }

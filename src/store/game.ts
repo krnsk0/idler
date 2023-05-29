@@ -36,6 +36,7 @@ export class Game extends Model({
   selectedZoneRef: prop<Ref<Zone> | undefined>(),
   metadata: tProp(types.model(Metadata), () => new Metadata({})),
   colorTheme: tProp(types.enum(ColorThemes), ColorThemes.LIGHT).withSetter(),
+  gameOverModalOpen: tProp(types.boolean, false).withSetter(),
 }) {
   @computed
   get selectedZone(): Zone | undefined {
@@ -55,5 +56,11 @@ export class Game extends Model({
   @modelAction
   selectZone(zone: Zone | undefined) {
     this.selectedZoneRef = zone ? zoneRef(zone) : undefined;
+  }
+
+  @modelAction
+  gameOver() {
+    this.systemRegistry.pauseGame();
+    this.gameOverModalOpen = true;
   }
 }
