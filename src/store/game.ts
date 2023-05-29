@@ -71,6 +71,6 @@ export class Game extends Model({
     this.tech = new Tech({});
     this.selectZone(this.zones[0]);
     this.gameOverModalOpen = false;
-    // this.systemRegistry.unpauseGame();
+    this.systemRegistry.unpauseGame();
   }
 }
