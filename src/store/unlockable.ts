@@ -79,6 +79,7 @@ export abstract class Unlockable extends Model({
   protected onAttachedToRootStore() {
     const registry = getSystemRegistry(this);
     registry.registerUnlockable(this);
+
     return () => {
       registry.deregisterUnlockable(this);
     };

@@ -10,6 +10,7 @@ import { useUser } from './useUser';
 import OptionsModal from './Modals/OptionsModal/OptionsModal';
 import OptionsButton from './OptionsButton/OptionsButton';
 import PerimeterWarningModal from './Modals/PerimeterWarningModal/PerimeterWarningModal';
+import GameOverModal from './Modals/GameOverModal/GameOverModal';
 
 function App() {
   const root = useStore();
@@ -26,6 +27,7 @@ function App() {
       {selectedZone && <ZoneView zone={selectedZone} />}
       <TechModal />
       <OptionsModal />
+      <GameOverModal />
       <PerimeterWarningModal />
     </>
   );

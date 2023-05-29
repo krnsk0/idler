@@ -63,4 +63,14 @@ export class Game extends Model({
     this.systemRegistry.pauseGame();
     this.gameOverModalOpen = true;
   }
+
+  @modelAction
+  softReset() {
+    console.log('SOFT RESET');
+    this.zones = [new Zone({ name: initialZoneName })];
+    this.tech = new Tech({});
+    this.selectZone(this.zones[0]);
+    this.gameOverModalOpen = false;
+    // this.systemRegistry.unpauseGame();
+  }
 }
