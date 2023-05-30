@@ -66,7 +66,7 @@ export class Game extends Model({
 
   @modelAction
   softReset() {
-    console.log('SOFT RESET');
+    this.systemRegistry.clearState();
     this.zones = [new Zone({ name: initialZoneName })];
     this.tech = new Tech({});
     this.selectZone(this.zones[0]);

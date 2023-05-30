@@ -134,4 +134,14 @@ export class SystemRegistry extends Model({
   unpauseGame() {
     this.paused = false;
   }
+
+  /**
+   * Can be necessary to call if cleanup does not happen
+   * automatically when replacing large parts of the game
+   * state
+   */
+  @modelAction
+  clearState() {
+    this.unlockables.clear();
+  }
 }
