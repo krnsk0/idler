@@ -12,7 +12,7 @@ export class Autoballista extends ExtendedModel(BaseTurret, {}) {
 
   // ammo
   baseAmmoCost = [{ resource: ResourceNames.ROCK, quantity: 1 }];
-  baseAmmoCapacity = 5;
+  baseAmmoCapacity = 10;
   baseAmmoLoadTime = 8; // seconds
 
   // attack
