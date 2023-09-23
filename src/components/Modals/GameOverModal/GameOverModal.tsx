@@ -6,6 +6,7 @@ import { styles } from './GameOverModal.styles';
 const GameOverModal = () => {
   const root = useStore();
   const initialZoneName = root.game.zones[0].name;
+  const prestige = root.game.prestige;
 
   const content = (
     <>

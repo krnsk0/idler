@@ -13,6 +13,7 @@ import { Zone } from './zone/zone';
 import { Tech } from './tech/tech';
 import { SystemRegistry } from './systemRegistry';
 import { Metadata } from './metadata';
+import { Prestige } from './prestige';
 
 const initialZoneName = 'landing zone';
 
@@ -37,6 +38,7 @@ export class Game extends Model({
   metadata: tProp(types.model(Metadata), () => new Metadata({})),
   colorTheme: tProp(types.enum(ColorThemes), ColorThemes.LIGHT).withSetter(),
   gameOverModalOpen: tProp(types.boolean, false).withSetter(),
+  prestige: tProp(types.model(Prestige), () => new Prestige({})),
 }) {
   @computed
   get selectedZone(): Zone | undefined {
